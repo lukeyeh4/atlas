@@ -4,8 +4,8 @@ A map-first tool for exploring the AI supply chain — from quartz and specialty
 gases through fabs, data centers and model training to inference at the edge —
 with the environmental load of each node.
 
-**Live:** https://YOUR-USERNAME.github.io/ai-supply-chain-atlas/
-*(update this link once GitHub Pages is enabled)*
+**Live:** https://lukeyeh4.github.io/atlas/
+*(live once GitHub Pages finishes its first build)*
 
 ![Quiet Atlas](docs/screenshot.png)
 
