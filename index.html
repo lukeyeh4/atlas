@@ -18,8 +18,12 @@
     --landline:#CDD1CF;
     --water:#DDE3E4;
     --space:#FFFFFF;
-    --map-label:#7D8586;
+    --map-label:#8C9495;
+    --map-label-on:#4F5757;         /* labels over a coloured layer */
+    --label-halo:rgba(255,255,255,.82);
     --state-line:rgba(21,24,26,.34);
+    --nodata:#D6D9D8;
+    --nodata-line:#F2F3F2;
     --hs-shadow:rgba(40,46,46,.30);
     --hs-light:rgba(255,255,255,.35);
     --accent:#17706B;
@@ -31,6 +35,8 @@
     --r-aq0:#EFEFEE;   --r-aq1:#6C7272;
     --r-land0:#E9EFE8; --r-land1:#4C6F51;
     --warn:#9A6B2F;
+    /* connections diagram: one hue per kind of link, plus the chokepoint mark */
+    --e-phys:#B07A55; --e-data:#3A8A84; --e-money:#AE9444; --e-policy:#8674AC; --e-loop:#4A88A6; --choke:#C0634E;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
@@ -45,8 +51,12 @@
       --landline:#3A4140;
       --water:#0C0F10;
       --space:#171A1A;
-      --map-label:#6E7676;
+      --map-label:#5F6767;
+      --map-label-on:#B2B9B8;
+      --label-halo:rgba(17,19,19,.82);
       --state-line:rgba(233,235,234,.34);
+      --nodata:#2E3232;
+      --nodata-line:#4A5050;
       --hs-shadow:rgba(0,0,0,.55);
       --hs-light:rgba(233,235,234,.09);
       --accent:#6CC9BF;
@@ -57,14 +67,14 @@
       --r-ws0:#1A2126;   --r-ws1:#5484A4;
       --r-aq0:#1F2322;   --r-aq1:#878D8D;
       --r-land0:#1C221C; --r-land1:#66896B;
-      --warn:#C9A06A;
+      --warn:#C9A06A;--e-phys:#C99372;--e-data:#6DB5AE;--e-money:#CBB56C;--e-policy:#A597CA;--e-loop:#7AB0C8;--choke:#D98470;
     }
   }
   :root[data-theme="dark"]{
     --paper:#111313;--surface:#171A1A;--ink:#E9EBEA;--ink-2:#A7AEAE;--ink-3:#757C7C;
     --rule:#313636;--rule-soft:#232727;--land:#222626;--landline:#3A4140;
-    --water:#0C0F10;--space:#171A1A;--map-label:#6E7676;--state-line:rgba(233,235,234,.34);--hs-shadow:rgba(0,0,0,.55);--hs-light:rgba(233,235,234,.09);
-    --accent:#6CC9BF;--accent-soft:#1C2E2C;--ramp0:#1F2322;--ramp1:#8E8471;--warn:#C9A06A;
+    --water:#0C0F10;--space:#171A1A;--map-label:#5F6767;--map-label-on:#B2B9B8;--label-halo:rgba(17,19,19,.82);--state-line:rgba(233,235,234,.34);--nodata:#2E3232;--nodata-line:#4A5050;--hs-shadow:rgba(0,0,0,.55);--hs-light:rgba(233,235,234,.09);
+    --accent:#6CC9BF;--accent-soft:#1C2E2C;--ramp0:#1F2322;--ramp1:#8E8471;--warn:#C9A06A;--e-phys:#C99372;--e-data:#6DB5AE;--e-money:#CBB56C;--e-policy:#A597CA;--e-loop:#7AB0C8;--choke:#D98470;
     --r-ci0:#23241B;--r-ci1:#8A7A3A;--r-ws0:#1A2126;--r-ws1:#5484A4;
     --r-aq0:#1F2322;--r-aq1:#878D8D;--r-land0:#1C221C;--r-land1:#66896B;
   }
@@ -88,7 +98,7 @@
     border-bottom:1px solid var(--rule);position:relative;z-index:30;background:var(--surface)
   }
   .mark{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.26em;text-transform:uppercase;white-space:nowrap}
-  .search{position:relative;flex:0 1 250px;display:flex;align-items:center;gap:7px}
+  .search{position:relative;flex:0 1 220px;min-width:140px;display:flex;align-items:center;gap:7px}
   .search svg{flex:0 0 auto;opacity:.5}
   .search input{
     width:100%;background:none;border:0;outline:none;padding:5px 0;
@@ -113,14 +123,66 @@
   .results .rs{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
   .results .empty{padding:10px 11px;font-size:13px;color:var(--ink-3);font-style:italic}
 
-  .stages{display:flex;gap:13px;flex-wrap:wrap;margin-left:auto}
-  .stages button{
+  /* scenario menu: same quiet underline button as the layer switch, dropping down */
+  .scen{position:relative;flex:0 0 auto}
+  .scen > button{
+    background:none;border:0;cursor:pointer;padding:3px 0;color:var(--ink-2);white-space:nowrap;
+    font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+    border-bottom:1px solid var(--rule)
+  }
+  .scen > button:hover{color:var(--ink);border-bottom-color:var(--ink)}
+  .scen > button.on{color:var(--accent);border-bottom-color:var(--accent)}
+  .scen > button:focus-visible{outline:none;border-bottom-color:var(--accent)}
+  .scen-menu{
+    position:absolute;top:28px;left:0;width:264px;background:var(--surface);border:1px solid var(--rule);
+    box-shadow:0 14px 30px -20px rgba(0,0,0,.55);display:none;z-index:40
+  }
+  .scen-menu.open{display:block}
+  .scen-menu button{
+    display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--rule-soft);
+    padding:8px 11px;cursor:pointer;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;color:var(--ink-2)
+  }
+  .scen-menu button:last-child{border-bottom:0}
+  .scen-menu button:hover,.scen-menu button:focus{background:var(--rule-soft);outline:none}
+  .scen-menu button[aria-checked="true"]{color:var(--accent)}
+  .scen-menu .sub{display:block;margin-top:2px;font-size:9px;letter-spacing:.02em;color:var(--ink-3)}
+  .scen-note{color:var(--accent)}
+  /* ---------- key: stages and connections, inline in the bar, folding to one button ---------- */
+  .key{display:flex;align-items:center;gap:12px;margin-left:auto;flex:0 0 auto}
+  .key > button{
+    display:inline-flex;align-items:center;gap:6px;background:none;border:0;border-bottom:1px solid var(--rule);
+    padding:3px 0;cursor:pointer;color:var(--ink-2);white-space:nowrap;flex:0 0 auto;
+    font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase
+  }
+  .key > button:hover{color:var(--ink);border-bottom-color:var(--ink)}
+  .key > button.on{color:var(--accent);border-bottom-color:var(--accent)}   /* something is hidden */
+  .key .kcar{fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s ease}
+  .key > button[aria-expanded="true"] .kcar{transform:rotate(180deg)}      /* ‹ opens leftward, › folds away */
+  .key-menu{display:flex;align-items:center;gap:11px;transform-origin:right center;
+            transition:opacity .18s ease,transform .18s ease}
+  .key:not(.open) .key-menu{display:none}
+  .key.open .key-menu{animation:key-in .18s cubic-bezier(.2,0,0,1)}
+  @keyframes key-in{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:none}}
+  .stages,.key-flows{display:flex;gap:11px;align-items:center}
+  .stages button,.key-flows button{
     background:none;border:0;padding:3px 0;cursor:pointer;color:var(--ink-3);
     display:inline-flex;align-items:center;gap:5px;
-    font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
     border-bottom:1px solid transparent;white-space:nowrap
   }
-  .stages button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+  .stages button[aria-pressed="true"],.key-flows button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+  .stages button:hover,.key-flows button:hover{color:var(--ink)}
+  .stages button[aria-pressed="false"] .gl,.key-flows button[aria-pressed="false"] svg{opacity:.45}
+  .key-div{width:1px;height:14px;background:var(--rule);flex:0 0 auto}
+  .key-sub{
+    display:inline-flex;align-items:center;gap:5px;background:none;border:0;padding:3px 0;cursor:pointer;
+    color:var(--ink-3);white-space:nowrap;
+    font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase
+  }
+  .key-sub:hover{color:var(--ink-2)}
+  .key-sub .car{font-size:10px;transition:transform .15s ease}
+  .key-sub[aria-expanded="true"] .car{transform:rotate(180deg)}
+  .key-flows[hidden]{display:none}
   button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:1px solid var(--accent);outline-offset:3px}
 
   /* ---------- map ---------- */
@@ -153,6 +215,13 @@
   .addrow button:hover{color:var(--ink)}
   .addrow button .plus{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3)}
   .addrow button:hover .plus{color:var(--accent)}
+  .addrow button:focus-visible{outline:none;box-shadow:inset 2px 0 0 var(--accent)}
+  .addrow button.back{
+    padding:7px 2px;font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink-3)
+  }
+  .addrow button.back:hover{color:var(--ink)}
+  .addrow button.type{padding-left:12px}
   .p-actions button.danger{color:var(--ink-3)}
   .p-actions button.danger:hover{color:var(--warn);border-bottom-color:var(--warn)}
   .nd:hover path{fill:var(--accent)}
@@ -190,6 +259,7 @@
   .p-name{margin:2px 0 3px;font-size:22px;font-weight:600;letter-spacing:-.012em;line-height:1.14;padding-right:22px}
   .p-place{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-2);letter-spacing:.02em}
   .p-note{margin:0;font-size:14px;color:var(--ink-2);font-style:italic;line-height:1.45}
+  .p-note.p-prof{font-size:12.5px;color:var(--ink-3)}
 
   .sec-lbl{display:flex;align-items:baseline;gap:8px}
   .sec-lbl button{background:none;border:0;padding:0;margin-left:auto;cursor:pointer;color:var(--ink-3);font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase}
@@ -209,6 +279,14 @@
 
   .inputs{font-family:"IBM Plex Mono",monospace;font-size:9.5px;line-height:1.7;color:var(--ink-3);letter-spacing:.02em}
   .inputs b{color:var(--ink-2);font-weight:500}
+  /* location inputs with the level each came from (US-TX / US) and its confidence */
+  .prov{display:grid;grid-template-columns:auto 1fr auto;column-gap:10px;border-top:1px solid var(--rule-soft);padding-top:6px;
+        font-family:"IBM Plex Mono",monospace;font-size:9.5px;line-height:1.75;color:var(--ink-3);letter-spacing:.02em}
+  .prov b{color:var(--ink-2);font-weight:500}
+  .prov .lv{text-align:right;white-space:nowrap}
+  .prov a{color:inherit;text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:2px}
+  .prov a:hover{color:var(--ink-2)}
+  .prov .sample{color:var(--warn)}
   .chain{display:flex;flex-direction:column;gap:4px}
   .chain .lk{display:flex;gap:8px;align-items:baseline;font-size:14px;color:var(--ink-2);cursor:pointer;background:none;border:0;padding:1px 0;text-align:left;width:100%}
   .chain .lk .ar{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--accent);width:11px;flex:0 0 11px}
@@ -227,6 +305,129 @@
   .cmp-col{display:flex;flex-direction:column;gap:8px;min-width:0}
   .cmp-col.b .p-name{color:var(--warn)}
   .cmp-hint{font-size:13.5px;font-style:italic;color:var(--ink-3);border:1px dashed var(--rule);padding:10px;line-height:1.4}
+  /* ---------- connections diagram ---------- */
+  .viz{position:absolute;inset:0;z-index:30;background:var(--paper);display:flex;flex-direction:column}
+  .viz[hidden]{display:none}
+  .viz-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:10px 48px 10px 16px;
+           border-bottom:1px solid var(--rule);background:var(--surface);position:relative}
+  .viz-key{display:flex;flex-wrap:wrap;gap:6px}
+  .viz-key button{
+    display:inline-flex;align-items:center;gap:7px;background:none;border:1px solid var(--rule);padding:4px 9px;cursor:pointer;
+    font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);
+    transition:opacity .15s ease
+  }
+  .viz-key button:hover{color:var(--ink);border-color:var(--ink-3)}
+  .viz-key button[aria-pressed="false"]{opacity:.4}
+  .viz-key svg{flex:0 0 auto}
+  .viz-note{display:inline-flex;align-items:center;gap:6px;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+            letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .viz-used{display:inline-block;width:2px;height:11px;background:var(--accent)}
+  .viz-reset{background:none;border:0;border-bottom:1px solid var(--rule);padding:3px 0;cursor:pointer;
+             font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+  .viz-reset:hover{color:var(--ink);border-bottom-color:var(--ink)}
+  .viz-close{position:absolute;right:14px;top:50%;transform:translateY(-50%)}
+  .viz-canvas{flex:1 1 auto;min-height:0;overflow:auto;padding:14px 16px 20px}
+  .viz-canvas svg{display:block;width:100%;min-width:1000px;height:auto}
+  .viz .choke{fill:var(--choke)}
+  .viz .colh{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;fill:var(--ink-3)}
+  .viz .band{stroke:var(--rule);stroke-dasharray:2 4}
+  .viz .vn rect.box{fill:var(--surface);stroke:var(--rule);stroke-width:1}
+  .viz .vn .t{font-family:"Source Serif 4",Georgia,serif;font-size:13.5px;font-weight:600;fill:var(--ink-2)}
+  .viz .vn .s{font-family:"Source Serif 4",Georgia,serif;font-size:11px;font-style:italic;fill:var(--ink-3)}
+  .viz .vn .cnt{font-family:"IBM Plex Mono",monospace;font-size:10px;fill:var(--accent);text-anchor:end}
+  .viz .vn .bar{fill:var(--accent)}
+  /* parts the map models: a touch stronger */
+  .viz .vn.used rect.box{stroke:var(--ink-3)}
+  .viz .vn.used .t{fill:var(--ink)}
+  .viz .vn.used .s{fill:var(--ink-2)}
+  /* opacity sits on each kind's group, so bundled trunks that overlap don't darken */
+  .viz .vk{opacity:.85;transition:opacity .15s ease}
+  .viz .ve{fill:none;stroke-width:1.25;stroke-linejoin:round;transition:opacity .15s ease}
+  .viz .ve.phys{stroke:var(--e-phys)}  .viz .ve.data{stroke:var(--e-data)}  .viz .ve.money{stroke:var(--e-money)}
+  /* policy and feedback carry no hue of their own: dots and dashes tell them apart */
+  .viz .ve.policy{stroke:var(--e-policy);stroke-dasharray:1 3.5;stroke-linecap:round;stroke-width:1.5}
+  .viz .ve.loop{stroke:var(--e-loop);stroke-dasharray:6 4}
+  /* context, not the main flow: fainter until a part is hovered */
+  .viz .vk.policy,.viz .vk.loop{opacity:.5}
+  .viz .arr{fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+  .viz .vd{opacity:.9;transition:opacity .15s ease}
+  .viz .vd.phys{fill:var(--e-phys)} .viz .vd.data{fill:var(--e-data)} .viz .vd.money{fill:var(--e-money)}
+  .viz .vd.policy{fill:var(--e-policy)} .viz .vd.loop{fill:none;stroke:var(--e-loop);stroke-width:1.2}
+  .viz svg.focus .vd{opacity:0}
+  .viz svg.focus .vd.hl{opacity:1}
+  .viz .arr.phys{stroke:var(--e-phys)} .viz .arr.data{stroke:var(--e-data)} .viz .arr.money{stroke:var(--e-money)}
+  .viz .arr.policy{stroke:var(--e-policy)} .viz .arr.loop{stroke:var(--e-loop)}
+  .viz .vn{transition:opacity .15s ease;cursor:pointer;outline:none}
+  .viz .vn:focus-visible rect.box{stroke:var(--accent)}
+  .viz .vn.pin rect.box{stroke:var(--accent);stroke-width:1.5}
+  .viz-pin{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-left:auto}
+  .viz-pin.on{color:var(--accent)}
+  /* hover a node: its links and neighbours stay, the rest steps back */
+  .viz svg.focus .vk{opacity:1}
+  .viz svg.focus .ve{opacity:.07}
+  .viz svg.focus .ve.hl{opacity:1;stroke-width:1.7}
+  .viz svg.focus .vn{opacity:.3}
+  .viz svg.focus .vn.hl{opacity:1}
+
+  /* data center size: a hairline track with a square handle, mono readout */
+  .size{display:grid;grid-template-columns:auto 1fr auto;align-items:center;column-gap:10px}
+  .size .v{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink);font-variant-numeric:tabular-nums;
+           min-width:62px;text-align:right}
+  .size input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:18px;margin:0;background:none;cursor:pointer}
+  .size input[type=range]::-webkit-slider-runnable-track{height:1px;background:var(--rule)}
+  .size input[type=range]::-moz-range-track{height:1px;background:var(--rule)}
+  .size input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:9px;height:9px;margin-top:-4px;background:var(--accent);border:0;border-radius:0}
+  .size input[type=range]::-moz-range-thumb{width:9px;height:9px;background:var(--accent);border:0;border-radius:0}
+  .size input[type=range]:focus{outline:none}
+  .size input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px var(--accent-soft)}
+  .size input[type=range]:focus-visible::-moz-range-thumb{box-shadow:0 0 0 3px var(--accent-soft)}
+  .size .rng{grid-column:2 / 3;display:flex;justify-content:space-between;margin-top:-2px;
+             font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.06em;color:var(--ink-3)}
+  .size .rng button{background:none;border:0;padding:0;cursor:pointer;font:inherit;letter-spacing:inherit;color:var(--ink-3)}
+  .size .rng button:hover,.size .rng button:focus-visible{color:var(--accent);outline:none}
+  .size .rng button[disabled]{cursor:default;color:var(--ink-3)}
+  /* abbreviated units: a small callout with a hairline stem to the unit */
+  [data-unit]{cursor:help}
+  [data-unit]:hover{color:var(--ink-2)}
+  .utip{
+    position:fixed;z-index:70;width:max-content;max-width:236px;padding:7px 10px 8px;pointer-events:none;
+    background:var(--surface);border:1px solid var(--rule);box-shadow:0 14px 30px -20px rgba(0,0,0,.55);
+    opacity:0;transform:translateY(3px);transition:opacity .12s ease,transform .12s ease
+  }
+  .utip.below{transform:translateY(-3px)}
+  .utip.on{opacity:1;transform:none}
+  .utip::after{content:"";position:absolute;left:var(--stem,50%);top:100%;width:1px;height:9px;background:var(--rule)}
+  .utip.below::after{top:auto;bottom:100%}
+  .utip .uh{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.03em;color:var(--ink-3);line-height:1.45}
+  .utip .uh b{color:var(--ink);font-weight:500;letter-spacing:.04em}
+  .utip .ul{height:1px;background:var(--rule-soft);margin:6px 0 5px}
+  .utip .up{font-size:12.5px;line-height:1.4;color:var(--ink-2);font-style:italic}
+
+  /* thin, quiet scrollbars for the panel and the menus */
+  .panel,.panel *,.results,.layer-menu,.scen-menu{scrollbar-width:thin;scrollbar-color:var(--rule) transparent}
+  .panel ::-webkit-scrollbar,.panel::-webkit-scrollbar,.results::-webkit-scrollbar,
+  .layer-menu::-webkit-scrollbar,.scen-menu::-webkit-scrollbar{width:5px;height:5px}
+  .panel ::-webkit-scrollbar-track,.panel::-webkit-scrollbar-track,.results::-webkit-scrollbar-track{background:transparent}
+  .panel ::-webkit-scrollbar-thumb,.panel::-webkit-scrollbar-thumb,.results::-webkit-scrollbar-thumb,
+  .layer-menu::-webkit-scrollbar-thumb,.scen-menu::-webkit-scrollbar-thumb{background:var(--rule)}
+  .panel ::-webkit-scrollbar-thumb:hover,.panel::-webkit-scrollbar-thumb:hover{background:var(--ink-3)}
+  /* compare locations: the same node on other grids, collapsible under the bars */
+  .locs-head{display:flex;align-items:center;gap:6px;width:100%;background:none;border:0;padding:0;cursor:pointer;
+             color:var(--ink-3);text-align:left}
+  .locs-head:hover,.locs-head[aria-expanded="true"]{color:var(--ink-2)}
+  .locs-head:focus-visible{outline:none;color:var(--accent)}
+  .locs-head .car{font-family:"IBM Plex Mono",monospace;font-size:9px;width:8px;transition:transform .15s ease}
+  .locs-head[aria-expanded="true"] .car{transform:rotate(90deg)}
+  .locs{display:grid;grid-template-columns:1fr auto auto auto;column-gap:12px;margin-top:6px;
+        border-top:1px solid var(--rule-soft);padding-top:5px;
+        font-family:"IBM Plex Mono",monospace;font-size:9.5px;line-height:1.85;color:var(--ink-3);
+        letter-spacing:.02em;font-variant-numeric:tabular-nums}
+  .locs > span:not(:nth-child(4n+1)){text-align:right}
+  .locs .h{font-size:8.5px;letter-spacing:.14em;text-transform:uppercase}
+  .locs .me{color:var(--ink);font-weight:500}
+  .locs .lo{color:var(--accent)}
+  .locs .hi{color:var(--warn)}
+  .locs .foot{grid-column:1 / -1;text-align:left !important;margin-top:3px;line-height:1.5}
   .delta{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.04em}
   .delta.up{color:var(--warn)}
   .delta.down{color:var(--accent)}
@@ -298,14 +499,37 @@
   }
   .toast.on{opacity:1;transform:translate(-50%,0)}
 
+  /* ---------- projection switch (globe / flat) ---------- */
+  .proj{
+    position:absolute;top:12px;right:12px;z-index:25;display:flex;gap:2px;padding:2px;
+    background:color-mix(in srgb,var(--surface) 68%,transparent);border:1px solid var(--rule);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    box-shadow:0 10px 24px -20px rgba(0,0,0,.6)
+  }
+  .proj button{
+    display:inline-flex;align-items:center;gap:6px;background:none;border:0;padding:5px 9px;cursor:pointer;
+    color:var(--ink-3);font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+    transition:background-color .15s ease,color .15s ease
+  }
+  .proj button svg{fill:none;stroke:currentColor;stroke-width:1.1;stroke-linejoin:round}
+  .proj button:hover{color:var(--ink)}
+  .proj button[aria-checked="true"]{background:color-mix(in srgb,var(--ink) 10%,transparent);color:var(--ink)}
+  .proj button:focus-visible{outline:none;box-shadow:inset 0 -1px 0 var(--accent)}
+
   /* one entrance for every pop-over: search results, layer menu, context menu */
   @keyframes pop-in{from{opacity:0;transform:translateY(-3px) scale(.985)}to{opacity:1;transform:none}}
-  .results.open,.layer-menu.open,.ctx:not([hidden]){animation:pop-in .13s cubic-bezier(.2,0,0,1)}
+  .results.open,.layer-menu.open,.scen-menu.open,.ctx:not([hidden]){animation:pop-in .13s cubic-bezier(.2,0,0,1)}
   .ramp{display:flex;align-items:center;gap:7px}
   .ramp.pending .sw{opacity:.28}
   .ramp.pending #ramp-lo{color:var(--warn)}
   .ramp .sw{display:flex;width:74px;height:6px;border:1px solid var(--rule)}
   .ramp .sw i{flex:1}
+  .ramp .nd-key{display:flex;align-items:center;gap:7px;margin-left:9px}
+  .ramp .sw-nd{
+    width:18px;height:6px;border:1px solid var(--rule);
+    background:repeating-linear-gradient(135deg,var(--nodata-line) 0 1px,var(--nodata) 1px 3.5px)
+  }
+  .ramp.pending .nd-key{display:none}
   .year{display:flex;align-items:center;gap:9px;flex:1 1 210px;min-width:170px}
   .year input[type="range"]{
     flex:1;appearance:none;background:none;height:18px;cursor:pointer;min-width:90px
@@ -327,9 +551,13 @@
     color:var(--warn);border:1px solid currentColor;padding:2px 6px;white-space:nowrap
   }
 
+  @media (max-width:1360px){
+    .stages button,.key-flows button{font-size:9px;letter-spacing:.08em}
+    .stages,.key-flows,.key-menu{gap:9px}
+    .top{gap:14px}
+  }
   @media (max-width:720px){
     .top{height:auto;padding:9px 12px;flex-wrap:wrap;gap:10px 14px}
-    .stages{margin-left:0;width:100%;gap:11px}
     .search{flex:1 1 150px}
     .results{width:min(290px,84vw)}
     .totals{margin-left:0;width:100%;justify-content:space-between}
@@ -337,8 +565,10 @@
     .bottom{padding:8px 12px;gap:10px 14px}
   }
   @media (prefers-reduced-motion:reduce){
-    .panel,.toast{transition:none}
-    .results.open,.layer-menu.open,.ctx:not([hidden]){animation:none}
+    .panel,.toast,.proj button,.locs-head .car,.utip,.viz .ve,.viz .vk,.viz .vn,.viz-key button{transition:none}
+    .results.open,.layer-menu.open,.scen-menu.open,.ctx:not([hidden]){animation:none}
+    .key .kcar,.key-sub .car{transition:none}
+    .key.open .key-menu{animation:none}
   }
 </style>
 
@@ -348,17 +578,53 @@
     <span class="mark">Atlas</span>
     <div class="search">
       <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="5" cy="5" r="3.6" fill="none" stroke="currentColor" stroke-width="1.2"/><line x1="7.8" y1="7.8" x2="11" y2="11" stroke="currentColor" stroke-width="1.2"/></svg>
-      <input id="q" type="text" autocomplete="off" spellcheck="false" placeholder="Search site, region, stage  /" aria-label="Search sites">
+      <input id="q" type="text" autocomplete="off" spellcheck="false" placeholder="Search site, city, stage  /" aria-label="Search sites and cities">
       <div class="results" id="results" role="listbox" aria-label="Search results"></div>
     </div>
-    <div class="stages" id="stages"></div>
+    <div class="scen">
+      <button type="button" id="scen-btn" aria-haspopup="true" aria-expanded="false">Scenario: baseline</button>
+      <div class="scen-menu" id="scen-menu" role="menu"></div>
+    </div>
+    <div class="scen">
+      <button type="button" id="viz-btn" aria-expanded="false" aria-controls="viz">Connections</button>
+    </div>
+    <div class="key" id="key">
+      <div class="key-menu" id="key-menu" role="group" aria-label="Map key: show or hide stages and connections">
+        <div class="stages" id="stages"></div>
+        <span class="key-div" aria-hidden="true"></span>
+        <button type="button" class="key-sub" id="key-sub" aria-expanded="true" aria-controls="key-flows">Connections<span class="car" aria-hidden="true">›</span></button>
+        <div class="key-flows" id="key-flows"></div>
+      </div>
+      <button type="button" id="key-btn" aria-expanded="true" aria-controls="key-menu" title="Show or hide the key">
+        <span id="key-lbl">Key</span><svg class="kcar" width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><path d="M5.5 1.5 L3 4 L5.5 6.5"/></svg>
+      </button>
+    </div>
   </div>
 
   <div class="mapbox" id="map">
     <div class="gl-host" id="gl"></div>
     <div class="overlay" id="ov"><div class="tip" id="tip"></div></div>
     <div class="ctx" id="ctx" role="menu" tabindex="-1" hidden></div>
+    <section class="viz" id="viz" aria-label="Connections across the supply chain" hidden>
+      <div class="viz-bar">
+        <div class="viz-key" id="viz-key" role="group" aria-label="Kinds of link"></div>
+        <span class="viz-note"><svg width="9" height="9" viewBox="-5 -5 10 10" aria-hidden="true"><path class="choke" d="M0 -4 L4 0 L0 4 L-4 0 Z"/></svg>Chokepoint</span>
+        <span class="viz-note"><i class="viz-used" aria-hidden="true"></i>On the map</span>
+        <span class="viz-pin" id="viz-pin" aria-live="polite">Click a part to pin it</span>
+        <button type="button" class="viz-reset" id="viz-reset">Reset view</button>
+        <button type="button" class="p-close viz-close" id="viz-close" aria-label="Close connections">✕</button>
+      </div>
+      <div class="viz-canvas" id="viz-canvas"></div>
+    </section>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="proj" id="proj" role="radiogroup" aria-label="Map projection">
+      <button type="button" role="radio" data-proj="globe" aria-checked="true" title="Globe">
+        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M10.5 6a4.5 4.5 0 1 1-9 0a4.5 4.5 0 1 1 9 0 M8 6a2 4.5 0 1 1-4 0a2 4.5 0 1 1 4 0 M1.5 6h9"/></svg><span>Globe</span>
+      </button>
+      <button type="button" role="radio" data-proj="flat" aria-checked="false" title="Flat map">
+        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M1.5 2.5h9v7h-9z M1.5 6h9 M6 2.5v7"/></svg><span>Flat</span>
+      </button>
+    </div>
 
     <aside class="panel" id="panel" aria-live="polite">
       <button class="p-close" id="close" aria-label="Close">✕</button>
@@ -376,11 +642,13 @@
       <span class="bar-txt" id="ramp-lo">cleaner</span>
       <span class="sw" id="ramp-sw"></span>
       <span class="bar-txt" id="ramp-hi">dirtier</span>
+      <span class="nd-key"><span class="sw-nd" aria-hidden="true"></span><span class="bar-txt">no data</span></span>
     </div>
   </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.js"></script>
 <script>
 (function(){
@@ -492,6 +760,28 @@
     {id:'lagos',  n:'Lagos',         p:'Nigeria',            s:'delivery', c:[3.38,6.52],    r:'ng', note:'Underserved delivery region.',                    in:{p:12,u:.60,pue:1.50,g:.20,pop:15.0}}
   ];
 
+  // Facility type (data/node-types.json) and ISO codes for each built-in site
+  // and candidate location. Once the data files load, a built-in site takes
+  // its inputs from its type and its location values from its coordinates,
+  // exactly as a searched city does; the inline `in` and `r` above are the
+  // offline fallback. Codes are Mapbox's for these coordinates.
+  var SITE_META = {
+    spruce:['mine','US','US-NC'],      bayan:['mine','CN','CN-NM'],       yamag:['materials','JP'],
+    green:['mine','AU','AU-WA'],       grasb:['mine','ID','ID-PA'],
+    hsin:['fab','TW','TW-HSZ'],        tainan:['fab','TW','TW-TNN'],      ptaek:['fab','KR','KR-41'],
+    icheon:['fab','KR','KR-41'],       veld:['equipment','NL','NL-NB'],   ober:['equipment','DE','DE-BW'],
+    kaoh:['packaging','TW','TW-KHH'],  hiro:['fab','JP'],                 chand:['fab','US','US-AZ'],
+    zheng:['assembly','CN','CN-HA'],   taoy:['assembly','TW','TW-TAO'],
+    ashb:['dc-training','US','US-VA'], dalles:['dc-training','US','US-OR'], cbluff:['dc-training','US','US-IA'],
+    abil:['dc-training','US','US-TX'], dubl:['dc-training','IE'],         jurong:['dc-training','SG','SG-05'],
+    ulanq:['dc-training','CN','CN-NM'],
+    sfba:['lab','US','US-CA'],         seatt:['lab','US','US-WA'],        lond:['lab','GB','GB-ENG'],
+    beij:['lab','CN','CN-BJ'],
+    frank:['dc-inference','DE','DE-HE'], saopa:['dc-inference','BR','BR-SP'], mumb:['dc-inference','IN','IN-MH'],
+    tokyo:['dc-inference','JP'],       lagos:['dc-inference','NG','NG-LA'],
+    queret:[null,'MX','MX-QUE'],       joburg:[null,'ZA','ZA-GP'],        riyadh:[null,'SA','SA-01']
+  };
+
   // Candidate locations with no node on them yet.
   var CITIES = [
     {id:'queret', n:'Querétaro',    p:'Mexico',       c:[-100.39,20.59], r:'mx'},
@@ -554,25 +844,64 @@
     var R = REGIONS[region];
     return R.ci * Math.pow(1 - R.dec, year - BASE_YEAR);
   }
-  function metrics(site, year){
-    var i = site.in, R = REGIONS[site.r], dy = year - BASE_YEAR;
+  /* =============================== SCENARIOS ==============================
+     What-ifs over the model inputs. A scenario rewrites a site's inputs or
+     its grid just before metrics() runs; the data itself is never changed, so
+     Baseline is one click away. Map layers keep showing the data as sourced.
+     ======================================================================= */
+  // Data center campuses (added infrastructure nodes count too); assembly
+  // and rack integration sites stay where they are.
+  var DATA_CENTERS = {ashb:1, dalles:1, cbluff:1, abil:1, dubl:1, jurong:1, ulanq:1};
+  function isDataCenter(s){
+    return s.type ? s.type === 'dc-training' : s.s === 'infra' && (!!DATA_CENTERS[s.id] || !!s.added);
+  }
+  function withVals(o, vals){ return Object.assign({}, o, vals); }
+  // Sweden's grid: sourced when data/locales.json has it, sample otherwise.
+  function swedenGrid(){
+    var L = localeFor('SE', null), rec = COUNTRY.SE;
+    return {n: 'Sweden (scenario)',
+            ci:  L.ci  ? L.ci.v  : rec[0],  dec: L.dec ? L.dec.v : .03,
+            fos: L.fos ? L.fos.v : .05,     wue: L.wue ? L.wue.v : 1.2,
+            ws:  L.ws  ? L.ws.v  : rec[1]};
+  }
+  var SCENARIOS = [
+    {k:'base',   label:'Baseline',                    sub:'Inputs as sourced or sampled'},
+    {k:'decarb', label:'Fast grid decarbonisation',   sub:'Grid carbon and fossil share halved everywhere',
+     grid: function(R){ return withVals(R, {ci: R.ci * .5, fos: R.fos * .5}); }},
+    {k:'nordic', label:'Training moves to Nordics',   sub:'Data center campuses run on Sweden’s grid',
+     grid: function(R, s){ return isDataCenter(s) ? swedenGrid() : R; }},
+    {k:'boom',   label:'Data center boom (2× power)', sub:'Every data center campus draws twice the power',
+     input: function(i, s){ return isDataCenter(s) ? withVals(i, {p: i.p * 2}) : i; }}
+  ];
+  var SCEN = SCENARIOS[0];
+
+  function metrics(site, year, sc){
+    sc = sc || SCEN;
+    var i = sc.input ? sc.input(site.in, site) : site.in;
+    var R = sc.grid ? sc.grid(REGIONS[site.r], site) : REGIONS[site.r];
+    var dy = year - BASE_YEAR;
     var growth = Math.pow(1 + i.g, dy);
     var cap = i.p * Math.pow(growth, 0.7);           // most growth lands in capacity
-    var u = Math.min(0.95, i.u * Math.pow(growth, 0.3)); // the rest in utilisation
+    // the rest in utilisation, capped at 0.95 unless the input already sits above it
+    // (facility types whose p is average draw carry u = 1)
+    var u = Math.min(Math.max(0.95, i.u), i.u * Math.pow(growth, 0.3));
     var pue = 1 + (i.pue - 1) * Math.pow(0.985, dy);     // efficiency creeps up
     var E = cap * 8760 * u * pue;                  // MWh/yr
-    var ci = ciFor(site.r, year);
+    var ci = R.ci * Math.pow(1 - R.dec, dy);
     return {
       E:E,
       C:E * ci / 1000,
-      W:E * R.wue,
+      // process water for facility types that have a rate (fabs, mines…); else
+      // location cooling water, on IT energy for typed data centers
+      W: site.water != null ? E * site.water : site.type ? cap * 8760 * u * R.wue : E * R.wue,
       Araw:(E / 1e6) * R.fos * i.pop,
       ci:ci, pue:pue, u:u, cap:cap, R:R
     };
   }
   var AIR_MAX = 1, MAXES = {E:1, C:1, W:1};
   function recomputeMaxima(year){
-    var all = SITES.map(function(s){ return metrics(s, year); });
+    // scaled against baseline, so a scenario visibly moves the bars and the air index
+    var all = SITES.map(function(s){ return metrics(s, year, SCENARIOS[0]); });
     AIR_MAX = d3.max(all, function(m){ return m.Araw; }) || 1;
     MAXES.E = d3.max(all, function(m){ return m.E; }) || 1;
     MAXES.C = d3.max(all, function(m){ return m.C; }) || 1;
@@ -643,7 +972,9 @@
   var tip = document.getElementById('tip');
 
   function token(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
-  var WORLDVIEW = ['match', ['get','worldview'], ['all','US'], true, false];
+  // US worldview. Mapbox stores worldview as a comma list where borders are
+  // disputed ("CN,IN,JP,…,US"), so test membership, not equality.
+  var WORLDVIEW = ['any', ['==', ['get','worldview'], 'all'], ['in', 'US', ['get','worldview']]];
   var NOT_TRUE = function(k){ return ['!=', ['to-string', ['get', k]], 'true']; };
   var FONT = ['DIN Pro Medium', 'Arial Unicode MS Regular'];
   var EMPTY = {type:'FeatureCollection', features:[]};
@@ -655,20 +986,33 @@
     };
   }
 
+  // Globe or flat. Flat is Mercator, the projection the globe already hands
+  // over to when zoomed in; Mapbox's other flat projections drop the
+  // hillshade. Remembered per viewer, nothing more.
+  var FLAT = 'mercator';
+  var projKind = 'globe';
+  try { if (localStorage.getItem('atlas.projection') === 'flat') projKind = 'flat'; } catch (e) {}
+  // zoom at which one world width fills w pixels
+  function flatWorldZoom(w){ return Math.max(0.5, Math.log2(w / 512)); }
+
   var map = new mapboxgl.Map({
     container: 'gl',
-    center: [-30, 30], zoom: 1.9, minZoom: 1, maxZoom: 10,
+    center: projKind === 'globe' ? [-30, 30] : [10, 25],
+    zoom: projKind === 'globe' ? 1.9 : flatWorldZoom(document.getElementById('map').clientWidth - 302),
+    minZoom: 0.5, maxZoom: 10,
     attributionControl: false, logoPosition: 'bottom-right',
     style: {
       version: 8,
       glyphs: 'mapbox://fonts/mapbox/{fontstack}/{range}.pbf',
-      projection: {name: 'globe'},
+      projection: {name: projKind === 'globe' ? 'globe' : FLAT},
       fog: fog(),
       sources: {
         streets:   {type:'vector', url:'mapbox://mapbox.mapbox-streets-v8'},
         countries: {type:'vector', url:'mapbox://mapbox.country-boundaries-v1'},
         dem:       {type:'raster-dem', url:'mapbox://mapbox.mapbox-terrain-dem-v1', tileSize:512, maxzoom:14},
-        flows:     {type:'geojson', data: EMPTY}
+        flows:     {type:'geojson', data: EMPTY},
+        states:    {type:'geojson', data: EMPTY},
+        'flow-dots': {type:'geojson', data: EMPTY}
       },
       layers: [
         {id:'ocean', type:'background', paint:{'background-color': token('--water')}},
@@ -676,6 +1020,13 @@
          filter: WORLDVIEW, paint:{'fill-color': token('--land')}},
         {id:'region', type:'fill', source:'countries', 'source-layer':'country_boundaries',
          filter:['all', NOT_TRUE('disputed'), WORLDVIEW],
+         paint:{'fill-color': token('--land'), 'fill-opacity': 0}},
+        // no record for the active layer (and disputed areas): grey hatch, not the low end of the ramp
+        {id:'region-nodata', type:'fill', source:'countries', 'source-layer':'country_boundaries',
+         filter:['all', WORLDVIEW, false],   // set per layer in paintLand
+         paint:{'fill-pattern': 'nodata', 'fill-opacity': 0}},
+        // US states over their country, where the active layer has state values
+        {id:'state-fill', type:'fill', source:'states', filter:['literal', false],
          paint:{'fill-color': token('--land'), 'fill-opacity': 0}},
         {id:'water', type:'fill', source:'streets', 'source-layer':'water', minzoom: 6,
          paint:{'fill-color': token('--water'), 'fill-opacity': ['interpolate',['linear'],['zoom'], 6,0, 7.5,1]}},
@@ -702,9 +1053,25 @@
          layout:{'text-field':['coalesce',['get','name_en'],['get','name']], 'text-font': FONT,
                  'text-size': 10.5, 'text-max-width': 8},
          paint:{'text-color': token('--map-label')}},
+        // the hovered country's or US state's name, never crowded out, from the
+        // zoom where country names appear; the regular label steps aside for it
+        {id:'hover-label', type:'symbol', source:'streets', 'source-layer':'place_label',
+         minzoom: 2.6, filter:['literal', false],
+         layout:{'text-field':['coalesce',['get','name_en'],['get','name']], 'text-font': FONT,
+                 'text-size': 10.5, 'text-transform':'uppercase', 'text-letter-spacing': 0.2, 'text-max-width': 8,
+                 'text-allow-overlap': true, 'text-ignore-placement': true},
+         paint:{'text-color': token('--ink'), 'text-halo-color': token('--label-halo'),
+                'text-halo-width': 1.5, 'text-halo-blur': 0.6}},
         {id:'flow', type:'line', source:'flows',
          layout:{'line-cap':'butt'},
-         paint:{'line-color': token('--accent'), 'line-width': 1.2, 'line-dasharray': [2.5, 2.5], 'line-opacity': 0.9}}
+         paint:{'line-color': ['match', ['get','kind'], 'phys', token('--e-phys'), token('--e-data')],
+                'line-width': 1.2, 'line-dasharray': [2.5, 2.5], 'line-opacity': 0.85}},
+        // small markers travelling each arc from supplier to customer:
+        // squares for goods, dots for compute and models
+        {id:'flow-dot', type:'symbol', source:'flow-dots',
+         layout:{'icon-image': ['match', ['get','kind'], 'phys', 'dot-phys', 'dot-data'],
+                 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'icon-rotation-alignment': 'map'},
+         paint:{'icon-opacity': 0.95}}
       ]
     }
   });
@@ -712,8 +1079,37 @@
   map.dragRotate.disable();
   map.touchZoomRotate.disableRotation();
 
+  // 45° hatch tile for the no-data fill, drawn at 2x.
+  function hatch(){
+    var r = 2, n = 5 * r, c = document.createElement('canvas');
+    c.width = c.height = n;
+    var g = c.getContext('2d');
+    g.fillStyle = token('--nodata'); g.fillRect(0, 0, n, n);
+    g.strokeStyle = token('--nodata-line'); g.lineWidth = r * 0.6;
+    g.beginPath();
+    [-n, 0, n].forEach(function(o){ g.moveTo(o, n); g.lineTo(o + n, 0); });
+    g.stroke();
+    return g.getImageData(0, 0, n, n);
+  }
+  // Flow markers, drawn at 2x in the kind's colour; redrawn on theme change.
+  function flowDot(kind){
+    var c = document.createElement('canvas'), n = 14;
+    c.width = c.height = n;
+    var g = c.getContext('2d');
+    g.fillStyle = token(kind === 'phys' ? '--e-phys' : '--e-data');
+    g.strokeStyle = token('--label-halo'); g.lineWidth = 2;
+    if (kind === 'phys'){ g.strokeRect(3, 3, 8, 8); g.fillRect(3, 3, 8, 8); }
+    else { g.beginPath(); g.arc(7, 7, 4.2, 0, Math.PI * 2); g.stroke(); g.fill(); }
+    return g.getImageData(0, 0, n, n);
+  }
+  map.on('style.load', function(){
+    map.addImage('nodata', hatch(), {pixelRatio: 2});
+    map.addImage('dot-phys', flowDot('phys'), {pixelRatio: 2});
+    map.addImage('dot-data', flowDot('data'), {pixelRatio: 2});
+  });
+
   var ready = false;
-  map.on('load', function(){ ready = true; applyTheme(); drawFlows(); });
+  map.on('load', function(){ ready = true; applyTheme(); drawFlows(); loadStates(); });
   map.on('click', function(e){
     if (e.originalEvent && e.originalEvent.target.closest && e.originalEvent.target.closest('.mk')) return;
     if (!state.comparing) select(null);
@@ -731,10 +1127,10 @@
     map.setPaintProperty('relief', 'hillshade-accent-color', token('--hs-shadow'));
     map.setPaintProperty('borders', 'line-color', token('--landline'));
     map.setPaintProperty('state-borders', 'line-color', token('--state-line'));
-    map.setPaintProperty('country-label', 'text-color', token('--map-label'));
-    map.setPaintProperty('city-label', 'text-color', token('--map-label'));
-    map.setPaintProperty('flow', 'line-color', token('--accent'));
     map.setFog(fog());
+    if (map.hasImage('nodata')) map.updateImage('nodata', hatch());
+    if (map.hasImage('dot-phys')){ map.updateImage('dot-phys', flowDot('phys')); map.updateImage('dot-data', flowDot('data')); }
+    map.setPaintProperty('flow', 'line-color', ['match', ['get','kind'], 'phys', token('--e-phys'), token('--e-data')]);
     paintLand();
   }
 
@@ -799,8 +1195,59 @@
   var SCALES = {
     ci: d3.scaleLinear().domain([40, 700]).clamp(true),
     ws: d3.scaleLinear().domain([0, 1]).clamp(true),
-    aq: d3.scaleLinear().domain([4, 70]).clamp(true)
+    aq: d3.scaleLinear().domain([4, 70]).clamp(true)   // PM2.5 µg/m³ (WHO guideline 5)
   };
+  // Country values for a layer, keyed by ISO code: sourced from
+  // data/locales.json when it's loaded (countries without a value stay
+  // "no data"), else the sample COUNTRY table.
+  var LAYER_KEY = {ci: 'ci', ws: 'ws', aq: 'pm25'};
+
+  // US state shapes (us-atlas, Census cartographic boundaries), coloured from
+  // the state values in data/locales.json where the active layer has them.
+  // Features carry FIPS ids; FIPS_US maps them to the ISO codes the data uses.
+  var FIPS_US = {'01':'AL','02':'AK','04':'AZ','05':'AR','06':'CA','08':'CO','09':'CT','10':'DE','11':'DC',
+    '12':'FL','13':'GA','15':'HI','16':'ID','17':'IL','18':'IN','19':'IA','20':'KS','21':'KY','22':'LA',
+    '23':'ME','24':'MD','25':'MA','26':'MI','27':'MN','28':'MS','29':'MO','30':'MT','31':'NE','32':'NV',
+    '33':'NH','34':'NJ','35':'NM','36':'NY','37':'NC','38':'ND','39':'OH','40':'OK','41':'OR','42':'PA',
+    '44':'RI','45':'SC','46':'SD','47':'TN','48':'TX','49':'UT','50':'VT','51':'VA','53':'WA','54':'WV',
+    '55':'WI','56':'WY'};
+  var statesReady = false;
+  function loadStates(){
+    if (!window.topojson) return;
+    getJSON('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json').then(function(topo){
+      if (!topo || !topo.objects || !topo.objects.states) return;
+      var fc = topojson.feature(topo, topo.objects.states);
+      fc.features = fc.features.filter(function(f){ return FIPS_US[f.id]; });
+      fc.features.forEach(function(f){ f.properties = {code: 'US-' + FIPS_US[f.id], name: f.properties.name}; });
+      map.getSource('states').setData(fc);
+      map.setFilter('state-fill', null);
+      statesReady = true;
+      paintLand();
+    });
+  }
+  // State values for a layer: {US-TX: v}. Empty when the layer has none.
+  function stateValues(k){
+    var out = {}, S = LOCALES && LOCALES.subdivisions;
+    if (!S) return out;
+    Object.keys(S).forEach(function(code){
+      var x = S[code][LAYER_KEY[k]];
+      if (code.indexOf('US-') === 0 && okValue(x)) out[code] = x.v;
+    });
+    return out;
+  }
+  function layerValues(k){
+    var out = {};
+    if (LOCALES){
+      Object.keys(LOCALES.countries).forEach(function(iso){
+        var x = LOCALES.countries[iso][LAYER_KEY[k]];
+        if (okValue(x)) out[iso] = x.v;
+      });
+      return out;
+    }
+    Object.keys(COUNTRY).forEach(function(iso){ out[iso] = COUNTRY[iso][{ci: 0, ws: 1, aq: 2}[k]]; });
+    return out;
+  }
+  var FILL_OPACITY = 0.55;
   function paintLand(){
     paintRamp();
     if (!ready) return;
@@ -808,21 +1255,70 @@
     if (on){
       var ends = rampColors();
       var interp = d3.interpolateLab(ends[0], ends[1]);
-      var expr = ['match', ['get','iso_3166_1']];
-      Object.keys(COUNTRY).forEach(function(iso){
-        var rec = COUNTRY[iso], v;
-        if (k === 'ci') v = SCALES.ci(rec[0] * Math.pow(1 - 0.028, state.year - BASE_YEAR));
-        else if (k === 'ws') v = SCALES.ws(rec[1]);
-        else v = SCALES.aq(rec[2]);
-        expr.push(iso, d3.color(interp(v)).formatHex());
+      var expr = ['match', ['get','iso_3166_1']], have = [], vals = layerValues(k);
+      Object.keys(vals).forEach(function(iso){
+        expr.push(iso, d3.color(interp(SCALES[k](vals[iso]))).formatHex());
+        have.push(iso);
       });
       expr.push(ends[0]);
-      map.setPaintProperty('region', 'fill-color', expr);
+      map.setPaintProperty('region', 'fill-color', have.length ? expr : ends[0]);
+      map.setFilter('region-nodata', ['all', WORLDVIEW, ['any',
+        ['==', ['to-string', ['get','disputed']], 'true'],
+        ['!', ['in', ['get','iso_3166_1'], ['literal', have]]]]]);
+
+      // every state stays in the layer (so hover can find it); states without a
+      // value are transparent and let the country colour through
+      var sv = statesReady ? stateValues(k) : {}, codes = Object.keys(sv), sexpr = ['match', ['get','code']];
+      codes.forEach(function(c){ sexpr.push(c, d3.color(interp(SCALES[k](sv[c]))).formatHex()); });
+      sexpr.push('rgba(0,0,0,0)');
+      map.setPaintProperty('state-fill', 'fill-color', codes.length ? sexpr : 'rgba(0,0,0,0)');
     }
-    map.setPaintProperty('region', 'fill-opacity', on ? 0.94 : 0);
+    // Fills stay muted; hovering changes names, never colours.
+    map.setPaintProperty('state-fill', 'fill-opacity', on ? FILL_OPACITY : 0);
+    map.setPaintProperty('region', 'fill-opacity', on ? FILL_OPACITY : 0);
+    map.setPaintProperty('region-nodata', 'fill-opacity', on ? FILL_OPACITY : 0);
     // With a layer on, relief drops back to a texture so the ramp stays readable.
     map.setPaintProperty('relief', 'hillshade-exaggeration', on ? 0.32 : 0.6);
+    paintLabels();
   }
+
+  // Labels stay faint. Over a coloured layer they darken a little and take a
+  // soft halo in the page colour so they read on any fill. The hovered
+  // country's or US state's name shows in full ink (hover-label), at any zoom,
+  // while that country's regular label steps aside.
+  function paintLabels(){
+    var on = !!SCALES[state.layer], hIso = hovered && hovered.kind === 'country' ? hovered.id : '';
+    ['country-label', 'city-label'].forEach(function(id){
+      map.setPaintProperty(id, 'text-color', token(on ? '--map-label-on' : '--map-label'));
+      map.setPaintProperty(id, 'text-halo-color', token('--label-halo'));
+      map.setPaintProperty(id, 'text-halo-width', on ? 1.3 : 0);
+      map.setPaintProperty(id, 'text-halo-blur', 0.6);
+    });
+    map.setPaintProperty('country-label', 'text-opacity', ['case', ['==', ['get','iso_3166_1'], hIso], 0, 1]);
+    map.setPaintProperty('hover-label', 'text-color', token('--ink'));
+    map.setPaintProperty('hover-label', 'text-halo-color', token('--label-halo'));
+    map.setFilter('hover-label', !hovered ? ['literal', false]
+      : hovered.kind === 'country' ? ['all', ['==', ['get','class'], 'country'], ['==', ['get','iso_3166_1'], hovered.id], WORLDVIEW]
+      : ['all', ['==', ['get','class'], 'state'], ['==', ['get','iso_3166_2'], hovered.id], WORLDVIEW]);
+  }
+
+  // Hover names the country or US state under the pointer; colours never change.
+  var hovered = null;
+  function setHover(h){
+    if (!ready) return;
+    if ((h && hovered && h.kind === hovered.kind && h.id === hovered.id) || (!h && !hovered)) return;
+    hovered = h;
+    paintLabels();
+  }
+  map.on('mousemove', function(e){
+    var t = e.originalEvent && e.originalEvent.target;
+    if (t && t.closest && t.closest('.mk')){ setHover(null); return; }   // the marker shows its own tip
+    var f = map.queryRenderedFeatures(e.point, {layers: statesReady ? ['state-fill', 'landmass'] : ['landmass']})[0];
+    if (!f){ setHover(null); return; }
+    setHover(f.layer.id === 'state-fill' ? {kind: 'state', id: f.properties.code}
+                                         : {kind: 'country', id: f.properties.iso_3166_1});
+  });
+  map.on('mouseout', function(){ setHover(null); });
 
   function arc(a, b){
     var interp = d3.geoInterpolate(a, b), pts = [], prev = null;
@@ -836,17 +1332,60 @@
     return pts;
   }
 
+  // What a flow carries: into chip making or infrastructure it's physical
+  // goods (materials, wafers, chips, racks); into model building or delivery
+  // it's compute and models.
+  function flowKind(f){
+    var t = byId[f[1]].s;
+    return t === 'chip' || t === 'infra' || t === 'raw' ? 'phys' : 'data';
+  }
+
+  // Markers glide along each arc at an even angular pace (a short hop still
+  // takes 1.6 s, the longest 5 s), one to three per arc, about 30 frames a
+  // second. Reduced motion: no markers.
+  var flowArcs = [], flowAnim = null;
+  function animateFlows(){
+    if (flowAnim) cancelAnimationFrame(flowAnim);
+    flowAnim = null;
+    if (!ready) return;
+    var src = map.getSource('flow-dots');
+    if (!flowArcs.length || still()){ src.setData(EMPTY); return; }
+    var last = 0;
+    function frame(now){
+      flowAnim = requestAnimationFrame(frame);
+      if (now - last < 33) return;
+      last = now;
+      var feats = [];
+      flowArcs.forEach(function(a){
+        var dur = Math.min(5000, Math.max(1600, a.angle / 0.3 * 1000));
+        var count = Math.min(3, 1 + Math.floor(a.angle / 0.6)), n = a.pts.length - 1;
+        for (var k = 0; k < count; k++){
+          var u = ((now / dur) + k / count) % 1, x = u * n, i = Math.floor(x), f = x - i;
+          var p = a.pts[i], q = a.pts[Math.min(n, i + 1)];
+          feats.push({type: 'Feature', properties: {kind: a.kind},
+                      geometry: {type: 'Point', coordinates: [p[0] + (q[0] - p[0]) * f, p[1] + (q[1] - p[1]) * f]}});
+        }
+      });
+      src.setData({type: 'FeatureCollection', features: feats});
+    }
+    flowAnim = requestAnimationFrame(frame);
+  }
+
   function drawFlows(){
     var focus = state.selected;
     var links = [];
     if (focus){
       FLOWS.forEach(function(f){
-        if ((f[0]===focus || f[1]===focus) && live(f[0]) && live(f[1])) links.push(f);
+        if ((f[0]===focus || f[1]===focus) && live(f[0]) && live(f[1]) && !state.flowOff[flowKind(f)]) links.push(f);
       });
     }
-    if (ready) map.getSource('flows').setData({type:'FeatureCollection', features: links.map(function(f){
-      return {type:'Feature', properties:{}, geometry:{type:'LineString', coordinates: arc(byId[f[0]].c, byId[f[1]].c)}};
+    flowArcs = links.map(function(f){
+      return {pts: arc(byId[f[0]].c, byId[f[1]].c), kind: flowKind(f), angle: d3.geoDistance(byId[f[0]].c, byId[f[1]].c)};
+    });
+    if (ready) map.getSource('flows').setData({type:'FeatureCollection', features: flowArcs.map(function(a){
+      return {type:'Feature', properties:{kind: a.kind}, geometry:{type:'LineString', coordinates: a.pts}};
     })});
+    animateFlows();
     REL = {};
     links.forEach(function(f){ REL[f[0]]=1; REL[f[1]]=1; });
     placeNodes();
@@ -880,6 +1419,67 @@
     stagesHost.appendChild(b);
   });
 
+  /* --------------------------------- key ---------------------------------
+     Stages and the kinds of globe arc, each shown or hidden from one menu.
+     The button turns accent while anything is hidden.
+     ----------------------------------------------------------------------- */
+  var FLOW_KINDS = [
+    {k: 'phys', label: 'Goods',              sub: 'Materials, chips, servers'},
+    {k: 'data', label: 'Compute',            sub: 'Compute and models: data centers to labs and users'}
+  ];
+  state.flowOff = {};
+  var keyBtn = document.getElementById('key-btn'), keyMenu = document.getElementById('key-menu');
+  var keySub = document.getElementById('key-sub'), keyFlows = document.getElementById('key-flows');
+  FLOW_KINDS.forEach(function(f){
+    var b = el0('button'); b.type = 'button'; b.setAttribute('aria-pressed', 'true');
+    // swatch: the arc's dashed line with its travelling marker
+    var col = f.k === 'phys' ? 'var(--e-phys)' : 'var(--e-data)';
+    b.innerHTML = '<svg width="24" height="8" viewBox="0 0 24 8" aria-hidden="true">' +
+      '<line x1="1" y1="4" x2="23" y2="4" style="stroke:' + col + ';stroke-width:1.2;stroke-dasharray:2.5 2.5"></line>' +
+      (f.k === 'phys' ? '<rect x="9" y="1.5" width="5" height="5" style="fill:' + col + '"></rect>'
+                      : '<circle cx="12" cy="4" r="2.6" style="fill:' + col + '"></circle>') + '</svg>';
+    b.appendChild(el0('span', null, f.label));
+    b.title = f.sub;
+    b.addEventListener('click', function(){
+      state.flowOff[f.k] = !state.flowOff[f.k];
+      b.setAttribute('aria-pressed', String(!state.flowOff[f.k]));
+      drawFlows(); updateKey();
+    });
+    keyFlows.appendChild(b);
+  });
+  // folded to its label unless the viewer opened it, or the bar has room
+  var flowsOpen = window.innerWidth >= 1500;
+  try { var fo = localStorage.getItem('atlas.keyConnections'); if (fo) flowsOpen = fo === 'open'; } catch (e) {}
+  function syncKeySub(){ keySub.setAttribute('aria-expanded', String(flowsOpen)); keyFlows.hidden = !flowsOpen; }
+  syncKeySub();
+  keySub.addEventListener('click', function(){
+    flowsOpen = !flowsOpen; syncKeySub();
+    try { localStorage.setItem('atlas.keyConnections', flowsOpen ? 'open' : 'closed'); } catch (e) {}
+  });
+  function updateKey(){
+    var hidden = STAGES.filter(function(s){ return !state.active[s.k]; }).length +
+                 FLOW_KINDS.filter(function(f){ return state.flowOff[f.k]; }).length;
+    // open, the toggles speak for themselves; folded, the button says what's hidden
+    var note = hidden && !keyOpen;
+    keyBtn.classList.toggle('on', note);
+    document.getElementById('key-lbl').textContent = note ? 'Key · ' + hidden + ' hidden' : 'Key';
+  }
+  // Open by default, like the old always-on stage row; the choice is remembered.
+  var keyHost = document.getElementById('key'), keyOpen = true;
+  try { keyOpen = localStorage.getItem('atlas.key') !== 'closed'; } catch (e) {}
+  function syncKey(){
+    keyHost.classList.toggle('open', keyOpen);
+    keyBtn.setAttribute('aria-expanded', String(keyOpen));
+    updateKey();
+  }
+  syncKey();
+  keyBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    keyOpen = !keyOpen; syncKey();
+    try { localStorage.setItem('atlas.key', keyOpen ? 'open' : 'closed'); } catch (e2) {}
+    if (keyOpen){ var first = keyMenu.querySelector('.stages button'); if (first) first.focus(); }
+  });
+
   var layerBtn = document.getElementById('layer-btn');
   var layerMenu = document.getElementById('layer-menu');
   LAYERS.forEach(function(L){
@@ -910,8 +1510,48 @@
     layerMenu.classList.toggle('open', on);
     layerBtn.setAttribute('aria-expanded', String(on));
   });
-  document.addEventListener('click', function(){
+  /* ------------------------------ scenarios ------------------------------ */
+  var scenBtn = document.getElementById('scen-btn');
+  var scenMenu = document.getElementById('scen-menu');
+  SCENARIOS.forEach(function(sc){
+    var b = document.createElement('button');
+    b.type = 'button'; b.setAttribute('role','menuitemradio');
+    b.textContent = sc.label;
+    b.appendChild(el0('span','sub', sc.sub));
+    b.setAttribute('aria-checked', String(sc === SCEN));
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      SCEN = sc;
+      scenBtn.textContent = 'Scenario: ' + sc.label.toLowerCase();
+      scenBtn.classList.toggle('on', sc.k !== 'base');
+      Array.prototype.forEach.call(scenMenu.children, function(c){ c.setAttribute('aria-checked', String(c === b)); });
+      closeScen();
+      scenBtn.focus();
+      refresh();
+    });
+    scenMenu.appendChild(b);
+  });
+  function closeScen(){ scenMenu.classList.remove('open'); scenBtn.setAttribute('aria-expanded','false'); }
+  scenBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var on = !scenMenu.classList.contains('open');
     closeLayer(); closeResults();
+    scenMenu.classList.toggle('open', on);
+    scenBtn.setAttribute('aria-expanded', String(on));
+  });
+  scenMenu.addEventListener('keydown', function(e){
+    var items = Array.prototype.slice.call(scenMenu.children), i = items.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+      e.preventDefault();
+      items[(i + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length].focus();
+    } else if (e.key === 'Escape'){ e.stopPropagation(); closeScen(); scenBtn.focus(); }
+  });
+  scenBtn.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowDown' && scenMenu.classList.contains('open')){ e.preventDefault(); scenMenu.children[0].focus(); }
+  });
+
+  document.addEventListener('click', function(){
+    closeScen(); closeLayer(); closeResults();
     if (Date.now() - ctxOpenedAt > 350) closeCtx();
   });
 
@@ -929,33 +1569,68 @@
   /* -------------------------------- search ------------------------------- */
   var q = document.getElementById('q');
   var results = document.getElementById('results');
-  var cursor = -1, matches = [];
+  // matches: curated sites and locations ({d}) first, then Mapbox cities ({g}).
+  var cursor = -1, matches = [], geoTimer = null, geoSeq = 0, geoPending = false;
 
-  function closeResults(){ results.classList.remove('open'); cursor = -1; }
+  function closeResults(){ results.classList.remove('open'); cursor = -1; clearTimeout(geoTimer); geoSeq++; }
   function runSearch(){
     var t = q.value.trim().toLowerCase();
     if (!t){ closeResults(); return; }
     matches = SITES.concat(CITIES).filter(function(d){
-      var hay = d.n+' '+d.p+' '+(d.s ? stageLabel[d.s] : 'unassigned location')+' '+REGIONS[d.r].n+' '+(d.note||'');
+      var hay = d.n+' '+d.p+' '+(d.s ? stageLabel[d.s] : 'unassigned location')+' '+
+                (REGIONS[d.r] ? REGIONS[d.r].n : '')+' '+(d.note||'');
       return hay.toLowerCase().indexOf(t) >= 0;
-    }).slice(0, 8);
+    }).slice(0, 8).map(function(d){ return {d: d}; });
+    cursor = -1;
+    clearTimeout(geoTimer);
+    var seq = ++geoSeq;
+    geoPending = t.length >= 3;
+    if (geoPending) geoTimer = setTimeout(function(){
+      geocode('forward', {q: t, types: 'place', limit: 5, autocomplete: 'true'}).then(function(list){
+        if (seq !== geoSeq) return;
+        geoPending = false;
+        // drop cities already on the map as a site or location
+        var near = SITES.concat(CITIES);
+        list.forEach(function(g){
+          // the same place already on the map: same Mapbox id, or same name within 25 km
+          var dup = near.some(function(d){
+            return (d.mid && d.mid === g.mid) ||
+                   (d.n.toLowerCase() === g.n.toLowerCase() && d3.geoDistance(d.c, g.c) * 6371 < 25);
+          });
+          if (!dup) matches.push({g: g});
+        });
+        drawResults();
+      });
+    }, 280);
+    drawResults();
+  }
+  function drawResults(){
     results.innerHTML = '';
     if (!matches.length){
-      var e = document.createElement('div'); e.className='empty'; e.textContent='No site matches that.';
+      var e = document.createElement('div'); e.className='empty';
+      e.textContent = geoPending ? 'Searching places…' : 'No site or city matches that.';
       results.appendChild(e);
     } else {
-      matches.forEach(function(d, i){
+      matches.forEach(function(m, i){
+        var d = m.d, g = m.g;
         var b = document.createElement('button');
         b.type='button';
-        b.innerHTML = (d.s ? glyphHTML(d.s, 12) : '<span class="gl" style="width:12px"></span>')
+        b.innerHTML = (d && d.s ? glyphHTML(d.s, 12) : '<span class="gl" style="width:12px"></span>')
                     + '<span class="rn"></span><span class="rs"></span>';
-        b.querySelector('.rn').textContent = d.n + ', ' + d.p;
-        b.querySelector('.rs').textContent = d.s ? stageLabel[d.s] : 'Unassigned';
-        b.addEventListener('click', function(ev){ ev.stopPropagation(); choose(d.id); });
+        b.querySelector('.rn').textContent = d ? d.n + ', ' + d.p : g.n + (g.sub ? ', ' + g.sub : '');
+        b.querySelector('.rs').textContent = d ? (d.s ? stageLabel[d.s] : 'Unassigned') : 'City';
+        b.addEventListener('click', function(ev){ ev.stopPropagation(); chooseMatch(m); });
+        if (i === cursor) b.classList.add('cursor');
         results.appendChild(b);
       });
     }
     results.classList.add('open');
+  }
+  function chooseMatch(m){
+    if (m.d){ choose(m.d.id); return; }
+    q.value=''; closeResults(); q.blur();
+    var city = placeFound(m.g);
+    focusOn(city.c, 6);
   }
   function choose(id){
     if (byId[id] && !state.active[byId[id].s]){
@@ -977,7 +1652,7 @@
       cursor = (cursor + (e.key==='ArrowDown'?1:-1) + matches.length) % matches.length;
       Array.prototype.forEach.call(results.children, function(c,i){ c.classList.toggle('cursor', i===cursor); });
     } else if (e.key === 'Enter'){
-      choose(matches[Math.max(0,cursor)].id);
+      chooseMatch(matches[Math.max(0,cursor)]);
     }
   });
   document.addEventListener('keydown', function(e){
@@ -991,7 +1666,10 @@
       return;
     }
     if (e.key === 'Escape'){
+      if (!vizEl.hidden && vizPin){ pinViz(null); return; }
+      if (!vizEl.hidden){ openViz(false); vizBtn.focus(); return; }
       if (!ctx.hidden){ closeCtx(); return; }
+      if (scenMenu.classList.contains('open')){ closeScen(); return; }
       if (state.comparing){ toggleCompare(); }
       else if (state.selected){ select(null); }
     }
@@ -1013,6 +1691,72 @@
     return n;
   }
 
+  // Abbreviated units: full name, and one plain sentence for scale. Rough
+  // everyday equivalents: a US home uses ~10.5 MWh a year, a petrol car
+  // emits ~4.6 t CO₂ a year, an Olympic pool holds ~2,500 m³.
+  var UNITS = {
+    'MW':      ['megawatts', 'IT load for data centers, average draw for other sites. 1 MW is about what 800 US homes draw.'],
+    'GW':      ['gigawatts of IT load', '1 GW is roughly the output of one large nuclear reactor.'],
+    'GWh':     ['gigawatt-hours per year', '1 GWh is a year of electricity for about 95 US homes.'],
+    'TWh':     ['terawatt-hours per year', '1 TWh is a year of electricity for about 95,000 US homes.'],
+    'kt CO₂e': ['thousand tonnes of CO₂-equivalent per year', '1 kt is what about 220 petrol cars emit in a year.'],
+    'Mt CO₂e': ['million tonnes of CO₂-equivalent per year', '1 Mt is what about 220,000 petrol cars emit in a year.'],
+    'k m³':    ['thousand cubic metres of water per year', '1,000 m³ would fill about two-fifths of an Olympic pool.'],
+    'Mm³':     ['million cubic metres of water per year', '1 million m³ would fill about 400 Olympic pools.'],
+    'index':   ['air exposure index', 'Energy × fossil share × people within 100 km. 100 is the most-exposed site on the map; 50 is half that.'],
+    'g/kWh':   ['grams of CO₂-equivalent per kilowatt-hour', 'Coal power is about 1,000; wind, solar and nuclear are under 50.'],
+    'L/kWh':   ['litres of water per kilowatt-hour', 'A kilowatt-hour runs a microwave for an hour; 1 L/kWh is a litre of water for each.'],
+    '%':       ['fossil share of generation', 'The part of the grid’s electricity made from coal, gas and oil.'],
+    '%/yr':    ['change in grid carbon per year', 'At −3% a year a grid’s carbon halves in about 23 years.'],
+    'µg/m³':   ['micrograms of PM2.5 per cubic metre, annual mean', 'The WHO guideline is 5; Delhi’s yearly average is above 90.'],
+    '≤100 km': ['people living within 100 km', 'Roughly everyone within an hour’s drive.'],
+    '0–1':     ['water stress, from 0 to 1', '0 means water to spare; 1 means users draw 80% or more of what’s available.']
+  };
+  function unitEl(u, cls){
+    var s = el('span', cls === undefined ? 'u' : cls, u);
+    if (UNITS[u]) s.setAttribute('data-unit', u);
+    return s;
+  }
+
+  // One shared callout for every [data-unit]: a small box above the unit, a
+  // hairline stem down to it, flipped below when there's no room.
+  var utip = el('div','utip'); utip.setAttribute('role','tooltip'); utip.id = 'utip';
+  document.body.appendChild(utip);
+  var utipFor = null;
+  function showUnit(t){
+    var info = UNITS[t.getAttribute('data-unit')];
+    if (!info) return;
+    utipFor = t;
+    utip.innerHTML = '';
+    var h = el('div','uh');
+    h.appendChild(el('b', null, t.getAttribute('data-unit') === '0–1' ? 'Water stress' : t.getAttribute('data-unit')));
+    h.appendChild(document.createTextNode(' · ' + info[0]));
+    utip.appendChild(h);
+    utip.appendChild(el('div','ul'));
+    utip.appendChild(el('div','up', info[1]));
+    t.setAttribute('aria-describedby', 'utip');
+    var r = t.getBoundingClientRect(), w = utip.offsetWidth, hgt = utip.offsetHeight, gap = 10;
+    var cx = r.left + r.width / 2, left = Math.max(8, Math.min(window.innerWidth - w - 8, cx - w / 2));
+    var below = r.top - hgt - gap < 8;
+    utip.style.left = left + 'px';
+    utip.style.top = (below ? r.bottom + gap : r.top - hgt - gap) + 'px';
+    utip.style.setProperty('--stem', (cx - left) + 'px');
+    utip.classList.toggle('below', below);
+    utip.classList.add('on');
+  }
+  function hideUnit(){
+    if (utipFor) utipFor.removeAttribute('aria-describedby');
+    utipFor = null;
+    utip.classList.remove('on');
+  }
+  document.addEventListener('mouseover', function(e){
+    var t = e.target.closest && e.target.closest('[data-unit]');
+    if (t && t !== utipFor) showUnit(t);
+    else if (!t && utipFor) hideUnit();
+  });
+  document.addEventListener('scroll', hideUnit, true);
+  window.addEventListener('blur', hideUnit);
+
   function metricBlock(site){
     var wrap = el('div','metrics' + (state.formulas ? ' show-f' : ''));
     rows(site, state.year).forEach(function(r){
@@ -1022,7 +1766,7 @@
       top.appendChild(el('span','m-dots'));
       var v = el('span','m-val');
       v.textContent = r.d[0];
-      v.appendChild(el('span','u', r.d[1]));
+      v.appendChild(unitEl(r.d[1]));
       top.appendChild(v);
       m.appendChild(top);
       var bar = el('div','m-bar'); var fill = el('i'); fill.style.width = (r.frac*100).toFixed(1)+'%';
@@ -1036,12 +1780,25 @@
   function inputsBlock(site){
     var mm = metrics(site, state.year);
     var d = el('div','inputs');
-    d.innerHTML =
-      'Sample inputs · <b>P</b> ' + mm.cap.toFixed(0) + ' MW · <b>u</b> ' + mm.u.toFixed(2) +
-      ' · <b>PUE</b> ' + mm.pue.toFixed(2) + '<br>' +
-      '<b>CI</b> ' + mm.ci.toFixed(0) + ' g/kWh · <b>WUE</b> ' + mm.R.wue.toFixed(1) +
-      ' L/kWh · ' + mm.R.n;
-    return d;
+    // add parts as text, bold labels and hoverable units
+    function put(){
+      Array.prototype.forEach.call(arguments, function(x){
+        d.appendChild(typeof x === 'string' ? document.createTextNode(x) : x);
+      });
+    }
+    function b(t){ return el('b', null, t); }
+    // the node's own inputs go with the equations, under "formulas"
+    if (state.formulas){
+      var T = site.type && NODE_TYPES ? NODE_TYPES.types[site.type] : null;
+      put((T ? T.n + ' · typical inputs' : 'Sample node inputs') + ' · ', b('P'),
+          ' ' + mm.cap.toFixed(mm.cap < 10 ? 1 : 0) + ' ', unitEl('MW', ''), ' · ', b('u'), ' ' + mm.u.toFixed(2) + ' · ',
+          b('PUE'), ' ' + mm.pue.toFixed(2));
+      if (site.water != null) put(' · ', b('process water'), ' ' + site.water.toFixed(1) + ' ', unitEl('L/kWh', ''));
+      put(el('br'));
+    }
+    if (!mm.R.loc) put(b('CI'), ' ' + mm.ci.toFixed(0) + ' ', unitEl('g/kWh', ''), ' · ', b('WUE'),
+             ' ' + mm.R.wue.toFixed(1) + ' ', unitEl('L/kWh', ''), ' · ' + mm.R.n);
+    return d.childNodes.length ? d : null;
   }
 
   function chainBlock(site){
@@ -1062,6 +1819,203 @@
     return wrap;
   }
 
+  /* --------------------------- data center size --------------------------
+     Data centers vary far more in size than any other node, so their power
+     is the user's to set, within bounds a little wider than the sourced
+     typical range (training 200–1,200 MW, inference 10–100 MW). The slider
+     is logarithmic, so both ends get useful resolution.
+     ----------------------------------------------------------------------- */
+  var SIZE_RANGE = {'dc-training': [50, 2000], 'dc-inference': [5, 200]};
+  function niceMW(v){ return v < 20 ? Math.round(v) : v < 200 ? Math.round(v / 5) * 5 : Math.round(v / 10) * 10; }
+  function sizeBlock(site, onDrag){
+    var rng = SIZE_RANGE[site.type];
+    if (!rng) return null;
+    var T = NODE_TYPES && NODE_TYPES.types[site.type], typical = T && okValue(T.p) ? T.p.v : null;
+    var lo = Math.log(rng[0]), hi = Math.log(rng[1]), STEPS = 400;
+    // the exact value is stored so arrow keys never snap back; rounding is display-only
+    function toMW(i){ return Math.exp(lo + (hi - lo) * i / STEPS); }
+    function toStep(mw){ return Math.round((Math.log(mw) - lo) / (hi - lo) * STEPS); }
+
+    var d = el('div','size');
+    d.appendChild(el('span','eyebrow','Size'));
+    var input = el('input'); input.type = 'range'; input.min = 0; input.max = STEPS; input.step = 1;
+    input.value = toStep(Math.min(rng[1], Math.max(rng[0], site.in.p)));
+    input.setAttribute('aria-label', 'Data center IT power, megawatts');
+    d.appendChild(input);
+    var out = el('span','v');
+    function show(v){
+      var mw = niceMW(v);
+      out.textContent = (mw >= 1000 ? +(mw / 1000).toFixed(2) : mw) + ' ';
+      out.appendChild(unitEl(mw >= 1000 ? 'GW' : 'MW', ''));
+      input.setAttribute('aria-valuetext', mw + ' megawatts');
+    }
+    show(site.in.p);
+    d.appendChild(out);
+
+    var foot = el('div','rng');
+    foot.appendChild(el('span', null, rng[0] + ' MW'));
+    if (typical != null){
+      var reset = el('button', null, site.in.p === typical ? 'typical ' + typical + ' MW' : '↺ typical ' + typical + ' MW');
+      reset.type = 'button';
+      reset.disabled = site.in.p === typical;
+      reset.title = 'Back to the sourced typical size for this type';
+      reset.addEventListener('click', function(ev){ ev.stopPropagation(); site.in.p = typical; refresh(); });
+      foot.appendChild(reset);
+    }
+    foot.appendChild(el('span', null, (rng[1] >= 1000 ? rng[1] / 1000 + ' GW' : rng[1] + ' MW')));
+    d.appendChild(foot);
+
+    input.addEventListener('input', function(){
+      site.in.p = toMW(+input.value);
+      show(site.in.p);
+      onDrag();
+    });
+    // on release, redraw everything the size feeds (bars scale, deltas, compare)
+    input.addEventListener('change', function(){
+      refresh();
+      var again = pbody.querySelector('.size input'); if (again) again.focus();
+    });
+    input.addEventListener('click', function(ev){ ev.stopPropagation(); });
+    return d;
+  }
+
+  /* ------------------------- compare locations ---------------------------
+     The same node — same type and inputs — at reference places on other
+     grids: carbon, water and air against where it is now. Each place is a
+     real point, so it takes its own cell (people nearby) and grid, exactly
+     as a dropped point would.
+     ----------------------------------------------------------------------- */
+  var CMP_PLACES = [
+    {n:'Ashburn, VA',   iso1:'US', iso2:'US-VA', c:[-77.49, 39.04], country:'United States'},
+    {n:'Abilene, TX',   iso1:'US', iso2:'US-TX', c:[-99.73, 32.45], country:'United States'},
+    {n:'The Dalles, OR',iso1:'US', iso2:'US-OR', c:[-121.18, 45.60], country:'United States'},
+    {n:'Dublin',        iso1:'IE', iso2:null,    c:[-6.26, 53.35],  country:'Ireland'},
+    {n:'Luleå',         iso1:'SE', iso2:null,    c:[22.15, 65.58],  country:'Sweden'},
+    {n:'Frankfurt',     iso1:'DE', iso2:null,    c:[8.68, 50.11],   country:'Germany'},
+    {n:'Hsinchu',       iso1:'TW', iso2:null,    c:[121.00, 24.78], country:'Taiwan'},
+    {n:'Singapore',     iso1:'SG', iso2:null,    c:[103.70, 1.33],  country:'Singapore'},
+    {n:'Tokyo',         iso1:'JP', iso2:null,    c:[139.65, 35.68], country:'Japan'},
+    {n:'Mumbai',        iso1:'IN', iso2:'IN-MH', c:[72.88, 19.08],  country:'India'},
+    {n:'São Paulo',     iso1:'BR', iso2:null,    c:[-46.63, -23.55],country:'Brazil'}
+  ];
+  var cmpResolved = null;   // [{n, c, r, pop}] once locale data and cells are in
+  function resolveCmpPlaces(){
+    return Promise.all(CMP_PLACES.map(function(p){
+      return cellFor(p.c).then(function(cell){
+        return {n: p.n, c: p.c, r: regionAt(p.iso1, p.iso2, p.c, p.country, cell),
+                pop: cell && cell.vals.pop ? cell.vals.pop.v : null};
+      });
+    })).then(function(list){
+      list = list.filter(function(p){ return p.r; });
+      if (LOCALES && CELL_INDEX) cmpResolved = list;   // cache only the sourced answer
+      return list;
+    });
+  }
+
+  // A collapsible panel section: a › eyebrow header, closed by default, open
+  // or closed remembered per viewer under atlas.<key>.
+  var openSections = {};
+  function disclosure(key, label, title){
+    if (!(key in openSections)){
+      var v = null;
+      try { v = localStorage.getItem('atlas.' + key); } catch (e) {}
+      openSections[key] = v === 'open';
+    }
+    var open = openSections[key], wrap = el('div');
+    var head = el('button','locs-head'); head.type = 'button';
+    head.dataset.key = key;
+    head.setAttribute('aria-expanded', String(open));
+    head.appendChild(el('span','car','›'));
+    head.appendChild(el('span','eyebrow', label));
+    if (title) head.title = title;
+    head.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      openSections[key] = !open;
+      try { localStorage.setItem('atlas.' + key, open ? 'closed' : 'open'); } catch (e) {}
+      renderPanel();
+      var h = pbody.querySelector('.locs-head[data-key="' + key + '"]'); if (h) h.focus();
+    });
+    wrap.appendChild(head);
+    return {wrap: wrap, open: open};
+  }
+
+  // Location inputs with their level, confidence and source, folded away.
+  function provSection(R){
+    if (!R || !R.loc) return null;
+    var d = disclosure('locationInputs', 'Location inputs · ' + R.n, 'Each input with where it came from and how sure it is');
+    if (d.open){ var pb = provBlock(R); pb.style.marginTop = '6px'; d.wrap.appendChild(pb); }
+    return d.wrap;
+  }
+
+  function locsBlock(site){
+    var d = disclosure('compareLocations', 'Compare locations', 'This node, with the same inputs, at other places');
+    var wrap = d.wrap;
+    if (!d.open) return wrap;
+
+    var grid = el('div','locs');
+    wrap.appendChild(grid);
+    if (!cmpResolved){
+      grid.appendChild(el('span','foot','Loading places…'));
+      resolveCmpPlaces().then(function(list){
+        if (!cmpResolved) cmpResolved = list;   // offline: use the fallback answer for now
+        if (state.selected === site.id) renderPanel();
+      });
+      return wrap;
+    }
+
+    var me = metrics(site, state.year);
+    function variant(p){
+      var s = Object.assign({}, site, {r: p.r, in: Object.assign({}, site.in)});
+      if (p.pop != null) s.in.pop = p.pop;
+      return metrics(s, state.year);
+    }
+    function pct(a, b){ return b ? (a - b) / b * 100 : 0; }
+    function deltaEl(d){
+      var cls = Math.abs(d) < 0.5 ? '' : d < 0 ? 'lo' : 'hi';
+      // past double, a multiple reads better than +1210%
+      // past ten times, the exact multiple mostly reflects a near-zero "here"
+      return el('span', cls, Math.abs(d) < 0.5 ? '±0%' : d >= 900 ? '×10+' : d >= 100 ? '×' + (1 + d / 100).toFixed(1)
+                           : (d > 0 ? '+' : '−') + Math.abs(d).toFixed(0) + '%');
+    }
+    ['', 'Carbon', 'Water', 'Air'].forEach(function(h){ grid.appendChild(el('span','h', h)); });
+
+    var hereName = site.n + ' (here)';
+    grid.appendChild(el('span','me', hereName));
+    [[fCarbon(me.C)], [fWater(me.W)], [fAir(me.Araw)]].forEach(function(x){
+      var s = el('span','me', x[0][0] + ' '); s.appendChild(unitEl(x[0][1], '')); grid.appendChild(s);
+    });
+
+    cmpResolved
+      .filter(function(p){ return d3.geoDistance(p.c, site.c) * 6371 > 50; })   // skip where it already is
+      .map(function(p){ var m = variant(p); return {p: p, dC: pct(m.C, me.C), dW: pct(m.W, me.W), dA: pct(m.Araw, me.Araw)}; })
+      .sort(function(a, b){ return a.dC - b.dC; })
+      .forEach(function(x){
+        grid.appendChild(el('span', null, x.p.n));
+        grid.appendChild(deltaEl(x.dC));
+        grid.appendChild(deltaEl(x.dW));
+        grid.appendChild(deltaEl(x.dA));
+      });
+    var foot = el('span','foot', 'Same node and inputs on each place’s grid, water and population.' +
+      (me.R.loc ? '' : ' This site still runs on sample grid values, so the gaps are indicative.'));
+    grid.appendChild(foot);
+    return wrap;
+  }
+
+  // Under a scenario: what changed for this site against baseline.
+  function scenarioNote(site){
+    if (SCEN.k === 'base') return null;
+    var now = metrics(site, state.year), was = metrics(site, state.year, SCENARIOS[0]);
+    var parts = [['energy','E'], ['carbon','C'], ['water','W'], ['air','Araw']].map(function(p){
+      var d = was[p[1]] ? (now[p[1]] - was[p[1]]) / was[p[1]] * 100 : 0;
+      return Math.abs(d) < 0.5 ? null : p[0] + ' ' + (d > 0 ? '+' : '−') + Math.abs(d).toFixed(0) + '%';
+    }).filter(Boolean);
+    var d = el('div','inputs');
+    d.appendChild(el('span','scen-note', 'Scenario · ' + SCEN.label));
+    d.appendChild(document.createElement('br'));
+    d.appendChild(document.createTextNode(parts.length ? 'vs baseline · ' + parts.join(' · ') : 'No change for this site'));
+    return d;
+  }
+
   function singleView(site){
     pbody.innerHTML = '';
     var eb = el('span','eyebrow');
@@ -1070,8 +2024,15 @@
     pbody.appendChild(eb);
     pbody.appendChild(el('h2','p-name', site.n));
     pbody.appendChild(el('div','p-place', site.p + ' · ' + fmtCoord(site.c)));
-    var note = el('p','p-note', site.note); note.style.marginTop = '12px';
+    // added nodes describe their place from its data; built-in sites keep
+    // their note on what the place does, with the profile under it
+    var prof = profileOf(site);
+    var note = el('p','p-note', site.added ? prof || site.note : site.note); note.style.marginTop = '12px';
     pbody.appendChild(note);
+    if (prof && !site.added){
+      var pp = el('p','p-note p-prof', prof); pp.style.marginTop = '6px';
+      pbody.appendChild(pp);
+    }
 
     var lbl = el('div','sec-lbl'); lbl.style.marginTop = '14px';
     lbl.appendChild(el('span','eyebrow','Per year · ' + state.year));
@@ -1082,9 +2043,20 @@
     lbl.appendChild(fbtn);
     pbody.appendChild(lbl);
 
-    pbody.appendChild(metricBlock(site));
-    var ib = inputsBlock(site); ib.style.marginTop = '10px';
-    pbody.appendChild(ib);
+    var mb = metricBlock(site);
+    pbody.appendChild(mb);
+    var sz = sizeBlock(site, function(){   // while dragging, redraw only the bars
+      var nb = metricBlock(site); pbody.replaceChild(nb, mb); mb = nb;
+    });
+    if (sz){ sz.style.marginTop = '10px'; pbody.appendChild(sz); }
+    var sn = scenarioNote(site);
+    if (sn){ sn.style.marginTop = '8px'; pbody.appendChild(sn); }
+    var lb = locsBlock(site); lb.style.marginTop = '12px';
+    pbody.appendChild(lb);
+    var ib = inputsBlock(site);
+    if (ib){ ib.style.marginTop = '12px'; pbody.appendChild(ib); }
+    var ps = provSection(REGIONS[site.r]);
+    if (ps){ ps.style.marginTop = '12px'; pbody.appendChild(ps); }
 
     var ch = chainBlock(site);
     if (ch){
@@ -1193,13 +2165,21 @@
   }
 
   /* ------------------------ add and remove nodes ------------------------- */
-  function addNode(city, stage){
+  // A node starts from its facility type's typical inputs (data/node-types.json)
+  // when there is one, else from the stage's sample set; either way it takes
+  // the people within 100 km from its cell when that's known.
+  function addNode(city, stage, typeId){
+    var T = typeId && NODE_TYPES ? NODE_TYPES.types[typeId] : null, D = DEFAULT_INPUTS[stage];
+    function tv(k){ return T && okValue(T[k]) ? T[k].v : D[k]; }
+    var cellPop = city.cell && city.cell.vals.pop ? city.cell.vals.pop.v : null;
     var site = {
       id: city.id, n: city.n, p: city.p, s: stage, c: city.c, r: city.r,
-      note: 'Added by hand · starting from sample inputs for ' + stageLabel[stage].toLowerCase() + '.',
-      in: {p:DEFAULT_INPUTS[stage].p, u:DEFAULT_INPUTS[stage].u, pue:DEFAULT_INPUTS[stage].pue,
-           g:DEFAULT_INPUTS[stage].g, pop:DEFAULT_INPUTS[stage].pop},
-      added: true, placed: city.placed
+      note: T ? 'Added by hand · typical inputs for a ' + T.n.toLowerCase() + '.'
+              : 'Added by hand · starting from sample inputs for ' + stageLabel[stage].toLowerCase() + '.',
+      in: {p: tv('p'), u: tv('u'), pue: tv('pue'), g: tv('g'), pop: cellPop != null ? cellPop : D.pop},
+      popDefault: cellPop == null,
+      type: T ? typeId : null, water: T && okValue(T.water) ? T.water.v : null,
+      added: true, placed: city.placed, iso1: city.iso1, iso2: city.iso2, mid: city.mid, cell: city.cell
     };
     SITES = SITES.concat([site]);
     byId[site.id] = site;
@@ -1216,7 +2196,8 @@
   }
 
   function removeNode(site){
-    var city = {id:site.id, n:site.n, p:site.p, c:site.c, r:site.r, placed:site.placed};
+    var city = {id:site.id, n:site.n, p:site.p, c:site.c, r:site.r, placed:site.placed,
+                iso1:site.iso1, iso2:site.iso2, mid:site.mid, cell:site.cell};
     SITES = SITES.filter(function(x){ return x.id !== site.id; });
     delete byId[site.id];
     CITIES = CITIES.concat([city]);
@@ -1227,32 +2208,152 @@
     refresh();
   }
 
+  // Location inputs for a locale-built region: value, the level it came from
+  // (US-TX or US) and its confidence, linked to the source.
+  // f formats the number, u is its unit (named on hover).
+  var PROV_ROWS = [
+    {k:'ci',  lbl:'CI',     u:'g/kWh', f:function(v){ return v.toFixed(0); }},
+    {k:'fos', lbl:'Fossil', u:'%',     f:function(v){ return (v * 100).toFixed(0); }},
+    {k:'dec', lbl:'Trend',  u:'%/yr',  f:function(v){ return (v >= 0 ? '−' : '+') + Math.abs(v * 100).toFixed(1); }},
+    // climate estimate assuming a cooling tower: an upper bound where free cooling is used
+    {k:'wue', lbl:'WUE',    u:'L/kWh', f:function(v){ return '≤ ' + v.toFixed(2); }},
+    {k:'wue_disclosed', lbl:'Operator', u:'L/kWh', f:function(v){ return v.toFixed(2); }},
+    {k:'ws',  lbl:'Stress', u:'0–1',   f:function(v){ return v.toFixed(2); }},
+    {k:'pm25', lbl:'PM2.5', u:'µg/m³', f:function(v){ return v.toFixed(0); }},
+    {k:'pop', lbl:'People', u:'≤100 km', f:function(v){ return fmtPop(v); }}
+  ];
+  function fmtPop(m){ return m >= 1 ? m.toFixed(1) + ' M' : m < 0.001 ? '< 1k' : Math.round(m * 1000) + 'k'; }
+  function provBlock(R){
+    if (!R || !R.loc) return null;
+    var g = el('div','prov');
+    PROV_ROWS.forEach(function(row){
+      var x = R.loc[row.k];
+      if (!x) return;
+      g.appendChild(el('b', null, row.lbl));
+      var val = el('span', null, row.f(x.v));
+      if (row.u === '0–1') val.setAttribute('data-unit', '0–1');   // unitless scale: explain on the value
+      else { if (row.u !== '%') val.appendChild(document.createTextNode(' ')); val.appendChild(unitEl(row.u, '')); }
+      g.appendChild(val);
+      var lv = el('span','lv' + (x.conf === 'sample' ? ' sample' : ''));
+      var txt = (x.level === 'cell' ? 'local' : x.level) + ' · ' + x.conf;
+      var src = sourceOf(x.src);
+      if (src && src.url){
+        var a = el('a', null, txt); a.href = src.url; a.target = '_blank'; a.rel = 'noopener';
+        a.title = [src.title, x.year, x.basis, x.note].filter(Boolean).join(' · ');
+        lv.appendChild(a);
+      } else lv.textContent = txt;
+      g.appendChild(lv);
+    });
+    if (R.loc.unused){
+      var fmtOf = {}; PROV_ROWS.forEach(function(row){ fmtOf[row.k] = row; });
+      var u = R.loc.unused, n = el('span', null,
+        'Not used · ' + u[0].levelName + ' ' + u.map(function(x){
+          var l = fmtOf[x.k].lbl;
+          var r = fmtOf[x.k];
+          return (l === l.toUpperCase() ? l : l.toLowerCase()) + ' ' + r.f(x.v) +
+                 (r.u === '%' ? '%' : r.u === '0–1' ? '' : ' ' + r.u);
+        }).join(', ') + ' — its grid data is incomplete, so the grid comes from ' + R.loc.ci.levelName + '.');
+      n.style.gridColumn = '1 / -1';
+      n.style.marginTop = '3px';
+      g.appendChild(n);
+    }
+    return g;
+  }
+
+  // A short description written from the place's own values, so it reads the
+  // same for a curated site and a point dropped a minute ago. Only sourced
+  // values are described; sample or defaulted ones are left out.
+  function profileOf(d){
+    var R = REGIONS[d.r];
+    if (!R || !R.loc || !R.loc.ci) return null;
+    var L = R.loc, out = [], ci = L.ci.v;
+    function real(x){ return !!x && x.conf !== 'sample'; }
+    // country averages by code (US), subdivisions by name (Texas)
+    function avg(x){ return (x.level.length === 2 ? x.level : x.levelName) + ' average'; }
+    out.push((ci < 100 ? 'Very clean grid' : ci < 250 ? 'Low-carbon grid' : ci < 450 ? 'Mixed grid'
+             : ci < 650 ? 'Fossil-heavy grid' : 'Coal-heavy grid') +
+             ' (' + L.ci.levelName + ', ' + Math.round(ci) + ' g/kWh).');
+    if (real(L.pop)) out.push(L.pop.v < 0.001 ? 'Almost no one lives within 100 km.'
+                            : L.pop.v < 0.5 ? 'Sparsely populated: ' + fmtPop(L.pop.v) + ' people within 100 km.'
+                            : fmtPop(L.pop.v) + ' people within 100 km.');
+    if (real(L.ws)){
+      var ws = L.ws.v;
+      out.push((ws >= .8 ? 'Extremely high' : ws >= .6 ? 'High' : ws >= .4 ? 'Medium-high' : ws >= .2 ? 'Low-medium' : 'Low') +
+               ' water stress' + (L.ws.level === 'cell' ? ' in its river basin' : ' (' + avg(L.ws) + ')') + '.');
+    }
+    // cooling water comes from local climate only at the cell level
+    if (real(L.wue) && L.wue.level === 'cell'){
+      if (L.wue.v >= 1.4) out.push('Warm, humid climate: evaporative cooling uses more water.');
+      else if (L.wue.v <= 1.2) out.push('Cool climate: little cooling water needed.');
+    }
+    if (real(L.pm25)){
+      var pm = L.pm25.v;
+      out.push((pm > 35 ? 'Very poor' : pm > 15 ? 'Poor' : pm > 5 ? 'Moderate' : 'Clean') +
+               ' air (PM2.5 ' + Math.round(pm) + ' µg/m³' + (L.pm25.level === 'cell' ? '' : ', ' + avg(L.pm25)) + ').');
+    }
+    return out.join(' ');
+  }
+
+  var addStage = null;   // {city, stage} while a stage's facility types are open
   function cityView(city){
+    var R = REGIONS[city.r];
     pbody.innerHTML = '';
     pbody.appendChild(el('span','eyebrow','Unassigned location'));
     pbody.appendChild(el('h2','p-name', city.n));
     pbody.appendChild(el('div','p-place', city.p + ' · ' + fmtCoord(city.c)));
-    var note = el('p','p-note', 'No node here yet. Add one to model it on the ' + REGIONS[city.r].n + ' grid.');
+    var prof = profileOf(city);
+    var note = el('p','p-note', !R ? 'No grid data for this place yet, so it can’t be modelled.'
+                              : prof || 'No node here yet. Add one to model it on the ' + R.n + ' grid.');
     note.style.marginTop = '12px';
     pbody.appendChild(note);
+    if (!R) return;
 
-    var lbl = el('span','eyebrow','Add node'); lbl.style.marginTop = '14px';
+    // Two levels: the five stages, then the chosen stage's facility types.
+    // Without data/node-types.json a stage adds its sample node directly.
+    function typesOf(stage){
+      return NODE_TYPES ? Object.keys(NODE_TYPES.types).filter(function(id){ return NODE_TYPES.types[id].stage === stage; }) : [];
+    }
+    var open = addStage && addStage.city === city.id && typesOf(addStage.stage).length ? addStage.stage : null;
+    var lbl = el('span','eyebrow', open ? 'Add node · ' + stageLabel[open] : 'Add node'); lbl.style.marginTop = '14px';
     pbody.appendChild(lbl);
     var row = el('div','addrow'); row.style.marginTop = '6px';
-    STAGES.forEach(function(st){
-      var b = el('button'); b.type = 'button';
-      b.innerHTML = glyphHTML(st.k, 15);
-      b.appendChild(el('span', null, st.label));
-      b.appendChild(el('span','plus','+'));
-      b.addEventListener('click', function(ev){ ev.stopPropagation(); addNode(city, st.k); });
+    function choice(glyph, label, mark, run, cls){
+      var b = el('button', cls); b.type = 'button';
+      if (glyph) b.innerHTML = glyphHTML(glyph, 15);
+      b.appendChild(el('span', null, label));
+      b.appendChild(el('span','plus', mark));
+      b.addEventListener('click', function(ev){ ev.stopPropagation(); run(); });
       row.appendChild(b);
-    });
+    }
+    function focusFirst(sel){ var b = pbody.querySelector(sel); if (b) b.focus(); }
+    if (!open){
+      STAGES.forEach(function(st){
+        var types = typesOf(st.k);
+        choice(st.k, st.label, types.length ? '›' : '+', function(){
+          if (!types.length){ addNode(city, st.k); return; }
+          addStage = {city: city.id, stage: st.k};
+          renderPanel();
+          focusFirst('.addrow button.type');
+        });
+      });
+    } else {
+      choice(null, '‹ All stages', '', function(){
+        addStage = null;
+        renderPanel();
+        focusFirst('.addrow button');
+      }, 'back');
+      typesOf(open).forEach(function(id){
+        choice(open, NODE_TYPES.types[id].n, '+', function(){ addStage = null; addNode(city, open, id); }, 'type');
+      });
+    }
     pbody.appendChild(row);
 
     var foot = el('div','inputs'); foot.style.marginTop = '10px';
+    var ps = provSection(R);
+    if (ps){ ps.style.marginTop = '14px'; pbody.appendChild(ps); return; }
     foot.innerHTML = 'Starts from sample inputs · <b>CI</b> ' +
       ciFor(city.r, state.year).toFixed(0) + ' g/kWh · <b>WUE</b> ' +
-      REGIONS[city.r].wue.toFixed(1) + ' L/kWh';
+      R.wue.toFixed(1) + ' L/kWh';
     pbody.appendChild(foot);
   }
 
@@ -1414,7 +2515,7 @@
   }
 
   function groundItems(c, country){
-    var r = country ? regionAt(country.iso, c, country.name) : null;
+    var r = country ? regionAt(country.iso, null, c, country.name) : null;
     var items = [];
     if (country) items.push({icon:'add', label:'Add node here', disabled: !r, hint: r ? null : 'No grid data',
                              run:function(){ placeAt(c, country, r); }}, '-');
@@ -1424,12 +2525,156 @@
     return items;
   }
 
-  // Grid region for a point: the country's only region, the region of the
-  // nearest known place when a country has several, or a country-average
-  // region built from COUNTRY. Sample values either way.
+  /* ------------------------------- locales -------------------------------
+     Sourced location inputs keyed by ISO code, from data/locales.json. The
+     database side builds that file; the shape is docs/locale-contract.md.
+     Without it (offline, or a file we can't read) points fall back to the
+     sample COUNTRY table and the curated REGIONS.
+     ----------------------------------------------------------------------- */
+  var LOCALE_KEYS = ['ci', 'fos', 'dec', 'wue', 'ws', 'wue_disclosed', 'pm25', 'pop'];
+  // India's 2023 ISO codes, in case Mapbox adopts them; the data keeps the old ones.
+  var ISO2_ALIAS = {'IN-TS':'IN-TG', 'IN-CG':'IN-CT', 'IN-OD':'IN-OR', 'IN-UK':'IN-UT'};
+  var LOCALES = null, NODE_TYPES = null, CELL_INDEX = null;
+  function getJSON(url){
+    return fetch(url).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; });
+  }
+  // Everything the database side produces; each file is optional.
+  function loadData(){
+    return Promise.all([
+      getJSON('data/locales.json').then(function(d){ if (d && d.v === 1 && d.countries) LOCALES = d; }),
+      getJSON('data/node-types.json').then(function(d){ if (d && d.v === 1 && d.types) NODE_TYPES = d; }),
+      getJSON('data/cells/index.json').then(function(d){
+        if (!d || d.v !== 1 || !Array.isArray(d.tiles)) return;
+        CELL_INDEX = {}; d.tiles.forEach(function(t){ CELL_INDEX[t] = true; });
+        CELL_ABSENT = d.absent && typeof d.absent === 'object' ? d.absent : null;
+      })
+    ]).then(localizeBuiltIns);
+  }
+
+  // Built-in sites and candidate locations on the same data as a searched
+  // city: inputs from the facility type, people nearby from the cell, location
+  // values cell → subdivision → country. Whatever is missing keeps the inline
+  // sample values, so the page still works offline.
+  function localizeBuiltIns(){
+    var list = SITES.concat(CITIES).filter(function(s){ return SITE_META[s.id] && !s.added && !s.placed; });
+    return Promise.all(list.map(function(s){
+      return cellFor(s.c).then(function(cell){
+        var m = SITE_META[s.id], T = m[0] && NODE_TYPES ? NODE_TYPES.types[m[0]] : null;
+        s.iso1 = m[1]; s.iso2 = m[2] || null; s.cell = cell;
+        s.r = regionAt(m[1], s.iso2, s.c, null, cell) || s.r;
+        if (s.s && T && ['p', 'u', 'pue', 'g'].every(function(k){ return okValue(T[k]); })){
+          s.type = m[0];
+          s.in = {p: T.p.v, u: T.u.v, pue: T.pue.v, g: T.g.v,
+                  pop: cell && cell.vals.pop ? cell.vals.pop.v : s.in.pop};
+          s.water = okValue(T.water) ? T.water.v : null;
+        }
+      });
+    })).then(refresh);
+  }
+  function okValue(x){ return !!x && typeof x.v === 'number' && isFinite(x.v) && !!x.conf; }
+
+  /* -------------------------------- cells --------------------------------
+     Location values on a 0.25° grid — people within 100 km, cooling water
+     from local climate, basin water stress, PM2.5 — in 10° tiles under
+     data/cells/. Fetched per tile, once, only for tiles the index lists.
+     ----------------------------------------------------------------------- */
+  var CELL_KEYS = ['pop', 'wue', 'ws', 'pm25'];
+  var cellTiles = {};
+  // What a cell missing from the tiles means, per key, when the index says
+  // (pop: fewer than 500 people within 100 km). Without it a missing cell is unknown.
+  var CELL_ABSENT = null;
+  function absentCell(key){
+    var vals = {};
+    Object.keys(CELL_ABSENT || {}).forEach(function(k){
+      var x = CELL_ABSENT[k];
+      if (CELL_KEYS.indexOf(k) >= 0 && okValue(x))
+        vals[k] = {v: x.v, conf: x.conf, src: x.src, year: x.year, note: x.note, level: 'cell', levelName: 'this location'};
+    });
+    return Object.keys(vals).length ? {key: key, vals: vals} : null;
+  }
+  function cellCentre(x){ return (Math.floor(x / 0.25) * 0.25 + 0.125).toFixed(3); }
+  // → Promise of {key, vals: {k: {v, conf, src, year, note, level: 'cell'}}} or null
+  function cellFor(c){
+    var tile = Math.floor(c[1] / 10) * 10 + '_' + Math.floor(c[0] / 10) * 10;
+    var key = cellCentre(c[1]) + ',' + cellCentre(c[0]);
+    if (!CELL_INDEX) return Promise.resolve(null);
+    if (!CELL_INDEX[tile]) return Promise.resolve(absentCell(key));
+    if (!cellTiles[tile]) cellTiles[tile] = getJSON('data/cells/' + tile + '.json');
+    return cellTiles[tile].then(function(t){
+      if (!t || t.v !== 1 || !t.cells || !Array.isArray(t.keys)) return null;
+      var row = t.cells[key], vals = {};
+      if (!row) return absentCell(key);
+      t.keys.forEach(function(k, i){
+        var m = (t.meta || {})[k] || {}, v = row[i];
+        if (CELL_KEYS.indexOf(k) < 0 || typeof v !== 'number' || !isFinite(v) || !m.conf) return;
+        vals[k] = {v: v, conf: m.conf, src: m.src, year: m.year, note: m.note, level: 'cell', levelName: 'this location'};
+      });
+      return Object.keys(vals).length ? {key: key, vals: vals} : null;
+    });
+  }
+
+  // The most specific value: cell → subdivision (US-TX) → country (US). Grid
+  // values (ci, fos, dec) never come from cells and travel together: they
+  // come from the most specific level that has all three, so carbon and air
+  // never mix two grids. Local grid values passed over that way are kept in
+  // `unused` for the panel.
+  // Each comes back as {v, conf, src, year, basis, note, level, levelName}.
+  var GRID_KEYS = ['ci', 'fos', 'dec'];
+  function localeFor(iso1, iso2, cell){
+    var out = {}, L = LOCALES, levels = [];
+    iso2 = ISO2_ALIAS[iso2] || iso2;
+    if (L && iso2 && L.subdivisions && L.subdivisions[iso2]) levels.push([iso2, L.subdivisions[iso2]]);
+    if (L && iso1 && L.countries[iso1]) levels.push([iso1, L.countries[iso1]]);
+    function take(k, lv){
+      var x = lv[1][k];
+      out[k] = {v: x.v, conf: x.conf, src: x.src, year: x.year, basis: x.basis, note: x.note,
+                level: lv[0], levelName: lv[1].n};
+    }
+    var grid = levels.filter(function(lv){ return GRID_KEYS.every(function(k){ return okValue(lv[1][k]); }); })[0];
+    LOCALE_KEYS.forEach(function(k){
+      if (cell && cell.vals[k] && GRID_KEYS.indexOf(k) < 0){ out[k] = cell.vals[k]; return; }
+      if (grid && GRID_KEYS.indexOf(k) >= 0){ take(k, grid); return; }
+      for (var i = 0; i < levels.length; i++){
+        if (okValue(levels[i][1][k])){ take(k, levels[i]); return; }
+      }
+    });
+    if (grid) levels.slice(0, levels.indexOf(grid)).forEach(function(lv){
+      GRID_KEYS.forEach(function(k){
+        if (okValue(lv[1][k])) (out.unused = out.unused || []).push({k: k, v: lv[1][k].v, level: lv[0], levelName: lv[1].n});
+      });
+    });
+    return out;
+  }
+  function sourceOf(id){ return LOCALES && LOCALES.sources && LOCALES.sources[id] || null; }
+
+  // A grid region built from locale data. Missing keys get the old
+  // country-average defaults and are marked sample, so the panel says so.
+  function localeRegion(iso1, iso2, countryName, cell){
+    var loc = localeFor(iso1, iso2, cell);
+    if (!loc.ci) return null;
+    iso2 = ISO2_ALIAS[iso2] || iso2;
+    var fromSub = !!iso2 && LOCALE_KEYS.some(function(k){ return loc[k] && loc[k].level === iso2; });
+    // a cell, or a subdivision with its own values or its own unused-values
+    // note, gets its own region
+    var key = 'loc-' + (cell ? cell.key : fromSub || (iso2 && loc.unused) ? iso2 : iso1);
+    if (REGIONS[key]) return key;
+    var ci = loc.ci.v, dflt = {dec: .03, wue: 1.5, ws: (COUNTRY[iso1] || [0, .4])[1], fos: Math.min(.95, ci / 800)};
+    Object.keys(dflt).forEach(function(k){
+      if (!loc[k]) loc[k] = {v: dflt[k], conf: 'sample', level: 'default'};
+    });
+    var where = loc.ci.level === iso1 ? (countryName || loc.ci.levelName) : loc.ci.levelName + ', ' + iso1;
+    REGIONS[key] = {n: where, ci: ci, dec: loc.dec.v, wue: loc.wue.v, ws: loc.ws.v, fos: loc.fos.v, loc: loc};
+    return key;
+  }
+
+  // Grid region for a point: sourced locale data when there is any; else the
+  // country's curated region (nearest known place when it has several); else
+  // a country-average region built from the sample COUNTRY table.
   function regionIso(k){ var p = k.split('-')[0]; return p === 'uk' ? 'GB' : p.toUpperCase(); }
-  function regionAt(iso, c, name){
-    var keys = Object.keys(REGIONS).filter(function(k){ return regionIso(k) === iso; });
+  function regionAt(iso, iso2, c, name, cell){
+    var lr = localeRegion(iso, iso2, name, cell);
+    if (lr) return lr;
+    var keys = Object.keys(REGIONS).filter(function(k){ return !REGIONS[k].loc && regionIso(k) === iso; });
     if (keys.length === 1) return keys[0];
     if (keys.length > 1){
       var best = keys[0], bd = Infinity;
@@ -1448,14 +2693,81 @@
     return key;
   }
 
+  /* ------------------------------ geocoding ------------------------------
+     Mapbox Geocoding v6 names searched and placed points and gives their ISO
+     codes. Results are shown, never stored (temporary geocoding terms).
+     ----------------------------------------------------------------------- */
+  function geoPlace(f){
+    var p = f.properties || {}, cx = p.context || {}, co = cx.country || {}, rg = cx.region || {};
+    return {
+      mid: p.mapbox_id, type: p.feature_type,
+      n: p.name_preferred || p.name, sub: p.place_formatted || '',
+      c: [p.coordinates.longitude, p.coordinates.latitude],
+      iso1: (co.country_code || '').toUpperCase() || null,
+      iso2: rg.region_code_full || null,
+      country: co.name || ''
+    };
+  }
+  function geocode(path, params){
+    params.access_token = mapboxgl.accessToken;
+    params.language = 'en';
+    var qs = Object.keys(params).map(function(k){ return k + '=' + encodeURIComponent(params[k]); }).join('&');
+    return fetch('https://api.mapbox.com/search/geocode/v6/' + path + '?' + qs)
+      .then(function(r){ return r.ok ? r.json() : {features: []}; })
+      .then(function(d){ return (d.features || []).map(geoPlace); })
+      .catch(function(){ return []; });
+  }
+
   var placedCount = 0;
-  function placeAt(c, country, r){
+  function makeCity(c, n, p, r, codes){
     placedCount += 1;
-    var city = {id: 'pt' + placedCount, n: 'New site ' + placedCount, p: country.name,
-                c: [+c[0].toFixed(2), +c[1].toFixed(2)], r: r, placed: true};
+    var city = {id: 'pt' + placedCount, n: n || 'New site ' + placedCount, p: p,
+                c: [+c[0].toFixed(2), +c[1].toFixed(2)], r: r, placed: true,
+                iso1: codes.iso1 || null, iso2: codes.iso2 || null, mid: codes.mid || null};
     CITIES = CITIES.concat([city]);
     cityById[city.id] = city;
     state.comparing = false; state.compare = null; state.selected = city.id;
+    refresh();
+    return city;
+  }
+
+  // Right-click → "Add node here": place at once, then name it from reverse
+  // geocoding and move it onto its state's data when that comes back.
+  function placeAt(c, country, r){
+    var city = makeCity(c, null, country.name, r, {iso1: country.iso});
+    Promise.all([
+      geocode('reverse', {longitude: c[0], latitude: c[1], types: 'place,region', limit: 1}),
+      cellFor(city.c)
+    ]).then(function(res){
+      var g = res[0][0], d = byId[city.id] || cityById[city.id];
+      if (!d) return;
+      if (g && g.iso1 === country.iso){
+        if (g.type === 'place' && /^New site \d+$/.test(d.n)) d.n = g.n;
+        d.p = g.sub || d.p;
+        d.iso2 = g.iso2;
+      }
+      localize(d, res[1], country.name);
+    });
+  }
+
+  // A city chosen from search: reuse its ring if it's already on the map.
+  function placeFound(g){
+    var have = CITIES.concat(SITES).filter(function(d){ return d.mid && d.mid === g.mid; })[0];
+    if (have){ pick(have.id); return have; }
+    var city = makeCity(g.c, g.n, g.sub || g.country, regionAt(g.iso1, g.iso2, g.c, g.country), g);
+    cellFor(city.c).then(function(cell){
+      var d = byId[city.id] || cityById[city.id];
+      if (d) localize(d, cell, g.country);
+    });
+    return city;
+  }
+
+  // Put a place on its cell's values once the tile has arrived. A node added
+  // in the meantime still gets the local population in place of its default.
+  function localize(d, cell, countryName){
+    d.cell = cell;
+    d.r = regionAt(d.iso1, d.iso2, d.c, countryName, cell) || d.r;
+    if (d.in && d.popDefault && cell && cell.vals.pop){ d.in.pop = cell.vals.pop.v; d.popDefault = false; }
     refresh();
   }
   function dropCity(d){
@@ -1508,17 +2820,390 @@
   });
 
   map.on('movestart', closeCtx);
+
+  /* --------------------------- projection switch -------------------------- */
+  var projHost = document.getElementById('proj');
+  function markProjection(){
+    Array.prototype.forEach.call(projHost.querySelectorAll('button'), function(b){
+      var on = b.dataset.proj === projKind;
+      b.setAttribute('aria-checked', String(on));
+      b.tabIndex = on ? 0 : -1;
+    });
+  }
+  function setProjection(kind){
+    if (kind === projKind) return;
+    projKind = kind;
+    markProjection();
+    try { localStorage.setItem('atlas.projection', kind); } catch (e) {}
+    closeCtx(); hideTip();
+    map.setProjection(kind === 'globe' ? 'globe' : FLAT);
+    // at world scale, reframe: the flat map wants one full world width in view
+    if (map.getZoom() < 3){
+      var to = kind === 'globe' ? {zoom: 1.9}
+             : {zoom: flatWorldZoom(box.clientWidth - padLeft), center: [map.getCenter().lng, 25]};
+      to.duration = still() ? 0 : 500;
+      map.easeTo(to);
+    }
+  }
+  projHost.addEventListener('click', function(e){
+    e.stopPropagation();
+    var b = e.target.closest('button');
+    if (b) setProjection(b.dataset.proj);
+  });
+  projHost.addEventListener('keydown', function(e){
+    if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].indexOf(e.key) < 0) return;
+    e.preventDefault();
+    setProjection(projKind === 'globe' ? 'flat' : 'globe');
+    projHost.querySelector('[aria-checked="true"]').focus();
+  });
+  markProjection();
   window.addEventListener('resize', closeCtx);
   window.addEventListener('blur', closeCtx);
 
   /* ------------------------------- totals -------------------------------- */
   function refresh(){
+    updateKey();
     recomputeMaxima(state.year);
     renderMarks();
     paintLand();
     drawFlows();
     renderPanel();
   }
+
+  /* ============================ CONNECTIONS ==============================
+     The whole system as a diagram: the stages as columns, a band for data,
+     people and policy, five kinds of link and the chokepoints. The parts the
+     map actually models are drawn a touch stronger, with a count of their
+     sites (added nodes count by facility type).
+     ======================================================================= */
+  var VIZ_COLS = ['Raw inputs', 'Tools and design', 'Chip making', 'Infrastructure', 'Model building', 'Delivery'];
+  var VIZ_NODES = [
+    {id:'quartz',   c:0, r:0, n:'Silicon and quartz',    s:'Polysilicon, crucibles, wafers', choke:true},
+    {id:'gases',    c:0, r:1, n:'Specialty gases',       s:'Helium, fluorinated gases, neon', choke:true},
+    {id:'minerals', c:0, r:2, n:'Critical minerals',     s:'Gallium, germanium, copper',      choke:true},
+    {id:'substrate',c:0, r:3, n:'Substrate materials',   s:'ABF film, glass cloth',           choke:true},
+    {id:'eda',      c:1, r:0, n:'Design tools and IP',   s:'Design software and IP'},
+    {id:'designers',c:1, r:1, n:'Chip designers',        s:'GPUs and custom accelerators'},
+    {id:'litho',    c:1, r:2, n:'Lithography tools',     s:'EUV scanners and optics',         choke:true},
+    {id:'foundry',  c:2, r:0, n:'Foundry',               s:'Printing chips on wafers',        choke:true},
+    {id:'hbm',      c:2, r:1, n:'HBM memory',            s:'Stacked AI memory',               choke:true},
+    {id:'packaging',c:2, r:2, n:'Advanced packaging',    s:'Die and HBM on one base',         choke:true},
+    {id:'assembly', c:3, r:0, n:'Server assembly',       s:'Racks built by ODMs'},
+    {id:'network',  c:3, r:1, n:'Networking and optics', s:'Switches, cables, optical links'},
+    {id:'dc',       c:3, r:2, n:'Data centers',          s:'Buildings, cooling, water'},
+    {id:'power',    c:3, r:3, n:'Power and grid',        s:'Generation and connections',      choke:true},
+    {id:'capital',  c:3, r:4, n:'Capital and cloud',     s:'Hyperscaler spending'},
+    {id:'pretrain', c:4, r:1, n:'Pretraining',           s:'Learning from large datasets'},
+    {id:'posttrain',c:4, r:2, n:'Post-training',         s:'Shaping behavior'},
+    {id:'evals',    c:4, r:3, n:'Evaluation and safety', s:'Testing before release'},
+    {id:'inference',c:5, r:1, n:'Inference',             s:'Serving each reply'},
+    {id:'distribution', c:5, r:2, n:'Distribution',      s:'Apps, APIs, partners'},
+    {id:'users',    c:5, r:3, n:'Users and outcomes',    s:'People and organizations'},
+    {id:'gov',      c:0, r:'b', n:'Governments and policy', s:'Export rules, permits, law'},
+    {id:'talent',   c:1, r:'b', n:'Research talent',     s:'Methods and know-how'},
+    {id:'data',     c:2, r:'b', n:'Training data',       s:'Web, licensed, synthetic'},
+    {id:'human',    c:3, r:'b', n:'Human data',          s:'Raters, experts, annotators'}
+  ];
+  var VIZ_KINDS = [
+    {k:'phys',   label:'Physical goods'},
+    {k:'data',   label:'Designs, data and models'},
+    {k:'money',  label:'Money'},
+    {k:'policy', label:'Policy and control'},
+    {k:'loop',   label:'Feedback loops'}
+  ];
+  var VIZ_EDGES = [
+    ['quartz','foundry','phys'], ['gases','foundry','phys'], ['gases','hbm','phys'], ['minerals','foundry','phys'],
+    ['minerals','packaging','phys'], ['substrate','packaging','phys'], ['litho','foundry','phys'], ['litho','hbm','phys'],
+    ['foundry','packaging','phys'], ['hbm','packaging','phys'], ['packaging','assembly','phys'],
+    ['assembly','dc','phys'], ['network','dc','phys'], ['power','dc','phys'],
+    ['eda','designers','data'], ['designers','foundry','data'], ['talent','designers','data'], ['talent','pretrain','data'],
+    ['data','pretrain','data'], ['human','posttrain','data'], ['dc','pretrain','data'], ['dc','inference','data'],
+    ['pretrain','posttrain','data'], ['posttrain','evals','data'], ['evals','inference','data'],
+    ['inference','distribution','data'], ['distribution','users','data'],
+    ['capital','dc','money'], ['capital','designers','money'], ['capital','power','money'],
+    ['gov','minerals','policy'], ['gov','litho','policy'], ['gov','designers','policy'], ['gov','power','policy'], ['gov','data','policy'],
+    ['users','capital','loop'], ['users','data','loop'], ['users','human','loop']
+  ];
+  // What the map models: built-in sites by id, added nodes by facility type.
+  // Power and grid is modelled as every site's grid rather than as sites.
+  var VIZ_SITES = {quartz:['spruce'], gases:['yamag'], minerals:['bayan','green','grasb'], litho:['veld','ober'],
+    foundry:['hsin','tainan','chand'], hbm:['ptaek','icheon','hiro'], packaging:['kaoh'], assembly:['zheng','taoy'],
+    dc:['ashb','dalles','cbluff','abil','dubl','jurong','ulanq'], pretrain:['sfba','seatt','lond','beij'],
+    inference:['frank','saopa','mumb','tokyo','lagos']};
+  var VIZ_TYPES = {materials:'quartz', mine:'minerals', equipment:'litho', fab:'foundry', packaging:'packaging',
+    assembly:'assembly', 'dc-training':'dc', lab:'pretrain', 'dc-inference':'inference'};
+  function vizCount(id){
+    return SITES.filter(function(s){
+      return s.added ? VIZ_TYPES[s.type] === id : (VIZ_SITES[id] || []).indexOf(s.id) >= 0;
+    }).length;
+  }
+
+  var VW = 206, VH = 54, VPITCH = 262, VROW = 82, VTOP = 44, VX0 = 20;
+  var VGUT = VPITCH - VW;                              // channel between columns
+  var VBAND = VTOP + 5 * VROW + 40;                    // the data, people and policy band
+  function vizXY(n){ return [VX0 + n.c * VPITCH, n.r === 'b' ? VBAND + 26 : VTOP + n.r * VROW]; }
+
+  /* Links run like a metro map: only through the channels between columns
+     and the gaps between rows, never across a box, turning with rounded
+     corners. Each link gets its own lane in every channel it uses and its
+     own point on a box's edge, so parallel links stay apart.
+       forward      right edge → channel → (row gap → channel) → left edge
+       same column  right edge → channel → right edge
+       backward     left edge → channel → (row gap → channel) → right edge */
+  function vizRoutes(list){
+    var byN = {}; VIZ_NODES.forEach(function(n){ byN[n.id] = n; });
+    var yMid = function(n){ return vizXY(n)[1] + VH / 2; };
+    // row gaps a horizontal run can use, free in every column
+    var gaps = [];
+    for (var k = 1; k <= 4; k++) gaps.push(VTOP + k * VROW - (VROW - VH) / 2);
+    gaps.push((VTOP + 4 * VROW + VH + VBAND + 26) / 2);   // between the chain and the band
+    gaps.push(VBAND + 26 + VH + 18);                       // under the band
+
+    var R = list.map(function(e){
+      var a = byN[e[0]], b = byN[e[1]], dc = b.c - a.c, r = {e: e, a: a, b: b};
+      r.sSide = dc >= 0 ? 'R' : 'L';
+      r.tSide = dc > 0 ? 'L' : 'R';
+      r.g1 = dc >= 0 ? a.c : a.c - 1;                // channel index: g sits right of column g
+      r.g2 = dc > 1 ? b.c - 1 : dc < -1 ? b.c : null;
+      if (r.g2 !== null){
+        var ay = yMid(a), by = yMid(b);
+        r.gap = gaps.reduce(function(best, g){
+          return Math.abs(g - ay) + Math.abs(g - by) < Math.abs(best - ay) + Math.abs(best - by) ? g : best;
+        });
+      }
+      return r;
+    });
+
+    // Bundling: links of one kind that leave the same box share one point on
+    // its edge (and arrive together the same way), and in each channel or
+    // gap they share one lane with any link of that kind they have an end in
+    // common with. A fan-out becomes one trunk that branches; a fan-in, one
+    // that gathers.
+    var ports = {};   // box side → bundle (direction + kind) → its links
+    function portOf(side, bundle, entry){
+      var s = ports[side] = ports[side] || {};
+      (s[bundle] = s[bundle] || []).push(entry);
+    }
+    R.forEach(function(r){
+      portOf(r.a.id + r.sSide, 'out-' + r.e[2], {r: r, end: 's', y: yMid(r.b)});
+      portOf(r.b.id + r.tSide, 'in-' + r.e[2], {r: r, end: 't', y: yMid(r.a)});
+    });
+    Object.keys(ports).forEach(function(side){
+      var groups = Object.keys(ports[side]).map(function(k){
+        var g = ports[side][k];
+        return {members: g, y: g.reduce(function(s, p){ return s + p.y; }, 0) / g.length};
+      }).sort(function(p, q){ return p.y - q.y; });
+      groups.forEach(function(g, i){
+        g.members.forEach(function(p){ p.r[p.end + 'Off'] = VH * (i + 1) / (groups.length + 1); });
+      });
+    });
+
+    // lanes: each channel and each row gap splits its width among its bundles
+    var lanes = {};
+    function claim(key, r, order){ (lanes[key] = lanes[key] || []).push({r: r, order: order}); }
+    R.forEach(function(r){
+      var sy = vizXY(r.a)[1] + r.sOff;
+      claim('g' + r.g1, r, sy);
+      if (r.g2 !== null){ claim('g' + r.g2, r, vizXY(r.b)[1] + r.tOff); claim('y' + r.gap, r, sy); }
+    });
+    // a lane is an offset: from a channel's left edge, or from a gap's centre line
+    var laneAt = {}, GAP = VROW - VH;
+    Object.keys(lanes).forEach(function(key){
+      var entries = lanes[key], parent = entries.map(function(_, i){ return i; });
+      function find(i){ return parent[i] === i ? i : (parent[i] = find(parent[i])); }
+      entries.forEach(function(p, i){
+        entries.forEach(function(q, j){
+          if (j <= i || p.r.e[2] !== q.r.e[2]) return;
+          if (p.r.e[0] === q.r.e[0] || p.r.e[1] === q.r.e[1]) parent[find(j)] = find(i);
+        });
+      });
+      var bundles = {};
+      entries.forEach(function(p, i){
+        var b = bundles[find(i)] = bundles[find(i)] || {members: [], order: Infinity};
+        b.members.push(p); b.order = Math.min(b.order, p.order);
+      });
+      var order = Object.keys(bundles).map(function(k){ return bundles[k]; }).sort(function(p, q){ return p.order - q.order; });
+      order.forEach(function(b, i){
+        var t = (i + 1) / (order.length + 1);
+        b.members.forEach(function(p){
+          laneAt[key + '|' + R.indexOf(p.r)] = key[0] === 'g' ? 8 + (VGUT - 16) * t : -GAP / 2 + 5 + (GAP - 10) * t;
+        });
+      });
+    });
+    function channelX(g, i){ return VX0 + g * VPITCH + VW + laneAt['g' + g + '|' + i]; }
+
+    return R.map(function(r, i){
+      var A = vizXY(r.a), B = vizXY(r.b);
+      var sx = r.sSide === 'R' ? A[0] + VW : A[0], sy = A[1] + r.sOff;
+      var tx = r.tSide === 'R' ? B[0] + VW + 1 : B[0] - 1, ty = B[1] + r.tOff;
+      var x1 = channelX(r.g1, i), pts = [[sx, sy], [x1, sy]];
+      if (r.g2 === null) pts.push([x1, ty]);
+      else {
+        var gy = r.gap + laneAt['y' + r.gap + '|' + i], x2 = channelX(r.g2, i);
+        pts.push([x1, gy], [x2, gy], [x2, ty]);
+      }
+      pts.push([tx, ty]);
+      return roundedPath(pts, 7);
+    });
+  }
+  // A polyline with its corners rounded (never more than half a segment).
+  function roundedPath(pts, rad){
+    var d = 'M' + pts[0][0] + ',' + pts[0][1];
+    for (var i = 1; i < pts.length - 1; i++){
+      var p = pts[i - 1], c = pts[i], n = pts[i + 1];
+      var l1 = Math.hypot(c[0] - p[0], c[1] - p[1]), l2 = Math.hypot(n[0] - c[0], n[1] - c[1]);
+      var r = Math.min(rad, l1 / 2, l2 / 2);
+      if (r < 0.5){ d += ' L' + c[0] + ',' + c[1]; continue; }
+      var bx = c[0] - (c[0] - p[0]) / l1 * r, by = c[1] - (c[1] - p[1]) / l1 * r;
+      var ax = c[0] + (n[0] - c[0]) / l2 * r, ay = c[1] + (n[1] - c[1]) / l2 * r;
+      d += ' L' + bx.toFixed(1) + ',' + by.toFixed(1) + ' Q' + c[0].toFixed(1) + ',' + c[1].toFixed(1) + ' ' + ax.toFixed(1) + ',' + ay.toFixed(1);
+    }
+    var z = pts[pts.length - 1];
+    return d + ' L' + z[0] + ',' + z[1];
+  }
+
+  var vizEl = document.getElementById('viz'), vizBtn = document.getElementById('viz-btn');
+  var vizCanvas = document.getElementById('viz-canvas'), vizKey = document.getElementById('viz-key');
+  // Opens on the main chain (goods and data); money, policy and feedback are
+  // a legend click away. Reset view returns here.
+  var VIZ_DEFAULT_OFF = {money: true, policy: true, loop: true};
+  var vizOff = Object.assign({}, VIZ_DEFAULT_OFF), vizPin = null;
+  var vizPinNote = document.getElementById('viz-pin');
+  function drawViz(){
+    var W = VX0 + 5 * VPITCH + VW + VGUT, H = VBAND + 26 + VH + 44;   // right margin: the last channel
+    vizCanvas.innerHTML = '';
+    var svg = d3.select(vizCanvas).append('svg').attr('viewBox', '0 0 ' + W + ' ' + H)
+      .attr('role', 'img').attr('aria-label', 'Diagram of links between the parts of the AI supply chain');
+    var defs = svg.append('defs');
+    VIZ_KINDS.forEach(function(k){
+      // a small open chevron: direction without weight
+      defs.append('marker').attr('id', 'va-' + k.k).attr('viewBox', '0 0 8 8').attr('refX', 7).attr('refY', 4)
+        .attr('markerWidth', 6).attr('markerHeight', 6).attr('markerUnits', 'userSpaceOnUse').attr('orient', 'auto')
+        .append('path').attr('class', 'arr ' + k.k).attr('d', 'M1.5,1 L7,4 L1.5,7');
+    });
+    VIZ_COLS.forEach(function(c, i){ svg.append('text').attr('class', 'colh').attr('x', VX0 + i * VPITCH).attr('y', 20).text(c); });
+    svg.append('line').attr('class', 'band').attr('x1', VX0).attr('x2', W - VX0).attr('y1', VBAND - 4).attr('y2', VBAND - 4);
+    svg.append('text').attr('class', 'colh').attr('x', VX0).attr('y', VBAND + 14).text('Data, people and policy');
+
+    // only the shown links are routed, so hidden kinds take no lanes; each kind
+    // is its own group, so trunks that overlap don't darken
+    var shown = VIZ_EDGES.filter(function(e){ return !vizOff[e[2]]; }), routes = vizRoutes(shown);
+    var groups = svg.append('g').selectAll('g').data(VIZ_KINDS.filter(function(k){ return !vizOff[k.k]; }))
+      .enter().append('g').attr('class', function(k){ return 'vk ' + k.k; });
+    var edges = groups.selectAll('path').data(function(k){ return shown.filter(function(e){ return e[2] === k.k; }); })
+      .enter().append('path')
+      .attr('class', function(e){ return 've ' + e[2]; })
+      .attr('d', function(e){ return routes[shown.indexOf(e)]; })
+      .attr('marker-end', function(e){ return 'url(#va-' + e[2] + ')'; });
+
+    // Markers ride each link in its direction of transfer, one per ~320 units
+    // of path at an even 55 units a second, staggered so they don't march in
+    // step. Shapes follow the kind: square goods, round data, diamond money,
+    // a short pill for policy, a ring for feedback. Reduced motion: none.
+    var DOT = {
+      phys:   function(g){ return g.append('rect').attr('x', -2.3).attr('y', -2.3).attr('width', 4.6).attr('height', 4.6); },
+      data:   function(g){ return g.append('circle').attr('r', 2.4); },
+      money:  function(g){ return g.append('path').attr('d', 'M0 -3.1 L3.1 0 L0 3.1 L-3.1 0 Z'); },
+      policy: function(g){ return g.append('rect').attr('x', -3.2).attr('y', -1.1).attr('width', 6.4).attr('height', 2.2).attr('rx', 1.1); },
+      loop:   function(g){ return g.append('circle').attr('r', 2.5); }
+    };
+    var dots = d3.select(null);
+    if (!still()){
+      var made = [];
+      edges.each(function(e, i){
+        var path = this, len = path.getTotalLength(), n = Math.max(1, Math.round(len / 320)), dur = len / 55;
+        path.id = 'vp-' + i;
+        for (var k = 0; k < n; k++){
+          var dot = DOT[e[2]](d3.select(path.parentNode)).attr('class', 'vd ' + e[2]).datum(e);
+          var begin = -((k / n) + ((i * 0.37) % 1) / n) * dur;   // stagger along the path
+          dot.append('animateMotion').attr('dur', dur.toFixed(2) + 's').attr('begin', begin.toFixed(2) + 's')
+             .attr('repeatCount', 'indefinite').attr('rotate', 'auto')
+             .append('mpath').attr('href', '#vp-' + i);
+          made.push(dot.node());
+        }
+      });
+      dots = d3.selectAll(made);
+    }
+
+    var nodes = svg.append('g').selectAll('g').data(VIZ_NODES).enter().append('g')
+      .attr('transform', function(n){ var p = vizXY(n); return 'translate(' + p[0] + ',' + p[1] + ')'; })
+      .each(function(n){
+        var g = d3.select(this), count = vizCount(n.id), used = count > 0 || n.id === 'power';
+        g.attr('class', 'vn' + (used ? ' used' : '')).attr('tabindex', 0).attr('role', 'button');
+        g.append('rect').attr('class', 'box').attr('width', VW).attr('height', VH);
+        if (used) g.append('rect').attr('class', 'bar').attr('width', 2).attr('height', VH);
+        g.append('text').attr('class', 't').attr('x', 14).attr('y', 23).text(n.n);
+        g.append('text').attr('class', 's').attr('x', 14).attr('y', 40).text(n.s);
+        var right = VW - 12;
+        if (n.choke){ g.append('path').attr('class', 'choke').attr('d', 'M0 -3.6 L3.6 0 L0 3.6 L-3.6 0 Z').attr('transform', 'translate(' + right + ',14)'); right -= 14; }
+        if (used) g.append('text').attr('class', 'cnt').attr('x', right).attr('y', 18).text(n.id === 'power' ? 'grid' : count);
+        g.attr('aria-label', n.n + (used ? ', on the map' + (count ? ': ' + count + ' site' + (count > 1 ? 's' : '') : ' as each site’s grid') : '') +
+                             (n.choke ? ', chokepoint' : '') + '. Press to pin its links.');
+      })
+      .on('mouseenter', function(ev, n){ if (!vizPin) focusViz(n.id); })
+      .on('mouseleave', function(){ focusViz(vizPin); })
+      .on('click', function(ev, n){ ev.stopPropagation(); pinViz(vizPin === n.id ? null : n.id); })
+      .on('keydown', function(ev, n){
+        if (ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); pinViz(vizPin === n.id ? null : n.id); }
+      });
+
+    // highlight one part's links and neighbours, or clear
+    function focusViz(id){
+      var near = {};
+      if (id) near[id] = true;
+      svg.classed('focus', !!id);
+      edges.classed('hl', function(e){
+        var on = !!id && (e[0] === id || e[1] === id);
+        if (on){ near[e[0]] = near[e[1]] = true; }
+        return on;
+      });
+      dots.classed('hl', function(e){ return !!id && (e[0] === id || e[1] === id); });
+      nodes.classed('hl', function(m){ return !!near[m.id]; })
+           .classed('pin', function(m){ return m.id === vizPin; })
+           .attr('aria-pressed', function(m){ return String(m.id === vizPin); });
+    }
+    drawViz.focus = focusViz;
+    focusViz(vizPin);
+  }
+  function pinViz(id){
+    vizPin = id;
+    var n = VIZ_NODES.filter(function(x){ return x.id === id; })[0];
+    vizPinNote.textContent = n ? 'Pinned · ' + n.n : 'Click a part to pin it';
+    vizPinNote.classList.toggle('on', !!n);
+    if (drawViz.focus) drawViz.focus(id);
+  }
+
+  // legend: one toggle per kind of link, with its line as the swatch
+  VIZ_KINDS.forEach(function(k){
+    var b = el('button'); b.type = 'button'; b.setAttribute('aria-pressed', String(!vizOff[k.k]));
+    b.dataset.kind = k.k;
+    b.innerHTML = '<svg width="22" height="6" aria-hidden="true"><line class="ve ' + k.k + '" x1="1" y1="3" x2="21" y2="3" style="opacity:1"></line></svg>';
+    b.appendChild(el('span', null, k.label));
+    b.addEventListener('click', function(){
+      vizOff[k.k] = !vizOff[k.k];
+      b.setAttribute('aria-pressed', String(!vizOff[k.k]));
+      drawViz();   // re-route: lanes and bundles depend on what's shown
+    });
+    vizKey.appendChild(b);
+  });
+  document.getElementById('viz-reset').addEventListener('click', function(){
+    vizOff = Object.assign({}, VIZ_DEFAULT_OFF);
+    Array.prototype.forEach.call(vizKey.children, function(b){ b.setAttribute('aria-pressed', String(!vizOff[b.dataset.kind])); });
+    pinViz(null);
+    drawViz();
+    vizCanvas.scrollTo(0, 0);
+  });
+  // clicking anywhere in the diagram area but a part releases a pin
+  vizCanvas.addEventListener('click', function(e){ if (!e.target.closest('.vn')) pinViz(null); });
+  function openViz(on){
+    vizEl.hidden = !on;
+    vizBtn.setAttribute('aria-expanded', String(on));
+    vizBtn.classList.toggle('on', on);
+    if (on){ closeScen(); closeLayer(); closeResults(); closeCtx(); hideTip(); drawViz(); }
+  }
+  vizBtn.addEventListener('click', function(e){ e.stopPropagation(); openViz(vizEl.hidden); });
+  document.getElementById('viz-close').addEventListener('click', function(){ openViz(false); vizBtn.focus(); });
+  vizEl.addEventListener('click', function(e){ e.stopPropagation(); });
 
   /* -------------------------------- boot --------------------------------- */
   if (window.matchMedia){
@@ -1529,5 +3214,6 @@
   document.getElementById('ramp-lo').textContent = LAYERS[0].lo;
   document.getElementById('ramp-hi').textContent = LAYERS[0].hi;
   refresh();
+  loadData();
 })();
 </script>

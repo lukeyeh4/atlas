@@ -5,7 +5,6 @@ gases through fabs, data centers and model training to inference at the edge —
 with the environmental load of each node.
 
 **Live:** https://lukeyeh4.github.io/atlas/
-*(live once GitHub Pages finishes its first build)*
 
 ![Quiet Atlas](docs/screenshot.png)
 
@@ -13,82 +12,102 @@ with the environmental load of each node.
 
 ## What it does
 
-- **31 sites** at real coordinates across five stages: raw inputs, chip making,
-  infrastructure, model building, delivery.
-- **Mapbox globe** — dark, muted basemap with faint terrain relief. A 3D globe
-  at world zoom that flattens to a web map as you zoom in; real coastlines,
-  borders and labels at every scale. US state lines fade in as you zoom
-  toward a region.
+- **32 sites** at real coordinates across five stages: raw inputs, chip making,
+  infrastructure, model building, delivery. Each has a facility type (fab,
+  mine, training data center, AI lab, …) and takes its inputs from that type
+  and its location values from its coordinates.
+- **Mapbox globe** with faint terrain relief, flattening to a web map as you
+  zoom in; a switch flips between globe and flat.
 - **A working model** of each site's yearly load:
 
   | | |
   |---|---|
-  | Energy | `E = P_IT · 8760 · u · PUE`  (MWh/yr) |
+  | Energy | `E = P · 8760 · u · PUE`  (MWh/yr) |
   | Carbon | `C = E · CI`  (tCO₂e) |
-  | Water | `W = E · WUE`  (m³) |
-  | Air | `A = E · fossil share · downwind population`  (index, 0–100) |
+  | Water | `W = E · process water rate`, or for data centers `P · 8760 · u · WUE`  (m³) |
+  | Air | `A = E · fossil share · people within 100 km`  (index, 0–100) |
 
-- **Regional layers** — grid carbon intensity (yellow), water stress (blue),
-  air quality (gray). One at a time, painted onto Mapbox country boundaries
-  under a faint hillshade, so flat ground keeps the legend colour and relief
-  only nudges it.
-- **Add and remove nodes.** Three placeholder cities sit on the map as dashed
-  rings; pick a stage to turn one into a modeled node. Right-click any land to
-  drop a new placeholder there. Removing any node reverts it to a placeholder
-  rather than deleting the location.
-- **Context menu** — right-click (or long-press) a site, a placeholder, land
-  or water for the actions that fit: open, compare with the selected site, go
-  upstream, zoom, copy coordinates, add or remove. `Shift+F10` opens it for
-  the selected site.
-- **Compare** two sites for per-metric deltas.
-- **Search** with `/` or `⌘K`.
+- **Sourced location data**, looked up most specific first: a 0.25° cell
+  (people within 100 km, river-basin water stress) → state or province
+  (grid carbon, fossil share, trend, water stress) → country. The panel lists
+  every value with where it came from, its confidence and a link to its
+  source.
+- **Any city.** Search finds real cities (Mapbox geocoding) as well as the
+  built-in sites; right-click any land to drop a point, named from reverse
+  geocoding. Add a node there by stage and facility type; data center size
+  is adjustable.
+- **Map layers** — grid carbon intensity, water stress, air quality (PM2.5) —
+  painted by country, and by state for the US. Hovering names the place.
+- **Globe arcs** show a selected site's supply chain, coloured by what they
+  carry (goods or compute and models), with small markers travelling in the
+  direction of transfer.
+- **Connections** — the whole system as a diagram: stages as columns, five
+  kinds of link, chokepoints marked, the parts the map models emphasised.
+  Opens on the main chain; hover to trace, click to pin.
+- **Scenarios** — fast grid decarbonisation, training moves to the Nordics,
+  data center boom — with per-site deltas against baseline, and **Compare
+  locations** to see the same node at eleven reference places.
+- **Key** — show or hide stages and kinds of connection; folds into one
+  button.
+- **Search** with `/` or `⌘K`; right-click (or long-press) for context
+  actions.
 
-## ⚠️ The numbers are sample data
+## The data
 
-Coordinates, place names and site descriptions are real. **Every model input —
-power, utilization, PUE, grid carbon intensity, WUE, growth, downwind
-population, air quality — is an illustrative placeholder, not a measured
-figure.** The panel says so on every node. Magnitudes are plausible; nothing
-here is sourced.
+Location values, facility types and population cells are built from public
+sources (Ember, WRI Aqueduct, GHSL, World Bank, operator disclosures and
+others) by the scripts in `data/scripts/`; `data/README.md` explains each
+file, its sources and its known limits. The app reads three generated files,
+whose shape is fixed by [`docs/locale-contract.md`](docs/locale-contract.md):
 
-To bind real data, edit two things near the top of the `<script>` block in
-`index.html`:
+| File | What |
+|---|---|
+| `data/locales.json` | Grid, water and air values for 248 countries and 126 states/provinces |
+| `data/node-types.json` | Typical inputs for nine facility types |
+| `data/cells/` | People within 100 km and basin water stress on a 0.25° grid, in 10° tiles |
 
-- `REGIONS` — grid carbon intensity, decarbonization rate, WUE, water stress,
-  fossil share
-- each site's `in: {p, u, pue, g, pop}`
-
-Nothing else needs to change.
+Where a value is missing the app falls back to the next level, and offline
+it falls back to the inline sample values in `index.html`. Scenario
+parameters and some node inputs are still illustrative; the panel marks
+each value's confidence.
 
 ## Running it
 
-It is a single HTML file. Serve the folder and open it:
+A single HTML file plus its data files. Serve the folder and open it:
 
 ```bash
 python3 -m http.server 8000
 # then visit http://localhost:8000
 ```
 
-External dependencies: Mapbox GL JS v3 (basemap, terrain, country and state
-boundaries), d3 v7 from cdnjs, and two Google Fonts. It needs a network
-connection. The v0.3 claude.ai artifact can't load Mapbox (its sandbox blocks
-external tile servers), so the globe only runs from Pages or a local server.
+External dependencies: Mapbox GL JS v3 (basemap, terrain, boundaries,
+geocoding), d3 v7 and topojson-client (cdnjs / jsDelivr), US state shapes
+from us-atlas, and two Google Fonts. It needs a network connection.
 
 The Mapbox public token is set near the top of the map section in
 `index.html`. Restrict it to the Pages URL (and `localhost` for development)
 in the Mapbox account's token settings.
 
+To rebuild the data: `python3 data/scripts/build_all.py` (see
+`data/README.md`).
+
 ## Files
 
 | | |
 |---|---|
-| `index.html` | The whole app — markup, styles, data and model |
-| `countries.json` | Natural Earth 110m geometry used by v0.3. No longer loaded since the Mapbox basemap; kept for reference |
-| `CHANGELOG.md` | Every version so far, with the reasoning |
+| `index.html` | The whole app — markup, styles, model, map and diagram |
+| `data/` | Generated data the app reads, the sources it's built from, and the build scripts |
+| `docs/locale-contract.md` | The agreed shape of the data files: the interface between data and app |
+| `docs/database.md` | The database plan (Postgres, read-only to the public) |
+| `db/` | Schema and seed for that database |
+| `countries.json` | Natural Earth 110m geometry from v0.3; no longer loaded, kept for reference |
+| `CHANGELOG.md` | Every version, with the reasoning |
 | `ROADMAP.md` | Blocking questions and planned work |
 
 ## Credits
 
-Basemap, terrain and country boundaries © [Mapbox](https://www.mapbox.com/about/maps/)
+Basemap, terrain, boundaries and geocoding © [Mapbox](https://www.mapbox.com/about/maps/)
 © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors.
-Typefaces: Source Serif 4 and IBM Plex Mono.
+US state shapes: [us-atlas](https://github.com/topojson/us-atlas) (US Census
+Bureau). Data sources are credited per value in the app and in
+`data/README.md`. Typefaces: Source Serif 4 and IBM Plex Mono.

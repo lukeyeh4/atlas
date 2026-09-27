@@ -1,7 +1,10 @@
 # AI Supply Chain Atlas — Roadmap
 
-Status as of 2026-09-26. Current build: v0.4.1, a single HTML file served
-from GitHub Pages on a Mapbox globe. Ordered roughly by what unblocks the most.
+Status as of 2026-09-27. Current build: v0.12.1, a single HTML file served
+from GitHub Pages on a Mapbox globe. Location data comes from the database
+side through `data/locales.json`, `data/node-types.json` and `data/cells/`
+(contract: `docs/locale-contract.md`). Finished work is in `CHANGELOG.md`,
+not here.
 
 ---
 
@@ -23,81 +26,89 @@ avoids rework.
 4. **Does air pollution deserve its own view?** It is the one impact that
    depends on downwind population rather than facility location. A plume layer
    is a different kind of map from a choropleth.
-5. **Browser or sandbox?** If people can move a workload between regions and
-   watch numbers change, this needs an editable scenario model, not just a
-   viewer. The add/remove node work in v0.3.2 is the first step toward that.
 
 ---
 
 ## Next
 
-### Real data
-- [ ] Replace sample inputs with sourced figures. Two objects to fill:
-      `REGIONS` (grid CI, decarbonization rate, WUE, water stress, fossil
-      share) and each site's `in: {p, u, pue, g, pop}`. Nothing else changes.
-- [ ] Add a `confidence` field per value — measured / disclosed / estimated /
-      projected — and render it as a visible mark, not a tooltip. Most of this
-      data will be estimated and hiding that would mislead.
-- [ ] Cite per-value sources in the panel.
-- [ ] Country records currently carry `[grid CI, water stress, air quality]`.
-      Air quality is a sample index; bind real PM2.5 or AQI data.
-- [ ] **City search with locale data** — waiting on the database work. Plan:
-      Mapbox geocoding for cities in search (curated sites listed first);
-      each result carries country and state codes. Look values up from the
-      most specific level down: grid region (point-in-polygon on grid-region
-      shapes) → state/province (`US-TX`) → country (`US`), and show which
-      level each value came from. Data keyed by those codes; debounce
-      queries to stay inside the Mapbox free tier.
+### Places: make each location its own
+Every site, built-in or added, now takes type inputs and location values
+the same way (v0.9.0). What's left is finer location data and site scale.
+- Cells carry people within 100 km (v0.7.0) and basin water stress
+  (v0.9.1). Cooling water and PM2.5 stay at country level on purpose: the
+  climate formula spans only 1.17–1.57 L/kWh, so gridding it adds false
+  precision, and background PM2.5 matters less than emissions and exposure
+  (see blocking question 4).
+- [ ] **Grid-region level** (point-in-polygon on grid-region shapes) ahead of
+      subdivision, so a point in Virginia resolves to PJM.
+- [ ] Optionally the place's Wikipedia summary under its profile, reached
+      through the Wikidata id Mapbox already returns.
+- [ ] **Site scale** beyond data centers: data centers have a size slider
+      (v0.10.0); every other type still shares one size (all fabs 195 MW),
+      and built-in sites start at their type's typical size. Decide
+      whether sites carry a sourced size or count of facilities, and where
+      that lives (a per-site file would be a new contract section).
+
+### Scenarios
+- [ ] **Flesh out the presets.** Each one currently applies a single blunt
+      rule (halve grid carbon, move campuses to Sweden, double power). Give
+      each a stated basis, a horizon year, and sourced parameters.
+- [ ] Fleet-wide totals (energy, carbon, water, air vs baseline); the panel
+      only reports per site today.
+- [ ] Scenarios that users define: pick sites, pick a target grid or scale.
+- [ ] **Scenario compare**: two full states of the world side by side. "What
+      if this workload ran in Region A vs B" at fleet scale, which is the
+      question the original notes opened with.
 
 ### Node editing
-- [ ] Edit a node's inputs in the panel (power, utilization, PUE), not just
-      add and remove it. The model already recomputes on every render.
-- [x] Let an added node be placed anywhere — right-click the map, "Add node
-      here" (v0.4.1).
-- [ ] Name placed points. They're "New site n" until reverse geocoding lands
-      with the city search work.
+- [ ] Edit a node's inputs in the panel (utilization, PUE) beyond data
+      center size, which has a slider (v0.10.0).
 - [ ] Draw and edit flows for added nodes. Right now a new node has no chain.
-- [ ] Persist edits. Nothing survives a reload today.
-      (An artifact runtime capability could hold this; see
-      the `artifact-capabilities` skill.)
+- [ ] Persist edits. Nothing survives a reload today. The database branch
+      built this (`atlas.edits.v1` in localStorage, with export/import) on
+      the pre-globe d3 map; port it to the current app.
+
+### Connections diagram
+- [ ] Click a part to show its sites on the map (the count is already there).
+- [ ] Per-site connections: the diagram is by part, not by site.
 
 ### Layers
-- [ ] **Land and cooling** is a placeholder — no data bound, paints neutral.
-- [ ] Decide whether layers should be comparable across years the way the
-      carbon layer was before the scrubber came out.
+- [ ] Click a country to see its exact values (grid carbon, water stress,
+      air quality, etc.).
+- [ ] **Land and cooling** is a placeholder: no data bound, paints neutral.
 - [ ] Accessibility pass on the ramps: check each layer's endpoints for
       contrast in both themes, and don't rely on hue alone.
-- [ ] Border hierarchy: US state lines (v0.4.1) now read stronger than
-      country borders over the fills. Country borders should match or
-      outweigh them.
+- [ ] Border hierarchy: US state lines now read stronger than country
+      borders over the fills. Country borders should match or outweigh them.
 - [ ] State or province lines beyond the US, if a layer needs them.
 - [ ] Optional thin major rivers between zoom 3 and 6, where streets water
       is hidden.
+- [ ] Flat map is Mercator, so high latitudes are enlarged. Revisit an
+      equal-area flat projection if Mapbox adds hillshade support for it.
 
 ### Time
-- [ ] The year scrubber was removed from the bottom bar in v0.3.2, but all the
-      year math is still in `metrics()` and `ciFor()`. Decide whether time
-      returns as a control, a small-multiple, or not at all.
+- [ ] The year scrubber was removed in v0.3.2, but the year math is still in
+      `metrics()`. Decide whether time returns as a control, a
+      small-multiple, or not at all. Scenario horizons may decide it.
 - [ ] If it returns: projections need to be visually distinct from observed
       values everywhere, not just in the year readout.
+- [ ] Decide whether layers should be comparable across years the way the
+      carbon layer was before the scrubber came out.
 
 ---
 
 ## Later
 
-- [ ] **Scenario compare** — two full states of the world side by side, not
-      just two sites. "What if this workload ran in Region A vs B" at fleet
-      scale, which is the question the original notes opened with.
-- [ ] **Stage totals** — the removed bottom-bar totals were useful; they may
-      belong in the panel or a dedicated summary view rather than the chrome.
-- [ ] **Flow weight** — arcs could carry share of supply as stroke weight once
+- [ ] **Stage totals**: the removed bottom-bar totals were useful; they may
+      belong in the panel or a summary view rather than the chrome.
+- [ ] **Flow weight**: arcs could carry share of supply as stroke weight once
       `edge.share` has real values.
-- [ ] **Concentration risk** — the notes flag Taiwan at 70–90% of some links.
+- [ ] **Concentration risk**: the notes flag Taiwan at 70–90% of some links.
       A view that surfaces single points of failure would use data already in
       the flow graph.
-- [ ] **Mobile** — the panel works at phone width but has not been designed
-      for it. Direction C's list layout may be the better small-screen answer.
-- [ ] **Export** — share a view, or hand off the computed table.
+- [ ] **Mobile**: the panel works at phone width but has not been designed
+      for it.
+- [ ] **Export**: share a view, or hand off the computed table.
 - [ ] **Move to a repo** if this outgrows a single file. Vite + React was the
       alternative considered; the component split was sketched as
       `components/map`, `components/panel`, `components/chrome`, `data/`,
@@ -107,18 +118,23 @@ avoids rework.
 
 ## Known gaps in the current build
 
-- All model inputs are illustrative. The panel says so on every node; there is
-  no longer a global badge (removed in v0.3.2).
-- Air quality is an exposure **index**, not a physical unit. It is normalized
-  against the largest site in view, so it moves when the fleet changes.
-- Metric bars are scaled against the largest site, which also means they move
-  when nodes are added or removed.
+- All sites of one facility type share its typical size; see "Site scale".
+- Without the data files (offline), sites fall back to the inline sample
+  inputs and `REGIONS`.
+- Added and searched points use `data/locales.json` (248 countries, 126
+  subdivisions) and, where a tile exists, `data/cells/`; elsewhere they fall back to the curated `REGIONS` or a
+  sample country average. Grid values fall back together, so a subdivision
+  missing any of them uses the country's grid, and the panel lists the local
+  values it passed over.
+- A placed point is "New site n" until reverse geocoding answers, and stays
+  so offline or away from any city.
+- Air quality is an exposure **index**, not a physical unit, normalized
+  against the largest baseline site. It and the metric bars move when nodes
+  are added or removed, not when a scenario changes.
+- Scenarios change the model only; the map layers keep showing the data.
 - Added nodes have no upstream or downstream links.
-- Dense clusters (Taiwan, Korea) overlap at world zoom now that marks are
-  bold. Zoom separates them; collision-aware placement is unimplemented.
-- Points placed from the context menu are named "New site n", and countries
-  without a `REGIONS` entry get a country-average region built from sample
-  `COUNTRY` values.
+- Dense clusters (Taiwan, Korea) overlap at world zoom; collision-aware
+  placement is unimplemented.
 - The compare view drops units: 4.77 (TWh) sits beside 391 (GWh) unlabeled.
 - The Mapbox token is public in `index.html`; it must be URL-restricted in
   the Mapbox account.
