@@ -142,3 +142,8 @@ CELL_META = {
     'pop': {'conf': 'estimated', 'src': 'ghsl-2025', 'year': 2025,
             'note': 'People within 100 km of the cell centre; GHSL 2025 is modelled from census data.'},
 }
+# What a cell missing from the tiles means, per key (index.json `absent`).
+# Only pop: cells are left out below a threshold. Other keys stay unknown.
+CELL_ABSENT = {
+    'pop': {'v': 0, 'conf': 'estimated', 'src': 'ghsl-2025', 'note': 'Fewer than 500 people within 100 km'},
+}

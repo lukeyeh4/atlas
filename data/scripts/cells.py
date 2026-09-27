@@ -6,13 +6,14 @@ Shape fixed by docs/locale-contract.md ("Location cells"). Each layer is a
   pop  people within 100 km of the cell centre, millions. Sums
        population-grid-025.csv (population_grid.py) over every cell whose
        centre is within 100 km, the same rule as population_grid.pop_within().
-       Cells with fewer than 500 people within 100 km are left out.
+       Cells with fewer than 500 people within 100 km are left out;
+       index.json `absent` says they mean pop 0.
 
 Writes data/cells/{S}_{W}.json and data/cells/index.json. Needs numpy.
 """
 import csv, json, math, shutil
 import numpy as np
-from common import CELL_META as META, DATA
+from common import CELL_ABSENT, CELL_META as META, DATA
 
 RES, TILE, R_KM, EARTH_KM = 0.25, 10, 100.0, 6371.0
 NX, NY = int(360 / RES), int(180 / RES)
@@ -76,7 +77,8 @@ def write(lay):
         doc = {'v': 1, 'tile': tid, 'res': RES, 'keys': keys, 'meta': {k: META[k] for k in keys},
                'cells': dict(sorted(cells.items()))}
         (OUT / f'{tid}.json').write_text(json.dumps(doc, separators=(',', ':')) + '\n')
-    (OUT / 'index.json').write_text(json.dumps({'v': 1, 'res': RES, 'tiles': sorted(tiles)}, separators=(',', ':')) + '\n')
+    index = {'v': 1, 'res': RES, 'tiles': sorted(tiles), 'absent': {k: CELL_ABSENT[k] for k in keys if k in CELL_ABSENT}}
+    (OUT / 'index.json').write_text(json.dumps(index, separators=(',', ':')) + '\n')
     size = sum(p.stat().st_size for p in OUT.iterdir())
     print(f'wrote data/cells/ ({len(tiles)} tiles, {int(known.sum())} cells, {size / 1e6:.1f} MB, keys {keys})')
 

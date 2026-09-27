@@ -89,7 +89,7 @@ neighbours, not just its state:
 - [ ] `wue` — the same climate formula on gridded monthly climate (WorldClim
       or ERA5) instead of a national mean.
 - [ ] `pm25` — gridded annual PM2.5 (ACAG / van Donkelaar), aggregated to 0.25°.
-- [ ] `data/node-types.json` — facility-type defaults from `node-profiles.csv`.
+- [x] `data/node-types.json` — facility-type defaults from `node-profiles.csv`.
 
 ### Node editing
 - [ ] Edit a node's inputs in the panel (power, utilization, PUE), not just

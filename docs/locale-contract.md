@@ -127,6 +127,11 @@ local climate, its river basin, its air. Values on a 0.25° grid, split into
 - `data/cells/index.json` — `{"v": 1, "res": 0.25, "tiles": ["30_-100", ...]}`,
   every tile that exists. The app checks it before fetching, so ocean and
   empty tiles cost no request.
+- Optional `absent` in the index says what a cell **missing** from the tiles
+  (or in an unlisted tile) means, per key, as a value object:
+  `"absent": {"pop": {"v": 0, "conf": "estimated", "src": "ghsl-2025",
+  "note": "Fewer than 500 people within 100 km"}}`. Keys not in `absent`
+  are unknown for missing cells.
 - `data/cells/{S}_{W}.json` — `S = floor(lat / 10) * 10`,
   `W = floor(lon / 10) * 10`. `30_-100` covers lat 30–40, lon −100 to −90.
 

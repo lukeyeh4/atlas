@@ -1,8 +1,8 @@
-"""Check data/locales.json and data/cells/ against docs/locale-contract.md;
-exit non-zero on any problem, so build_all.py stops before files the app
-would reject are committed.
+"""Check data/locales.json, data/cells/ and data/node-types.json against
+docs/locale-contract.md; exit non-zero on any problem, so build_all.py stops
+before files the app would reject are committed.
 
-    python3 data/scripts/check_locales.py
+    python3 data/scripts/check_contract.py
 """
 import json, math, re, sys
 from common import DATA
@@ -70,6 +70,11 @@ def cell_problems(sources, cited):
         return
     if index.get('v') != 1 or index.get('res') != RES:
         yield 'cells/index.json: expected v 1 and res 0.25'
+    for k, x in index.get('absent', {}).items():
+        if not isinstance(x, dict) or set(x) - FIELDS or x.get('conf') not in CONF or x.get('src') not in sources \
+                or isinstance(x.get('v'), bool) or not isinstance(x.get('v'), (int, float)):
+            yield f'cells/index.json: absent.{k} is not a valid value'
+        cited.add(x.get('src') if isinstance(x, dict) else None)
     files = {p.stem for p in folder.glob('*.json')} - {'index'}
     if set(index.get('tiles', [])) != files:
         yield f"cells/index.json: tiles list differs from files ({len(index.get('tiles', []))} listed, {len(files)} files)"
@@ -96,12 +101,52 @@ def cell_problems(sources, cited):
                 break
 
 
+TYPE_IDS = {'mine', 'materials', 'fab', 'packaging', 'equipment', 'dc-training', 'assembly', 'lab', 'dc-inference'}
+STAGES = {'raw', 'chip', 'infra', 'model', 'delivery'}
+TYPE_FIELDS = {'v', 'low', 'high', 'conf', 'src', 'basis', 'note'}
+
+
+def type_problems(d):
+    """Problems in node-types.json."""
+    if d.get('v') != 1 or not re.match(r'^\d{4}-\d{2}-\d{2}$', str(d.get('built', ''))):
+        yield 'node-types.json: needs v 1 and a built date'
+    types, sources, used = d.get('types', {}), d.get('sources', {}), set()
+    if set(types) != TYPE_IDS:
+        yield f'node-types.json: types {sorted(set(types) ^ TYPE_IDS)} missing or unknown'
+    for tid, t in types.items():
+        at = f'types.{tid}'
+        if not isinstance(t.get('n'), str) or t.get('stage') not in STAGES:
+            yield f'{at}: needs a name and a stage'
+        for k in {'p', 'u', 'pue', 'g'} - set(t):
+            yield f'{at}: missing {k}'
+        if tid.startswith('dc-') and 'water' in t:
+            yield f'{at}: data centers take water from the location wue'
+        for k, x in t.items():
+            if k in ('n', 'stage'):
+                continue
+            if k not in {'p', 'u', 'pue', 'g', 'water'} or not isinstance(x, dict) or set(x) - TYPE_FIELDS:
+                yield f'{at}.{k}: unknown key or fields'
+                continue
+            nums = [x.get(f) for f in ('low', 'v', 'high') if f in x]
+            if any(isinstance(v, bool) or not isinstance(v, (int, float)) for v in nums) or nums != sorted(nums):
+                yield f'{at}.{k}: needs numbers with low <= v <= high'
+            if x.get('conf') not in CONF or x.get('src') not in sources:
+                yield f'{at}.{k}: needs a known conf and a src in sources'
+            used.add(x.get('src'))
+    for s, x in sources.items():
+        if not x.get('title') or not str(x.get('url', '')).startswith('http'):
+            yield f'node-types sources.{s}: needs a title and an http(s) url'
+        if s not in used:
+            yield f'node-types sources.{s}: unused'
+
+
 if __name__ == '__main__':
     d = json.load(open(DATA / 'locales.json', encoding='utf-8'))
     cited = set()
     found = list(cell_problems(d.get('sources', {}), cited)) + list(problems(d, cited))
+    found += list(type_problems(json.load(open(DATA / 'node-types.json', encoding='utf-8'))))
     for p in found:
         print('  ' + p)
     if found:
-        sys.exit(f'locales.json / cells: {len(found)} problems')
-    print('locales.json and cells: match the contract')
+        sys.exit(f'contract check: {len(found)} problems')
+    print('locales.json, cells and node-types.json: match the contract')
