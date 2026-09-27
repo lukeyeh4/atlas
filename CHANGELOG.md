@@ -8,6 +8,32 @@ Dates are the session date, 2026-09-26.
 
 ---
 
+## v0.4 — standalone app
+
+### v0.4.0 — saved edits, data groundwork  ← current
+- **Edits persist.** Adding and removing nodes is saved to localStorage as a
+  small diff against the built-in data (`{v, added, removed}`), not a copy of
+  the dataset. Reloading restores it; other open tabs follow along.
+- **Reset** in the bottom bar returns to the sample data. Saved edits are
+  validated on load: unknown ids, bad stages and non-numeric inputs are
+  dropped. Export / Import is on the roadmap, not built.
+- `db/schema.sql`: a Postgres (Supabase) schema for the reference data.
+  - Per-value confidence and sources.
+  - A one-request `atlas_baseline` view.
+  - Row-level security: public read, maintainer-only write.
+- No accounts and no login, by decision. Visitors' edits never go to a
+  database; they stay in the browser.
+- `db/seed-from-index.mjs` generates `db/seed.sql` from `index.html`, so the
+  database starts from the app's own numbers. Plan in `docs/database.md`.
+- Added `<!doctype html>` and `<meta charset="utf-8">`. The page was written
+  as an artifact fragment and rendered `·` and `é` as mojibake when served
+  without a charset header (e.g. `python3 -m http.server`). The layout is
+  unchanged in standards mode.
+- Direction change: the Atlas is now built as a standalone web app, not
+  around claude.ai artifact features.
+
+---
+
 ## v0.3 — Quiet Atlas, full build
 **Artifact:** https://claude.ai/artifact/9beLBKGJksuNZJVMdSXr3V
 
@@ -56,7 +82,7 @@ revisions of this same artifact.
   a placeholder ring rather than deleting it, so it can be re-added as a
   different type. Flows to a removed node hide and return on re-add.
 
-### v0.3.3 — square glyphs and layer palettes  ← current
+### v0.3.3 — square glyphs and layer palettes
 - Every glyph normalized to an exact 15 × 15 bounding box, so all five marks
   carry the same visual weight.
 - Each layer now has its own muted ramp, defined as theme-aware CSS tokens:

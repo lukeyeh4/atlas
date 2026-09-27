@@ -13,7 +13,7 @@ with the environmental load of each node.
 
 ## What it does
 
-- **31 sites** at real coordinates across five stages: raw inputs, chip making,
+- **32 sites** at real coordinates across five stages: raw inputs, chip making,
   infrastructure, model building, delivery.
 - **Real basemap** — Natural Earth 110m country geometry, embedded in the page.
   Natural Earth projection, pan and zoom.
@@ -32,6 +32,8 @@ with the environmental load of each node.
   rings; pick a stage to turn one into a modeled node. Removing any node
   reverts it to a placeholder rather than deleting the location.
 - **Compare** two sites for per-metric deltas.
+- **Your edits are saved** in the browser and survive a reload. The bottom bar
+  shows the count; **Reset** returns to the sample data.
 - **Search** with `/` or `⌘K`.
 
 ## ⚠️ The numbers are sample data
@@ -68,6 +70,9 @@ country geometry is inlined in the page, so it works offline apart from those.
 | | |
 |---|---|
 | `index.html` | The whole app — markup, styles, data and model |
+| `db/schema.sql` | Postgres schema for when the Atlas gets a database — see `docs/database.md` |
+| `db/seed-from-index.mjs` | Generates `db/seed.sql` from the data in `index.html` |
+| `docs/database.md` | The database plan: edits format, schema design, steps to go live |
 | `countries.json` | The source geometry, decoded from Natural Earth 110m TopoJSON. Kept for reference; `index.html` has its own inlined copy |
 | `CHANGELOG.md` | Every version so far, with the reasoning |
 | `ROADMAP.md` | Blocking questions and planned work |

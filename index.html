@@ -1,3 +1,7 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Quiet Atlas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -244,6 +248,15 @@
   .layer-menu button .tag{float:right;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--rule);padding:0 4px;margin-left:10px}
   .layer-menu button:hover{background:var(--rule-soft)}
   .ramp{display:flex;align-items:center;gap:7px}
+  .data{display:flex;align-items:center;gap:14px;margin-left:auto}
+  .data button{
+    background:none;border:0;cursor:pointer;padding:3px 0;color:var(--ink-2);
+    font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+    border-bottom:1px solid var(--rule)
+  }
+  .data button:hover{color:var(--ink);border-bottom-color:var(--ink)}
+  .data button:disabled{color:var(--ink-3);border-bottom-color:transparent;cursor:default}
+  .data .warn{color:var(--warn)}
   .ramp.pending .sw{opacity:.28}
   .ramp.pending #ramp-lo{color:var(--warn)}
   .ramp .sw{display:flex;width:74px;height:6px;border:1px solid var(--rule)}
@@ -313,6 +326,10 @@
       <span class="bar-txt" id="ramp-lo">cleaner</span>
       <span class="sw" id="ramp-sw"></span>
       <span class="bar-txt" id="ramp-hi">dirtier</span>
+    </div>
+    <div class="data" id="data">
+      <span class="bar-txt" id="data-status" aria-live="polite"></span>
+      <button type="button" id="data-reset" title="Discard your edits and return to the sample data">Reset</button>
     </div>
   </div>
 </div>
@@ -1023,18 +1040,31 @@
   }
 
   /* ------------------------ add and remove nodes ------------------------- */
-  function addNode(city, stage){
-    var site = {
+  var INPUT_KEYS = ['p','u','pue','g','pop'];
+
+  function copyInputs(inputs){
+    var inp = {};
+    INPUT_KEYS.forEach(function(k){ inp[k] = inputs[k]; });
+    return inp;
+  }
+  function makeSite(city, stage, inputs){
+    return {
       id: city.id, n: city.n, p: city.p, s: stage, c: city.c, r: city.r,
       note: 'Added by hand · starting from sample inputs for ' + stageLabel[stage].toLowerCase() + '.',
-      in: {p:DEFAULT_INPUTS[stage].p, u:DEFAULT_INPUTS[stage].u, pue:DEFAULT_INPUTS[stage].pue,
-           g:DEFAULT_INPUTS[stage].g, pop:DEFAULT_INPUTS[stage].pop},
+      in: copyInputs(inputs),
       added: true
     };
+  }
+  function siteToCity(site){ return {id:site.id, n:site.n, p:site.p, c:site.c, r:site.r}; }
+
+  function addNode(city, stage){
+    var site = makeSite(city, stage, DEFAULT_INPUTS[stage]);
     SITES = SITES.concat([site]);
     byId[site.id] = site;
     CITIES = CITIES.filter(function(c){ return c.id !== city.id; });
     delete cityById[city.id];
+    edits.added[site.id] = {s:stage, in:copyInputs(site.in)};
+    persist();
     if (!state.active[stage]){
       state.active[stage] = true;
       Array.prototype.forEach.call(stagesHost.children, function(b, i){
@@ -1046,16 +1076,151 @@
   }
 
   function removeNode(site){
-    var city = {id:site.id, n:site.n, p:site.p, c:site.c, r:site.r};
+    var city = siteToCity(site);
     SITES = SITES.filter(function(x){ return x.id !== site.id; });
     delete byId[site.id];
     CITIES = CITIES.concat([city]);
     cityById[city.id] = city;
+    if (edits.added[site.id]) delete edits.added[site.id];
+    else edits.removed[site.id] = true;
+    persist();
     if (state.compare === site.id) state.compare = null;
     state.comparing = false;
     state.selected = city.id;
     refresh();
   }
+
+  /* ----------------------------- persistence ----------------------------- */
+  // Only your changes are saved, as a diff against the built-in data:
+  //   {v:1, added:{<id>:{s:<stage>, in:{p,u,pue,g,pop}}}, removed:{<id>:true}}
+  // Edits stay in this browser — there are no accounts. `store` is the only
+  // code that touches storage.
+  var EDITS_VERSION = 1;
+  var BASE_SITES = SITES.slice();
+  var BASE_CITIES = CITIES.slice();
+  var baseSiteById = Object.create(null);
+  var knownId = Object.create(null);
+  BASE_SITES.forEach(function(s){ baseSiteById[s.id] = s; knownId[s.id] = true; });
+  BASE_CITIES.forEach(function(c){ knownId[c.id] = true; });
+
+  var store = {
+    key: 'atlas.edits.v1',
+    load: function(){
+      var key = this.key;
+      return new Promise(function(resolve){
+        try { resolve(JSON.parse(localStorage.getItem(key) || 'null')); }
+        catch (e){ resolve(null); }
+      });
+    },
+    save: function(e){
+      var key = this.key;
+      return new Promise(function(resolve, reject){
+        try { localStorage.setItem(key, JSON.stringify(e)); resolve(); }
+        catch (err){ reject(err); }
+      });
+    },
+    clear: function(){
+      var key = this.key;
+      return new Promise(function(resolve){
+        try { localStorage.removeItem(key); } catch (e){}
+        resolve();
+      });
+    }
+  };
+
+  function emptyEdits(){ return {v:EDITS_VERSION, added:{}, removed:{}}; }
+  var edits = emptyEdits();
+  var saveFailed = false;
+
+  // Anything read from storage is untrusted: keep only edits that
+  // name a known location and a real stage, and fall back to default inputs.
+  function cleanEdits(raw){
+    var out = emptyEdits();
+    if (!raw || typeof raw !== 'object' || raw.v !== EDITS_VERSION) return out;
+    var removed = raw.removed && typeof raw.removed === 'object' ? raw.removed : {};
+    var added = raw.added && typeof raw.added === 'object' ? raw.added : {};
+    Object.keys(removed).forEach(function(id){
+      if (baseSiteById[id] && removed[id] === true) out.removed[id] = true;
+    });
+    Object.keys(added).forEach(function(id){
+      var a = added[id];
+      if (!knownId[id] || !a || !DEFAULT_INPUTS.hasOwnProperty(a.s)) return;
+      if (baseSiteById[id] && !out.removed[id]) return;
+      var inp = {};
+      INPUT_KEYS.forEach(function(k){
+        var v = a.in && a.in[k];
+        inp[k] = (typeof v === 'number' && isFinite(v) && v >= 0) ? v : DEFAULT_INPUTS[a.s][k];
+      });
+      out.added[id] = {s:a.s, in:inp};
+    });
+    return out;
+  }
+
+  function editCount(e){ return Object.keys(e.added).length + Object.keys(e.removed).length; }
+
+  // Rebuild SITES and CITIES from the built-in data plus the current edits.
+  function applyEdits(){
+    SITES = BASE_SITES.filter(function(s){ return !edits.removed[s.id]; });
+    CITIES = BASE_CITIES.concat(
+      BASE_SITES.filter(function(s){ return edits.removed[s.id]; }).map(siteToCity));
+    Object.keys(edits.added).forEach(function(id){
+      var city = CITIES.filter(function(c){ return c.id === id; })[0];
+      if (!city) return;
+      var a = edits.added[id];
+      SITES.push(makeSite(city, a.s, a.in));
+      CITIES = CITIES.filter(function(c){ return c.id !== id; });
+      state.active[a.s] = true;
+    });
+    byId = {}; SITES.forEach(function(s){ byId[s.id] = s; });
+    cityById = {}; CITIES.forEach(function(c){ cityById[c.id] = c; });
+    Array.prototype.forEach.call(stagesHost.children, function(b, i){
+      b.setAttribute('aria-pressed', String(!!state.active[STAGES[i].k]));
+    });
+    if (state.compare && !byId[state.compare]){ state.compare = null; state.comparing = false; }
+    if (state.selected && !byId[state.selected] && !cityById[state.selected]) state.selected = null;
+  }
+
+  function persist(){
+    var done = function(){ saveFailed = false; renderDataBar(); };
+    var failed = function(){ saveFailed = true; renderDataBar(); };
+    (editCount(edits) ? store.save(edits) : store.clear()).then(done, failed);
+  }
+
+  function replaceEdits(next){
+    edits = next;
+    applyEdits();
+    persist();
+    refresh();
+  }
+
+  var dataStatus = document.getElementById('data-status');
+  var dataReset = document.getElementById('data-reset');
+
+  function renderDataBar(){
+    var n = editCount(edits);
+    dataStatus.classList.toggle('warn', saveFailed);
+    dataStatus.textContent = saveFailed
+      ? 'Edits not saved · browser storage unavailable'
+      : n ? n + (n === 1 ? ' edit' : ' edits') + ' · saved in this browser'
+          : 'Sample data · no edits';
+    dataReset.disabled = n === 0;
+  }
+
+  dataReset.addEventListener('click', function(){
+    if (!window.confirm('Discard all ' + editCount(edits) + ' edit(s) and return to the sample data?')) return;
+    replaceEdits(emptyEdits());
+  });
+
+  // Keep other open tabs in step.
+  window.addEventListener('storage', function(ev){
+    if (ev.key !== store.key) return;
+    var raw = null;
+    try { raw = JSON.parse(ev.newValue || 'null'); } catch (e){}
+    edits = cleanEdits(raw);
+    applyEdits();
+    renderDataBar();
+    refresh();
+  });
 
   function cityView(city){
     pbody.innerHTML = '';
@@ -1125,6 +1290,14 @@
   }
   document.getElementById('ramp-lo').textContent = LAYERS[0].lo;
   document.getElementById('ramp-hi').textContent = LAYERS[0].hi;
+  renderDataBar();
   refresh();
+  store.load().then(function(raw){
+    edits = cleanEdits(raw);
+    if (!editCount(edits)) return;
+    applyEdits();
+    renderDataBar();
+    refresh();
+  });
 })();
 </script>

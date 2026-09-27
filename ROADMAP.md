@@ -1,7 +1,7 @@
 # AI Supply Chain Atlas — Roadmap
 
-Status as of 2026-09-26. Current build: v0.3.3, published as a single-file
-artifact. Ordered roughly by what unblocks the most.
+Status as of 2026-09-26. Current build: v0.4.0, a single-file app on GitHub
+Pages. Ordered roughly by what unblocks the most.
 
 ---
 
@@ -48,9 +48,33 @@ avoids rework.
 - [ ] Let an added node be placed anywhere, not only on the three seeded
       placeholder cities — click-to-place on the map.
 - [ ] Draw and edit flows for added nodes. Right now a new node has no chain.
-- [ ] Persist edits. Nothing survives a reload today.
-      (An artifact runtime capability could hold this; see
-      the `artifact-capabilities` skill.)
+- [ ] **Radial node menu.** Clicking a node opens a radial sub-menu around it
+      with three actions: **Remove**, **Change type** (switch stage) and
+      **Relocate** (move the node on the map).
+- [ ] **Auto-populate connections.** When a node's type changes or a new node
+      is added, create its upstream and downstream flows automatically from
+      the stage order (raw → chip → infra → model → delivery), e.g. linking
+      to the nearest nodes in the adjacent stages.
+- [x] Persist edits across reloads (browser storage, v0.4.0).
+- [ ] Export / import edits as a JSON file, to back them up or move them
+      between browsers. Edits are already stored as a small diff, so the file
+      format is ready.
+
+### Database
+Prepared, not provisioned — see `docs/database.md`. No accounts, no login:
+the database holds reference data only (public read, maintainer write);
+visitors' edits stay in their browser.
+- [x] Decided: no accounts.
+- [ ] Decide between a Supabase database and a `data/baseline.json` file in the
+      repo. The same schema shapes either; a database pays off once someone other
+      than the maintainer edits values.
+- [ ] If Supabase: create the project, run `db/schema.sql` and `db/seed.sql`,
+      and load the `atlas_baseline` view at boot, keeping the inline data as an
+      offline fallback.
+- [ ] Move sourced values and their confidence into `site_input` /
+      `region_input` rather than editing `index.html`.
+- [ ] Optional: share a scenario as a link by encoding the edits in the URL
+      hash. Still no accounts or server.
 
 ### Layers
 - [ ] **Land and cooling** is a placeholder — no data bound, paints neutral.
@@ -58,6 +82,16 @@ avoids rework.
       carbon layer was before the scrubber came out.
 - [ ] Accessibility pass on the ramps: check each layer's endpoints for
       contrast in both themes, and don't rely on hue alone.
+
+### Map
+- [ ] **Find a more accurate map provider.** The basemap is Natural Earth
+      110m, too coarse for site-level work: Singapore has no polygon, and
+      dense clusters (Taiwan, Korea) sit on generalized coastlines. Options to
+      weigh: higher-resolution Natural Earth (50m/10m) at the cost of page
+      size, or a tiled provider (MapLibre GL with OpenStreetMap-based vector
+      tiles, Mapbox, Protomaps) now that the app is no longer bound by the
+      artifact CSP. Keep the Natural Earth projection look and theme support
+      in mind.
 
 ### Time
 - [ ] The year scrubber was removed from the bottom bar in v0.3.2, but all the
@@ -99,6 +133,8 @@ avoids rework.
 - Metric bars are scaled against the largest site, which also means they move
   when nodes are added or removed.
 - Added nodes have no upstream or downstream links.
+- Saved edits live in one browser. Clearing site data loses them; Export is
+  the backup once it exists.
 - Singapore has no polygon at 110m resolution, so the Jurong mark sits on open
   water. Expected at this geometry resolution.
 - Dense clusters (Taiwan, Korea) overlap at world zoom now that marks are
