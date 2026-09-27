@@ -8,7 +8,7 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 STEPS = ['ember.py', 'country_wue.py', 'water_stress.py', 'pm25.py', 'country_inputs.py', 'subnational_grid.py',
-         'locales.py', 'check_locales.py', 'node_profiles.py', 'research_raw.py']
+         'locales.py', 'cells.py', 'check_locales.py', 'node_profiles.py', 'research_raw.py']
 if '--population' in sys.argv:
     STEPS.append('population_grid.py')
 

@@ -8,7 +8,7 @@ Unknown values are left out, never written as null or zero.
 """
 import datetime, json
 
-from common import DATA, iso_3166_2, load
+from common import CELL_META, CELL_SOURCES, DATA, iso_3166_2, load
 from country_data import CI_YEAR, records
 
 g, w = load('country-grid.json'), load('country-wue.json')
@@ -32,7 +32,9 @@ SOURCES = {
                         'url': 'https://data.opennem.org.au/v3/stats/au/NEM/NSW1/energy/all.json'},
     'nga-2025': {'title': ia['australia']['sources']['nga_2025']['name'], 'url': ia['australia']['sources']['nga_2025']['url']},
 }
-used = set()
+# The cell tiles cite their sources here too.
+SOURCES.update(CELL_SOURCES)
+used = {m['src'] for m in CELL_META.values()}
 
 
 def val(v, conf, src, year=None, basis=None, note=None):

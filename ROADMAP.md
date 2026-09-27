@@ -82,6 +82,15 @@ Ordered by how likely each is to work, surest first. Coverage checked
       weighting subregions per state, or keying US values by grid region,
       which the contract would need a new level for.
 
+Per-point values (`data/cells/`, 0.25° tiles), so each city differs from its
+neighbours, not just its state:
+- [x] `pop` — people within 100 km, from the GHSL grid already built.
+- [ ] `ws` — Aqueduct 4.0 sub-basin water stress (baseline annual file).
+- [ ] `wue` — the same climate formula on gridded monthly climate (WorldClim
+      or ERA5) instead of a national mean.
+- [ ] `pm25` — gridded annual PM2.5 (ACAG / van Donkelaar), aggregated to 0.25°.
+- [ ] `data/node-types.json` — facility-type defaults from `node-profiles.csv`.
+
 ### Node editing
 - [ ] Edit a node's inputs in the panel (power, utilization, PUE), not just
       add and remove it. The model already recomputes on every render.

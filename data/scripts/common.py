@@ -130,3 +130,15 @@ def iso_3166_2(country, name, code=''):
         return f'US-{code}'
     suffix = SUBDIVISION.get(country, {}).get(name)
     return f'{ISO2[country]}-{suffix}' if suffix else ''
+
+
+# Per-layer metadata for data/cells/ tiles (cells.py), and the sources they
+# cite, which locales.py lists in locales.json `sources`.
+CELL_SOURCES = {
+    'ghsl-2025': {'title': 'GHSL GHS-POP R2023A, 2025 epoch, 30 arc-second (JRC), summed within 100 km on a 0.25° grid',
+                  'url': 'https://human-settlement.emergency.copernicus.eu/ghs_pop2023.php'},
+}
+CELL_META = {
+    'pop': {'conf': 'estimated', 'src': 'ghsl-2025', 'year': 2025,
+            'note': 'People within 100 km of the cell centre; GHSL 2025 is modelled from census data.'},
+}

@@ -27,6 +27,7 @@ All CSVs import directly into Google Sheets.
 | `country-inputs.csv` | Location inputs for every country the sources cover (with ISO `iso2`): carbon intensity, fossil share, decarbonisation, water stress, cooling water (WUE), PM2.5. Blank where a source has no value | 248 |
 | `subnational-grid.csv` | Grid inputs for US states, Chinese provinces, Indian states, Australian grids (with `iso_3166_2`) | 125 |
 | `population-grid-025.csv` | Population per 0.25° cell. Sum cells within 100 km of a node for its air-exposure population | 162,637 |
+| `cells/` | What the app reads per point: 0.25° cells in 10° tiles, keyed by cell centre. Today one layer, `pop` (people within 100 km, millions); water use, water stress and PM2.5 follow. Shape fixed by the contract | 328 tiles, 250,034 cells, 6.2 MB |
 | `research-raw.csv` | Every value from the first research round, including the original 32 sites and 25 regions | 479 |
 | `locales.json` | What the app reads: country and subdivision inputs keyed by ISO code (`US`, `US-TX`), each value with confidence and source. Shape fixed by [`docs/locale-contract.md`](../docs/locale-contract.md) | 248 + 126 |
 
@@ -50,19 +51,20 @@ python3 data/scripts/build_all.py                # everything but the population
 python3 data/scripts/build_all.py --population   # also the population grid (~480 MB download)
 ```
 
-The population grid needs `pip install numpy tifffile imagecodecs`. Everything else is standard-library Python.
+The population grid needs `pip install numpy tifffile imagecodecs`; the cell tiles need `numpy`. Everything else is standard-library Python.
 
 | Script | Downloads | Writes |
 |---|---|---|
 | `ember.py` | Ember yearly data (global + US states) | `sources/country-grid.json`, `sources/grid-us-states.json` |
 | `country_wue.py` | World Bank CCKP ERA5 climate; Shumba et al. African WUE dataset | `sources/country-wue.json` |
 | `population_grid.py` | GHSL 2025 population, 30″ | `population-grid-025.csv` |
+| `cells.py` | — | `cells/` (from `population-grid-025.csv`) |
 | `water_stress.py` | WRI Aqueduct 4.0 rankings | `sources/country-ws.json` |
 | `pm25.py` | World Bank WDI PM2.5 | `sources/country-pm25.json` |
 | `country_inputs.py` | — | `country-inputs.csv` (merge rules in `country_data.py`) |
 | `subnational_grid.py` | — | `subnational-grid.csv` |
 | `locales.py` | — | `locales.json` (merge rules in `country_data.py`) |
-| `check_locales.py` | — | nothing; stops the build if `locales.json` breaks the contract |
+| `check_locales.py` | — | nothing; stops the build if `locales.json` or `cells/` breaks the contract |
 | `node_profiles.py` | — | `node-profiles.csv` |
 | `research_raw.py` | — | `research-raw.csv` |
 
