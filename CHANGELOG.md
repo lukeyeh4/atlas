@@ -8,6 +8,27 @@ Dates are the session date, 2026-09-26.
 
 ---
 
+## Data — unreleased (2026-09-27)
+
+Sourced inputs for the app, in `data/`. The app reads only three files; their
+shape is fixed by `docs/locale-contract.md`, agreed with the app side.
+- **`data/locales.json`** — location inputs keyed by the ISO codes Mapbox
+  returns: 248 countries and 126 states/provinces (US, China, India,
+  Australia). Each value has a confidence and a source; unknown values are
+  left out, not zeroed.
+- **`data/cells/`** — people within 100 km for every 0.25° cell, in 10° tiles
+  (6.2 MB). Water stress, water use and PM2.5 layers may follow.
+- **`data/node-types.json`** — default inputs for the nine facility types.
+  Built-in sites will use these plus location lookup, like added nodes.
+- Water use: `wue` is the location's climate estimate; operator figures are a
+  separate, display-only `wue_disclosed`.
+- The build checks all three files against the contract and stops on any
+  problem.
+- Database schema keyed by ISO code, with state/province tables, seeded from
+  `locales.json`.
+
+---
+
 ## v0.4 — standalone app
 
 ### v0.4.0 — saved edits, data groundwork  ← current

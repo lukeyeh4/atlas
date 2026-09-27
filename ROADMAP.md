@@ -91,6 +91,25 @@ neighbours, not just its state:
 - [ ] `pm25` — gridded annual PM2.5 (ACAG / van Donkelaar), aggregated to 0.25°.
 - [x] `data/node-types.json` — facility-type defaults from `node-profiles.csv`.
 
+### Air pollution
+Most of the chain's air pollution is emitted at the power plants that supply
+it, not at the facilities, so this starts with the grid, not with wind.
+Relates to blocking question 4. In order:
+- [ ] **Physical units.** Replace the air-quality index (normalized against
+      the largest site, so it moves when nodes change) with a quantity:
+      tonnes of SO₂ / NOₓ / PM2.5 per year, and population exposed.
+- [ ] **Emissions from electricity, where it is generated.** Per-grid
+      emissions per kWh (Ember, EPA eGRID for the US) times each node's
+      energy, with exposure from the population around that grid's power
+      plants rather than around the node.
+- [ ] **On-site combustion flag** for facility types that burn fuel on site
+      (self-generating mines, data centers on gas turbines, e.g. xAI Memphis).
+      Only these get a local-exposure term.
+- [ ] Wind — not planned. Wind-rose weighting would sharpen only the on-site
+      term, by perhaps 1.5–2×, less than the uncertainty in emissions; real
+      dispersion models (InMAP, EASIUR) exist for the US only. Revisit only
+      if self-generating sites become a focus.
+
 ### Node editing
 - [ ] Edit a node's inputs in the panel (power, utilization, PUE), not just
       add and remove it. The model already recomputes on every render.
