@@ -1,0 +1,663 @@
+{
+  "generated": "2026-09-26",
+  "method": {
+    "ws": "Point-in-polygon lookup of each representative site in the Aqueduct 4.0 baseline_annual GDB layer; value = bws_score (0-5) / 5; mean of points where two sites listed.",
+    "wue": "Preference order: site/region-specific operator disclosure (AWS regional fact sheets 2025, Microsoft location fact sheets/Li et al. compilation) > national regulator statistic > operator fleet average > peer-reviewed climate model; null if none."
+  },
+  "regions": {
+    "us-pjm": {
+      "ws": {
+        "value": 0.032,
+        "raw": "Ashburn VA: basin pfaf 731801 score 0.16 (Low (<10%)), withdrawal/available ratio 0.056",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: Virginia state/province score 2.56; country score 2.60 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). Ashburn sits in the Potomac basin, which Aqueduct rates Low; the statewide area-weighted figure is higher. (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 0.06,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "regional (AWS US East - Northern Virginia region, all AWS-operated data centers)",
+        "year": 2025,
+        "source": "Amazon Web Services, 'AWS is building a sustainable business in Virginia' - Virginia Sustainability Fact Sheet (Key Sustainability Metrics table)",
+        "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-virginia.pdf",
+        "confidence": "disclosed",
+        "note": "AWS US East (N. Virginia) average WUE 0.12 (2024), 0.06 (2025); PUE 1.15. AWS fact-sheet definition: WUE in litres per kWh for data centers operated by AWS, Jan 1-Dec 31 of each year; Amazon defines WUE as water withdrawn for data-center operations per kWh of IT load (on-site; excludes water embedded in electricity generation). Cross-check: Microsoft Virginia (Boydton, southern VA, direct evaporative cooling) WUE 0.17 L/kWh for Jan-Dec 2022 per Microsoft's archived 'Virginia (East US & East US 2)' sustainability fact sheet; Li et al. Table 1 lists Virginia 0.14."
+      }
+    },
+    "us-npw": {
+      "ws": {
+        "value": 0.0,
+        "raw": "The Dalles OR: basin pfaf 782300 score 0.00 (Low (<10%)), withdrawal/available ratio 0.006",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: Oregon state/province score 1.60; country score 2.60 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). The Dalles draws on the Columbia mainstem basin (very high available flow), hence score 0 even though local municipal/aquifer supply is contested. (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 0.12,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "regional (AWS US West - Oregon region, Boardman/Umatilla area, Columbia basin)",
+        "year": 2025,
+        "source": "Amazon Web Services, Oregon Sustainability Fact Sheet (Key Sustainability Metrics table)",
+        "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-oregon.pdf",
+        "confidence": "disclosed",
+        "note": "AWS US West (Oregon) WUE 0.16 (2024), 0.12 (2025); PUE 1.12. AWS fact-sheet definition: WUE in litres per kWh for data centers operated by AWS, Jan 1-Dec 31 of each year; Amazon defines WUE as water withdrawn for data-center operations per kWh of IT load (on-site; excludes water embedded in electricity generation). Alternatives: Microsoft Washington (Quincy, eastern WA, similar climate) on-site WUE 0.95 L/kWh per Li et al. Table 1 (Microsoft-reported, ~2022). Google publishes The Dalles site water consumption (~550 million gallons in 2024, per Google's 2025 Environmental Report as reported by press) but NOT site electricity, so a site WUE for The Dalles cannot be derived from public data."
+      }
+    },
+    "us-miso": {
+      "ws": {
+        "value": 0.026,
+        "raw": "Council Bluffs IA: basin pfaf 742951 score 0.13 (Low (<10%)), withdrawal/available ratio 0.055",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: Iowa state/province score 1.08; country score 2.60 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 0.14,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "site-region (Microsoft datacenters in Iowa, West Des Moines)",
+        "year": 2023,
+        "source": "Li, Yang, Islam & Ren, 'Making AI Less \"Thirsty\": Uncovering and Addressing the Secret Water Footprint of AI Models' (arXiv 2304.03271 v5; Communications of the ACM), Table 1 - location-wise on-site WUE as reported by Microsoft",
+        "url": "https://arxiv.org/abs/2304.03271",
+        "confidence": "disclosed",
+        "note": "Microsoft-reported location-wise annualized on-site WUE, compiled in Li et al. Table 1 (values current as of the paper's 2023 data collection). Microsoft definition: annual litres of water used for humidification and cooling / annual kWh used to power IT equipment (on-site only; excludes off-site water for electricity). Google publishes Council Bluffs water (~1.0 billion gallons consumed in 2024) but not site electricity, so no Google site WUE can be computed."
+      }
+    },
+    "us-ercot": {
+      "ws": {
+        "value": 0.619,
+        "raw": "Abilene TX: basin pfaf 751660 score 3.09 (High (40-80%)), withdrawal/available ratio 0.427",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: Texas state/province score 3.33; country score 2.60 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 0.25,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "site-region (Microsoft datacenters in Texas, San Antonio)",
+        "year": 2023,
+        "source": "Li, Yang, Islam & Ren, 'Making AI Less \"Thirsty\": Uncovering and Addressing the Secret Water Footprint of AI Models' (arXiv 2304.03271 v5; Communications of the ACM), Table 1 - location-wise on-site WUE as reported by Microsoft",
+        "url": "https://arxiv.org/abs/2304.03271",
+        "confidence": "disclosed",
+        "note": "Microsoft-reported location-wise on-site WUE compiled in Li et al. Table 1. San Antonio is humid-subtropical; Abilene (West Texas) is semi-arid and hotter, so evaporative-cooled sites there could run higher. No Abilene-specific disclosure found. Microsoft definition: annual litres of water used for humidification and cooling / annual kWh used to power IT equipment (on-site only; excludes off-site water for electricity)."
+      }
+    },
+    "us-az": {
+      "ws": {
+        "value": 1.0,
+        "raw": "Chandler AZ: basin pfaf 772250 score 5.00 (Extremely High (>80%)), withdrawal/available ratio 6.843",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: Arizona state/province score 4.39; country score 2.60 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 2.24,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "site-region (Microsoft West US 3, Phoenix-area datacenters, direct evaporative cooling)",
+        "year": 2022,
+        "source": "Microsoft, 'Arizona (West US 3)' datacenter sustainability fact sheet (archived 2023-06-28), WATER: 'Water usage effectiveness (WUE) January 2022-December 2022'",
+        "url": "https://web.archive.org/web/20230628234111id_/https://datacenters.microsoft.com/globe/pdfs/sustainability/factsheets/Arizona%20(West%20US%203).pdf",
+        "confidence": "disclosed",
+        "note": "Microsoft also states it cut Phoenix WUE 23% year-over-year in FY25 (Microsoft Official Blog, 2026-06-24, 'Inside Microsoft's two-decade push to cut water intensity'); Li et al. Table 1 lists Arizona 1.63. Treat 2.24 as the upper, dated value; the current figure is likely ~1.3-1.7 but no exact current per-site number is published. Microsoft definition: annual litres of water used for humidification and cooling / annual kWh used to power IT equipment (on-site only; excludes off-site water for electricity)."
+      }
+    },
+    "us-ca": {
+      "ws": {
+        "value": 0.351,
+        "raw": "San Francisco: basin pfaf 774300 score 1.76 (Low - Medium (10-20%)), withdrawal/available ratio 0.169",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: California state/province score 4.03; country score 2.60 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). SF Bay basin rated Low-Medium; California statewide is Extremely High. (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 0.39,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "regional (AWS US West - Northern California region)",
+        "year": 2025,
+        "source": "Amazon Web Services, California Sustainability Fact Sheet (Key Sustainability Metrics table)",
+        "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-california.pdf",
+        "confidence": "disclosed",
+        "note": "AWS US West (N. California) WUE 0.51 (2024), 0.39 (2025); PUE 1.18. AWS fact-sheet definition: WUE in litres per kWh for data centers operated by AWS, Jan 1-Dec 31 of each year; Amazon defines WUE as water withdrawn for data-center operations per kWh of IT load (on-site; excludes water embedded in electricity generation)."
+      }
+    },
+    "us-se": {
+      "ws": {
+        "value": 0.313,
+        "raw": "Spruce Pine NC: basin pfaf 742628 score 1.57 (Low - Medium (10-20%)), withdrawal/available ratio 0.148",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: North Carolina state/province score 3.19; country score 2.60 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 0.34,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "regional (Microsoft Americas fleet average)",
+        "year": 2025,
+        "source": "Microsoft, 'Measuring energy and water efficiency for Microsoft datacenters' (regional FY24/FY25 PUE & WUE table)",
+        "url": "https://datacenters.microsoft.com/sustainability/efficiency/",
+        "confidence": "disclosed",
+        "note": "No disclosed data-center WUE for western North Carolina found. Microsoft Americas FY25 WUE 0.34 (FY24 0.38) used as a regional fleet proxy. Alternative fleet proxy: AWS North America average WUE 0.08 L/kWh (2025, AWS Georgia/Indiana fact sheets). Microsoft definition: annual litres of water used for humidification and cooling / annual kWh used to power IT equipment (on-site only; excludes off-site water for electricity). Note Spruce Pine is a high-purity quartz MINE, not a data center; DC WUE is not a meaningful water model for it (see caveats)."
+      }
+    },
+    "ie": {
+      "ws": {
+        "value": 0.214,
+        "raw": "Dublin: basin pfaf 234009 score 1.07 (Low - Medium (10-20%)), withdrawal/available ratio 0.105",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: Dublin state/province score 1.07; country score 0.36 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 0.02,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "regional (AWS Europe - Ireland region, Dublin area)",
+        "year": 2025,
+        "source": "Amazon Web Services, Ireland Sustainability Fact Sheet (Key Sustainability Metrics table)",
+        "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-ireland.pdf",
+        "confidence": "disclosed",
+        "note": "AWS Europe (Ireland) WUE 0.03 (2024), 0.02 (2025); PUE 1.10-1.11. Cross-check: Microsoft Ireland (North Europe, Dublin) WUE 0.03 L/kWh for Jan-Dec 2021 (archived Microsoft 'Ireland (North Europe)' fact sheet); Li et al. lists Ireland 0.02. AWS fact-sheet definition: WUE in litres per kWh for data centers operated by AWS, Jan 1-Dec 31 of each year; Amazon defines WUE as water withdrawn for data-center operations per kWh of IT load (on-site; excludes water embedded in electricity generation)."
+      }
+    },
+    "sg": {
+      "ws": {
+        "value": 0.0,
+        "raw": "Singapore: basin pfaf 444055 score 0.00 (Low (<10%)), withdrawal/available ratio 0.043",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: ; country score: no data in Aqueduct 4.0 rankings (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). CAUTION: Aqueduct's hydrological model treats the local basin as Low stress, and the Aqueduct 4.0 country ranking has NoData for Singapore. This ignores Singapore's dependence on imported water (Johor), NEWater and desalination; WRI's earlier 2015 projected-stress ranking placed Singapore among the most water-stressed countries (score 5). Consider overriding with a policy value and document it. (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 2.2,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "country (median of large data centres in Singapore)",
+        "year": 2021,
+        "source": "Infocomm Media Development Authority (IMDA), Singapore Green Data Centre Roadmap (May 2024): median WUE 2.2 m3/MWh in 2021; target <=2.0 m3/MWh within 10 years",
+        "url": "https://www.imda.gov.sg/how-we-can-help/green-dc-roadmap",
+        "confidence": "measured",
+        "note": "2.2 m3/MWh = 2.2 L/kWh. Government-collected national median; cooling towers account for up to 97% of DC water use per IMDA. Cross-checks: AWS Asia Pacific (Singapore) 1.68 (2024), 1.57 (2025) (AWS Singapore fact sheet); Microsoft Singapore 2.06 L/kWh Jan-Dec 2022 (archived 'Singapore (Southeast Asia)' fact sheet, uses NEWater + mechanical cooling). Whether IMDA's denominator is IT or total facility energy is not stated in the summary sources."
+      }
+    },
+    "cn-north": {
+      "ws": {
+        "value": 0.923,
+        "raw": "Ulanqab: basin pfaf 431600 score 5.00 (Extremely High (>80%)), withdrawal/available ratio 9999 (flag: no/negligible available water in sub-basin) | Beijing: basin pfaf 431623 score 4.23 (Extremely High (>80%)), withdrawal/available ratio 0.937",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 2 site point(s). Context: Nei Mongol state/province score 4.62; Beijing state/province score 4.44; country score 2.80 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). Ulanqab sub-basin returns raw ratio 9999 (Aqueduct's flag for negligible available renewable water), scored 5. (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 1.66,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "fleet (GDS Holdings, China-wide data center portfolio)",
+        "year": 2024,
+        "source": "GDS Holdings, 2024 Environmental, Social and Governance (ESG) Report, KPI appendix: WUE 1.66 (2024), 1.72 (2023), 1.74 (2022)",
+        "url": "https://c.gds-services.com/esg2024/docs/2024_ESG_Report_EN.pdf",
+        "confidence": "disclosed",
+        "note": "Fleet average for a major Chinese colocation operator (Shanghai, Beijing/Hebei, Shenzhen and inland campuses), not specific to Ulanqab. Cold, dry Ulanqab likely runs lower on free/indirect cooling (Chindata markets 'waterless' cooling reaching WUE ~0 in its 2022 ESG report), but no site-level Ulanqab WUE was found. Total GDS water consumption 8.06 million t (2024). Report does not state whether WUE uses IT or facility energy; assumed IT (industry convention)."
+      }
+    },
+    "cn-cent": {
+      "ws": {
+        "value": 1.0,
+        "raw": "Zhengzhou: basin pfaf 434294 score 5.00 (Extremely High (>80%)), withdrawal/available ratio 5.817",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: Henan state/province score 4.09; country score 2.80 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 1.66,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "fleet (GDS Holdings, China-wide)",
+        "year": 2024,
+        "source": "GDS Holdings, 2024 ESG Report, KPI appendix (WUE 1.66 in 2024)",
+        "url": "https://c.gds-services.com/esg2024/docs/2024_ESG_Report_EN.pdf",
+        "confidence": "disclosed",
+        "note": "No Henan/Zhengzhou-specific disclosure found; China fleet average used as proxy. Zhengzhou's hot, humid summers suggest cooling-tower sites could exceed the fleet mean."
+      }
+    },
+    "tw": {
+      "ws": {
+        "value": 0.273,
+        "raw": "Hsinchu: basin pfaf 437001 score 1.36 (Low - Medium (10-20%)), withdrawal/available ratio 0.129 | Tainan (STSP): basin pfaf 437001 score 1.36 (Low - Medium (10-20%)), withdrawal/available ratio 0.129",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 2 site point(s). Context: ; country score: no data in Aqueduct 4.0 rankings (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). Taiwan is absent from Aqueduct 4.0 country/province rankings; both site points fall in the same coarse level-6 basin (pfaf 437001), so the value is not sensitive to local reservoir stress (e.g. the 2021 drought). Treat as a lower bound. (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 1.0,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "site-region design value (Microsoft Taiwan North, new datacenters)",
+        "year": 2024,
+        "source": "Microsoft, 'Taiwan (Taiwan North)' datacenter sustainability fact sheet (archived 2025-01-17): 'Design water usage effectiveness (WUE) 1.00 L/kWh - Not yet in operation'",
+        "url": "https://web.archive.org/web/20250117223934id_/https://datacenters.microsoft.com/globe/pdfs/sustainability/factsheets/Taiwan%20(Taiwan%20North).pdf",
+        "confidence": "projected",
+        "note": "Design value for outdoor-air + indirect mechanical cooling; water used <30% of the year. Not an operating measurement. Microsoft definition: annual litres of water used for humidification and cooling / annual kWh used to power IT equipment (on-site only; excludes off-site water for electricity)."
+      }
+    },
+    "kr": {
+      "ws": {
+        "value": 0.442,
+        "raw": "Pyeongtaek: basin pfaf 424109 score 2.19 (Medium - High (20-40%)), withdrawal/available ratio 0.228 | Icheon: basin pfaf 424200 score 2.23 (Medium - High (20-40%)), withdrawal/available ratio 0.235",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 2 site point(s). Context: Gyeonggi-do state/province score 2.05; country score 2.38 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 1.1,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "regional (AWS Asia Pacific average)",
+        "year": 2025,
+        "source": "Amazon Web Services, South Korea Sustainability Fact Sheet - 'AWS Asia Pacific (Average)' WUE 0.98 (2024), 1.10 (2025)",
+        "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-south-korea.pdf",
+        "confidence": "disclosed",
+        "note": "AWS does not publish a Seoul-only WUE; the Korea fact sheet shows the APAC average. No Korean operator site WUE found (Naver Gak publishes PUE, not WUE). A market-research claim of a 1.8 L/kWh Korean average (Mordor Intelligence) was not used (unsourced). AWS fact-sheet definition: WUE in litres per kWh for data centers operated by AWS, Jan 1-Dec 31 of each year; Amazon defines WUE as water withdrawn for data-center operations per kWh of IT load (on-site; excludes water embedded in electricity generation)."
+      }
+    },
+    "jp": {
+      "ws": {
+        "value": 0.458,
+        "raw": "Tokyo: basin pfaf 413017 score 2.59 (Medium - High (20-40%)), withdrawal/available ratio 0.300 | Hiroshima: basin pfaf 413011 score 2.00 (Low - Medium (10-20%)), withdrawal/available ratio 0.200",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 2 site point(s). Context: Tokyo state/province score 2.59; Hiroshima state/province score 2.00; country score 1.97 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 1.22,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "regional (AWS Asia Pacific - Tokyo region)",
+        "year": 2025,
+        "source": "Amazon Web Services, Japan Sustainability Fact Sheet (Key Sustainability Metrics table)",
+        "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-japan.pdf",
+        "confidence": "disclosed",
+        "note": "AWS Tokyo WUE 0.91 (2024), 1.22 (2025); PUE 1.25. AWS states it used no water to cool its Osaka data centers in 2025. AWS fact-sheet definition: WUE in litres per kWh for data centers operated by AWS, Jan 1-Dec 31 of each year; Amazon defines WUE as water withdrawn for data-center operations per kWh of IT load (on-site; excludes water embedded in electricity generation)."
+      }
+    },
+    "nl": {
+      "ws": {
+        "value": 0.75,
+        "raw": "Veldhoven: basin pfaf 232508 score 3.75 (High (40-80%)), withdrawal/available ratio 0.672",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: Noord-Brabant state/province score 2.97; country score 1.58 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 0.08,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "site-region (Microsoft West Europe, North Holland datacenters)",
+        "year": 2022,
+        "source": "Microsoft, 'Netherlands (West Europe)' datacenter sustainability fact sheet (archived 2025-11-17): 'WUE 0.08 L/kWh, January 2022-December 2022'",
+        "url": "https://web.archive.org/web/20251117184422id_/https://datacenters.microsoft.com/globe/pdfs/sustainability/factsheets/Netherlands%20(West%20Europe).pdf",
+        "confidence": "disclosed",
+        "note": "Outside air, zero water below 29.4 C; rainwater capture offsets humidification water. Li et al. lists Netherlands 0.06. Veldhoven (ASML) is a lithography-tool FACTORY, not a DC. Microsoft definition: annual litres of water used for humidification and cooling / annual kWh used to power IT equipment (on-site only; excludes off-site water for electricity)."
+      }
+    },
+    "de": {
+      "ws": {
+        "value": 0.693,
+        "raw": "Frankfurt: basin pfaf 232640 score 3.45 (High (40-80%)), withdrawal/available ratio 0.548 | Oberkochen: basin pfaf 232660 score 3.47 (High (40-80%)), withdrawal/available ratio 0.555",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 2 site point(s). Context: Hessen state/province score 2.13; Baden-Württemberg state/province score 2.28; country score 2.04 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). Basin scores (High) exceed state/country averages (Medium-High). (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 0.17,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "regional (AWS Europe - Frankfurt region)",
+        "year": 2025,
+        "source": "Amazon Web Services, Germany Sustainability Fact Sheet (Key Sustainability Metrics table)",
+        "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-germany.pdf",
+        "confidence": "disclosed",
+        "note": "AWS Frankfurt WUE 0.01 (2024), 0.17 (2025); PUE 1.35 -> 1.24. Large year-to-year swing; a 2-year mean (~0.09) may be more representative. AWS fact-sheet definition: WUE in litres per kWh for data centers operated by AWS, Jan 1-Dec 31 of each year; Amazon defines WUE as water withdrawn for data-center operations per kWh of IT load (on-site; excludes water embedded in electricity generation)."
+      }
+    },
+    "uk": {
+      "ws": {
+        "value": 0.677,
+        "raw": "London: basin pfaf 233038 score 3.39 (High (40-80%)), withdrawal/available ratio 0.522",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: England state/province score 1.61; country score 1.30 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). Thames basin rated High; UK country average is Low-Medium. (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 0.14,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "regional (AWS Europe - London region)",
+        "year": 2025,
+        "source": "Amazon Web Services, United Kingdom Sustainability Fact Sheet (Key Sustainability Metrics table)",
+        "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-united-kingdom.pdf",
+        "confidence": "disclosed",
+        "note": "Only 2025 published; PUE 1.23. AWS fact-sheet definition: WUE in litres per kWh for data centers operated by AWS, Jan 1-Dec 31 of each year; Amazon defines WUE as water withdrawn for data-center operations per kWh of IT load (on-site; excludes water embedded in electricity generation)."
+      }
+    },
+    "br": {
+      "ws": {
+        "value": 0.495,
+        "raw": "Sao Paulo: basin pfaf 642789 score 2.47 (Medium - High (20-40%)), withdrawal/available ratio 0.278",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: São Paulo state/province score 1.14; country score 1.04 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 0.09,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "regional (AWS South America - São Paulo region)",
+        "year": 2025,
+        "source": "Amazon Web Services, Brazil Sustainability Fact Sheet (Key Sustainability Metrics table)",
+        "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-brazil.pdf",
+        "confidence": "disclosed",
+        "note": "AWS São Paulo WUE 0.23 (2024), 0.09 (2025); PUE 1.14. AWS fact-sheet definition: WUE in litres per kWh for data centers operated by AWS, Jan 1-Dec 31 of each year; Amazon defines WUE as water withdrawn for data-center operations per kWh of IT load (on-site; excludes water embedded in electricity generation)."
+      }
+    },
+    "in": {
+      "ws": {
+        "value": 0.274,
+        "raw": "Mumbai: basin pfaf 454035 score 1.37 (Low - Medium (10-20%)), withdrawal/available ratio 0.129",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: Maharashtra state/province score 4.20; country score 4.11 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). Mumbai's coastal basin is Low-Medium; Maharashtra and India overall are Extremely High. (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 1.1,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "regional (AWS Asia Pacific average) - proxy",
+        "year": 2025,
+        "source": "Amazon Web Services, Asia Pacific average WUE as shown on the AWS South Korea Sustainability Fact Sheet (1.10 L/kWh, 2025)",
+        "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-south-korea.pdf",
+        "confidence": "disclosed",
+        "note": "No measured India WUE found: the AWS India fact sheet publishes PUE only (Mumbai 1.40, Hyderabad 1.43 in 2025). Microsoft's India regions have a DESIGN WUE of 0.00 L/kWh (Li et al. Table 1, marked under construction). APAC average used as a regional proxy; tropical coastal Mumbai with cooling towers could be closer to Singapore (1.6-2.2). Low confidence."
+      }
+    },
+    "ng": {
+      "ws": {
+        "value": 0.783,
+        "raw": "Lagos: basin pfaf 143041 score 3.92 (High (40-80%)), withdrawal/available ratio 0.755",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: Lagos state/province score 2.30; country score 0.80 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). Lagos lagoon/coastal basin rated High, far above Nigeria's national Low score. (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 1.39,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "climate estimate (country-level, cooling-tower model)",
+        "year": 2025,
+        "source": "Shumba, Tshekiso, Li, Fanti & Ren, 'A Water Efficiency Dataset for African Data Centers' (ACM COMPASS 2025; arXiv 2412.03716), Country_Summary.csv: Nigeria on-site WUE 1.385339 L/kWh",
+        "url": "https://huggingface.co/datasets/PengfeiLi/WaterEfficientDatasetForAfricanDataCenters",
+        "confidence": "estimated",
+        "note": "Modeled from national-average wet-bulb temperature (20.6 C) using a cooling-tower WUE formula; assumes evaporative cooling. No operator disclosure for Lagos found."
+      }
+    },
+    "za": {
+      "ws": {
+        "value": 0.845,
+        "raw": "Johannesburg: basin pfaf 127979 score 4.22 (Extremely High (>80%)), withdrawal/available ratio 0.933",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: Gauteng state/province score 4.62; country score 4.17 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 0.1,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "fleet (Teraco, South Africa - mostly Johannesburg/Gauteng campuses)",
+        "year": 2025,
+        "source": "Teraco, 'Powering progress: Teraco leads the way in sustainability and innovation' (blog, 30 Apr 2025)",
+        "url": "https://www.teraco.co.za/blog/powering-progress-teraco-leads-the-way-in-sustainability-and-innovation/",
+        "confidence": "disclosed",
+        "note": "Teraco (largest SA colo operator, closed-loop / free cooling) reports WUE 0.10 L/kWh. Contrast: a climate model for evaporative (cooling-tower) sites gives 1.21 L/kWh for South Africa (Shumba et al. 2025 dataset). AWS Cape Town publishes no WUE ('--')."
+      }
+    },
+    "sa": {
+      "ws": {
+        "value": 1.0,
+        "raw": "Riyadh: basin pfaf 297818 score 5.00 (Extremely High (>80%)), withdrawal/available ratio 9999 (flag: no/negligible available water in sub-basin)",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: Ar Riyad state/province score 4.97; country score 4.98 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). Riyadh sub-basin returns raw ratio 9999 (negligible renewable supply; city relies on desalination and fossil groundwater). (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": null,
+        "unit": "L/kWh",
+        "basis": "IT energy",
+        "scope": "none",
+        "year": null,
+        "source": null,
+        "url": null,
+        "confidence": null,
+        "note": "No disclosed or credibly modeled WUE for Saudi/Riyadh data centers found. AWS Bahrain and UAE fact sheets publish PUE only (1.33 and 1.25 in 2025). Trade-press claims that Saudi designs target WUE <0.2 L/kWh (dry/hybrid cooling) are targets, not measurements. Microsoft's EMEA fleet WUE (0.03, FY25) is dominated by European sites and is not a valid proxy for a hot-arid climate."
+      }
+    },
+    "au": {
+      "ws": {
+        "value": 0.0,
+        "raw": "Greenbushes WA: basin pfaf 561104 score 0.00 (Low (<10%)), withdrawal/available ratio 0.032",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: Western Australia state/province score 2.40; country score 2.91 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 0.1,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "regional (AWS Asia Pacific - Sydney region)",
+        "year": 2025,
+        "source": "Amazon Web Services, Australia Sustainability Fact Sheet (Key Sustainability Metrics table)",
+        "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-australia.pdf",
+        "confidence": "disclosed",
+        "note": "AWS Sydney WUE 0.12 (2024), 0.10 (2025); AWS Melbourne 0.02 (2024), 0.06 (2025). Microsoft Melbourne design WUE 0.012 (archived 'Australia East & Southeast' fact sheet). No Western Australia DC disclosure; Greenbushes is a lithium MINE (see caveats). AWS fact-sheet definition: WUE in litres per kWh for data centers operated by AWS, Jan 1-Dec 31 of each year; Amazon defines WUE as water withdrawn for data-center operations per kWh of IT load (on-site; excludes water embedded in electricity generation)."
+      }
+    },
+    "mx": {
+      "ws": {
+        "value": 0.935,
+        "raw": "Queretaro: basin pfaf 771480 score 4.67 (Extremely High (>80%)), withdrawal/available ratio 1.277",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: Querétaro state/province score 4.40; country score 4.00 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 0.056,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "site-region design value (Microsoft Mexico Central, Querétaro)",
+        "year": 2023,
+        "source": "Li, Yang, Islam & Ren, 'Making AI Less \"Thirsty\": Uncovering and Addressing the Secret Water Footprint of AI Models' (arXiv 2304.03271 v5; Communications of the ACM), Table 1 - location-wise on-site WUE as reported by Microsoft - Mexico row, marked as data center under construction (projected)",
+        "url": "https://arxiv.org/abs/2304.03271",
+        "confidence": "projected",
+        "note": "Microsoft design WUE for its Querétaro region as compiled by Li et al.; not an operating measurement. The AWS Mexico fact sheet publishes no WUE. Microsoft definition: annual litres of water used for humidification and cooling / annual kWh used to power IT equipment (on-site only; excludes off-site water for electricity)."
+      }
+    },
+    "id": {
+      "ws": {
+        "value": 0.0,
+        "raw": "Grasberg: basin pfaf 531593 score 0.00 (Low (<10%)), withdrawal/available ratio 0.000",
+        "scope": "basin",
+        "year": 2023,
+        "source": "WRI Aqueduct 4.0 Water Risk Atlas, baseline annual data (Aqueduct40_baseline_annual, GDB layer 'baseline_annual', release Y2023M07D05); point-in-polygon lookup at the listed site coordinates",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "confidence": "estimated",
+        "note": "Value = mean basin bws_score / 5 across 1 site point(s). Context: Papua state/province score 0.00; country score 2.67 (Aqueduct 4.0 country/province rankings, all-sector 'Tot' weighting). Grasberg highlands (very high rainfall) score 0; Indonesia national is Medium-High. (Aqueduct is a hydrological model output from WRI, hence confidence=estimated.)",
+        "data_period": "1979-2019 baseline"
+      },
+      "wue": {
+        "value": 2.85,
+        "unit": "L/kWh",
+        "basis": "IT energy (per kWh delivered to IT equipment)",
+        "scope": "regional (AWS Asia Pacific - Jakarta region)",
+        "year": 2025,
+        "source": "Amazon Web Services, Indonesia Sustainability Fact Sheet (Key Sustainability Metrics table)",
+        "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-indonesia.pdf",
+        "confidence": "disclosed",
+        "note": "AWS Jakarta WUE 2.75 (2024), 2.85 (2025); PUE 1.29. Microsoft Indonesia design WUE 1.90 (Li et al.). Hot-humid lowland Jakarta; Grasberg is a high-altitude copper/gold MINE, so DC WUE is not meaningful there (see caveats). AWS fact-sheet definition: WUE in litres per kWh for data centers operated by AWS, Jan 1-Dec 31 of each year; Amazon defines WUE as water withdrawn for data-center operations per kWh of IT load (on-site; excludes water embedded in electricity generation)."
+      }
+    }
+  },
+  "fab_water": [
+    {
+      "id": "tsmc-2025",
+      "metric": "Water withdrawal per unit electricity, TSMC corporate (Taiwan fabs + subsidiaries)",
+      "value": 5.25,
+      "unit": "L/kWh (total water usage / total electricity)",
+      "inputs": {
+        "total_water_usage_million_m3": {
+          "2025": 151,
+          "2024": 129,
+          "2023": 114
+        },
+        "unit_water_L_per_12in_wafer_layer": {
+          "2025": 153.3,
+          "2024": 161.0,
+          "2023": 176.4
+        },
+        "renewable_energy_GWh_2025": 5780,
+        "renewable_share_2025": 0.201,
+        "derived_total_electricity_GWh_2025": 28756
+      },
+      "year": 2025,
+      "source": "TSMC 2025 Annual Report, Ch.7 (Corporate Social Responsibility): 'TSMC Water Usage in Recent Two Years' table (Total Water Usage, million m3; Note 1: Taiwan fabs and subsidiaries, city water + reclaimed water) and 'Used 5,780 GWh in renewable energy ... renewable energy use to 20.1%'. 2023 figures from TSMC 2024 Annual Report p.159.",
+      "url": "https://investor.tsmc.com/static/annualReports/2025/english/pdf/2025_tsmc_ar_e_ch7.pdf",
+      "confidence": "estimated",
+      "note": "Derived by me: 151e9 L / (5,780 GWh / 0.201 = ~28,756 GWh) = ~5.25 L/kWh. 'Water usage' is intake (withdrawal-like: city + reclaimed water), not consumption; much of it returns as treated wastewater. This is ~20x a typical temperate data-center WUE and ~2-3x even Singapore DC WUE. Per-wafer intensity (153 L per 12-inch-equivalent wafer mask layer) is the more physical basis if the model tracks wafer output."
+    },
+    {
+      "id": "tsmc-2024",
+      "metric": "Water usage per unit energy, TSMC corporate",
+      "value": 4.7,
+      "unit": "L/kWh (total water usage / total energy incl. natural gas & diesel)",
+      "inputs": {
+        "total_water_usage_million_m3_2024": 129,
+        "total_energy_GWh_2024": 27456,
+        "purchased_electricity_share_2024": 0.93
+      },
+      "year": 2024,
+      "source": "Water: TSMC 2024 Annual Report p.159 ('Total Water Usage' 129 million m3). Energy: TSMC 2024 Sustainability Report (total energy 27,456 GWh; purchased electricity ~93.0%, natural gas 6.9%, diesel 0.1%).",
+      "url": "https://investor.tsmc.com/static/annualReports/2024/english/ebook/files/basic-html/page159.html",
+      "confidence": "estimated",
+      "note": "Derived by me: 129e9 L / 27,456e6 kWh = 4.70 L/kWh of total energy; ~5.05 L/kWh per kWh of purchased electricity (x/0.93). The 27,456 GWh figure was taken from search-result excerpts of the 2024 Sustainability Report (the PDF at https://esg.tsmc.com/en-US/file/public/2024-TSMC-Sustainability-Report-e.pdf blocked automated download) - verify before relying on it. Consistent with the 2025 derivation (~5 L/kWh)."
+    }
+  ],
+  "caveats": [
+    "Water stress values are Aqueduct 4.0 BASIN-level scores at the site point (HydroBASINS level 6 sub-basin), normalized score/5 with all-sector weighting; state/province and country scores are given in each note. Basin and state values can differ a lot (e.g. Ashburn basin 0.16 vs Virginia state 2.56; San Francisco basin 1.76 vs California 4.03; Mumbai basin 1.37 vs Maharashtra 4.20). Pick one scope consistently.",
+    "Aqueduct measures physical withdrawal/renewable supply. It does not capture import-dependent supply (Singapore), desalination (Riyadh) or reservoir-drought risk (Taiwan 2021). Singapore's basin value 0 is misleading for policy purposes.",
+    "WUE values mix scopes and definitions: Microsoft = cooling + humidification water per IT kWh; AWS = water withdrawn per IT kWh; IMDA = national median of large DCs; GDS = fleet average (denominator not stated). All are ON-SITE only and exclude water consumed in electricity generation (off-site/indirect WUE, often 1-4 L/kWh), which the app's W = E * WUE does not include.",
+    "The app multiplies WUE (per IT kWh) by E (annual FACILITY energy). Strictly, W = (E / PUE) * WUE. Using facility energy overstates water by the PUE factor (~1.1-1.4x).",
+    "Hyperscaler regional WUE swings a lot year to year (e.g. AWS Frankfurt 0.01 -> 0.17; Microsoft APAC 0.03 -> 0.25). Prefer multi-year means for stable modeling.",
+    "Several values are DESIGN targets for sites not yet operating (Taiwan 1.00, Mexico 0.056; Microsoft India 0.00 noted but not used), flagged confidence 'projected'.",
+    "The app applies data-center WUE to ALL site types. That is wrong for fabs and mines. Fabs: TSMC's intake is about 5 L per kWh of electricity (see fab_water), roughly 20x typical DC WUE, driven by ultrapure-water production, not cooling. Mines (Greenbushes lithium, Grasberg copper/gold, Spruce Pine quartz) use water mainly for ore processing, dust suppression and tailings, which scale with ore tonnage, not electricity. They need a per-tonne water intensity from the operators' sustainability reports, not a WUE.",
+    "Saudi Arabia (sa) WUE is null: no credible disclosure found. The task mentions 28 regions but 25 region IDs were listed; all 25 are covered."
+  ]
+}

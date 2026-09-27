@@ -1,0 +1,182 @@
+{
+  "types": {
+    "inference_dc": {
+      "p_default_mw": 20,
+      "p_low": 10,
+      "p_high": 100,
+      "g_default": 0.3,
+      "category": "metro colocation / AI-cloud site (not a gigawatt training campus, not a micro edge PoP)",
+      "basis": "Default 20 MW = CoreWeave fleet average (19.8 MW/site, YE2025), inside IEA 'conventional DC 10-25 MW'. Low 10 MW = IEA conventional lower bound (~ Digital Realty fleet average 9.4 MW). High 100 MW = IEA hyperscale AI-focused DC. g_default 0.30 = IEA Base Case growth of accelerated-server electricity 2024-2030 (fleet-level, not per-site); alternative 0.15 = IEA total DC electricity growth 2024-2030.",
+      "g_sources": [
+        {
+          "g": 0.3,
+          "scope": "global accelerated-server electricity, 2024-2030 Base Case",
+          "source": "IEA Energy and AI 2025 ch.2 p.63",
+          "url": "https://iea.blob.core.windows.net/assets/34eac603-ecf1-464f-b813-2ecceb8f81c2/EnergyandAI.pdf",
+          "confidence": "projected"
+        },
+        {
+          "g": 0.15,
+          "scope": "global data centre electricity, 2024-2030 Base Case",
+          "source": "IEA Energy and AI 2025 ch.2 p.63",
+          "url": "https://iea.blob.core.windows.net/assets/34eac603-ecf1-464f-b813-2ecceb8f81c2/EnergyandAI.pdf",
+          "confidence": "projected"
+        }
+      ],
+      "points": [
+        {
+          "name": "IEA 'conventional data centre'",
+          "scope": "typical single conventional DC (enterprise/colocation)",
+          "year": 2025,
+          "p_mw": 25,
+          "arithmetic": "IEA text: 'a conventional data centre may be around 10-25 MW'; Fig 1.12 note uses 25 MW as the conventional reference. Range 10-25 MW.",
+          "source": "IEA, Energy and AI (Apr 2025), ch.1 p.38",
+          "url": "https://iea.blob.core.windows.net/assets/34eac603-ecf1-464f-b813-2ecceb8f81c2/EnergyandAI.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "name": "IEA 'hyperscale, AI-focused data centre'",
+          "scope": "single hyperscale AI DC",
+          "year": 2025,
+          "p_mw": 100,
+          "arithmetic": "IEA text: 'A hyperscale, AI-focused data centre can have a capacity of 100 MW or more'; Fig 1.12 uses 100 MW.",
+          "source": "IEA, Energy and AI (Apr 2025), ch.1 p.38",
+          "url": "https://iea.blob.core.windows.net/assets/34eac603-ecf1-464f-b813-2ecceb8f81c2/EnergyandAI.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "name": "Digital Realty portfolio average",
+          "scope": "colocation / wholesale DC, fleet average per facility",
+          "year": 2025,
+          "p_mw": 9.4,
+          "arithmetic": "~2.9 GW in-place IT capacity / 310 data centers (incl. 89 in JVs) = 2900/310 = 9.4 MW per facility",
+          "source": "Digital Realty 10-K FY2025 (filed 2026-02-13)",
+          "url": "https://www.sec.gov/Archives/edgar/data/1297996/000110465926015365/dlr-20251231x10k.htm",
+          "confidence": "disclosed"
+        },
+        {
+          "name": "Digital Realty / Blackstone hyperscale JV",
+          "scope": "planned hyperscale buildings (Frankfurt, Paris, N. Virginia)",
+          "year": 2025,
+          "p_mw": 50,
+          "arithmetic": "~500 MW potential IT load / 10 planned data centers = 50 MW per building",
+          "source": "Digital Realty 10-K FY2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/1297996/000110465926015365/dlr-20251231x10k.htm",
+          "confidence": "projected"
+        },
+        {
+          "name": "CoreWeave fleet average (AI cloud, mixed training+inference)",
+          "scope": "GPU cloud DC, average per site",
+          "year": 2025,
+          "p_mw": 19.8,
+          "arithmetic": ">850 MW active power / 43 data centers at YE2025 = 19.8 MW per site (lower bound since '>850')",
+          "source": "CoreWeave blog 'A Defining Year for The Essential Cloud for AI'",
+          "url": "https://www.coreweave.com/blog/a-defining-year-for-the-essential-cloud-for-ai",
+          "confidence": "disclosed"
+        },
+        {
+          "name": "Digital Realty Jakarta JV site",
+          "scope": "single colocation campus (2 buildings), APAC",
+          "year": 2025,
+          "p_mw": 32,
+          "arithmetic": "'two buildings in Jakarta ... can support up to approximately 32 megawatts of IT load'",
+          "source": "Digital Realty 10-K FY2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/1297996/000110465926015365/dlr-20251231x10k.htm",
+          "confidence": "disclosed"
+        }
+      ]
+    },
+    "ai_lab": {
+      "p_default_mw": 1.5,
+      "p_low": 0.3,
+      "p_high": 1.9,
+      "g_default": 0.35,
+      "category": "large AI-lab office campus (research/eval offices; excludes training compute)",
+      "basis": "MW = floor area x CBECS 2018 office electricity intensity (13.6 kWh/sqft/yr mean) / 1000 / 8760. Default 1.5 MW = ~1M sqft SF campus (Anthropic, OpenAI 2026). Low 0.3 MW = single ~180-230k sqft building (DeepMind S2, Anthropic 500 Howard). High 1.9 MW = 1M sqft at 16.7 kWh/sqft (CBECS 10+ floor buildings). p is already average facility draw, so use u=1, PUE=1 in E = p x 8760 x u x PUE. Cross-check: Google offices 7.39 MWh/employee/yr (0.84 kW each) -> 1.5 MW ~ 1,780 employee-equivalents. g_default 0.35 = OpenAI SF floor-area CAGR (1,000,000/486,600)^(1/2.4)-1 (Oct 2023 -> Mar 2026); Anthropic implies (1,000,000/230,000)^(1/3)-1 = 0.63. Hypergrowth, not a long-run rate.",
+      "on_prem_research_clusters": null,
+      "on_prem_note": "No disclosed on-prem GPU clusters at AI-lab offices found; left null.",
+      "points": [
+        {
+          "name": "CBECS 2018 office electricity intensity",
+          "scope": "US office buildings, mean",
+          "year": 2018,
+          "p_mw": null,
+          "arithmetic": "Office mean 13.6 kWh/sqft/yr (median 10.1, 75th pct 15.7); buildings with 10+ floors mean 16.7; office per worker 6.9 MWh/yr. 1,000,000 sqft x 13.6 = 13.6 GWh/yr / 8760 h = 1.55 MW avg",
+          "source": "EIA CBECS 2018 Table C14",
+          "url": "https://www.eia.gov/consumption/commercial/data/2018/ce/pdf/c14.pdf",
+          "confidence": "measured"
+        },
+        {
+          "name": "Alphabet offices & other facilities (all Google offices globally)",
+          "scope": "company-wide offices",
+          "year": 2024,
+          "p_mw": 154.6,
+          "arithmetic": "1,354,300 MWh / 8760 = 154.6 MW avg (4.2% of 32,179,900 MWh total). Per employee: 1,354,300 / 183,323 = 7.39 MWh/yr = 0.84 kW avg (cf. CBECS office 6.9 MWh/worker)",
+          "source": "Google 2025 Environmental Report p.114; Alphabet 10-K FY2024 (183,323 employees)",
+          "url": "https://www.gstatic.com/gumdrop/sustainability/google-2025-environmental-report.pdf",
+          "confidence": "disclosed"
+        },
+        {
+          "name": "Anthropic SF office footprint (~1M sqft)",
+          "scope": "AI lab HQ campus, SoMa SF",
+          "year": 2026,
+          "p_mw": 1.553,
+          "arithmetic": "~1,000,000 sqft (500 Howard 230k + 300 Howard 420k + 342 Howard 60k + 400 Howard 100k + 405 Howard ~70k = 880k; press: 'roughly 1 million') x 13.6 kWh/sqft = 13.6 GWh/yr / 8760 = 1.55 MW (at 16.7 kWh/sqft: 1.91 MW)",
+          "source": "The Real Deal (2026-02-02, 2026-04-02/07); SF Standard 2025-09-23; CBECS 2018",
+          "url": "https://therealdeal.com/san-francisco/2026/02/02/anthropic-snaps-up-420000-square-feet-of-offices/",
+          "confidence": "estimated"
+        },
+        {
+          "name": "Anthropic 500 Howard St HQ (single building)",
+          "scope": "single AI lab office building",
+          "year": 2023,
+          "p_mw": 0.357,
+          "arithmetic": "230,000 sqft x 13.6 kWh/sqft = 3.128 GWh/yr / 8760 = 0.357 MW",
+          "source": "The Real Deal 2026 (occupied since 2023); CBECS 2018",
+          "url": "https://therealdeal.com/san-francisco/2026/02/02/anthropic-snaps-up-420000-square-feet-of-offices/",
+          "confidence": "estimated"
+        },
+        {
+          "name": "OpenAI Mission Bay (1455 + 1515 Third St)",
+          "scope": "AI lab HQ (sublease from Uber)",
+          "year": 2023,
+          "p_mw": 0.755,
+          "arithmetic": "486,600 sqft x 13.6 kWh/sqft = 6.618 GWh/yr / 8760 = 0.755 MW",
+          "source": "SF Standard / SF Chronicle, Oct 2023; CBECS 2018",
+          "url": "https://sfstandard.com/2023/10/27/openai-uber-headquarters-mission-bay/",
+          "confidence": "estimated"
+        },
+        {
+          "name": "OpenAI SF total footprint (>1M sqft)",
+          "scope": "AI lab SF campus",
+          "year": 2026,
+          "p_mw": 1.553,
+          "arithmetic": ">1,000,000 sqft x 13.6 kWh/sqft = 13.6 GWh/yr / 8760 = 1.55 MW (lower bound on area)",
+          "source": "The Real Deal 2026-03-16; CBECS 2018",
+          "url": "https://therealdeal.com/san-francisco/2026/03/16/openai-inks-another-mission-bay-lease/",
+          "confidence": "estimated"
+        },
+        {
+          "name": "Google DeepMind S2 building, King's Cross",
+          "scope": "single AI lab office building, London",
+          "year": 2020,
+          "p_mw": 0.279,
+          "arithmetic": "180,000 sqft (11 floors) x 13.6 kWh/sqft (US CBECS; UK offices may differ) = 2.448 GWh/yr / 8760 = 0.279 MW",
+          "source": "SES Engineering case study; Forbes 2019-03-08; CBECS 2018",
+          "url": "https://www.ses-ltd.co.uk/case-study/kings-cross-s2-building/",
+          "confidence": "estimated"
+        }
+      ]
+    }
+  },
+  "caveats": [
+    "Inference-specific per-site MW is rarely disclosed; CoreWeave and Digital Realty averages mix training, inference and general colocation.",
+    "No sourced MW for small edge/PoP sites (e.g. Cloudflare) was found; p_low is the IEA conventional-DC lower bound, not an edge PoP (which would be far below 1 MW).",
+    "CoreWeave 'active power' is energized contracted critical power, not metered draw; apply utilization u separately.",
+    "IEA 10-25 MW / 100 MW figures are illustrative typical sizes, not a survey distribution; Uptime 2024 survey report contains no facility-size MW distribution.",
+    "CBECS intensity is a US average office; AI labs with dense workstations, GPU dev boxes and 24/7 use likely exceed it. UK/EU offices may be lower.",
+    "AI-lab floor areas are press-reported lease totals (phased occupancy), not occupied conditioned area.",
+    "Google office electricity (1,354,300 MWh) includes 'other facilities', and Alphabet estimates some sites from square footage.",
+    "Web search budget was exhausted mid-task; Equinix per-site MW, Lambda/Nscale/Crusoe inference sites, and Microsoft/Meta office electricity splits were not captured."
+  ]
+}

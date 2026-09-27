@@ -1,0 +1,764 @@
+{
+ "regions": {
+  "us-pjm": {
+   "ci": {
+    "value": 387.6,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "PJM proxy = generation-weighted aggregate of states wholly/mostly inside PJM (PA, NJ, MD, DE, DC, VA, WV, OH); excludes PJM portions of IL (ComEd), IN, KY, MI, NC. PJM also publishes a direct-emissions system average in its annual Emissions Report (not used, different basis). Computed as sum(emissions)/sum(generation) over Ember state rows (bulk CSV https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/us_yearly_full_release_long_format.csv). 2025: 393.8."
+   },
+   "fos": {
+    "value": 0.6779,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "PJM proxy = generation-weighted aggregate of states wholly/mostly inside PJM (PA, NJ, MD, DE, DC, VA, WV, OH); excludes PJM portions of IL (ComEd), IN, KY, MI, NC. PJM also publishes a direct-emissions system average in its annual Emissions Report (not used, different basis). Fossil GWh / total GWh. 2025: 0.6767."
+   },
+   "dec": {
+    "value": 0.0211,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 469.5 -> 2024 387.6 gCO2/kWh (same state aggregate); CAGR over 9 yrs, derived by us."
+   }
+  },
+  "us-npw": {
+   "ci": {
+    "value": 160.7,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "Pacific NW proxy = WA+OR+ID in-state generation (approx. BPA/Northwest footprint). Hydro-dominated; CI swings with the water year. Computed as sum(emissions)/sum(generation) over Ember state rows (bulk CSV https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/us_yearly_full_release_long_format.csv). 2025: 148.4."
+   },
+   "fos": {
+    "value": 0.2787,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "Pacific NW proxy = WA+OR+ID in-state generation (approx. BPA/Northwest footprint). Hydro-dominated; CI swings with the water year. Fossil GWh / total GWh. 2025: 0.2505."
+   },
+   "dec": {
+    "value": -0.0109,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 145.7 -> 2024 160.7 gCO2/kWh (same state aggregate); CAGR over 9 yrs, derived by us. Negative = CI rose; 2015 and 2024 hydro conditions differ, trend is noisy."
+   }
+  },
+  "us-miso": {
+   "ci": {
+    "value": 413.7,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "MISO proxy = states mostly inside MISO (MN, IA, WI, MI, IN, AR, LA, MS); excludes split states IL (Ameren zone), MO, ND, KY, TX. Computed as sum(emissions)/sum(generation) over Ember state rows (bulk CSV https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/us_yearly_full_release_long_format.csv). 2025: 419.4."
+   },
+   "fos": {
+    "value": 0.6852,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "MISO proxy = states mostly inside MISO (MN, IA, WI, MI, IN, AR, LA, MS); excludes split states IL (Ameren zone), MO, ND, KY, TX. Fossil GWh / total GWh. 2025: 0.673."
+   },
+   "dec": {
+    "value": 0.0243,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 516.0 -> 2024 413.7 gCO2/kWh (same state aggregate); CAGR over 9 yrs, derived by us."
+   }
+  },
+  "us-ercot": {
+   "ci": {
+    "value": 356.0,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "ERCOT proxy = Texas state total; ~90% of Texas load is in ERCOT, remainder in SPP/MISO/WECC. Computed as sum(emissions)/sum(generation) over Ember state rows (bulk CSV https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/us_yearly_full_release_long_format.csv). 2025: 342.5."
+   },
+   "fos": {
+    "value": 0.6322,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "measured",
+    "note": "ERCOT proxy = Texas state total; ~90% of Texas load is in ERCOT, remainder in SPP/MISO/WECC. Fossil GWh / total GWh. 2025: 0.6019."
+   },
+   "dec": {
+    "value": 0.0346,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 488.7 -> 2024 356.0 gCO2/kWh (same state aggregate); CAGR over 9 yrs, derived by us."
+   }
+  },
+  "us-az": {
+   "ci": {
+    "value": 298.6,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "Arizona state in-state generation (includes Palo Verde nuclear, much of which is exported). Computed as sum(emissions)/sum(generation) over Ember state rows (bulk CSV https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/us_yearly_full_release_long_format.csv). 2025: 283.0."
+   },
+   "fos": {
+    "value": 0.5327,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "measured",
+    "note": "Arizona state in-state generation (includes Palo Verde nuclear, much of which is exported). Fossil GWh / total GWh. 2025: 0.5017."
+   },
+   "dec": {
+    "value": 0.0348,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 410.6 -> 2024 298.6 gCO2/kWh (same state aggregate); CAGR over 9 yrs, derived by us."
+   }
+  },
+  "us-ca": {
+   "ci": {
+    "value": 199.6,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "CAISO proxy = California in-state generation; EXCLUDES imports (roughly a quarter or more of CA supply), so it differs from consumption-based CI. Computed as sum(emissions)/sum(generation) over Ember state rows (bulk CSV https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/us_yearly_full_release_long_format.csv). 2025: 177.1."
+   },
+   "fos": {
+    "value": 0.3528,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "measured",
+    "note": "CAISO proxy = California in-state generation; EXCLUDES imports (roughly a quarter or more of CA supply), so it differs from consumption-based CI. Fossil GWh / total GWh. 2025: 0.3035."
+   },
+   "dec": {
+    "value": 0.0468,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 307.2 -> 2024 199.6 gCO2/kWh (same state aggregate); CAGR over 9 yrs, derived by us."
+   }
+  },
+  "us-se": {
+   "ci": {
+    "value": 292.9,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "Southeast proxy = NC+SC (Duke Energy Carolinas/Progress footprint). NC alone: CI 2024 316.7, fossil 53.7%. Computed as sum(emissions)/sum(generation) over Ember state rows (bulk CSV https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/us_yearly_full_release_long_format.csv). 2025: 291.5."
+   },
+   "fos": {
+    "value": 0.4756,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "Southeast proxy = NC+SC (Duke Energy Carolinas/Progress footprint). NC alone: CI 2024 316.7, fossil 53.7%. Fossil GWh / total GWh. 2025: 0.4686."
+   },
+   "dec": {
+    "value": 0.0223,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - US Electricity Data (state-level yearly, long format)",
+    "url": "https://ember-energy.org/data/us-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 358.8 -> 2024 292.9 gCO2/kWh (same state aggregate); CAGR over 9 yrs, derived by us."
+   }
+  },
+  "ie": {
+   "ci": {
+    "value": 270.91,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "National power-sector CO2 intensity of generation. Ember applies IPCC lifecycle emission factors to reported generation by fuel (bulk CSV: https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv); Ember also lists a 2025 value of 255.9 (latest year, may include estimates)."
+   },
+   "fos": {
+    "value": 0.5347,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "measured",
+    "note": "Fossil (coal+gas+other fossil) share of national generation, 53.47%. 2025: 51.79%."
+   },
+   "dec": {
+    "value": 0.0524,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 439.79 -> 2024 270.91 gCO2/kWh; compound annual rate of decline over 9 yrs, derived by us."
+   }
+  },
+  "sg": {
+   "ci": {
+    "value": 498.74,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "National power-sector CO2 intensity of generation. Ember applies IPCC lifecycle emission factors to reported generation by fuel (bulk CSV: https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv); Ember also lists a 2025 value of 497.09 (latest year, may include estimates)."
+   },
+   "fos": {
+    "value": 0.9507,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "measured",
+    "note": "Fossil (coal+gas+other fossil) share of national generation, 95.07%. 2025: 94.51%."
+   },
+   "dec": {
+    "value": 0.0018,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 506.96 -> 2024 498.74 gCO2/kWh; compound annual rate of decline over 9 yrs, derived by us."
+   }
+  },
+  "cn-north": {
+   "ci": {
+    "value": 636.1,
+    "unit": "gCO2/kWh",
+    "basis": "direct",
+    "year": 2023,
+    "source": "Ministry of Ecology and Environment (MEE) & National Bureau of Statistics - Announcement on 2023 electricity CO2 emission factors (关于发布2023年电力二氧化碳排放因子的公告)",
+    "url": "https://www.mee.gov.cn/xxgk2018/xxgk/xxgk01/202512/t20251231_1139517.html",
+    "confidence": "measured",
+    "note": "North China (华北) regional grid average factor 0.6361 kgCO2/kWh; direct combustion CO2, consumption-based (accounts for inter-regional flows). Provincial: Inner Mongolia 0.6479, Beijing 0.5554, Hebei 0.6516. Not directly comparable with Ember lifecycle values (Ember China national 2023 = 583.3 lifecycle vs MEE national 530.6 direct)."
+   },
+   "fos": {
+    "value": 0.7552,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "NBS provincial industrial-scale generation by source (规模以上工业发电量), Inner Mongolia 2024, as compiled by Huajing Industry Research Institute",
+    "url": "https://www.huaon.com/channel/distdata/1050597.html",
+    "confidence": "measured",
+    "note": "Thermal (火电) share of Inner Mongolia generation 2024: 6177 of 8179.7 亿kWh = 75.5% (wind 20.1%, solar 3.8%, hydro 0.6%). Chinese \"thermal\" includes small biomass/waste volumes. Inner Mongolia used as proxy for the North China grid; no 华北 regional fossil share found. Beijing generates little (almost all gas) and imports most power."
+   },
+   "dec": {
+    "value": 0.0201,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "PROXY: Ember China NATIONAL CI 2015 667.95 -> 2024 556.27 gCO2/kWh (lifecycle). No consistent multi-year regional series found; MEE 华北 factor fell 0.6776 (2022, https://www.mee.gov.cn/xxgk2018/xxgk/xxgk01/202412/t20241226_1099413.html) -> 0.6361 (2023), -6.1% in one year; older NDRC regional factors use a different method."
+   }
+  },
+  "cn-cent": {
+   "ci": {
+    "value": 589.7,
+    "unit": "gCO2/kWh",
+    "basis": "direct",
+    "year": 2023,
+    "source": "Ministry of Ecology and Environment (MEE) & National Bureau of Statistics - Announcement on 2023 electricity CO2 emission factors (关于发布2023年电力二氧化碳排放因子的公告)",
+    "url": "https://www.mee.gov.cn/xxgk2018/xxgk/xxgk01/202512/t20251231_1139517.html",
+    "confidence": "measured",
+    "note": "Henan PROVINCIAL average factor 0.5897 kgCO2/kWh (site in Zhengzhou); direct, consumption-based. The Central China (华中) regional factor is 0.5271, pulled down by hydro-rich Hubei (0.4044); Henan chosen as more representative of the site. 华中 2022 = 0.5395."
+   },
+   "fos": {
+    "value": 0.787,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Henan Provincial Bureau of Statistics - 2024 Statistical Communique on National Economic and Social Development (2024年河南省国民经济和社会发展统计公报)",
+    "url": "https://tjj.henan.gov.cn/2025/04-02/3143962.html",
+    "confidence": "estimated",
+    "note": "Communique: renewables were 21.3% of industrial-scale generation (721.72 of 3388.23 亿kWh). Henan has no nuclear, so fossil = 1 - 0.213 = 0.787 (derived by us). Cross-check: NBS thermal (火电, incl. biomass) share 82.6%."
+   },
+   "dec": {
+    "value": 0.0201,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "PROXY: Ember China NATIONAL CI 2015 667.95 -> 2024 556.27 gCO2/kWh (lifecycle). MEE 华中 factor 0.5395 (2022) -> 0.5271 (2023), -2.3% in one year."
+   }
+  },
+  "tw": {
+   "ci": {
+    "value": 636.23,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "National power-sector CO2 intensity of generation. Ember applies IPCC lifecycle emission factors to reported generation by fuel (bulk CSV: https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv); Ember also lists a 2025 value of 634.07 (latest year, may include estimates)."
+   },
+   "fos": {
+    "value": 0.8487,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "measured",
+    "note": "Fossil (coal+gas+other fossil) share of national generation, 84.87%. 2025: 86.48%."
+   },
+   "dec": {
+    "value": 0.0025,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 650.5 -> 2024 636.23 gCO2/kWh; compound annual rate of decline over 9 yrs, derived by us."
+   }
+  },
+  "kr": {
+   "ci": {
+    "value": 415.62,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "National power-sector CO2 intensity of generation. Ember applies IPCC lifecycle emission factors to reported generation by fuel (bulk CSV: https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv); Ember also lists a 2025 value of 417.14 (latest year, may include estimates)."
+   },
+   "fos": {
+    "value": 0.6011,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "measured",
+    "note": "Fossil (coal+gas+other fossil) share of national generation, 60.11%. 2025: 60.04%."
+   },
+   "dec": {
+    "value": 0.0176,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 487.64 -> 2024 415.62 gCO2/kWh; compound annual rate of decline over 9 yrs, derived by us."
+   }
+  },
+  "jp": {
+   "ci": {
+    "value": 483.58,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "National power-sector CO2 intensity of generation. Ember applies IPCC lifecycle emission factors to reported generation by fuel (bulk CSV: https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv); Ember also lists a 2025 value of 477.37 (latest year, may include estimates)."
+   },
+   "fos": {
+    "value": 0.6872,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "measured",
+    "note": "Fossil (coal+gas+other fossil) share of national generation, 68.72%. 2025: 67.3%."
+   },
+   "dec": {
+    "value": 0.0196,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 578.14 -> 2024 483.58 gCO2/kWh; compound annual rate of decline over 9 yrs, derived by us."
+   }
+  },
+  "nl": {
+   "ci": {
+    "value": 250.72,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "National power-sector CO2 intensity of generation. Ember applies IPCC lifecycle emission factors to reported generation by fuel (bulk CSV: https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv); Ember also lists a 2025 value of 253.56 (latest year, may include estimates)."
+   },
+   "fos": {
+    "value": 0.4635,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "measured",
+    "note": "Fossil (coal+gas+other fossil) share of national generation, 46.35%. 2025: 45.85%."
+   },
+   "dec": {
+    "value": 0.0839,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 551.43 -> 2024 250.72 gCO2/kWh; compound annual rate of decline over 9 yrs, derived by us."
+   }
+  },
+  "de": {
+   "ci": {
+    "value": 337.12,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "National power-sector CO2 intensity of generation. Ember applies IPCC lifecycle emission factors to reported generation by fuel (bulk CSV: https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv); Ember also lists a 2025 value of 329.65 (latest year, may include estimates)."
+   },
+   "fos": {
+    "value": 0.4136,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "measured",
+    "note": "Fossil (coal+gas+other fossil) share of national generation, 41.36%. 2025: 40.91%."
+   },
+   "dec": {
+    "value": 0.0436,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 503.59 -> 2024 337.12 gCO2/kWh; compound annual rate of decline over 9 yrs, derived by us."
+   }
+  },
+  "uk": {
+   "ci": {
+    "value": 216.5,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "National power-sector CO2 intensity of generation. Ember applies IPCC lifecycle emission factors to reported generation by fuel (bulk CSV: https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv); Ember also lists a 2025 value of 217.41 (latest year, may include estimates)."
+   },
+   "fos": {
+    "value": 0.3507,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "measured",
+    "note": "Fossil (coal+gas+other fossil) share of national generation, 35.07%. 2025: 35.58%."
+   },
+   "dec": {
+    "value": 0.0654,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 397.79 -> 2024 216.5 gCO2/kWh; compound annual rate of decline over 9 yrs, derived by us."
+   }
+  },
+  "br": {
+   "ci": {
+    "value": 106.06,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "National power-sector CO2 intensity of generation. Ember applies IPCC lifecycle emission factors to reported generation by fuel (bulk CSV: https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv); Ember also lists a 2025 value of 109.95 (latest year, may include estimates)."
+   },
+   "fos": {
+    "value": 0.1055,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "measured",
+    "note": "Fossil (coal+gas+other fossil) share of national generation, 10.55%. 2025: 11.29%."
+   },
+   "dec": {
+    "value": 0.062,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 188.64 -> 2024 106.06 gCO2/kWh; compound annual rate of decline over 9 yrs, derived by us."
+   }
+  },
+  "in": {
+   "ci": {
+    "value": 706.67,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "National power-sector CO2 intensity of generation. Ember applies IPCC lifecycle emission factors to reported generation by fuel (bulk CSV: https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv); Ember also lists a 2025 value of 670.55 (latest year, may include estimates)."
+   },
+   "fos": {
+    "value": 0.775,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "measured",
+    "note": "Fossil (coal+gas+other fossil) share of national generation, 77.5%. 2025: 73.35%."
+   },
+   "dec": {
+    "value": 0.0067,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 750.85 -> 2024 706.67 gCO2/kWh; compound annual rate of decline over 9 yrs, derived by us."
+   }
+  },
+  "ng": {
+   "ci": {
+    "value": 495.74,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "National power-sector CO2 intensity of generation. Ember applies IPCC lifecycle emission factors to reported generation by fuel (bulk CSV: https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv); Ember also lists a 2025 value of 455.71 (latest year, may include estimates)."
+   },
+   "fos": {
+    "value": 0.75,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "measured",
+    "note": "Fossil (coal+gas+other fossil) share of national generation, 75.0%. 2025: 68.68%."
+   },
+   "dec": {
+    "value": 0.0073,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 529.7 -> 2024 495.74 gCO2/kWh; compound annual rate of decline over 9 yrs, derived by us."
+   }
+  },
+  "au": {
+   "ci": {
+    "value": 473.3,
+    "unit": "gCO2/kWh",
+    "basis": "direct",
+    "year": 2023,
+    "source": "OpenElectricity (formerly OpenNEM) - WEM/SWIS monthly energy & emissions by fuel technology (static v3 data file)",
+    "url": "https://data.opennem.org.au/v3/stats/au/WEM/energy/all.json",
+    "confidence": "estimated",
+    "note": "SWIS (WA) calendar 2023: sum of monthly emissions / total generation INCLUDING rooftop solar (derived by us). Excluding rooftop: 571.1. Trailing Dec-2023..Nov-2024: 457.6 (559.9 excl. rooftop; CER Quarterly Carbon Market Report Dec-2024 cites OpenNEM SWIS intensity 0.56 t/MWh for 2024). Official location-based Scope-2 factor for SWIS in DCCEEW NGA Factors 2025: 0.50 kgCO2e/kWh. Ember Australia national 2024 = 554.01 lifecycle (NEM-dominated) - not used."
+   },
+   "fos": {
+    "value": 0.6487,
+    "unit": "fraction",
+    "year": 2023,
+    "source": "OpenElectricity (formerly OpenNEM) - WEM/SWIS monthly energy & emissions by fuel technology (static v3 data file)",
+    "url": "https://data.opennem.org.au/v3/stats/au/WEM/energy/all.json",
+    "confidence": "estimated",
+    "note": "SWIS calendar 2023: (black coal + gas CCGT/OCGT + distillate) / total incl. rooftop solar = 64.9% (derived by us). Trailing Dec-2023..Nov-2024: 62.4%. Cross-check: WA Govt SWIS Transmission Plan (reported by pv magazine, Sep 2025) says renewables were 39% of SWIS electricity use in FY2024-25, i.e. ~61% fossil."
+   },
+   "dec": {
+    "value": 0.0451,
+    "unit": "fraction/yr",
+    "year": 2023,
+    "source": "OpenElectricity (formerly OpenNEM) - WEM/SWIS monthly energy & emissions by fuel technology (static v3 data file)",
+    "url": "https://data.opennem.org.au/v3/stats/au/WEM/energy/all.json",
+    "confidence": "estimated",
+    "note": "SWIS CI (incl. rooftop) 2015 684.4 -> 2023 473.3 gCO2/kWh; CAGR over 8 yrs, derived by us."
+   }
+  },
+  "mx": {
+   "ci": {
+    "value": 483.14,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "National power-sector CO2 intensity of generation. Ember applies IPCC lifecycle emission factors to reported generation by fuel (bulk CSV: https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv); Ember also lists a 2025 value of 474.02 (latest year, may include estimates)."
+   },
+   "fos": {
+    "value": 0.7542,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "measured",
+    "note": "Fossil (coal+gas+other fossil) share of national generation, 75.42%. 2025: 74.07%."
+   },
+   "dec": {
+    "value": 0.011,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 533.9 -> 2024 483.14 gCO2/kWh; compound annual rate of decline over 9 yrs, derived by us."
+   }
+  },
+  "za": {
+   "ci": {
+    "value": 717.72,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "National power-sector CO2 intensity of generation. Ember applies IPCC lifecycle emission factors to reported generation by fuel (bulk CSV: https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv); Ember also lists a 2025 value of 698.96 (latest year, may include estimates)."
+   },
+   "fos": {
+    "value": 0.8433,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "measured",
+    "note": "Fossil (coal+gas+other fossil) share of national generation, 84.33%. 2025: 82.16%."
+   },
+   "dec": {
+    "value": 0.0107,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 790.96 -> 2024 717.72 gCO2/kWh; compound annual rate of decline over 9 yrs, derived by us."
+   }
+  },
+  "sa": {
+   "ci": {
+    "value": 691.95,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "National power-sector CO2 intensity of generation. Ember applies IPCC lifecycle emission factors to reported generation by fuel (bulk CSV: https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv); no 2025 value in Ember."
+   },
+   "fos": {
+    "value": 0.9784,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "measured",
+    "note": "Fossil (coal+gas+other fossil) share of national generation, 97.84%."
+   },
+   "dec": {
+    "value": 0.0002,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 693.08 -> 2024 691.95 gCO2/kWh; compound annual rate of decline over 9 yrs, derived by us."
+   }
+  },
+  "id": {
+   "ci": {
+    "value": 681.11,
+    "unit": "gCO2/kWh",
+    "basis": "lifecycle",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "National power-sector CO2 intensity of generation. Ember applies IPCC lifecycle emission factors to reported generation by fuel (bulk CSV: https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv); no 2025 value in Ember. NATIONAL value. The Papua site is not on the Java-Bali grid; Papua systems are small isolated grids (diesel/gas/hydro) and large mine sites often self-generate - no sourced Papua-specific factor found."
+   },
+   "fos": {
+    "value": 0.8191,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "measured",
+    "note": "Fossil (coal+gas+other fossil) share of national generation, 81.91%. National value; Papua-specific share not found."
+   },
+   "dec": {
+    "value": 0.0025,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Ember - Yearly Electricity Data (global, long format)",
+    "url": "https://ember-energy.org/data/yearly-electricity-data/",
+    "confidence": "estimated",
+    "note": "CI 2015 696.65 -> 2024 681.11 gCO2/kWh; compound annual rate of decline over 9 yrs, derived by us. National."
+   }
+  }
+ },
+ "caveats": [
+  "Basis differs by source: Ember (all countries + US regions) = lifecycle gCO2/kWh of generation; MEE China factors and OpenElectricity SWIS = direct combustion CO2 only. Lifecycle values typically run ~5-15% above direct for fossil-heavy grids.",
+  "Ember US state dataset gives a lower US total (345.8 g/kWh in 2024) than the Ember global dataset for the USA (383.8 g/kWh; the global file applies generic lifecycle factors per fuel). US regional values are internally consistent but ~10% below the methodology used for other countries.",
+  "US ISO/regional values are aggregates of state in-state generation, not true balancing-authority footprints, and ignore imports/exports (notably California imports, Arizona nuclear exports).",
+  "China values are MEE consumption-based regional/provincial averages for 2023 (latest published); China dec uses the Ember national trend as a proxy.",
+  "Australia (au) is the WA SWIS grid, not national Australia.",
+  "All CI values are annual averages of generation; the hourly or marginal intensity faced by a new data-centre load can differ substantially.",
+  "dec is a backward-looking 2015->2024 CAGR (2015->2023 for SWIS), not a forecast. Hydro-dependent grids (Pacific NW, Brazil) are volatile year to year; Brazil CI rose in 2024 vs 2023 but fell over the decade.",
+  "The task mentions 28 regions but lists 25 ids; this file covers those 25 (75 values)."
+ ]
+}

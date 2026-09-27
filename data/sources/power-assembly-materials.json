@@ -1,0 +1,212 @@
+{
+ "types": {
+  "assembly": {
+   "p_default_mw": 5.0,
+   "p_low": 1.75,
+   "p_high": 22.8,
+   "g_default": 0.06,
+   "basis": "Median of 8 per-plant values (1.75-62.8 MW) = 5.3 MW -> default 5 MW. Low = Jabil 97-site average; high = Quanta Chongqing (22.8 MW). Quanta Shanghai QSMC (62.8 MW) is a notebook+server mega-complex: treat as outlier or use for Foxconn Zhengzhou-type megasites. g_default = median YoY across points (+6%); AI-server-heavy ODMs grew faster (Wistron +21% 2025, Wiwynn +92% 2024 incl. new Malaysia plant).",
+   "points": [
+    {
+     "company": "Quanta Computer",
+     "scope": "QSMC - Shanghai Manufacturing City (notebook/server mega-complex)",
+     "year": 2023,
+     "electricity": "549,910 MWh (non-renewable + renewable)",
+     "p_mw": 62.78,
+     "g": 0.257,
+     "arithmetic": "549,909.77 MWh / 8760 = 62.78 MW; g = 549,910/437,608 - 1 = 0.257",
+     "source": "Quanta Computer 2023 Sustainability Report, ch.5 site electricity table",
+     "url": "https://www.quantatw.com/Quanta/english/esg/ESG2023/ch05.html",
+     "confidence": "disclosed"
+    },
+    {
+     "company": "Quanta Computer",
+     "scope": "QCI - Taiwan plant (Guishan, Taoyuan)",
+     "year": 2023,
+     "electricity": "129,686 MWh (non-renewable + renewable)",
+     "p_mw": 14.8,
+     "g": -0.028,
+     "arithmetic": "129,685.86 MWh / 8760 = 14.8 MW; g = 129,686/133,448 - 1 = -0.028",
+     "source": "Quanta Computer 2023 Sustainability Report, ch.5 site electricity table",
+     "url": "https://www.quantatw.com/Quanta/english/esg/ESG2023/ch05.html",
+     "confidence": "disclosed"
+    },
+    {
+     "company": "Quanta Computer",
+     "scope": "QCMC - Chongqing Manufacturing City",
+     "year": 2023,
+     "electricity": "199,985 MWh (non-renewable + renewable)",
+     "p_mw": 22.83,
+     "g": -0.097,
+     "arithmetic": "199,984.93 MWh / 8760 = 22.83 MW; g = 199,985/221,398 - 1 = -0.097",
+     "source": "Quanta Computer 2023 Sustainability Report, ch.5 site electricity table",
+     "url": "https://www.quantatw.com/Quanta/english/esg/ESG2023/ch05.html",
+     "confidence": "disclosed"
+    },
+    {
+     "company": "Quanta Computer",
+     "scope": "QMB - Thailand Manufacturing City",
+     "year": 2023,
+     "electricity": "49,927 MWh (non-renewable + renewable)",
+     "p_mw": 5.7,
+     "g": 0.06,
+     "arithmetic": "49,927.20 MWh / 8760 = 5.7 MW; g = 49,927/47,111 - 1 = 0.06",
+     "source": "Quanta Computer 2023 Sustainability Report, ch.5 site electricity table",
+     "url": "https://www.quantatw.com/Quanta/english/esg/ESG2023/ch05.html",
+     "confidence": "disclosed"
+    },
+    {
+     "company": "Wiwynn (Wistron subsidiary, AI/cloud rack integration)",
+     "scope": "Average of 3 production sites (Taiwan, Malaysia WYMY Johor, Mexico WYMX Juarez); company total 2024",
+     "year": 2024,
+     "electricity": "121,488 MWh total electricity (on-site solar 4,386,009 + purchased renewable 78,191,013 + purchased non-renewable 38,910,868 kWh)",
+     "p_mw": 4.62,
+     "g": 0.916,
+     "arithmetic": "121,488 MWh / 3 sites = 40,496 MWh; /8760 = 4.62 MW. Company total = 13.87 MW. g = 121,487,890/63,408,504 - 1 = 0.916 (includes Malaysia plant ramp, opened 2023)",
+     "source": "Wiwynn 2024 Sustainability Report, energy statistics table p.80",
+     "url": "https://www.wiwynn.com/hubfs/ESG/2025/files/Wiwynn_Sustainability_Report_EN.pdf",
+     "confidence": "estimated"
+    },
+    {
+     "company": "Wistron",
+     "scope": "Average plant, ~12 manufacturing plants (Hsinchu, Hsinan, Hukou, Kunshan, Kunshan Opt, Zhongshan, Chengdu, Chongqing, Czechia, Mexico, Malaysia, Vietnam)",
+     "year": 2025,
+     "electricity": "~484,484 MWh electricity (renewable 388,022.93 MWh = 80.09% of electricity)",
+     "p_mw": 4.61,
+     "g": 0.209,
+     "arithmetic": "electricity = 388,022.93/0.8009 = 484,484 MWh; /12 plants = 40,374 MWh; /8760 = 4.61 MW. 2024: 299,411.85/0.7474 = 400,605 MWh; g = 0.209. Plant count = 10 plants in 2023 SR water-risk table + Hsinchu + Vietnam (approximate)",
+     "source": "Wistron ESG website, Energy Usage page; plant list from Wistron 2023 Sustainability Report (Environmental Protection chapter)",
+     "url": "https://esg.wistron.com/en/environment/EnergyandGHG/EnergyUse",
+     "confidence": "estimated"
+    },
+    {
+     "company": "Jabil",
+     "scope": "Average of 97 reporting sites (EMS, incl. cloud/data-center infrastructure)",
+     "year": 2025,
+     "electricity": "1,485,578 MWh electricity FY25",
+     "p_mw": 1.75,
+     "g": -0.29,
+     "arithmetic": "1,485,578/97 = 15,315 MWh; /8760 = 1.75 MW. g FY24->FY25 = -0.29 (driven by mobility divestiture, not organic)",
+     "source": "Jabil Sustainability Progress Report 2025, GRI 302-1 energy table p.65",
+     "url": "https://www.jabil.com/about-us/sustainability.html",
+     "confidence": "estimated"
+    },
+    {
+     "company": "Foxconn / Hon Hai",
+     "scope": "Average campus across >230 campuses in 24 countries (group total 2025)",
+     "year": 2025,
+     "electricity": "~9,828 GWh total (green 6,719.43 GWh = 68.37%)",
+     "p_mw": 4.88,
+     "g": null,
+     "arithmetic": "(1,870.28 + 4,849.15) GWh / 0.6837 = 9,828 GWh; x1000/230 campuses = 42,731 MWh; /8760 = 4.88 MW. Campuses include non-server lines and offices; campus count is \">230\"",
+     "source": "Focus Taiwan (CNA), 2026-09-07, citing Hon Hai 2025 sustainability data; campus count from Hon Hai sustainability materials",
+     "url": "https://focustaiwan.tw/business/202609070018",
+     "confidence": "estimated"
+    },
+    {
+     "company": "Supermicro",
+     "scope": "San Jose Green Park campus - 3 MW Bloom Energy fuel-cell server on site",
+     "year": 2025,
+     "electricity": "null (no MWh disclosed; 3 MW is on-site generation capacity, not consumption)",
+     "p_mw": null,
+     "g": null,
+     "arithmetic": "none - capacity figure only; indicates campus load of order several MW",
+     "source": "Supermicro 2025 Sustainability Report p.18",
+     "url": "https://s204.q4cdn.com/707617056/files/doc_downloads/2025/Supermicro-ESG-Report-2025.pdf",
+     "confidence": "disclosed"
+    }
+   ]
+  },
+  "materials_gases": {
+   "p_default_mw": 15.0,
+   "p_low": 11.2,
+   "p_high": 22.1,
+   "g_default": 0.022,
+   "basis": "Silicon wafer plants only (sourced): GlobalWafers avg 11.2 MW (2022), its Taiwan sites 12.2 MW, Siltronic avg 16.3 MW (2019) -> 22.1 MW (2025, with new Singapore 300mm fab). Median ~14 MW -> default 15 MW. g_default = median of Siltronic 2025 (+3.1%), GlobalWafers 2022 (-1.3%), Entegris 2024 (+2.2%). No sourced per-plant figure for specialty-gas ASUs, photoresist or HPQ plants.",
+   "points": [
+    {
+     "company": "Siltronic",
+     "scope": "Average of 4 wafer production sites (Burghausen, Freiberg, Singapore, Portland)",
+     "year": 2025,
+     "electricity": "772.8 GWh electricity (group)",
+     "p_mw": 22.05,
+     "g": 0.031,
+     "arithmetic": "772.8 GWh x1000 / 4 = 193,200 MWh; /8760 = 22.05 MW. Group = 88.22 MW. g 2025 = 772.8/749.3-1 = 0.031; g 2024 = 0.1",
+     "source": "Siltronic Annual Report 2025, energy consumption table (GRI 302-1)",
+     "url": "https://www.siltronic.com/fileadmin/investorrelations/Archiv/2025/Q4/260420_Siltronic_Annual_Report_2025_safe.pdf",
+     "confidence": "estimated"
+    },
+    {
+     "company": "Siltronic",
+     "scope": "Average of 4 production sites (2019 baseline)",
+     "year": 2019,
+     "electricity": "571 GWh electricity",
+     "p_mw": 16.3,
+     "g": -0.061,
+     "arithmetic": "571,000/4 = 142,750 MWh; /8760 = 16.3 MW; g = 571/608-1",
+     "source": "Siltronic Non-financial report 2019",
+     "url": "https://www.siltronic.com/fileadmin/Nachhaltigkeit/Siltronic_Non-financial_report_2019_safe.pdf",
+     "confidence": "estimated"
+    },
+    {
+     "company": "GlobalWafers",
+     "scope": "Average of 12 wafer production entities (3 Taiwan + 9 offshore: GW Japan, Kunshan SST, MEMC Italy, MEMC Korea, MEMC LLC, MEMC Japan, GlobiTech, MEMC Malaysia, Topsil)",
+     "year": 2022,
+     "electricity": "1,172,109 MWh (all plants, 100% of wafer plants)",
+     "p_mw": 11.15,
+     "g": -0.013,
+     "arithmetic": "1,172,109/12 = 97,676 MWh; /8760 = 11.15 MW; group = 133.8 MW; g = 1,172,109/1,187,199-1",
+     "source": "GlobalWafers 2022 Sustainability Report, sec 4.3.2 (total electricity by plants worldwide)",
+     "url": "https://www.sas-globalwafers.com/wp-content/uploads/2022/07/GlobalWafers_2022-Sustainability-Report-_EN.pdf",
+     "confidence": "estimated"
+    },
+    {
+     "company": "GlobalWafers",
+     "scope": "Taiwan sites average (HQ Hsinchu, Zhunan, Taisil)",
+     "year": 2022,
+     "electricity": "320,703 MWh (Taiwan, 3 sites)",
+     "p_mw": 12.2,
+     "g": -0.043,
+     "arithmetic": "320,703/3 = 106,901 MWh; /8760 = 12.2 MW (cross-check: 1,154,530,714 MJ /3.6 = 320,703 MWh)",
+     "source": "GlobalWafers 2022 Sustainability Report",
+     "url": "https://www.sas-globalwafers.com/wp-content/uploads/2022/07/GlobalWafers_2022-Sustainability-Report-_EN.pdf",
+     "confidence": "estimated"
+    },
+    {
+     "company": "Entegris",
+     "scope": "Company total (specialty chemicals, filters, materials); plant count not disclosed in report",
+     "year": 2024,
+     "electricity": "270,177 MWh total energy consumption (SASB index: 1,425,480 GJ, 68% grid electricity - internally inconsistent)",
+     "p_mw": null,
+     "g": 0.022,
+     "arithmetic": "company total = 270,177/8760 = 30.84 MW; per-plant null (no site count). g = 270,177/264,330-1",
+     "source": "Entegris 2024 Corporate Social Responsibility Report p.33 and SASB index",
+     "url": "https://www.entegris.com/en/home/about-us/corporate-responsibility.html",
+     "confidence": "disclosed"
+    },
+    {
+     "company": "Specialty/industrial gas ASUs (Air Liquide, Linde, Nippon Sanso)",
+     "scope": "ASU / on-site nitrogen plant serving a fab",
+     "year": null,
+     "electricity": "null",
+     "p_mw": null,
+     "g": null,
+     "arithmetic": "not sourced - web search budget exhausted before a plant announcement with MW could be retrieved",
+     "source": "",
+     "url": "",
+     "confidence": ""
+    }
+   ]
+  }
+ },
+ "caveats": [
+  "Most per-plant values are company totals divided by site counts (estimated); plant sizes vary widely (Quanta: 5.7-62.8 MW within one company).",
+  "Hon Hai figure is per campus (>230 campuses incl. non-assembly); total derived from green share 68.37%.",
+  "Wistron electricity derived from renewable MWh / renewable share of electricity; plant count ~12 is approximate.",
+  "Jabil FY24->FY25 decline reflects mobility divestiture, not efficiency.",
+  "Quanta 2024 SR (adds US/Mexico/Vietnam/Germany sites) was bot-blocked; 2023 SR data used.",
+  "Supermicro, Inventec, Celestica, Pegatron, Flex site-level electricity not retrieved; Flex 2025 report text has no MWh figures.",
+  "Type B covers wafer plants (plus an Entegris company total); specialty gases (ASU MW), photoresist (JSR/TOK) and HPQ (Sibelco Spruce Pine, The Quartz Corp) remain null - web search budget exhausted. SUMCO and Shin-Etsu report PDFs could not be text-extracted.",
+  "Entegris energy totals are internally inconsistent (270,177 MWh vs 1,425,480 GJ); Siltronic Portland site status not re-verified for 2025 (report says four production locations in Asia, Germany and the US)."
+ ]
+}

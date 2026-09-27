@@ -1,0 +1,1141 @@
+{
+ "wue": {
+  "United States of America": {
+   "value": 0.08,
+   "operator": "AWS",
+   "region_code": "North America average (us-east-1, us-east-2, us-west-1, us-west-2, ...)",
+   "year": 2025,
+   "source": "Amazon Web Services, Georgia and Indiana Sustainability Fact Sheets (2026 ed.): 'AWS North America (Average) ... Average WUE 0.08' (2025)",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-georgia.pdf",
+   "confidence": "disclosed",
+   "scope": "regional fleet (AWS North America)",
+   "others": [
+    {
+     "operator": "AWS us-east-1 N. Virginia",
+     "value": 0.06,
+     "year": 2025,
+     "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-virginia.pdf",
+     "note": "0.12 in 2024"
+    },
+    {
+     "operator": "AWS us-east-2 Ohio",
+     "value": 0.06,
+     "year": 2025,
+     "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-ohio.pdf",
+     "note": "0.10 in 2024"
+    },
+    {
+     "operator": "AWS us-west-2 Oregon",
+     "value": 0.12,
+     "year": 2025,
+     "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-oregon.pdf",
+     "note": "0.16 in 2024"
+    },
+    {
+     "operator": "AWS us-west-1 N. California",
+     "value": 0.39,
+     "year": 2025,
+     "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-california.pdf",
+     "note": "0.51 in 2024"
+    },
+    {
+     "operator": "Microsoft Americas fleet",
+     "value": 0.34,
+     "year": 2025,
+     "url": "https://datacenters.microsoft.com/sustainability/efficiency/",
+     "note": "FY25 (Jul 2024-Jun 2025); FY24 0.38"
+    },
+    {
+     "operator": "Microsoft West US 3 (Arizona)",
+     "value": 2.24,
+     "year": 2022,
+     "url": "https://web.archive.org/web/20230628234111id_/https://datacenters.microsoft.com/globe/pdfs/sustainability/factsheets/Arizona%20(West%20US%203).pdf",
+     "note": "Jan-Dec 2022, direct evaporative cooling"
+    },
+    {
+     "operator": "Microsoft East US/East US 2 (Virginia)",
+     "value": 0.17,
+     "year": 2022,
+     "url": "https://web.archive.org/web/20240520234202id_/https://datacenters.microsoft.com/globe/pdfs/sustainability/factsheets/Virginia%20(East%20US%20&%20East%20US%202).pdf",
+     "note": "Jan-Dec 2022"
+    },
+    {
+     "operator": "Microsoft US average (Li et al.)",
+     "value": 0.55,
+     "year": 2023,
+     "url": "https://arxiv.org/abs/2304.03271",
+     "note": "Li et al. Table 1 'U.S. Average'; also AZ 1.63, IL 0.74, IA 0.14, TX 0.25, VA 0.14, WA 0.95, WY 0.13, GA* 0.06 (projected)"
+    },
+    {
+     "operator": "Meta fleet (mostly US)",
+     "value": 0.19,
+     "year": 2024,
+     "url": "https://sustainability.atmeta.com/wp-content/uploads/2025/10/Meta_2025-Environmental-Data-Index.pdf",
+     "note": "Meta 'Annual data center WUE' 2024"
+    }
+   ],
+   "note": "Country-level primary = AWS North America fleet average (US+Canada). Individual US regions range 0.06-0.39 (AWS) and 0.13-2.24 (Microsoft sites); arid Southwest sites are far above the average."
+  },
+  "Canada": {
+   "value": 0.06,
+   "operator": "AWS",
+   "region_code": "ca-central-1",
+   "year": 2025,
+   "source": "Amazon Web Services, Canada Sustainability Fact Sheet (2026 edition, 2025 data): Average WUE (L/kWh) for data centers operated by AWS, Jan 1-Dec 31",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-canada.pdf",
+   "confidence": "disclosed",
+   "scope": "region (AWS Canada Central)",
+   "others": [
+    {
+     "operator": "AWS ca-west-1 Calgary",
+     "value": 0.04,
+     "year": 2025,
+     "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-canada.pdf",
+     "note": "0.08 in 2024"
+    }
+   ],
+   "note": "AWS Canada (Central, Montreal) 0.04 (2024), 0.06 (2025). AWS withdrew 11.39M L (Montreal) and 5.48M L (Calgary) in 2025."
+  },
+  "Mexico": {
+   "value": 0.056,
+   "operator": "Microsoft",
+   "region_code": "Mexico Central",
+   "year": 2024,
+   "source": "Microsoft, 'Mexico (Mexico Central)' datacenter sustainability fact sheet (Aug 2024 upload): 'Design water usage effectiveness (WUE) 0.056 L/kWh - Not yet in operation'",
+   "url": "https://datacenters.microsoft.com/wp-content/uploads/2024/08/Mexico%20(Mexico%20Central).pdf",
+   "confidence": "disclosed",
+   "scope": "design (Microsoft Queretaro)",
+   "others": [
+    {
+     "operator": "Microsoft Mexico* (Li et al., projected)",
+     "value": 0.056,
+     "year": 2023,
+     "url": "https://arxiv.org/abs/2304.03271"
+    }
+   ],
+   "note": "DESIGN value (not operational); direct evaporative cooling. AWS mx-central-1 (Queretaro) fact sheet (2026 ed.) publishes no PUE/WUE. Primary is Microsoft because AWS has no value."
+  },
+  "Brazil": {
+   "value": 0.09,
+   "operator": "AWS",
+   "region_code": "sa-east-1",
+   "year": 2025,
+   "source": "Amazon Web Services, Brazil Sustainability Fact Sheet (2026 edition, 2025 data): Average WUE (L/kWh) for data centers operated by AWS, Jan 1-Dec 31",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-brazil.pdf",
+   "confidence": "disclosed",
+   "scope": "region (AWS Sao Paulo)",
+   "others": [
+    {
+     "operator": "Microsoft Brazil South (design, Campinas)",
+     "value": 0.039,
+     "year": 2024,
+     "url": "https://datacenters.microsoft.com/wp-content/uploads/2024/08/Brazil%20(Brazil%20South).pdf",
+     "note": "design value, adiabatic cooling"
+    }
+   ],
+   "note": "AWS South America (Sao Paulo) 0.23 (2024), 0.09 (2025)."
+  },
+  "Argentina": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Chile": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found (Google Quilicura: site water only; Microsoft Chile Central / AWS Santiago fact sheets not found)."
+  },
+  "Colombia": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Peru": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Venezuela": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "United Kingdom": {
+   "value": 0.14,
+   "operator": "AWS",
+   "region_code": "eu-west-2",
+   "year": 2025,
+   "source": "Amazon Web Services, United Kingdom Sustainability Fact Sheet (2026 edition, 2025 data): Average WUE (L/kWh) for data centers operated by AWS, Jan 1-Dec 31",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-united-kingdom.pdf",
+   "confidence": "disclosed",
+   "scope": "region (AWS London)",
+   "others": [],
+   "note": "AWS Europe (London) 2025 WUE 0.14, PUE 1.23; UK operations withdrew ~303M L in 2025. Microsoft UK fact sheet (current) has no WUE."
+  },
+  "Ireland": {
+   "value": 0.02,
+   "operator": "AWS",
+   "region_code": "eu-west-1",
+   "year": 2025,
+   "source": "Amazon Web Services, Ireland Sustainability Fact Sheet (2026 edition, 2025 data): Average WUE (L/kWh) for data centers operated by AWS, Jan 1-Dec 31",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-ireland.pdf",
+   "confidence": "disclosed",
+   "scope": "region (AWS Ireland)",
+   "others": [
+    {
+     "operator": "Microsoft North Europe (Dublin)",
+     "value": 0.03,
+     "year": 2021,
+     "url": "https://datacenters.microsoft.com/wp-content/uploads/2024/08/Ireland%20(North%20Europe).pdf",
+     "note": "Jan-Dec 2021"
+    },
+    {
+     "operator": "Microsoft Ireland (Li et al.)",
+     "value": 0.02,
+     "year": 2023,
+     "url": "https://arxiv.org/abs/2304.03271"
+    },
+    {
+     "operator": "Meta Clonee (derived, estimated)",
+     "value": 0.53,
+     "year": 2024,
+     "url": "https://sustainability.atmeta.com/wp-content/uploads/2025/10/Meta_2025-Environmental-Data-Index.pdf",
+     "note": "571 ML / 1,076,961 MWh. Meta per-site ratio = water WITHDRAWAL (ML, Data Index p.9) / total facility electricity (MWh, p.6), 2024; derived by us, facility-energy basis (not IT) and includes domestic water, so confidence=estimated."
+    }
+   ],
+   "note": "AWS Europe (Ireland) 0.03 (2024), 0.02 (2025)."
+  },
+  "France": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [
+    {
+     "operator": "AWS Europe average (regional fallback)",
+     "value": 0.05,
+     "year": 2025,
+     "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-italy.pdf"
+    }
+   ],
+   "note": "AWS eu-west-3 (Paris) fact sheet shows 'Average WUE --' for 2025 (not published); AWS withdrew 74,171,703 L in France in 2025 but gives no energy figure, so WUE cannot be derived. No Microsoft France WUE found. Regional fallback: AWS Europe average 0.05 (2025), Microsoft EMEA 0.03 (FY25)."
+  },
+  "Germany": {
+   "value": 0.17,
+   "operator": "AWS",
+   "region_code": "eu-central-1",
+   "year": 2025,
+   "source": "Amazon Web Services, Germany Sustainability Fact Sheet (2026 edition, 2025 data): Average WUE (L/kWh) for data centers operated by AWS, Jan 1-Dec 31",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-germany.pdf",
+   "confidence": "disclosed",
+   "scope": "region (AWS Frankfurt)",
+   "others": [],
+   "note": "AWS Europe (Frankfurt) 0.01 (2024), 0.17 (2025) - large year-to-year swing, no explanation given; AWS withdrew 416.3M L in Germany in 2025."
+  },
+  "Netherlands": {
+   "value": 0.08,
+   "operator": "Microsoft",
+   "region_code": "West Europe",
+   "year": 2022,
+   "source": "Microsoft, 'Netherlands (West Europe)' datacenter sustainability fact sheet (Aug 2024 upload): 'WUE 0.08 L/kWh, January 2022-December 2022'",
+   "url": "https://datacenters.microsoft.com/wp-content/uploads/2024/08/Netherlands%20(West%20Europe).pdf",
+   "confidence": "disclosed",
+   "scope": "region (Microsoft West Europe, Amsterdam area)",
+   "others": [
+    {
+     "operator": "Microsoft Netherlands (Li et al.)",
+     "value": 0.06,
+     "year": 2023,
+     "url": "https://arxiv.org/abs/2304.03271"
+    }
+   ],
+   "note": "No AWS region in the Netherlands. Microsoft value is operational (Jan-Dec 2022)."
+  },
+  "Belgium": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No operator country WUE found (Google St. Ghislain publishes site water consumption but not site electricity). Regional fallbacks: AWS Europe 0.05 (2025), Microsoft EMEA 0.03 (FY25)."
+  },
+  "Spain": {
+   "value": 0.12,
+   "operator": "AWS",
+   "region_code": "eu-south-2",
+   "year": 2025,
+   "source": "Amazon Web Services, Spain Sustainability Fact Sheet (2026 edition, 2025 data): Average WUE (L/kWh) for data centers operated by AWS, Jan 1-Dec 31",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-spain.pdf",
+   "confidence": "disclosed",
+   "scope": "region (AWS Aragon)",
+   "others": [
+    {
+     "operator": "Microsoft Spain Central",
+     "value": 0.06,
+     "year": 2022,
+     "url": "https://datacenters.microsoft.com/wp-content/uploads/2024/08/Spain%20(Spain%20Central).pdf",
+     "note": "sheet labels it 'Design WUE' yet also 'January 2022-December 2022' - treat as design"
+    }
+   ],
+   "note": "AWS Europe (Spain, Aragon) 0.24 (2024), 0.12 (2025)."
+  },
+  "Portugal": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found (Start Campus Sines uses seawater cooling; no L/kWh published)."
+  },
+  "Italy": {
+   "value": 0.023,
+   "operator": "Microsoft",
+   "region_code": "Italy North",
+   "year": 2024,
+   "source": "Microsoft, 'Italy (Italy North)' datacenter sustainability fact sheet (Aug 2024 upload): 'Design WUE 0.023 L/kWh - Not yet in operation'",
+   "url": "https://datacenters.microsoft.com/wp-content/uploads/2024/08/Italy%20(Italy%20North).pdf",
+   "confidence": "disclosed",
+   "scope": "design (Microsoft Milan)",
+   "others": [
+    {
+     "operator": "AWS Europe average (shown on AWS Italy fact sheet)",
+     "value": 0.05,
+     "year": 2025,
+     "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-italy.pdf",
+     "note": "0.04 in 2024; AWS withdrew only 65,611 L in Italy in 2025"
+    }
+   ],
+   "note": "Primary is Microsoft (country-specific design value) rather than AWS because the AWS Italy sheet (eu-south-1 Milan) shows only the Europe-wide average; AWS's tiny 2025 Italy withdrawal (65,611 L) corroborates near-zero cooling water. Design value, not operational."
+  },
+  "Switzerland": {
+   "value": 0.05,
+   "operator": "AWS",
+   "region_code": "eu-central-2 (Europe average shown)",
+   "year": 2025,
+   "source": "Amazon Web Services, Switzerland Sustainability Fact Sheet (2026 ed.): 'AWS Europe ... Average WUE 0.04 (2024), 0.05 (2025)'",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-switzerland.pdf",
+   "confidence": "disclosed",
+   "scope": "regional fleet (AWS Europe)",
+   "others": [],
+   "note": "AWS does not publish a Zurich-only WUE; this is the AWS Europe average printed on the Swiss sheet. AWS withdrew 1,884,803 L in Switzerland in 2025."
+  },
+  "Austria": {
+   "value": 0.023,
+   "operator": "Microsoft",
+   "region_code": "Austria East",
+   "year": 2024,
+   "source": "Microsoft, 'Austria (Austria East)' datacenter sustainability fact sheet (Aug 2024 upload): 'Design WUE 0.023 L/kWh - Not yet in operation'",
+   "url": "https://datacenters.microsoft.com/wp-content/uploads/2024/08/Austria%20(Austria%20East).pdf",
+   "confidence": "disclosed",
+   "scope": "design",
+   "others": [],
+   "note": "Design value, adiabatic cooling (Vienna)."
+  },
+  "Poland": {
+   "value": 0.023,
+   "operator": "Microsoft",
+   "region_code": "Poland Central",
+   "year": 2024,
+   "source": "Microsoft, 'Poland (Poland Central)' datacenter sustainability fact sheet (Aug 2024 upload): 'Design WUE 0.023 L/kWh - Not yet in operation'",
+   "url": "https://datacenters.microsoft.com/wp-content/uploads/2024/08/Poland%20(Poland%20Central).pdf",
+   "confidence": "disclosed",
+   "scope": "design",
+   "others": [],
+   "note": "Design value (Warsaw), direct evaporative cooling + outdoor air."
+  },
+  "Czechia": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Sweden": {
+   "value": 0.02,
+   "operator": "AWS",
+   "region_code": "eu-north-1",
+   "year": 2025,
+   "source": "Amazon Web Services, Sweden Sustainability Fact Sheet (2026 edition, 2025 data): Average WUE (L/kWh) for data centers operated by AWS, Jan 1-Dec 31",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-sweden.pdf",
+   "confidence": "disclosed",
+   "scope": "region (AWS Stockholm)",
+   "others": [
+    {
+     "operator": "Microsoft Sweden Central",
+     "value": 0.16,
+     "year": 2022,
+     "url": "https://datacenters.microsoft.com/wp-content/uploads/2024/08/Sweden%20(Sweden%20Central).pdf",
+     "note": "Jan-Dec 2022"
+    },
+    {
+     "operator": "Microsoft Sweden (Li et al.)",
+     "value": 0.09,
+     "year": 2023,
+     "url": "https://arxiv.org/abs/2304.03271"
+    },
+    {
+     "operator": "Meta Lulea (derived, estimated)",
+     "value": 0.062,
+     "year": 2024,
+     "url": "https://sustainability.atmeta.com/wp-content/uploads/2025/10/Meta_2025-Environmental-Data-Index.pdf",
+     "note": "29 ML / 468,809 MWh. Meta per-site ratio = water WITHDRAWAL (ML, Data Index p.9) / total facility electricity (MWh, p.6), 2024; derived by us, facility-energy basis (not IT) and includes domestic water, so confidence=estimated."
+    }
+   ],
+   "note": "AWS Europe (Stockholm) 0.02 (2024 and 2025)."
+  },
+  "Norway": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed L/kWh WUE found (Green Mountain etc. describe near-zero water use qualitatively only)."
+  },
+  "Finland": {
+   "value": 0.01,
+   "operator": "Microsoft",
+   "region_code": "Finland Central",
+   "year": 2024,
+   "source": "Microsoft, 'Finland (Finland Central)' datacenter sustainability fact sheet (Aug 2024 upload): 'Forecasted WUE 0.01 L/kWh - Not yet in operation'",
+   "url": "https://datacenters.microsoft.com/wp-content/uploads/2024/08/Finland%20(Finland%20Central).pdf",
+   "confidence": "disclosed",
+   "scope": "design",
+   "others": [
+    {
+     "operator": "Microsoft Finland* (Li et al., projected)",
+     "value": 0.01,
+     "year": 2023,
+     "url": "https://arxiv.org/abs/2304.03271"
+    }
+   ],
+   "note": "Forecast/design value; outside-air cooling with zero cooling water. Google Hamina (seawater cooling) publishes no WUE."
+  },
+  "Denmark": {
+   "value": 0.51,
+   "operator": "Meta",
+   "region_code": "Odense",
+   "year": 2024,
+   "source": "Meta 2025 Environmental Data Index: Odense water withdrawal 292 ML (2024), electricity 569,374 MWh (2024)",
+   "url": "https://sustainability.atmeta.com/wp-content/uploads/2025/10/Meta_2025-Environmental-Data-Index.pdf",
+   "confidence": "estimated",
+   "scope": "site (Meta Odense), derived",
+   "others": [
+    {
+     "operator": "Microsoft Denmark East (design)",
+     "value": 0.01,
+     "year": 2024,
+     "url": "https://datacenters.microsoft.com/wp-content/uploads/2024/08/Denmark%20%28Denmark%20East%29.pdf",
+     "note": "design value, not yet in operation"
+    },
+    {
+     "operator": "Microsoft Denmark* (Li et al., projected)",
+     "value": 0.01,
+     "year": 2023,
+     "url": "https://arxiv.org/abs/2304.03271"
+    }
+   ],
+   "note": "Primary is the Meta-derived operational ratio (the only measured Danish value) rather than Microsoft's design 0.01. Meta per-site ratio = water WITHDRAWAL (ML, Data Index p.9) / total facility electricity (MWh, p.6), 2024; derived by us, facility-energy basis (not IT) and includes domestic water, so confidence=estimated. Odense also exports waste heat to district heating."
+  },
+  "Iceland": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed L/kWh WUE found (Verne Global/atNorth: qualitative 'negligible' water only)."
+  },
+  "Greece": {
+   "value": 0.102,
+   "operator": "Microsoft",
+   "region_code": "Greece Central",
+   "year": 2024,
+   "source": "Microsoft, 'Greece (Greece Central)' datacenter sustainability fact sheet (Aug 2024 upload): 'Design WUE 0.102 L/kWh - Not yet in operation'",
+   "url": "https://datacenters.microsoft.com/wp-content/uploads/2024/08/Greece%20(Greece%20Central).pdf",
+   "confidence": "disclosed",
+   "scope": "design",
+   "others": [],
+   "note": "Design value; evaporative cooling with outdoor air (<15% of year)."
+  },
+  "Romania": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Ukraine": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Russia": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found. Yandex sustainability reports publish PUE; no WUE found."
+  },
+  "Turkey": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Kazakhstan": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "China": {
+   "value": 1.66,
+   "operator": "GDS Holdings",
+   "region_code": "China fleet",
+   "year": 2024,
+   "source": "GDS Holdings, 2024 ESG Report, KPI appendix: WUE 1.66 (2024), 1.72 (2023), 1.74 (2022)",
+   "url": "https://investors.gds-services.com/",
+   "confidence": "disclosed",
+   "scope": "operator fleet (China)",
+   "others": [],
+   "note": "Fleet average of a major Chinese colocation operator (Shanghai, Beijing/Hebei, Shenzhen, inland). Chindata markets waterless cooling with WUE ~0 at some northern campuses (2022 ESG report) but gives no fleet number. GDS does not state whether WUE uses IT or facility energy. Value carried over from earlier research (build_water.py); URL is the GDS IR landing page, not a direct PDF."
+  },
+  "India": {
+   "value": 0.0,
+   "operator": "AWS",
+   "region_code": "ap-south-1 / ap-south-2",
+   "year": 2025,
+   "source": "Amazon Web Services, India Sustainability Fact Sheet (2026 ed.): 'In 2025, AWS withdrew 383,567,863 litres of water in Mumbai and 56,061,382 litres of water in Hyderabad for domestic use only. AWS did not use any water to cool data centers we operate.'",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-india.pdf",
+   "confidence": "disclosed",
+   "scope": "region (AWS Mumbai + Hyderabad)",
+   "others": [
+    {
+     "operator": "Microsoft India* (Li et al., projected)",
+     "value": 0.0,
+     "year": 2023,
+     "url": "https://arxiv.org/abs/2304.03271"
+    }
+   ],
+   "note": "0.0 = cooling-water WUE implied by AWS's explicit statement (the sheet prints PUE only, no numeric WUE; domestic water excluded). India's colocation market (evaporative/chiller plants) is likely much higher; treat as an air-cooled hyperscaler lower bound."
+  },
+  "Japan": {
+   "value": 1.22,
+   "operator": "AWS",
+   "region_code": "ap-northeast-1",
+   "year": 2025,
+   "source": "Amazon Web Services, Japan Sustainability Fact Sheet (2026 edition, 2025 data): Average WUE (L/kWh) for data centers operated by AWS, Jan 1-Dec 31",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-japan.pdf",
+   "confidence": "disclosed",
+   "scope": "region (AWS Tokyo)",
+   "others": [
+    {
+     "operator": "AWS ap-northeast-3 Osaka",
+     "value": 0.0,
+     "year": 2025,
+     "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-japan.pdf",
+     "note": "'In 2025 we did not use any water to cool data centers we operate in Osaka' (WUE printed as --)"
+    }
+   ],
+   "note": "AWS Asia Pacific (Tokyo) 0.91 (2024), 1.22 (2025); AWS withdrew 736M L in Tokyo in 2025."
+  },
+  "South Korea": {
+   "value": 1.1,
+   "operator": "AWS",
+   "region_code": "ap-northeast-2 (APAC average shown)",
+   "year": 2025,
+   "source": "Amazon Web Services, South Korea Sustainability Fact Sheet (2026 ed.): 'AWS Asia Pacific (Average)' WUE 0.98 (2024), 1.10 (2025)",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-south-korea.pdf",
+   "confidence": "disclosed",
+   "scope": "regional fleet (AWS Asia Pacific)",
+   "others": [],
+   "note": "AWS does not publish a Seoul-only WUE; this is the APAC fleet average printed on the Korea sheet. No Korean operator (Naver, KT, Samsung SDS) L/kWh WUE found."
+  },
+  "Taiwan": {
+   "value": 1.0,
+   "operator": "Microsoft",
+   "region_code": "Taiwan North",
+   "year": 2025,
+   "source": "Microsoft, 'Taiwan (Taiwan North)' datacenter sustainability fact sheet (archived 2025-01-17): 'Design WUE 1.00 L/kWh - Not yet in operation'",
+   "url": "https://web.archive.org/web/20250117223934id_/https://datacenters.microsoft.com/globe/pdfs/sustainability/factsheets/Taiwan%20(Taiwan%20North).pdf",
+   "confidence": "disclosed",
+   "scope": "design (Microsoft Taiwan North)",
+   "others": [],
+   "note": "Design value; outdoor air with indirect mechanical cooling (<30% of year using water). No AWS Taiwan fact sheet published (404). Google Changhua publishes water consumption but not electricity."
+  },
+  "Mongolia": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Vietnam": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Thailand": {
+   "value": 0.0,
+   "operator": "AWS",
+   "region_code": "ap-southeast-7",
+   "year": 2025,
+   "source": "Amazon Web Services, Thailand Sustainability Fact Sheet (2026 ed.): 'AWS withdrew 7,574,300 litres of water in Thailand for domestic use only ... did not use any water to cool our data centres.'",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-thailand.pdf",
+   "confidence": "disclosed",
+   "scope": "region (AWS Bangkok)",
+   "others": [],
+   "note": "0.0 = cooling-water WUE implied by the AWS statement (new region launched 2025; PUE 1.38; no numeric WUE printed)."
+  },
+  "Malaysia": {
+   "value": 1.1,
+   "operator": "AWS",
+   "region_code": "ap-southeast-5 (APAC average shown)",
+   "year": 2025,
+   "source": "Amazon Web Services, Malaysia Sustainability Fact Sheet (2026 ed.): 'AWS Asia Pacific (Average)' WUE 0.98 (2024), 1.10 (2025)",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-malaysia.pdf",
+   "confidence": "disclosed",
+   "scope": "regional fleet (AWS Asia Pacific)",
+   "others": [],
+   "note": "APAC fleet average printed on the Malaysia sheet (no Malaysia-only WUE). AWS withdrew 47,989,045 L in Malaysia in 2025 (no energy figure given)."
+  },
+  "Indonesia": {
+   "value": 2.85,
+   "operator": "AWS",
+   "region_code": "ap-southeast-3",
+   "year": 2025,
+   "source": "Amazon Web Services, Indonesia Sustainability Fact Sheet (2026 edition, 2025 data): Average WUE (L/kWh) for data centers operated by AWS, Jan 1-Dec 31",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-indonesia.pdf",
+   "confidence": "disclosed",
+   "scope": "region (AWS Jakarta)",
+   "others": [
+    {
+     "operator": "Microsoft Indonesia Central (design)",
+     "value": 1.9,
+     "year": 2024,
+     "url": "https://datacenters.microsoft.com/wp-content/uploads/2024/08/Indonesia%20(Indonesia%20Central).pdf",
+     "note": "design value, water-cooled chillers"
+    }
+   ],
+   "note": "AWS Asia Pacific (Jakarta) 2.75 (2024), 2.85 (2025) - highest disclosed regional WUE found."
+  },
+  "Philippines": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Singapore": {
+   "value": 1.57,
+   "operator": "AWS",
+   "region_code": "ap-southeast-1",
+   "year": 2025,
+   "source": "Amazon Web Services, Singapore Sustainability Fact Sheet (2026 edition, 2025 data): Average WUE (L/kWh) for data centers operated by AWS, Jan 1-Dec 31",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-singapore.pdf",
+   "confidence": "disclosed",
+   "scope": "region (AWS Singapore)",
+   "others": [
+    {
+     "operator": "Microsoft Southeast Asia",
+     "value": 2.06,
+     "year": 2022,
+     "url": "https://datacenters.microsoft.com/wp-content/uploads/2024/08/Singapore%20(Southeast%20Asia).pdf",
+     "note": "Jan-Dec 2022; NEWater + mechanical cooling"
+    },
+    {
+     "operator": "IMDA national median (large DCs)",
+     "value": 2.2,
+     "year": 2021,
+     "url": "https://www.imda.gov.sg/",
+     "note": "Green Data Centre Roadmap, May 2024: median WUE 2.2 m3/MWh (2021)"
+    }
+   ],
+   "note": "AWS Asia Pacific (Singapore) 1.68 (2024), 1.57 (2025); cooling uses NEWater (reclaimed)."
+  },
+  "Bangladesh": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Pakistan": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Saudi Arabia": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "United Arab Emirates": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "AWS me-central-1 (UAE) fact sheet (2026 ed.) publishes PUE only (1.36/1.27/1.25 for 2023-25), no WUE. No Khazna/Moro Hub/Microsoft UAE WUE found."
+  },
+  "Iran": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Iraq": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Israel": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "AWS il-central-1 (Tel Aviv) fact sheet shows 'Average WUE --' for 2025 (PUE 1.27); AWS withdrew 10,571,203 L there in 2025 but gives no energy figure, so WUE is not derivable."
+  },
+  "Egypt": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Morocco": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Algeria": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Nigeria": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "South Africa": {
+   "value": 0.05,
+   "operator": "Teraco",
+   "region_code": "JB/CT/DB campuses (fleet)",
+   "year": 2024,
+   "source": "Teraco fourth annual Sustainability Report (Sep 2025), via ITWeb: 'Teraco's data centres used just 0.05 litres per kWh in 2024 - less than a quarter cup of water per IT kWh.'",
+   "url": "https://www.itweb.co.za/article/teraco-releases-fourth-annual-sustainability-report/PmxVE7KEoWdqQY85",
+   "confidence": "disclosed",
+   "scope": "operator fleet (Teraco, South Africa)",
+   "others": [
+    {
+     "operator": "Teraco (earlier)",
+     "value": 0.1,
+     "year": 2023,
+     "url": "https://www.teraco.co.za/blog/powering-progress-teraco-leads-the-way-in-sustainability-and-innovation/"
+    },
+    {
+     "operator": "AWS af-south-1 Cape Town",
+     "value": null,
+     "year": 2025,
+     "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-south-africa.pdf",
+     "note": "WUE printed as '--' for 2023-2025; AWS withdrew 9,506,756 L in Cape Town in 2025"
+    }
+   ],
+   "note": "Primary is Teraco (largest South African colocation operator, closed-loop air-cooled chillers) because AWS publishes no Cape Town WUE. A search snippet claimed 0.03 for 2025 but could not be verified, so it is not used."
+  },
+  "Kenya": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Ethiopia": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Ghana": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Tanzania": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Angola": {
+   "value": null,
+   "operator": null,
+   "region_code": "",
+   "year": null,
+   "source": null,
+   "url": null,
+   "confidence": null,
+   "scope": "",
+   "others": [],
+   "note": "No disclosed data-center WUE found."
+  },
+  "Australia": {
+   "value": 0.1,
+   "operator": "AWS",
+   "region_code": "ap-southeast-2",
+   "year": 2025,
+   "source": "Amazon Web Services, Australia Sustainability Fact Sheet (2026 edition, 2025 data): Average WUE (L/kWh) for data centers operated by AWS, Jan 1-Dec 31",
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-australia.pdf",
+   "confidence": "disclosed",
+   "scope": "region (AWS Sydney)",
+   "others": [
+    {
+     "operator": "AWS ap-southeast-4 Melbourne",
+     "value": 0.06,
+     "year": 2025,
+     "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-australia.pdf",
+     "note": "0.02 in 2024"
+    },
+    {
+     "operator": "Microsoft Australia East/Southeast (design, Melbourne)",
+     "value": 0.012,
+     "year": 2025,
+     "url": "https://web.archive.org/web/20251013203854id_/https://datacenters.microsoft.com/globe/pdfs/sustainability/factsheets/Australia%20(Australia%20East%20&%20Southeast).pdf",
+     "note": "design"
+    }
+   ],
+   "note": "AWS Australia (Sydney) 0.12 (2024), 0.10 (2025)."
+  },
+  "New Zealand": {
+   "value": 0.0,
+   "operator": "Microsoft",
+   "region_code": "New Zealand North",
+   "year": 2024,
+   "source": "Microsoft, 'New Zealand (New Zealand North)' datacenter sustainability fact sheet (Aug 2024 upload): 'Design WUE 0.0 L/kWh - Not yet in operation'",
+   "url": "https://datacenters.microsoft.com/wp-content/uploads/2024/08/New%20Zealand%20(New%20Zealand%20North).pdf",
+   "confidence": "disclosed",
+   "scope": "design (Microsoft Auckland)",
+   "others": [
+    {
+     "operator": "AWS Asia Pacific (excl. China) average (shown on NZ sheet)",
+     "value": 1.1,
+     "year": 2025,
+     "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-new-zealand.pdf",
+     "note": "AWS withdrew only 36,902 L in New Zealand in 2025 -> negligible cooling water"
+    }
+   ],
+   "note": "Primary is Microsoft's country-specific design value instead of AWS, because the AWS NZ sheet (ap-southeast-6) only prints the APAC fleet average (1.10), which AWS's own tiny NZ withdrawal (36,902 L) shows is unrepresentative."
+  }
+ },
+ "water_stress": {
+  "Taiwan": {
+   "value": 0.474,
+   "method": "National ratio of withdrawals to renewable supply from Taiwan's Water Resources Agency (WRA), converted with Aqueduct's own scoring curve: raw = 16.37 / 63.37 = 0.258 (total water use / available runoff, 2013-2022 average); Aqueduct score = log2(raw/0.1)+1 = 2.37 (clamped 0-5; formula checked against Aqueduct 4.0 rows, e.g. raw 0.4268 -> 3.093); value = 2.37/5 = 0.474 (Aqueduct category 'Medium-high, 20-40%').",
+   "source": "Water Resources Agency, MOEA (Taiwan), 'Water Resources Utilization': 10-yr avg rainfall 88.50 billion t; available runoff after evaporation and infiltration 63.37 billion t; average total water consumption 16.37 billion t (domestic 3.18, industrial 1.634, agricultural 11.55); groundwater pumping exceeds natural recharge. Average 2013-2022.",
+   "url": "https://www.wra.gov.tw/en/cp.aspx?n=5154&dn=5155",
+   "year": 2022,
+   "confidence": "estimated",
+   "alternatives": [
+    {
+     "value": 0.276,
+     "method": "Area-weighted Aqueduct 4.0 bws_score over all Taiwan admin-basin polygons (36,548 km2): 1.379/5. The main island is essentially one sub-basin (pfaf 437001, bws_raw 0.129, score 1.363 'Low-medium'); one small basin (437002, 154 km2) is 'Extremely high'.",
+     "source": "WRI Aqueduct 4.0 baseline annual (Aqueduct40_baseline_annual_y2023m07d05.csv)",
+     "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+     "year": 2023,
+     "confidence": "estimated"
+    },
+    {
+     "value": null,
+     "method": "Aqueduct 3.0 (2019) country rankings / 2015 projected rankings",
+     "note": "Taiwan is not named in WRI's 2015 2040-rankings article; the Aqueduct 3.0 ranking file sits behind a download form and could not be checked (Wayback was offline). Not used."
+    }
+   ],
+   "note": "Aqueduct 4.0 has no Taiwan country score. The WRA-derived ratio is higher than the Aqueduct basin value because Aqueduct treats the whole island as one large basin. WRA 'available runoff' excludes infiltration while consumption includes groundwater, so the ratio may be slightly overstated. Neither measure captures Taiwan's strong wet/dry-season imbalance (the 2021 and 2023 droughts forced agricultural cuts); Aqueduct seasonal variability for basin 437001 is only 'Low-medium' (sev_score 1.49). Range 0.28-0.47; 0.474 recommended."
+  },
+  "Singapore": {
+   "value": 1.0,
+   "method": "WRI Aqueduct 2.1 country score of 5.00 (the maximum, 'extremely high') for Singapore -> 5/5 = 1.0. Supported by national data: demand ~440 mgd vs an import entitlement of up to 250 mgd from the Johor River (~57% of demand), i.e. withdrawals far exceed internal natural supply, which corresponds to Aqueduct raw >0.8 -> score 5.",
+   "source": "WRI (Maddocks, Young & Reig), 'Ranking the World's Most Water-Stressed Countries in 2040', 26 Aug 2015 - Singapore listed among 11 countries scoring 5.00/5 (business-as-usual 2040). Supporting: Singapore Ministry of Sustainability and the Environment water policy page (about 440 mgd demand; up to 250 mgd of raw water from the Johor River under the 1962 Water Agreement; demand to almost double by 2065).",
+   "url": "https://www.wri.org/insights/ranking-worlds-most-water-stressed-countries-2040",
+   "year": 2015,
+   "confidence": "estimated",
+   "supporting_urls": [
+    "https://www.mse.gov.sg/policies/water/"
+   ],
+   "alternatives": [
+    {
+     "value": 0.0,
+     "method": "Aqueduct 4.0 basin value (pfaf 444055, shared with Johor, Malaysia): bws_raw 0.043 -> score 0",
+     "source": "WRI Aqueduct 4.0 baseline annual (Aqueduct40_baseline_annual_y2023m07d05.csv)",
+     "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+     "year": 2023,
+     "note": "Misleading: the basin includes Johor's supply and ignores Singapore's import dependence; WRI shows Singapore as 'NoData' at country level."
+    },
+    {
+     "value": null,
+     "method": "UN SDG 6.4.2 (FAO) level of water stress",
+     "source": "UN SDG API series ER_H2O_STRESS, area 702",
+     "url": "https://unstats.un.org/sdgapi/v1/sdg/Series/Data?seriesCode=ER_H2O_STRESS&areaCode=702",
+     "year": 2023,
+     "note": "FAO-estimated values swing from 309% (2000) to 58% (2019) to 7.04% (2022-23). They are unstable and exclude imports, NEWater and desalination, so they are not used."
+    }
+   ],
+   "note": "The 2015 score is for the 2040 business-as-usual projection (the article gives no separate current score). NEWater (reclaimed) and desalination reduce Singapore's physical supply risk, and AWS and Microsoft cool with NEWater, so 1.0 describes the scarcity of natural freshwater, not the risk of supply interruption."
+  }
+ },
+ "regional_fallbacks": {
+  "AWS North America": {
+   "value": 0.08,
+   "year": 2025,
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-georgia.pdf"
+  },
+  "AWS Europe": {
+   "value": 0.05,
+   "year": 2025,
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-italy.pdf"
+  },
+  "AWS Asia Pacific": {
+   "value": 1.1,
+   "year": 2025,
+   "url": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-south-korea.pdf"
+  },
+  "Microsoft Global": {
+   "value": 0.27,
+   "year": 2025,
+   "url": "https://datacenters.microsoft.com/sustainability/efficiency/"
+  },
+  "Microsoft Americas": {
+   "value": 0.34,
+   "year": 2025,
+   "url": "https://datacenters.microsoft.com/sustainability/efficiency/"
+  },
+  "Microsoft Asia Pacific": {
+   "value": 0.25,
+   "year": 2025,
+   "url": "https://datacenters.microsoft.com/sustainability/efficiency/"
+  },
+  "Microsoft EMEA": {
+   "value": 0.03,
+   "year": 2025,
+   "url": "https://datacenters.microsoft.com/sustainability/efficiency/"
+  },
+  "Meta fleet": {
+   "value": 0.19,
+   "year": 2024,
+   "url": "https://sustainability.atmeta.com/wp-content/uploads/2025/10/Meta_2025-Environmental-Data-Index.pdf"
+  },
+  "Equinix all DCs": {
+   "value": 0.95,
+   "year": 2024,
+   "url": "https://www.equinix.com/content/dam/eqxcorp/en_us/documents/resources/data-sheets/ds_sustainability_data_en.pdf"
+  }
+ },
+ "caveats": [
+  "WUE definitions differ: AWS reports on-site WUE per kWh of IT load for AWS-operated DCs (calendar year); Microsoft reports cooling+humidification water / IT kWh (fiscal year for fleet values; fact sheets give calendar 2021/2022 values or DESIGN values for sites 'not yet in operation'); Meta and derived ratios use total facility electricity.",
+  "Design/forecast values (Microsoft Mexico, Italy, Austria, Poland, Finland, Greece, Taiwan, New Zealand; also alternates for Brazil and Australia) are marked in 'scope'; operational WUE is often higher than design.",
+  "Several AWS country sheets print a regional fleet average instead of a country value (South Korea, Malaysia: AWS Asia Pacific 1.10; Switzerland, Italy: AWS Europe 0.05; USA primary: AWS North America 0.08). These are country-level proxies, not in-country measurements.",
+  "India/Thailand 0.0 come from AWS statements that no cooling water was used in 2025 (domestic water only); they reflect air-cooled hyperscale builds, not the local colocation market.",
+  "AWS WUE can swing sharply from year to year (Frankfurt 0.01 -> 0.17, Sao Paulo 0.23 -> 0.09); single-year values are noisy.",
+  "Google publishes per-site water consumption but not per-site electricity, so no Google site WUE could be derived. Equinix (0.95 all DCs, 1.55 evaporative-cooled DCs, 2024) and Meta (0.19, 2024) publish global fleet WUE only.",
+  "Regional fleet fallbacks for countries with null: AWS North America 0.08, AWS Europe 0.05, AWS Asia Pacific 1.10 (2025); Microsoft Global 0.27, Americas 0.34, APAC 0.25, EMEA 0.03 (FY25); Meta 0.19 (2024); Equinix 0.95 (2024).",
+  "The China value is a single operator's fleet average (GDS); the URL is the investor-relations landing page from earlier research, not a direct PDF link.",
+  "Water stress for Taiwan and Singapore is estimated (not an official Aqueduct country score); see the method fields."
+ ]
+}

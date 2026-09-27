@@ -1,0 +1,861 @@
+{
+  "sites": {
+    "zheng": {
+      "p": {
+        "value": null,
+        "unit": "MW",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Foxconn Zhengzhou (Airport Economy Zone) is primarily an iPhone assembly campus, not mainly server assembly and not a data center. No plant electricity consumption disclosed; Hon Hai sustainability reports give group-level energy only. Hon Hai (Sep 2026) cites ~125.68 MW installed+planned solar across major sites incl. Zhengzhou, generating ~117 GWh/yr - on-site generation, not load (https://focustaiwan.tw/business/202609070018)."
+      },
+      "u": {
+        "value": null,
+        "unit": "fraction",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not applicable / not disclosed for a manufacturing plant."
+      },
+      "pue": {
+        "value": null,
+        "unit": "ratio",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "PUE does not apply to a factory. If modelling, set PUE=1 and treat p as average plant electrical load."
+      },
+      "g": {
+        "value": null,
+        "unit": "fraction/yr",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "No sourced plant-load growth figure."
+      },
+      "pop": {
+        "value": 12.6,
+        "unit": "million",
+        "year": 2020,
+        "source": "National Bureau of Statistics of China, 7th census (Zhengzhou prefecture 12,600,574, via citypopulation.de)",
+        "url": "https://www.citypopulation.de/en/china/henan/admin/",
+        "confidence": "measured",
+        "note": "Prefecture-level city total. A 100 km radius also takes in parts of Kaifeng, Xinxiang, Xuchang etc., so this is a lower bound."
+      }
+    },
+    "taoy": {
+      "p": {
+        "value": null,
+        "unit": "MW",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Quanta/Wistron/Foxconn Taoyuan rack-integration plants: no site-level electricity disclosures found; company sustainability reports give company-wide totals only."
+      },
+      "u": {
+        "value": null,
+        "unit": "fraction",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not applicable to manufacturing."
+      },
+      "pue": {
+        "value": null,
+        "unit": "ratio",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not applicable to a factory (use 1 if modelling plant load directly)."
+      },
+      "g": {
+        "value": null,
+        "unit": "fraction/yr",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "No sourced figure."
+      },
+      "pop": {
+        "value": 9.34,
+        "unit": "million",
+        "year": 2023,
+        "source": "Taiwan official statistics via Wikipedia: 'Taoyuan, Taiwan' (2,293,509, Mar 2023) and 'Taipei-Keelung metropolitan area' (7,048,243)",
+        "url": "https://en.wikipedia.org/wiki/Taipei%E2%80%93Keelung_metropolitan_area",
+        "confidence": "estimated",
+        "note": "Derived: Taoyuan City 2.29 M + Taipei-Keelung metro 7.05 M = 9.34 M; Taipei is ~40 km away so both fall inside 100 km. Hsinchu (~1 M, ~60 km) not added."
+      }
+    },
+    "ashb": {
+      "p": {
+        "value": 4182.0,
+        "unit": "MW",
+        "year": 2026,
+        "source": "CBRE Research, Global Data Center Trends 2026 (Q1 2026 data)",
+        "url": "https://www.cbre.com/insights/reports/global-data-center-trends-2026",
+        "confidence": "estimated",
+        "note": "Northern Virginia wholesale/colocation inventory, Q1 2026 (+1,135.9 MW YoY). End-2025: 4,039.6 MW (CBRE North America Data Center Trends H2 2025). CBRE tracks third-party inventory; owner-operated hyperscale self-builds are NOT fully included. Cross-check: Dominion Energy reports a 2025 data-center coincident peak of ~4 GW (facility power, all its Virginia DC customers) - Dominion letter to PJM on the 2026 large-load adjustment, 6 Jan 2026 (https://www.pjm.com/-/media/DotCom/planning/res-adeq/load-forecast/dominion-documentation.pdf). Pipeline: 47 GW of contracts (9.8 ESA + 7.1 CLOA + 30.1 ELOA) as of Jul 2025 - planned, not operational; Dominion forecasts 16.6 GW of DC demand by 2046."
+      },
+      "u": {
+        "value": 0.997,
+        "unit": "fraction",
+        "year": 2026,
+        "source": "CBRE Research, Global Data Center Trends 2026 (Q1 2026 data)",
+        "url": "https://www.cbre.com/insights/reports/global-data-center-trends-2026",
+        "confidence": "estimated",
+        "note": "1 - vacancy (0.3%, Q1 2026). This is LEASED share, not power drawn. Dominion's ~4 GW facility coincident peak vs ~4.0 GW IT inventory implies u*PUE <= ~1 even at peak (and Dominion's figure also covers self-built hyperscale), so true average draw utilisation is well below 0.997 - see caveats (Ireland metered calibration)."
+      },
+      "pue": {
+        "value": 1.56,
+        "unit": "ratio",
+        "year": 2024,
+        "source": "Uptime Institute, Global Data Center Survey 2024 (industry average annual PUE, largest facility per respondent)",
+        "url": "https://datacenter.uptimeinstitute.com/rs/711-RIA-145/images/2024.GlobalDataCenterSurvey.Report.pdf",
+        "confidence": "estimated",
+        "note": "No market-specific average PUE found; Uptime 2024 global industry average (1.56; the 2025 survey reports it essentially unchanged, ~1.54) used as a colo-heavy market default. Hyperscale halls run far lower (Google campuses 1.04-1.17 TTM), so this likely overstates the market blend. Google's two Loudoun County campuses report 1.08 TTM (Q2 2026)."
+      },
+      "g": {
+        "value": 0.373,
+        "unit": "fraction/yr",
+        "year": 2026,
+        "source": "CBRE Research, Global Data Center Trends 2026 (Q1 2026 data)",
+        "url": "https://www.cbre.com/insights/reports/global-data-center-trends-2026",
+        "confidence": "estimated",
+        "note": "Inventory growth Q1 2025 -> Q1 2026: 1,135.9 / (4,182.0 - 1,135.9 = 3,046.1) = 37.3%. Capacity growth, not metered load growth."
+      },
+      "pop": {
+        "value": 6.39,
+        "unit": "million",
+        "year": 2020,
+        "source": "U.S. Census Bureau, 2020 Census (Washington-Arlington-Alexandria MSA, 6,385,162)",
+        "url": "https://www.census.gov/library/visualizations/interactive/2020-population-and-housing-state-data.html",
+        "confidence": "measured",
+        "note": "MSA used as proxy for 100 km radius around Ashburn. Radius also clips western Baltimore suburbs; CSA incl. Baltimore ~9.5 M (2016 est.)."
+      }
+    },
+    "dalles": {
+      "p": {
+        "value": null,
+        "unit": "MW",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Google does not publish per-campus IT/electrical capacity or electricity use (2025 Environmental Report gives per-site PUE and water only). Third-party trackers (e.g. Compute Atlas) list ~300 MW, and 2009 press cited ~330 GWh/yr, but neither is a primary disclosure. Proxy: Google reports The Dalles water withdrawal 461.1 M gal / consumption 361.4 M gal in 2024 (Google 2025 Environmental Report, https://www.gstatic.com/gumdrop/sustainability/google-2025-environmental-report.pdf)."
+      },
+      "u": {
+        "value": null,
+        "unit": "fraction",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not disclosed."
+      },
+      "pue": {
+        "value": 1.08,
+        "unit": "ratio",
+        "year": 2026,
+        "source": "Google Data Centers, 'Power usage effectiveness' (per-campus quarterly and trailing-twelve-month PUE, Q2 2026)",
+        "url": "https://datacenters.google/efficiency/",
+        "confidence": "disclosed",
+        "note": "Unweighted mean of Google's three The Dalles facilities, TTM Q2 2026: 1.10, 1.06, 1.08. (2024 values in Google 2025 Environmental Report: 1.10 and 1.06-1.07 for the two then-reported facilities.)"
+      },
+      "g": {
+        "value": null,
+        "unit": "fraction/yr",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not disclosed."
+      },
+      "pop": {
+        "value": 0.026,
+        "unit": "million",
+        "year": 2020,
+        "source": "U.S. Census Bureau 2020 (The Dalles micropolitan area, 26,403) via Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/The_Dalles,_Oregon",
+        "confidence": "measured",
+        "note": "Micropolitan area only. A full 100 km radius adds Hood River, Klickitat and Sherman counties (tens of thousands); Portland metro is ~130 km away and excluded."
+      }
+    },
+    "cbluff": {
+      "p": {
+        "value": null,
+        "unit": "MW",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not disclosed by Google. The often-cited 407 MW is the MidAmerican wind PPA (energy procurement), not site load. Proxy: Google reports Council Bluffs water withdrawal 1,410.3 M gal / consumption 1,010.2 M gal in 2024 (Google 2025 Environmental Report)."
+      },
+      "u": {
+        "value": null,
+        "unit": "fraction",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not disclosed."
+      },
+      "pue": {
+        "value": 1.1,
+        "unit": "ratio",
+        "year": 2026,
+        "source": "Google Data Centers, 'Power usage effectiveness' (per-campus quarterly and trailing-twelve-month PUE, Q2 2026)",
+        "url": "https://datacenters.google/efficiency/",
+        "confidence": "disclosed",
+        "note": "Unweighted mean of Google's two Council Bluffs facilities, TTM Q2 2026: 1.11 and 1.08 -> 1.095."
+      },
+      "g": {
+        "value": null,
+        "unit": "fraction/yr",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not disclosed."
+      },
+      "pop": {
+        "value": 1.0,
+        "unit": "million",
+        "year": 2024,
+        "source": "U.S. Census Bureau Vintage 2024 estimate, Omaha-Council Bluffs MSA (1,001,010), as reported by Grow Omaha",
+        "url": "https://growomaha.com/an-analysis-of-omahas-million-plus-metro-population/",
+        "confidence": "measured",
+        "note": "MSA used as proxy for 100 km radius; Lincoln NE (~0.3 M, ~85 km) not included."
+      }
+    },
+    "abil": {
+      "p": {
+        "value": 200,
+        "unit": "MW",
+        "year": 2026,
+        "source": "Epoch AI, 'OpenAI Stargate: where the US sites stand' (20 Apr 2026, corrected 23 Apr citing an Oracle post of 22 Apr 2026)",
+        "url": "https://epochai.substack.com/p/openai-stargate-where-the-us-sites",
+        "confidence": "estimated",
+        "note": "~200 MW IT (~0.3 GW facility) operational as of Apr 2026; four of eight buildings reported live. PLANNED: 1.2 GW (8 buildings) by end-2026 (Crusoe). A separate 900 MW Crusoe campus for Microsoft is also planned in Abilene (projected). The Sep 2026 figure is likely higher than 200 MW."
+      },
+      "u": {
+        "value": null,
+        "unit": "fraction",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "No disclosure. Frontier training clusters typically run near full power when training, but no sourced figure."
+      },
+      "pue": {
+        "value": 1.3,
+        "unit": "ratio",
+        "year": 2025,
+        "source": "Crusoe, 'Crusoe 2025 impact report: sustainable intelligence'",
+        "url": "https://www.crusoe.ai/resources/blog/crusoes-2025-impact-report",
+        "confidence": "disclosed",
+        "note": "Crusoe states phase 1 was built to an annualized DESIGN PUE of 1.2-1.4 (closed-loop, air-cooled chillers, non-evaporative); 1.3 = midpoint. Design value, not measured."
+      },
+      "g": {
+        "value": null,
+        "unit": "fraction/yr",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Build-out is step-wise: ~200 MW (Apr 2026) -> 1.2 GW planned by end-2026 (projected ~6x). No meaningful steady annual rate; model as a projected step."
+      },
+      "pop": {
+        "value": 0.177,
+        "unit": "million",
+        "year": 2020,
+        "source": "U.S. Census Bureau 2020, Abilene TX MSA (176,579) via Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Abilene_metropolitan_area",
+        "confidence": "measured",
+        "note": "MSA; a 100 km radius adds only sparsely populated counties."
+      }
+    },
+    "dubl": {
+      "p": {
+        "value": 1528,
+        "unit": "MW",
+        "year": 2025,
+        "source": "KPMG for Dept. of Enterprise, Tourism and Employment (Ireland), 'The value of data centres to Ireland' (March 2026)",
+        "url": "https://enterprise.gov.ie/en/publications/publication-files/the-value-of-data-centres-to-ireland.pdf",
+        "confidence": "estimated",
+        "note": "KPMG: 1,543 MW installed data-centre IT capacity in Ireland as of 2025 (72 operational buildings, 36 sites, 25 operators; ~88% hyperscale), 99% in the Greater Dublin Area -> 1,543 x 0.99 = 1,528 MW. KPMG projects only +300 MW to 1,843 MW by 2030 (grid-constrained). Other market reports differ widely (e.g. Mordor 'Dublin 550 MW'); KPMG is the government-commissioned figure."
+      },
+      "u": {
+        "value": 0.363,
+        "unit": "fraction",
+        "year": 2025,
+        "source": "Derived from CSO metered consumption (7,663 GWh, 2025) and KPMG installed capacity (1,543 MW)",
+        "url": "https://www.cso.ie/en/releasesandpublications/ep/p-dcmec/datacentresmeteredelectricityconsumption2025/keyfindings/",
+        "confidence": "estimated",
+        "note": "METERED calibration: 7,663,000 MWh / (1,543 MW x 8,760 h) = 0.567 = u*PUE. With PUE 1.56 -> u = 0.567 / 1.56 = 0.363. With hyperscale PUE ~1.08 (Google Dublin), u = 0.525. KPMG itself assumes 75% 'utilisation', but that is inconsistent with metered energy (it would imply PUE < 1)."
+      },
+      "pue": {
+        "value": 1.56,
+        "unit": "ratio",
+        "year": 2024,
+        "source": "Uptime Institute, Global Data Center Survey 2024 (industry average annual PUE, largest facility per respondent)",
+        "url": "https://datacenter.uptimeinstitute.com/rs/711-RIA-145/images/2024.GlobalDataCenterSurvey.Report.pdf",
+        "confidence": "estimated",
+        "note": "No market-specific average PUE found; Uptime 2024 global industry average (1.56; the 2025 survey reports it essentially unchanged, ~1.54) used as a colo-heavy market default. Hyperscale halls run far lower (Google campuses 1.04-1.17 TTM), so this likely overstates the market blend. Google Dublin reports 1.08 TTM (Q2 2026). Whatever PUE is chosen, keep u*PUE = 0.567 so E matches CSO's metered 7,663 GWh."
+      },
+      "g": {
+        "value": 0.1,
+        "unit": "fraction/yr",
+        "year": 2025,
+        "source": "Central Statistics Office (Ireland), Data Centres Metered Electricity Consumption 2025 - Key Findings",
+        "url": "https://www.cso.ie/en/releasesandpublications/ep/p-dcmec/datacentresmeteredelectricityconsumption2025/keyfindings/",
+        "confidence": "measured",
+        "note": "Metered DC electricity +10% (6,973 GWh 2024 -> 7,663 GWh 2025; 22% -> 23% of national metered electricity; national figure, ~99% of capacity is in the GDA). Forward capacity growth is much lower: KPMG +300 MW over 2025-2030 ~ 3.6%/yr. EirGrid forecasts DC demand of 14.6 TWh by 2034 (projected)."
+      },
+      "pop": {
+        "value": 2.16,
+        "unit": "million",
+        "year": 2024,
+        "source": "Greater Dublin Area 2024 estimate (2,159,000), via Wikipedia (CSO-based)",
+        "url": "https://en.wikipedia.org/wiki/Greater_Dublin_Area",
+        "confidence": "estimated",
+        "note": "GDA = Dublin, Kildare, Meath, Wicklow; a ~100 km radius also reaches Louth and Carlow (~+0.3 M, not added)."
+      }
+    },
+    "jurong": {
+      "p": {
+        "value": 1043,
+        "unit": "MW",
+        "year": 2025,
+        "source": "Cushman & Wakefield, 'Asia Pacific's Data Centre Development Pipeline Hits Record 19.4GW in 2025' (APAC Data Centre Update H2 2025, 27 Mar 2026)",
+        "url": "https://www.cushmanwakefield.com/en/singapore/news/2026/03/apac-data-centre-development-pipeline-hits-record-in-2025",
+        "confidence": "estimated",
+        "note": "Singapore operational IT capacity end-2025 (whole island; Jurong/West is one cluster within it). Government (IMDA Green DC Roadmap, May 2024) cited ~1.4 GW across 70+ data centres - likely a different (gross/contracted) definition. Additional allocations: >=300 MW near-term under the roadmap and DC-CFA2 >=200 MW (Dec 2025) - planned, not operational."
+      },
+      "u": {
+        "value": 0.951,
+        "unit": "fraction",
+        "year": 2025,
+        "source": "Cushman & Wakefield, 'Asia Pacific's Data Centre Development Pipeline Hits Record 19.4GW in 2025' (APAC Data Centre Update H2 2025, 27 Mar 2026)",
+        "url": "https://www.cushmanwakefield.com/en/singapore/news/2026/03/apac-data-centre-development-pipeline-hits-record-in-2025",
+        "confidence": "estimated",
+        "note": "1 - vacancy (4.9%, C&W end-2025). CBRE reports 2% vacancy (Q1 2026). Leased share, not power drawn."
+      },
+      "pue": {
+        "value": 1.56,
+        "unit": "ratio",
+        "year": 2024,
+        "source": "Uptime Institute, Global Data Center Survey 2024 (industry average annual PUE, largest facility per respondent)",
+        "url": "https://datacenter.uptimeinstitute.com/rs/711-RIA-145/images/2024.GlobalDataCenterSurvey.Report.pdf",
+        "confidence": "estimated",
+        "note": "No market-specific average PUE found; Uptime 2024 global industry average (1.56; the 2025 survey reports it essentially unchanged, ~1.54) used as a colo-heavy market default. Hyperscale halls run far lower (Google campuses 1.04-1.17 TTM), so this likely overstates the market blend. No official Singapore average PUE published; commentary puts older Singapore halls at 1.6-1.9; IMDA targets <=1.3 at full load for all DCs within 10 years and 1.25 for DC-CFA2 capacity. Google's two Singapore campuses: 1.12 and 1.15 TTM."
+      },
+      "g": {
+        "value": null,
+        "unit": "fraction/yr",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "No clean YoY figure found. Supply is quota-controlled: C&W reported Singapore crossing 1 GW in H1 2025 after adding 31 MW; 1,043 MW at end-2025. IMDA/EDB allocations of 300 MW + 200 MW are projected."
+      },
+      "pop": {
+        "value": 6.21,
+        "unit": "million",
+        "year": 2026,
+        "source": "Singapore Department of Statistics / NPTD, Population in Brief 2026 (total population 6,208,500)",
+        "url": "https://www.population.gov.sg/files/Population_in_Brief_2026.pdf",
+        "confidence": "measured",
+        "note": "Whole country. A 100 km radius also includes Johor Bahru / Iskandar Malaysia (~1.7-2 M, not added)."
+      }
+    },
+    "ulanq": {
+      "p": {
+        "value": 1250,
+        "unit": "MW",
+        "year": 2025,
+        "source": "People's Daily Inner Mongolia channel, 'Ulanqab: steady steps toward the future' (6 Feb 2026) - 500,000 standard racks built",
+        "url": "http://nm.people.com.cn/n2/2026/0206/c347192-41495166.html",
+        "confidence": "estimated",
+        "note": "Derived: 500,000 built standard racks x 2.5 kW per standard rack (MIIT et al. 2013 guidance: one standard rack = 2.5 kW) = 1,250 MW. BUILT capacity; in 2024, 260,000 built vs 190,000 in operation (73%). Compute: 125,000 PFLOPS end-2025, >90% AI. Signed racks >1.1 M (2024) = pipeline, not operational."
+      },
+      "u": {
+        "value": 0.73,
+        "unit": "fraction",
+        "year": 2024,
+        "source": "Guangming Daily, 'Inner Mongolia Ulanqab concentrates on big-data industry' (20 Jan 2025)",
+        "url": "https://m.gmw.cn/2025-01/20/content_37807177.htm",
+        "confidence": "estimated",
+        "note": "Rack occupancy (shang-jia lu) 73% in 2024: 190,000 racks in operation / 260,000 built. Occupancy, not power draw."
+      },
+      "pue": {
+        "value": 1.2,
+        "unit": "ratio",
+        "year": 2025,
+        "source": "Ulanqab municipal target reported in Chinese media (PUE 1.2 by 2025; 'East Data West Computing' hub-node requirement)",
+        "url": "https://m.gmw.cn/2025-01/20/content_37807177.htm",
+        "confidence": "projected",
+        "note": "Policy target/ceiling, not a measured average. Individual sites claim <=1.15 (air) / <=1.10 (liquid)."
+      },
+      "g": {
+        "value": 0.92,
+        "unit": "fraction/yr",
+        "year": 2025,
+        "source": "Derived from Guangming Daily (Jan 2025) and People's Daily (Feb 2026)",
+        "url": "http://nm.people.com.cn/n2/2026/0206/c347192-41495166.html",
+        "confidence": "estimated",
+        "note": "Built racks 260,000 (2024) -> 500,000 (2025) = +92%. Compute 61,500 PFLOPS (2024) -> 125,000 PFLOPS (2025) ~ +103%."
+      },
+      "pop": {
+        "value": 1.71,
+        "unit": "million",
+        "year": 2020,
+        "source": "National Bureau of Statistics of China, 7th census (Ulanqab prefecture 1,706,328, via citypopulation.de / Wikipedia)",
+        "url": "https://en.wikipedia.org/wiki/Ulanqab",
+        "confidence": "measured",
+        "note": "Prefecture total; urban core ~0.55 M. Hohhot (~3.5 M) is ~130 km away, outside 100 km."
+      }
+    },
+    "sfba": {
+      "p": {
+        "value": null,
+        "unit": "MW",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "AI-lab office/on-prem lab load: no sourced site-level figures (labs do not disclose office electricity). Training compute runs in remote data centers."
+      },
+      "u": {
+        "value": null,
+        "unit": "fraction",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not disclosed."
+      },
+      "pue": {
+        "value": null,
+        "unit": "ratio",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not applicable to offices."
+      },
+      "g": {
+        "value": null,
+        "unit": "fraction/yr",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not disclosed."
+      },
+      "pop": {
+        "value": 7.77,
+        "unit": "million",
+        "year": 2020,
+        "source": "U.S. Census Bureau 2020 (9-county San Francisco Bay Area, 7,765,149)",
+        "url": "https://www.census.gov/library/visualizations/interactive/2020-population-and-housing-state-data.html",
+        "confidence": "measured",
+        "note": "9-county Bay Area; CSA ~9.2 M."
+      }
+    },
+    "seatt": {
+      "p": {
+        "value": null,
+        "unit": "MW",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "AI-lab office/on-prem lab load: no sourced site-level figures (labs do not disclose office electricity). Training compute runs in remote data centers."
+      },
+      "u": {
+        "value": null,
+        "unit": "fraction",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not disclosed."
+      },
+      "pue": {
+        "value": null,
+        "unit": "ratio",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not applicable to offices."
+      },
+      "g": {
+        "value": null,
+        "unit": "fraction/yr",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not disclosed."
+      },
+      "pop": {
+        "value": 4.15,
+        "unit": "million",
+        "year": 2024,
+        "source": "U.S. Census Bureau estimate, Seattle-Tacoma-Bellevue MSA (4,145,494) via Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Seattle_metropolitan_area",
+        "confidence": "measured",
+        "note": "MSA; 2020 census 4,018,762."
+      }
+    },
+    "lond": {
+      "p": {
+        "value": null,
+        "unit": "MW",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "AI-lab office/on-prem lab load: no sourced site-level figures (labs do not disclose office electricity). Training compute runs in remote data centers."
+      },
+      "u": {
+        "value": null,
+        "unit": "fraction",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not disclosed."
+      },
+      "pue": {
+        "value": null,
+        "unit": "ratio",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not applicable to offices."
+      },
+      "g": {
+        "value": null,
+        "unit": "fraction/yr",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not disclosed."
+      },
+      "pop": {
+        "value": 9.09,
+        "unit": "million",
+        "year": 2024,
+        "source": "ONS, Population estimates for the UK, mid-2024 (London region 9,089,736)",
+        "url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualmidyearpopulationestimates/mid2024",
+        "confidence": "measured",
+        "note": "Greater London only; a 100 km radius covers much of the South East and East of England (well over 15 M), not added."
+      }
+    },
+    "beij": {
+      "p": {
+        "value": null,
+        "unit": "MW",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "AI-lab office/on-prem lab load: no sourced site-level figures (labs do not disclose office electricity). Training compute runs in remote data centers."
+      },
+      "u": {
+        "value": null,
+        "unit": "fraction",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not disclosed."
+      },
+      "pue": {
+        "value": null,
+        "unit": "ratio",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not applicable to offices."
+      },
+      "g": {
+        "value": null,
+        "unit": "fraction/yr",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "Not disclosed."
+      },
+      "pop": {
+        "value": 21.89,
+        "unit": "million",
+        "year": 2020,
+        "source": "National Bureau of Statistics of China, 7th census communique (Beijing 21,893,095)",
+        "url": "http://www.stats.gov.cn/english/PressRelease/202105/t20210510_1817188.html",
+        "confidence": "measured",
+        "note": "Municipality total; a 100 km radius also includes Langfang and parts of Tianjin/Baoding."
+      }
+    },
+    "frank": {
+      "p": {
+        "value": 1222.5,
+        "unit": "MW",
+        "year": 2026,
+        "source": "CBRE Research, Global Data Center Trends 2026 (Q1 2026 data)",
+        "url": "https://www.cbre.com/insights/reports/global-data-center-trends-2026",
+        "confidence": "estimated",
+        "note": "Frankfurt colocation inventory Q1 2026 (+23% YoY). CBRE: first crossed 1 GW in Q2 2025 (1.02 GW). C&W H1 2025: 311 MW under development, 687 MW planned (not operational)."
+      },
+      "u": {
+        "value": 0.95,
+        "unit": "fraction",
+        "year": 2026,
+        "source": "CBRE Research, Global Data Center Trends 2026 (Q1 2026 data)",
+        "url": "https://www.cbre.com/insights/reports/global-data-center-trends-2026",
+        "confidence": "estimated",
+        "note": "1 - vacancy (5%, Q1 2026). Leased share, not power drawn."
+      },
+      "pue": {
+        "value": 1.56,
+        "unit": "ratio",
+        "year": 2024,
+        "source": "Uptime Institute, Global Data Center Survey 2024 (industry average annual PUE, largest facility per respondent)",
+        "url": "https://datacenter.uptimeinstitute.com/rs/711-RIA-145/images/2024.GlobalDataCenterSurvey.Report.pdf",
+        "confidence": "estimated",
+        "note": "No market-specific average PUE found; Uptime 2024 global industry average (1.56; the 2025 survey reports it essentially unchanged, ~1.54) used as a colo-heavy market default. Hyperscale halls run far lower (Google campuses 1.04-1.17 TTM), so this likely overstates the market blend."
+      },
+      "g": {
+        "value": 0.23,
+        "unit": "fraction/yr",
+        "year": 2026,
+        "source": "CBRE Research, Global Data Center Trends 2026 (Q1 2026 data)",
+        "url": "https://www.cbre.com/insights/reports/global-data-center-trends-2026",
+        "confidence": "estimated",
+        "note": "Inventory growth YoY to Q1 2026."
+      },
+      "pop": {
+        "value": 5.91,
+        "unit": "million",
+        "year": 2022,
+        "source": "Regionalverband FrankfurtRheinMain, Statistik-Viewer Metropolregion (5,907,863, 31 Dec 2022)",
+        "url": "https://service.region-frankfurt.de/ia/metropolregion/bevoelkerung/atlas.html",
+        "confidence": "measured",
+        "note": "Frankfurt Rhine-Main metropolitan region (~100 km footprint)."
+      }
+    },
+    "saopa": {
+      "p": {
+        "value": 536.7,
+        "unit": "MW",
+        "year": 2026,
+        "source": "CBRE Research, Global Data Center Trends 2026 (Q1 2026 data)",
+        "url": "https://www.cbre.com/insights/reports/global-data-center-trends-2026",
+        "confidence": "estimated",
+        "note": "Sao Paulo wholesale inventory Q1 2026 (+8.9% YoY). CBRE GDCT 2025: occupied 446.0 MW in Q1 2025."
+      },
+      "u": {
+        "value": 0.904,
+        "unit": "fraction",
+        "year": 2026,
+        "source": "CBRE Research, Global Data Center Trends 2026 (Q1 2026 data)",
+        "url": "https://www.cbre.com/insights/reports/global-data-center-trends-2026",
+        "confidence": "estimated",
+        "note": "1 - vacancy (9.6%, Q1 2026). Leased share, not power drawn."
+      },
+      "pue": {
+        "value": 1.56,
+        "unit": "ratio",
+        "year": 2024,
+        "source": "Uptime Institute, Global Data Center Survey 2024 (industry average annual PUE, largest facility per respondent)",
+        "url": "https://datacenter.uptimeinstitute.com/rs/711-RIA-145/images/2024.GlobalDataCenterSurvey.Report.pdf",
+        "confidence": "estimated",
+        "note": "No market-specific average PUE found; Uptime 2024 global industry average (1.56; the 2025 survey reports it essentially unchanged, ~1.54) used as a colo-heavy market default. Hyperscale halls run far lower (Google campuses 1.04-1.17 TTM), so this likely overstates the market blend. Uptime reports Latin America above the global average (regional figures paywalled)."
+      },
+      "g": {
+        "value": 0.089,
+        "unit": "fraction/yr",
+        "year": 2026,
+        "source": "CBRE Research, Global Data Center Trends 2026 (Q1 2026 data)",
+        "url": "https://www.cbre.com/insights/reports/global-data-center-trends-2026",
+        "confidence": "estimated",
+        "note": "Inventory growth YoY to Q1 2026."
+      },
+      "pop": {
+        "value": 20.74,
+        "unit": "million",
+        "year": 2022,
+        "source": "IBGE Censo 2022, Regiao Metropolitana de Sao Paulo (20,743,587; 39 municipalities), via Observatorio das Metropoles",
+        "url": "https://www.observatoriodasmetropoles.net.br/censo-2022-primeiro-olhar-para-a-regiao-metropolitana-de-sao-paulo/",
+        "confidence": "measured",
+        "note": "RMSP; a 100 km radius also reaches Campinas, Sorocaba and Baixada Santista (several M more)."
+      }
+    },
+    "mumb": {
+      "p": {
+        "value": 768,
+        "unit": "MW",
+        "year": 2025,
+        "source": "Cushman & Wakefield, 'Asia Pacific's Data Centre Development Pipeline Hits Record 19.4GW in 2025' (APAC Data Centre Update H2 2025, 27 Mar 2026)",
+        "url": "https://www.cushmanwakefield.com/en/singapore/news/2026/03/apac-data-centre-development-pipeline-hits-record-in-2025",
+        "confidence": "estimated",
+        "note": "Mumbai operational IT load end-2025 (542 -> 768 MW). Consistent with CBRE: ~670 MW (Q1 2025, GDCT 2025) and 53% of India's ~1,530 MW ~ 811 MW (Sep 2025, CBRE India Nov 2025)."
+      },
+      "u": {
+        "value": null,
+        "unit": "fraction",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "No Mumbai vacancy figure found in accessible sources."
+      },
+      "pue": {
+        "value": 1.56,
+        "unit": "ratio",
+        "year": 2024,
+        "source": "Uptime Institute, Global Data Center Survey 2024 (industry average annual PUE, largest facility per respondent)",
+        "url": "https://datacenter.uptimeinstitute.com/rs/711-RIA-145/images/2024.GlobalDataCenterSurvey.Report.pdf",
+        "confidence": "estimated",
+        "note": "No market-specific average PUE found; Uptime 2024 global industry average (1.56; the 2025 survey reports it essentially unchanged, ~1.54) used as a colo-heavy market default. Hyperscale halls run far lower (Google campuses 1.04-1.17 TTM), so this likely overstates the market blend. Hot/humid climate suggests above-average."
+      },
+      "g": {
+        "value": 0.42,
+        "unit": "fraction/yr",
+        "year": 2025,
+        "source": "Cushman & Wakefield, 'Asia Pacific's Data Centre Development Pipeline Hits Record 19.4GW in 2025' (APAC Data Centre Update H2 2025, 27 Mar 2026)",
+        "url": "https://www.cushmanwakefield.com/en/singapore/news/2026/03/apac-data-centre-development-pipeline-hits-record-in-2025",
+        "confidence": "estimated",
+        "note": "Operational IT load 542 -> 768 MW in 2025 (+42%)."
+      },
+      "pop": {
+        "value": 26.6,
+        "unit": "million",
+        "year": 2025,
+        "source": "MMRDA, 'About MMR' (MMR population 2,65,98,000)",
+        "url": "https://mmrda.maharashtra.gov.in/about-us/about-mmr",
+        "confidence": "estimated",
+        "note": "Mumbai Metropolitan Region, MMRDA estimate (2011 census MMR ~22.8 M; no census since)."
+      }
+    },
+    "tokyo": {
+      "p": {
+        "value": 1179,
+        "unit": "MW",
+        "year": 2025,
+        "source": "Cushman & Wakefield, 'Asia Pacific's Data Centre Development Pipeline Hits Record 19.4GW in 2025' (APAC Data Centre Update H2 2025, 27 Mar 2026)",
+        "url": "https://www.cushmanwakefield.com/en/singapore/news/2026/03/apac-data-centre-development-pipeline-hits-record-in-2025",
+        "confidence": "estimated",
+        "note": "Greater Tokyo operational capacity end-2025. CBRE: inventory 'exceeded 1 GW' in Q1 2026."
+      },
+      "u": {
+        "value": 0.944,
+        "unit": "fraction",
+        "year": 2025,
+        "source": "Cushman & Wakefield, 'Asia Pacific's Data Centre Development Pipeline Hits Record 19.4GW in 2025' (APAC Data Centre Update H2 2025, 27 Mar 2026)",
+        "url": "https://www.cushmanwakefield.com/en/singapore/news/2026/03/apac-data-centre-development-pipeline-hits-record-in-2025",
+        "confidence": "estimated",
+        "note": "1 - vacancy (5.6%, C&W end-2025). CBRE: 6% Q1 2026, down from 13% Q1 2025. Leased share, not draw."
+      },
+      "pue": {
+        "value": 1.56,
+        "unit": "ratio",
+        "year": 2024,
+        "source": "Uptime Institute, Global Data Center Survey 2024 (industry average annual PUE, largest facility per respondent)",
+        "url": "https://datacenter.uptimeinstitute.com/rs/711-RIA-145/images/2024.GlobalDataCenterSurvey.Report.pdf",
+        "confidence": "estimated",
+        "note": "No market-specific average PUE found; Uptime 2024 global industry average (1.56; the 2025 survey reports it essentially unchanged, ~1.54) used as a colo-heavy market default. Hyperscale halls run far lower (Google campuses 1.04-1.17 TTM), so this likely overstates the market blend. Google Inzai (Chiba): 1.10 TTM."
+      },
+      "g": {
+        "value": null,
+        "unit": "fraction/yr",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "No YoY Greater Tokyo capacity growth found in accessible sources (C&W/JLL detail paywalled)."
+      },
+      "pop": {
+        "value": 36.95,
+        "unit": "million",
+        "year": 2025,
+        "source": "UN DESA, World Urbanization Prospects 2025 (Tokyo agglomeration 36,954,512, as cited in Wikipedia 'Greater Tokyo Area')",
+        "url": "https://population.un.org/wup/",
+        "confidence": "estimated",
+        "note": "UN agglomeration estimate; Tokyo + 3 prefectures ~36.9 M (2020 census)."
+      }
+    },
+    "lagos": {
+      "p": {
+        "value": 78.6,
+        "unit": "MW",
+        "year": 2025,
+        "source": "Estate Intel, Lagos Real Estate Development Pipeline Report 2025/2026 (via Nairametrics, 16 Dec 2025)",
+        "url": "https://nairametrics.com/2025/12/16/data-centres-emerge-fastest-growing-real-estate-asset-in-lagos-report/",
+        "confidence": "estimated",
+        "note": "20+ facilities, 78.6 MW existing; 146.5 MW+ under development (not operational). Unclear whether IT or facility MW."
+      },
+      "u": {
+        "value": null,
+        "unit": "fraction",
+        "year": null,
+        "source": "",
+        "url": "",
+        "confidence": "",
+        "note": "No vacancy/utilisation figure found."
+      },
+      "pue": {
+        "value": 1.56,
+        "unit": "ratio",
+        "year": 2024,
+        "source": "Uptime Institute, Global Data Center Survey 2024 (industry average annual PUE, largest facility per respondent)",
+        "url": "https://datacenter.uptimeinstitute.com/rs/711-RIA-145/images/2024.GlobalDataCenterSurvey.Report.pdf",
+        "confidence": "estimated",
+        "note": "No market-specific average PUE found; Uptime 2024 global industry average (1.56; the 2025 survey reports it essentially unchanged, ~1.54) used as a colo-heavy market default. Hyperscale halls run far lower (Google campuses 1.04-1.17 TTM), so this likely overstates the market blend. Uptime has historically reported Africa/Middle East well above global (~1.7-1.8); diesel backup common due to grid instability."
+      },
+      "g": {
+        "value": 0.226,
+        "unit": "fraction/yr",
+        "year": 2025,
+        "source": "Derived from Estate Intel projection (via Nairametrics)",
+        "url": "https://nairametrics.com/2025/12/16/data-centres-emerge-fastest-growing-real-estate-asset-in-lagos-report/",
+        "confidence": "projected",
+        "note": "CAGR 2025 -> 2030: (218 / 78.6)^(1/5) - 1 = 22.6%. The article also says '3.7x current capacity', inconsistent with 218/78.6 = 2.8x."
+      },
+      "pop": {
+        "value": 15.4,
+        "unit": "million",
+        "year": 2025,
+        "source": "UN DESA, World Urbanization Prospects 2025 (Lagos agglomeration ~15.4 M, as reported in secondary summaries)",
+        "url": "https://population.un.org/wup/",
+        "confidence": "estimated",
+        "note": "Highly contested: Lagos State government claims 21-35 M; 2006 census metro LGAs 8.0 M. UN figure not verified directly against the dataset."
+      }
+    }
+  },
+  "caveats": [
+    "Market capacity (p) for metros comes from brokers (CBRE, Cushman & Wakefield) and mostly measures third-party colocation/wholesale inventory; owner-operated hyperscale campuses are partly or wholly excluded (esp. Northern Virginia). Treat as a lower bound on total IT capacity. CBRE and C&W figures are not strictly comparable (different market boundaries and dates).",
+    "u values derived as (1 - vacancy) measure LEASED capacity, not average power draw. The only metered calibration found is Ireland: CSO 7,663 GWh (2025) vs KPMG 1,543 MW installed IT -> u*PUE = 0.567. Using occupancy (~0.95) x PUE 1.56 (~1.48) instead would overstate energy ~2.6x. Consider u*PUE ~ 0.57 as a cross-market default where no metered data exist.",
+    "PUE: no public market-level averages for most metros; Uptime's 2024 global industry average (1.56) is used as a placeholder (regional breakdowns are paywalled). Hyperscaler campuses (Google 1.04-1.17 TTM) sit far below this, so blended PUE is likely lower in hyperscale-heavy markets (Dublin ~88% hyperscale, N. Virginia).",
+    "Google per-site PUE is from datacenters.google (Q2 2026 TTM); Google does not disclose per-campus MW or electricity, so p for The Dalles and Council Bluffs is null.",
+    "Abilene is changing fast: ~200 MW IT operational (Apr 2026) vs 1.2 GW planned by end-2026; the value is likely stale by Sep 2026.",
+    "Ulanqab p is derived from standard-rack counts (2.5 kW/rack); AI racks draw far more than 2.5 kW each physically, but the 'standard rack' is already a power-normalised unit, so 1,250 MW is built capacity; built is not energised (73% occupancy in 2024).",
+    "Manufacturing sites (Zhengzhou, Taoyuan) and AI-lab offices (SF, Seattle, London, Beijing) have no sourced load figures; only population is filled.",
+    "Population uses official metro/urban-area definitions as a proxy for 'within ~100 km'; notes flag where the true radius would be materially larger (London, Sao Paulo, Singapore+Johor, Taoyuan+Taipei).",
+    "Some broker pages were read via fetch summaries rather than full PDFs; figures cited from CBRE GDCT 2026, C&W APAC (Mar 2026), CSO, KPMG, the Dominion/PJM letter and Google were confirmed on the source pages."
+  ]
+}
