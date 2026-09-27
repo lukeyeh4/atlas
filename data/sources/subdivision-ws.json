@@ -1,0 +1,496 @@
+{
+ "source": "WRI Aqueduct 4.0 Province Rankings, baseline water stress (bws), all-sector weighting (Tot); score 0-5 divided by 5",
+ "url": "https://files.wri.org/aqueduct/aqueduct-4-0-country-rankings.zip",
+ "year": 2023,
+ "confidence": "estimated",
+ "subdivisions": {
+  "AU-ACT": {
+   "value": 0.483,
+   "label": "Medium - High (20-40%)"
+  },
+  "AU-NSW": {
+   "value": 0.65,
+   "label": "High (40-80%)"
+  },
+  "AU-NT": {
+   "value": 0.357,
+   "label": "Low - Medium (10-20%)"
+  },
+  "AU-QLD": {
+   "value": 0.311,
+   "label": "Low - Medium (10-20%)"
+  },
+  "AU-SA": {
+   "value": 0.569,
+   "label": "Medium - High (20-40%)"
+  },
+  "AU-TAS": {
+   "value": 0.0,
+   "label": "Low (<10%)"
+  },
+  "AU-VIC": {
+   "value": 0.695,
+   "label": "High (40-80%)"
+  },
+  "AU-WA": {
+   "value": 0.479,
+   "label": "Medium - High (20-40%)"
+  },
+  "CN-AH": {
+   "value": 0.445,
+   "label": "Medium - High (20-40%)"
+  },
+  "CN-BJ": {
+   "value": 0.887,
+   "label": "Extremely High (>80%)"
+  },
+  "CN-CQ": {
+   "value": 0.242,
+   "label": "Low - Medium (10-20%)"
+  },
+  "CN-FJ": {
+   "value": 0.447,
+   "label": "Medium - High (20-40%)"
+  },
+  "CN-GD": {
+   "value": 0.243,
+   "label": "Low - Medium (10-20%)"
+  },
+  "CN-GS": {
+   "value": 0.675,
+   "label": "High (40-80%)"
+  },
+  "CN-GX": {
+   "value": 0.238,
+   "label": "Low - Medium (10-20%)"
+  },
+  "CN-GZ": {
+   "value": 0.271,
+   "label": "Low - Medium (10-20%)"
+  },
+  "CN-HA": {
+   "value": 0.818,
+   "label": "Extremely High (>80%)"
+  },
+  "CN-HB": {
+   "value": 0.307,
+   "label": "Low - Medium (10-20%)"
+  },
+  "CN-HE": {
+   "value": 0.948,
+   "label": "Extremely High (>80%)"
+  },
+  "CN-HI": {
+   "value": 0.527,
+   "label": "Medium - High (20-40%)"
+  },
+  "CN-HL": {
+   "value": 0.386,
+   "label": "Low - Medium (10-20%)"
+  },
+  "CN-HN": {
+   "value": 0.292,
+   "label": "Low - Medium (10-20%)"
+  },
+  "CN-JL": {
+   "value": 0.566,
+   "label": "Medium - High (20-40%)"
+  },
+  "CN-JS": {
+   "value": 0.511,
+   "label": "Medium - High (20-40%)"
+  },
+  "CN-JX": {
+   "value": 0.361,
+   "label": "Low - Medium (10-20%)"
+  },
+  "CN-LN": {
+   "value": 0.743,
+   "label": "High (40-80%)"
+  },
+  "CN-NM": {
+   "value": 0.924,
+   "label": "Extremely High (>80%)"
+  },
+  "CN-NX": {
+   "value": 0.74,
+   "label": "High (40-80%)"
+  },
+  "CN-QH": {
+   "value": 0.325,
+   "label": "Low - Medium (10-20%)"
+  },
+  "CN-SC": {
+   "value": 0.601,
+   "label": "High (40-80%)"
+  },
+  "CN-SD": {
+   "value": 0.898,
+   "label": "Extremely High (>80%)"
+  },
+  "CN-SH": {
+   "value": 0.69,
+   "label": "High (40-80%)"
+  },
+  "CN-SN": {
+   "value": 0.579,
+   "label": "Medium - High (20-40%)"
+  },
+  "CN-SX": {
+   "value": 0.765,
+   "label": "High (40-80%)"
+  },
+  "CN-TJ": {
+   "value": 0.828,
+   "label": "Extremely High (>80%)"
+  },
+  "CN-XJ": {
+   "value": 0.882,
+   "label": "Extremely High (>80%)"
+  },
+  "CN-XZ": {
+   "value": 0.078,
+   "label": "Low (<10%)"
+  },
+  "CN-YN": {
+   "value": 0.326,
+   "label": "Low - Medium (10-20%)"
+  },
+  "CN-ZJ": {
+   "value": 0.556,
+   "label": "Medium - High (20-40%)"
+  },
+  "IN-AN": {
+   "value": 0.0,
+   "label": "Low (<10%)"
+  },
+  "IN-AP": {
+   "value": 0.803,
+   "label": "Extremely High (>80%)"
+  },
+  "IN-AR": {
+   "value": 0.0,
+   "label": "Low (<10%)"
+  },
+  "IN-AS": {
+   "value": 0.191,
+   "label": "Low (<10%)"
+  },
+  "IN-BR": {
+   "value": 0.773,
+   "label": "High (40-80%)"
+  },
+  "IN-CH": {
+   "value": 1.0,
+   "label": "Extremely High (>80%)"
+  },
+  "IN-CT": {
+   "value": 0.733,
+   "label": "High (40-80%)"
+  },
+  "IN-DL": {
+   "value": 0.949,
+   "label": "Extremely High (>80%)"
+  },
+  "IN-GA": {
+   "value": 0.274,
+   "label": "Low - Medium (10-20%)"
+  },
+  "IN-GJ": {
+   "value": 0.951,
+   "label": "Extremely High (>80%)"
+  },
+  "IN-HP": {
+   "value": 0.701,
+   "label": "High (40-80%)"
+  },
+  "IN-HR": {
+   "value": 0.999,
+   "label": "Extremely High (>80%)"
+  },
+  "IN-JH": {
+   "value": 0.384,
+   "label": "Low - Medium (10-20%)"
+  },
+  "IN-JK": {
+   "value": 0.707,
+   "label": "High (40-80%)"
+  },
+  "IN-KA": {
+   "value": 0.747,
+   "label": "High (40-80%)"
+  },
+  "IN-KL": {
+   "value": 0.604,
+   "label": "High (40-80%)"
+  },
+  "IN-MH": {
+   "value": 0.84,
+   "label": "Extremely High (>80%)"
+  },
+  "IN-ML": {
+   "value": 0.34,
+   "label": "Low - Medium (10-20%)"
+  },
+  "IN-MN": {
+   "value": 0.578,
+   "label": "Medium - High (20-40%)"
+  },
+  "IN-MP": {
+   "value": 0.86,
+   "label": "Extremely High (>80%)"
+  },
+  "IN-MZ": {
+   "value": 0.219,
+   "label": "Low - Medium (10-20%)"
+  },
+  "IN-NL": {
+   "value": 0.288,
+   "label": "Low - Medium (10-20%)"
+  },
+  "IN-OR": {
+   "value": 0.6,
+   "label": "High (40-80%)"
+  },
+  "IN-PB": {
+   "value": 0.87,
+   "label": "Extremely High (>80%)"
+  },
+  "IN-PY": {
+   "value": 0.783,
+   "label": "High (40-80%)"
+  },
+  "IN-RJ": {
+   "value": 0.992,
+   "label": "Extremely High (>80%)"
+  },
+  "IN-SK": {
+   "value": 0.125,
+   "label": "Low (<10%)"
+  },
+  "IN-TG": {
+   "value": 0.784,
+   "label": "High (40-80%)"
+  },
+  "IN-TN": {
+   "value": 0.83,
+   "label": "Extremely High (>80%)"
+  },
+  "IN-TR": {
+   "value": 0.492,
+   "label": "Medium - High (20-40%)"
+  },
+  "IN-UP": {
+   "value": 0.954,
+   "label": "Extremely High (>80%)"
+  },
+  "IN-UT": {
+   "value": 0.855,
+   "label": "Extremely High (>80%)"
+  },
+  "IN-WB": {
+   "value": 0.506,
+   "label": "Medium - High (20-40%)"
+  },
+  "US-AK": {
+   "value": 0.297,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-AL": {
+   "value": 0.294,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-AR": {
+   "value": 0.524,
+   "label": "Medium - High (20-40%)"
+  },
+  "US-AZ": {
+   "value": 0.878,
+   "label": "Extremely High (>80%)"
+  },
+  "US-CA": {
+   "value": 0.805,
+   "label": "Extremely High (>80%)"
+  },
+  "US-CO": {
+   "value": 0.856,
+   "label": "Extremely High (>80%)"
+  },
+  "US-CT": {
+   "value": 0.182,
+   "label": "Low (<10%)"
+  },
+  "US-DC": {
+   "value": 0.14,
+   "label": "Low (<10%)"
+  },
+  "US-DE": {
+   "value": 0.669,
+   "label": "High (40-80%)"
+  },
+  "US-FL": {
+   "value": 0.62,
+   "label": "High (40-80%)"
+  },
+  "US-GA": {
+   "value": 0.444,
+   "label": "Medium - High (20-40%)"
+  },
+  "US-IA": {
+   "value": 0.216,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-ID": {
+   "value": 0.802,
+   "label": "Extremely High (>80%)"
+  },
+  "US-IL": {
+   "value": 0.481,
+   "label": "Medium - High (20-40%)"
+  },
+  "US-IN": {
+   "value": 0.4,
+   "label": "Medium - High (20-40%)"
+  },
+  "US-KS": {
+   "value": 0.725,
+   "label": "High (40-80%)"
+  },
+  "US-KY": {
+   "value": 0.265,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-LA": {
+   "value": 0.289,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-MA": {
+   "value": 0.377,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-MD": {
+   "value": 0.315,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-ME": {
+   "value": 0.042,
+   "label": "Low (<10%)"
+  },
+  "US-MI": {
+   "value": 0.226,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-MN": {
+   "value": 0.453,
+   "label": "Medium - High (20-40%)"
+  },
+  "US-MO": {
+   "value": 0.287,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-MS": {
+   "value": 0.223,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-MT": {
+   "value": 0.54,
+   "label": "Medium - High (20-40%)"
+  },
+  "US-NC": {
+   "value": 0.638,
+   "label": "High (40-80%)"
+  },
+  "US-ND": {
+   "value": 0.254,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-NE": {
+   "value": 0.832,
+   "label": "Extremely High (>80%)"
+  },
+  "US-NH": {
+   "value": 0.275,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-NJ": {
+   "value": 0.495,
+   "label": "Medium - High (20-40%)"
+  },
+  "US-NM": {
+   "value": 0.865,
+   "label": "Extremely High (>80%)"
+  },
+  "US-NV": {
+   "value": 0.714,
+   "label": "High (40-80%)"
+  },
+  "US-NY": {
+   "value": 0.245,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-OH": {
+   "value": 0.312,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-OK": {
+   "value": 0.358,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-OR": {
+   "value": 0.321,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-PA": {
+   "value": 0.329,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-RI": {
+   "value": 0.438,
+   "label": "Medium - High (20-40%)"
+  },
+  "US-SC": {
+   "value": 0.543,
+   "label": "Medium - High (20-40%)"
+  },
+  "US-SD": {
+   "value": 0.313,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-TN": {
+   "value": 0.285,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-TX": {
+   "value": 0.666,
+   "label": "High (40-80%)"
+  },
+  "US-UT": {
+   "value": 0.633,
+   "label": "High (40-80%)"
+  },
+  "US-VA": {
+   "value": 0.512,
+   "label": "Medium - High (20-40%)"
+  },
+  "US-VT": {
+   "value": 0.091,
+   "label": "Low (<10%)"
+  },
+  "US-WA": {
+   "value": 0.241,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-WI": {
+   "value": 0.539,
+   "label": "Medium - High (20-40%)"
+  },
+  "US-WV": {
+   "value": 0.294,
+   "label": "Low - Medium (10-20%)"
+  },
+  "US-WY": {
+   "value": 0.753,
+   "label": "High (40-80%)"
+  }
+ }
+}

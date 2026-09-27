@@ -136,7 +136,7 @@ create table subdivision (
   check (left(code, 2) = country)
 );
 
--- Subdivisions carry grid values only (ci, fos, dec) for now; ws follows.
+-- Subdivisions carry grid values (ci, fos, dec) and water stress (ws).
 create table subdivision_value (
   subdivision text not null references subdivision on delete cascade,
   key         text not null check (key in ('ci', 'fos', 'dec', 'ws', 'wue', 'wue_disclosed', 'pm25')),

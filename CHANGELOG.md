@@ -18,6 +18,8 @@ shape is fixed by `docs/locale-contract.md`, agreed with the app side.
   left out, not zeroed.
 - **`data/cells/`** — per 0.25° cell, in 10° tiles (8.5 MB): people within
   100 km, and the water stress of the cell's river sub-basin (Aqueduct 4.0).
+- State and province water stress (Aqueduct 4.0 province scores) for 122 of
+  the 126 subdivisions, so US states can be coloured individually.
 - **`data/node-types.json`** — default inputs for the nine facility types.
   Built-in sites will use these plus location lookup, like added nodes.
 - Water use: `wue` is the location's climate estimate; operator figures are a

@@ -13,12 +13,14 @@ from country_data import CI_YEAR, records
 
 g, w = load('country-grid.json'), load('country-wue.json')
 ws_src, pm_src = load('country-ws.json'), load('country-pm25.json')
+sub_ws = load('subdivision-ws.json')
 us, cn, ia = load('grid-us-states.json'), load('grid-china-provinces.json'), load('grid-india-australia.json')
 
 SOURCES = {
     'ember': {'title': g['source'], 'url': g['url']},
     'aqueduct': {'title': 'WRI Aqueduct 4.0 country rankings, baseline water stress', 'url': ws_src['url']},
     'wdi-pm25': {'title': pm_src['source'], 'url': pm_src['url']},
+    'aqueduct-province': {'title': 'WRI Aqueduct 4.0 province rankings, baseline water stress', 'url': sub_ws['url']},
     'wue-climate': {'title': 'Cooling-tower WUE at annual-mean wet-bulb (Shumba et al. 2025; Sen Gupta et al. 2024) on ERA5 climate',
                     'url': w['formula']['url'].split(' ; ')[0]},
     'ember-us': {'title': us['source'], 'url': us['url']},
@@ -169,6 +171,12 @@ for s, r in ia['australia']['regions'].items():
 subdivisions['AU-ACT'] = {'n': 'Australian Capital Territory', **{
     k: {**x, 'note': 'NEM NSW region values (ACT is part of it).'}
     for k, x in subdivisions['AU-NSW'].items() if k != 'n'}}
+
+# Water stress per state/province: Aqueduct's own province score, on the same
+# scale and method as the country ws. Falls back on its own, not with the grid trio.
+for code, x in sub_ws['subdivisions'].items():
+    if code in subdivisions:
+        subdivisions[code]['ws'] = val(x['value'], sub_ws['confidence'], 'aqueduct-province', sub_ws['year'])
 
 # ---------------------------------------------------------------- write ----
 

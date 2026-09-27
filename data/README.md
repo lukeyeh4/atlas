@@ -63,7 +63,7 @@ The population grid needs `pip install numpy tifffile imagecodecs`, the water-st
 | `water_stress_grid.py` | WRI Aqueduct 4.0 sub-basins (~260 MB) | `water-stress-grid-025.csv` |
 | `cells.py` | — | `cells/` (from the two grids) |
 | `node_types.py` | — | `node-types.json` (from `node-profiles.csv`) |
-| `water_stress.py` | WRI Aqueduct 4.0 rankings | `sources/country-ws.json` |
+| `water_stress.py` | WRI Aqueduct 4.0 rankings | `sources/country-ws.json`, `sources/subdivision-ws.json` |
 | `pm25.py` | World Bank WDI PM2.5 | `sources/country-pm25.json` |
 | `country_inputs.py` | — | `country-inputs.csv` (merge rules in `country_data.py`) |
 | `subnational_grid.py` | — | `subnational-grid.csv` |
@@ -82,6 +82,7 @@ To refresh a year, re-run: `ember.py` picks up new Ember releases. For values re
 - **Climate-based WUE is weak.** It spans only 1.17–1.57 L/kWh. `wue_best_l_kwh` prefers operator-disclosed values (26 countries). `locales.json` does not: its `wue` is the climate estimate, because a disclosure describes one operator's fleet, not a new site; disclosures go in `wue_disclosed`.
 - **ISO codes:** India uses the pre-2023 codes (`IN-TG`, `IN-CT`, `IN-OR`, `IN-UT`), which is what Mapbox returns. `AU-WA` is the Perth grid (SWIS) only; `AU-ACT` carries NEM NSW values.
 - **Cell water stress follows Aqueduct's rules.** Upstream inflow counts as local supply, so river-fed dry cities read low (Las Vegas 0.13 on the Colorado); arid, low-use basins read 1. Taiwan and Singapore cells are left empty so the hand-researched country value applies.
+- **State water stress weighs the whole state.** Aqueduct's province score is withdrawal-weighted, so a state can read higher than a basin inside it (Virginia 0.51, Ashburn's cell 0.03). Points use the cell; the state value is for state-level colouring and fallback. Hawaii, Lakshadweep, Ladakh and Dadra & Nagar Haveli–Daman & Diu have none (no data, or Aqueduct's borders predate India's 2019–2020 changes).
 - **Water rates are withdrawal, not consumption.** Grasberg withdraws 7.3 L/kWh but consumes 0.4.
 - **Utilisation:** vacancy-based figures overstate energy about 2.6×. Profiles use Ireland's metered ratio instead.
 - **Gaps:**
