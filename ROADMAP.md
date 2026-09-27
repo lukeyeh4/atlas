@@ -1,7 +1,7 @@
 # AI Supply Chain Atlas — Roadmap
 
-Status as of 2026-09-26. Current build: v0.3.3, published as a single-file
-artifact. Ordered roughly by what unblocks the most.
+Status as of 2026-09-26. Current build: v0.4.1, a single HTML file served
+from GitHub Pages on a Mapbox globe. Ordered roughly by what unblocks the most.
 
 ---
 
@@ -41,12 +41,21 @@ avoids rework.
 - [ ] Cite per-value sources in the panel.
 - [ ] Country records currently carry `[grid CI, water stress, air quality]`.
       Air quality is a sample index; bind real PM2.5 or AQI data.
+- [ ] **City search with locale data** — waiting on the database work. Plan:
+      Mapbox geocoding for cities in search (curated sites listed first);
+      each result carries country and state codes. Look values up from the
+      most specific level down: grid region (point-in-polygon on grid-region
+      shapes) → state/province (`US-TX`) → country (`US`), and show which
+      level each value came from. Data keyed by those codes; debounce
+      queries to stay inside the Mapbox free tier.
 
 ### Node editing
 - [ ] Edit a node's inputs in the panel (power, utilization, PUE), not just
       add and remove it. The model already recomputes on every render.
-- [ ] Let an added node be placed anywhere, not only on the three seeded
-      placeholder cities — click-to-place on the map.
+- [x] Let an added node be placed anywhere — right-click the map, "Add node
+      here" (v0.4.1).
+- [ ] Name placed points. They're "New site n" until reverse geocoding lands
+      with the city search work.
 - [ ] Draw and edit flows for added nodes. Right now a new node has no chain.
 - [ ] Persist edits. Nothing survives a reload today.
       (An artifact runtime capability could hold this; see
@@ -58,6 +67,12 @@ avoids rework.
       carbon layer was before the scrubber came out.
 - [ ] Accessibility pass on the ramps: check each layer's endpoints for
       contrast in both themes, and don't rely on hue alone.
+- [ ] Border hierarchy: US state lines (v0.4.1) now read stronger than
+      country borders over the fills. Country borders should match or
+      outweigh them.
+- [ ] State or province lines beyond the US, if a layer needs them.
+- [ ] Optional thin major rivers between zoom 3 and 6, where streets water
+      is hidden.
 
 ### Time
 - [ ] The year scrubber was removed from the bottom bar in v0.3.2, but all the
@@ -99,7 +114,12 @@ avoids rework.
 - Metric bars are scaled against the largest site, which also means they move
   when nodes are added or removed.
 - Added nodes have no upstream or downstream links.
-- Singapore has no polygon at 110m resolution, so the Jurong mark sits on open
-  water. Expected at this geometry resolution.
 - Dense clusters (Taiwan, Korea) overlap at world zoom now that marks are
   bold. Zoom separates them; collision-aware placement is unimplemented.
+- Points placed from the context menu are named "New site n", and countries
+  without a `REGIONS` entry get a country-average region built from sample
+  `COUNTRY` values.
+- The compare view drops units: 4.77 (TWh) sits beside 391 (GWh) unlabeled.
+- The Mapbox token is public in `index.html`; it must be URL-restricted in
+  the Mapbox account.
+- The README screenshot still shows the v0.3 flat map.

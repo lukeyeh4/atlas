@@ -15,8 +15,10 @@ with the environmental load of each node.
 
 - **31 sites** at real coordinates across five stages: raw inputs, chip making,
   infrastructure, model building, delivery.
-- **Real basemap** — Natural Earth 110m country geometry, embedded in the page.
-  Natural Earth projection, pan and zoom.
+- **Mapbox globe** — dark, muted basemap with faint terrain relief. A 3D globe
+  at world zoom that flattens to a web map as you zoom in; real coastlines,
+  borders and labels at every scale. US state lines fade in as you zoom
+  toward a region.
 - **A working model** of each site's yearly load:
 
   | | |
@@ -27,10 +29,17 @@ with the environmental load of each node.
   | Air | `A = E · fossil share · downwind population`  (index, 0–100) |
 
 - **Regional layers** — grid carbon intensity (yellow), water stress (blue),
-  air quality (gray). One at a time.
+  air quality (gray). One at a time, painted onto Mapbox country boundaries
+  under a faint hillshade, so flat ground keeps the legend colour and relief
+  only nudges it.
 - **Add and remove nodes.** Three placeholder cities sit on the map as dashed
-  rings; pick a stage to turn one into a modeled node. Removing any node
-  reverts it to a placeholder rather than deleting the location.
+  rings; pick a stage to turn one into a modeled node. Right-click any land to
+  drop a new placeholder there. Removing any node reverts it to a placeholder
+  rather than deleting the location.
+- **Context menu** — right-click (or long-press) a site, a placeholder, land
+  or water for the actions that fit: open, compare with the selected site, go
+  upstream, zoom, copy coordinates, add or remove. `Shift+F10` opens it for
+  the selected site.
 - **Compare** two sites for per-metric deltas.
 - **Search** with `/` or `⌘K`.
 
@@ -53,27 +62,33 @@ Nothing else needs to change.
 
 ## Running it
 
-It is a single self-contained HTML file. Open `index.html` in a browser, or:
+It is a single HTML file. Serve the folder and open it:
 
 ```bash
 python3 -m http.server 8000
 # then visit http://localhost:8000
 ```
 
-The only external dependency is d3 v7 from cdnjs and two Google Fonts. The
-country geometry is inlined in the page, so it works offline apart from those.
+External dependencies: Mapbox GL JS v3 (basemap, terrain, country and state
+boundaries), d3 v7 from cdnjs, and two Google Fonts. It needs a network
+connection. The v0.3 claude.ai artifact can't load Mapbox (its sandbox blocks
+external tile servers), so the globe only runs from Pages or a local server.
+
+The Mapbox public token is set near the top of the map section in
+`index.html`. Restrict it to the Pages URL (and `localhost` for development)
+in the Mapbox account's token settings.
 
 ## Files
 
 | | |
 |---|---|
 | `index.html` | The whole app — markup, styles, data and model |
-| `countries.json` | The source geometry, decoded from Natural Earth 110m TopoJSON. Kept for reference; `index.html` has its own inlined copy |
+| `countries.json` | Natural Earth 110m geometry used by v0.3. No longer loaded since the Mapbox basemap; kept for reference |
 | `CHANGELOG.md` | Every version so far, with the reasoning |
 | `ROADMAP.md` | Blocking questions and planned work |
 
 ## Credits
 
-Country geometry from [Natural Earth](https://www.naturalearthdata.com/) via
-[world-atlas](https://github.com/topojson/world-atlas), public domain.
+Basemap, terrain and country boundaries © [Mapbox](https://www.mapbox.com/about/maps/)
+© [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors.
 Typefaces: Source Serif 4 and IBM Plex Mono.

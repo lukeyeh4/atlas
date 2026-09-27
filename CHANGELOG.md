@@ -3,8 +3,59 @@
 A map-first tool for visualizing the AI supply chain, from quartz to inference,
 with the environmental load of each node.
 
-All work to date lives in published artifacts (single-file HTML, no repo yet).
-Dates are the session date, 2026-09-26.
+v0.1–v0.3 lived in published artifacts. From v0.4 the app is `index.html` in
+this repo, served from GitHub Pages. Dates are the session date, 2026-09-26.
+
+---
+
+## v0.4.1 — Map context menu
+- Right-click (long-press on touch, ContextMenu key or Shift+F10 for the
+  selected mark) opens a menu for whatever is under the pointer:
+  - **Site** — open details, compare with the selected site, go upstream,
+    zoom to, copy coordinates, remove node.
+  - **Placeholder** — add node, zoom to, copy coordinates; remove location
+    for points placed by hand.
+  - **Land** — add node here (the country's grid region, the nearest known
+    region when a country has several, or a country average from `COUNTRY`;
+    disabled with "No grid data" otherwise), zoom in, copy coordinates.
+  - **Water** — zoom in, copy coordinates.
+- Same surface, rules, mono labels and hover as the search and layer menus;
+  12px line icons in the search glyph's style. Arrow keys, Home/End, Enter,
+  Escape. Flips upward near the bottom edge; closes on map move.
+- One shared entrance animation for search results, layer menu and context
+  menu; off under reduced motion.
+- "Copied" confirmation toast, centred in the visible map.
+- US state boundaries (streets-v8 `admin_level` 1, `US`). A light line in
+  dark mode and a dark one in light mode, via a new `--state-line` token,
+  since the border colour vanished against the ramp fills. 0.7–1.4 px,
+  fading in linearly from zoom 1.8 to full strength at 4.5.
+- Page is ~77 KB with the menu.
+
+---
+
+## v0.4.0 — Mapbox globe
+Runs on GitHub Pages rather than as an artifact, so the tile-server
+restriction behind the v0.3 inline geometry no longer applies.
+
+- Basemap moved from d3 + inline Natural Earth 110m to Mapbox GL JS v3 with a
+  custom dark, muted style: streets-v8 water, borders and labels,
+  terrain-dem-v1 hillshade, globe projection with a quiet atmosphere.
+- Regional layers paint `mapbox.country-boundaries-v1` by ISO code. Stack is
+  ocean → landmass → fill → detail water → hillshade → borders → labels →
+  flows, so fills stay close to the legend colour and relief sits on top as a
+  faint texture.
+  Hillshade backs off (0.6 → 0.32) while a layer is on.
+- Coastlines come from the country polygons below zoom 6. Streets water
+  (every lake, reservoir and river bank) fades in between zoom 6 and 7.5;
+  earlier it read as dark specks across the regional fills.
+- `COUNTRY` is now keyed by ISO 3166-1 alpha-2 codes.
+- Sites and placeholder cities are Mapbox markers; flows are a line layer,
+  antimeridian-safe great circles.
+- The map re-centres in the space the panel leaves; picking from search
+  eases to the site.
+- Map rotation disabled; Mapbox logo and attribution bottom-right.
+- Page is ~62 KB, down from ~218 KB, now that the geometry isn't inlined.
+- Added the missing `<meta charset>` and viewport tags.
 
 ---
 
