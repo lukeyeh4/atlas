@@ -1,0 +1,1753 @@
+{
+ "formula": {
+  "expression": "WUE_onsite [L/kWh] = max(0, 0.0005112*Tw^2 - 0.04982*Tw + 2.387), Tw = wet-bulb temperature in deg F (Tw_F = Tw_C*9/5+32); applied to the annual-mean wet-bulb temperature",
+  "parameters": {
+   "a": 0.0005112,
+   "b": -0.04982,
+   "c": 2.387,
+   "Tw_units": "Fahrenheit",
+   "configuration": "'Fixed cold water' cooling tower (cold water held at 85 F, variable approach); Eq.(3) in Sen Gupta et al. 2024, Eq.(2) in Shumba et al. 2025",
+   "derivation": "Fit to SPX Cooling 'water usage calculator' output: flow 1000 gpm, range 10 F (1466 kW), drift 0.005%, cycles of concentration 3 (do not affect evaporation in the tool), lambda (tower efficiency multiplier) = 1",
+   "stated_lower_limit_F": 45,
+   "stated_lower_limit_C": 7.22,
+   "clamp_rule_used_here": "Tw < 45 F -> WUE fixed at value at 45 F = 1.1803 L/kWh",
+   "basis": "Water consumed (evaporated) on site per kWh of server/IT energy; excludes offsite electricity-generation water and PUE"
+  },
+  "citation": "Shumba, Tshekiso, Li, Fanti, Ren. 'A Water Efficiency Dataset for African Data Centers', ACM COMPASS 2025, doi:10.1145/3715335.3735483 (arXiv 2412.03716), Eq.(2); formula originates in Sen Gupta, Hossen, Li, Ren, Islam. 'A Dataset for Research on Water Sustainability', ACM e-Energy 2024, doi:10.1145/3632775.3661962 (arXiv 2405.17469), Eq.(3).",
+  "url": "https://arxiv.org/abs/2412.03716 ; https://arxiv.org/abs/2405.17469 ; data: https://huggingface.co/datasets/PengfeiLi/WaterEfficientDatasetForAfricanDataCenters",
+  "check": "Reproduces Nigeria 1.385339 at Tw 69.100873 F (20.61 C) exactly; reproduces all 44 African rows in Country_Summary.csv to 6 decimals (e.g. Ghana 1.451786 at 72.07 F, Ethiopia 1.196372 at 55.46 F, South Africa 1.206376 at 56.79 F), confirming the formula is applied to the annual-mean wet-bulb with no multiplier."
+ },
+ "wetbulb_source": {
+  "source": "World Bank Climate Change Knowledge Portal (CCKP) country aggregates of ERA5 (0.25 deg) monthly climatology 1991-2020: near-surface air temperature (tas) and relative humidity (hurs); wet-bulb via Stull (2011) 'Wet-bulb temperature from relative humidity and air temperature', J. Appl. Meteor. Climatol. 50:2267-2269 (same wet-bulb formula used by Sen Gupta et al. 2024).",
+  "url": "https://cckpapi.worldbank.org/cckp/v1/era5-x0.25_climatology_{tas|hurs}_climatology_monthly_1991-2020_mean_historical_era5_x0.25_mean/{ISO3}?_format=json",
+  "method": "For each of 12 calendar months, Tw_m = Stull(T_m, RH_m) from the country-mean monthly climatology; annual Tw = mean of the 12 monthly Tw (i.e. mean of monthly wet-bulbs, not wet-bulb of annual means, but still wet-bulb of monthly-mean T/RH rather than mean of hourly wet-bulb). Spatial weighting: area-weighted country mean (CCKP 'mean' aggregation; no population weighting available for this series). WUE then = formula(annual Tw), matching how Shumba et al. applied it. Countries present in Shumba et al. Country_Summary.csv use the published Tw/WUE directly. Validation on 24 African countries in both sets: our Tw minus theirs mean bias -0.27 C, MAE 1.55 C (range -3.6 to +4.3 C; theirs is WeatherAPI, one year, likely station/city-based).",
+  "year_range": "1991-2020 climatology (ERA5); Shumba et al. published values: 2023-08-23 to 2024-08-22"
+ },
+ "countries": {
+  "AD": {
+   "wetbulb_c": 2.95,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 5.4 C / RH 73% (annual means) -> mean of monthly Stull Tw. Tw 3.0 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.240, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "AE": {
+   "wetbulb_c": 19.81,
+   "wue": 1.356,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 28.0 C / RH 47% (annual means) -> mean of monthly Stull Tw."
+  },
+  "AF": {
+   "wetbulb_c": 6.21,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 12.5 C / RH 45% (annual means) -> mean of monthly Stull Tw. Tw 6.2 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.189, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "AG": {
+   "wetbulb_c": 23.37,
+   "wue": 1.501,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.2 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "AI": {
+   "wetbulb_c": 23.33,
+   "wue": 1.499,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.1 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "AL": {
+   "wetbulb_c": 9.32,
+   "wue": 1.173,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 12.5 C / RH 71% (annual means) -> mean of monthly Stull Tw."
+  },
+  "AM": {
+   "wetbulb_c": 3.72,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 6.6 C / RH 70% (annual means) -> mean of monthly Stull Tw. Tw 3.7 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.225, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "AO": {
+   "wetbulb_c": 17.23,
+   "wue": 1.277,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 22.2 C / RH 62% (annual means) -> mean of monthly Stull Tw."
+  },
+  "AR": {
+   "wetbulb_c": 10.17,
+   "wue": 1.174,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 14.7 C / RH 60% (annual means) -> mean of monthly Stull Tw. Very large/climatically diverse country: area-weighted national mean is dominated by sparsely populated regions and may not reflect where data centers sit."
+  },
+  "AS": {
+   "wetbulb_c": 24.31,
+   "wue": 1.547,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.8 C / RH 82% (annual means) -> mean of monthly Stull Tw."
+  },
+  "AT": {
+   "wetbulb_c": 4.65,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 6.9 C / RH 77% (annual means) -> mean of monthly Stull Tw. Tw 4.6 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.209, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "AU": {
+   "wetbulb_c": 15.25,
+   "wue": 1.232,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 22.2 C / RH 48% (annual means) -> mean of monthly Stull Tw. Very large/climatically diverse country: area-weighted national mean is dominated by sparsely populated regions and may not reflect where data centers sit."
+  },
+  "AW": {
+   "wetbulb_c": 24.48,
+   "wue": 1.555,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.7 C / RH 84% (annual means) -> mean of monthly Stull Tw."
+  },
+  "AX": {
+   "wetbulb_c": 4.94,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 6.9 C / RH 81% (annual means) -> mean of monthly Stull Tw. Tw 4.9 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.204, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "AZ": {
+   "wetbulb_c": 8.79,
+   "wue": 1.174,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 12.2 C / RH 69% (annual means) -> mean of monthly Stull Tw."
+  },
+  "BA": {
+   "wetbulb_c": 7.54,
+   "wue": 1.178,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 10.3 C / RH 74% (annual means) -> mean of monthly Stull Tw."
+  },
+  "BB": {
+   "wetbulb_c": 23.71,
+   "wue": 1.517,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.4 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "BD": {
+   "wetbulb_c": 22.43,
+   "wue": 1.459,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.3 C / RH 78% (annual means) -> mean of monthly Stull Tw."
+  },
+  "BE": {
+   "wetbulb_c": 8.11,
+   "wue": 1.175,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 10.3 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "BF": {
+   "wetbulb_c": 18.16,
+   "wue": 1.303,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 20.21 C -> WUE 1.371."
+  },
+  "BG": {
+   "wetbulb_c": 8.44,
+   "wue": 1.174,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 11.4 C / RH 73% (annual means) -> mean of monthly Stull Tw."
+  },
+  "BH": {
+   "wetbulb_c": 21.76,
+   "wue": 1.431,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.2 C / RH 69% (annual means) -> mean of monthly Stull Tw."
+  },
+  "BI": {
+   "wetbulb_c": 15.99,
+   "wue": 1.247,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 16.65 C -> WUE 1.263."
+  },
+  "BJ": {
+   "wetbulb_c": 22.02,
+   "wue": 1.442,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 21.88 C -> WUE 1.436."
+  },
+  "BL": {
+   "wetbulb_c": 23.36,
+   "wue": 1.501,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.2 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "BM": {
+   "wetbulb_c": 18.77,
+   "wue": 1.322,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 21.8 C / RH 76% (annual means) -> mean of monthly Stull Tw."
+  },
+  "BN": {
+   "wetbulb_c": 24.42,
+   "wue": 1.552,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.3 C / RH 86% (annual means) -> mean of monthly Stull Tw."
+  },
+  "BO": {
+   "wetbulb_c": 16.49,
+   "wue": 1.259,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 20.3 C / RH 69% (annual means) -> mean of monthly Stull Tw."
+  },
+  "BQ": {
+   "wetbulb_c": 24.29,
+   "wue": 1.546,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.7 C / RH 83% (annual means) -> mean of monthly Stull Tw."
+  },
+  "BR": {
+   "wetbulb_c": 21.79,
+   "wue": 1.432,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.0 C / RH 76% (annual means) -> mean of monthly Stull Tw. Very large/climatically diverse country: area-weighted national mean is dominated by sparsely populated regions and may not reflect where data centers sit."
+  },
+  "BS": {
+   "wetbulb_c": 22.26,
+   "wue": 1.452,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.4 C / RH 77% (annual means) -> mean of monthly Stull Tw."
+  },
+  "BT": {
+   "wetbulb_c": 7.8,
+   "wue": 1.177,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 9.6 C / RH 82% (annual means) -> mean of monthly Stull Tw."
+  },
+  "BV": {
+   "wetbulb_c": -2.02,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T -0.6 C / RH 83% (annual means) -> mean of monthly Stull Tw. Tw -2.0 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.385, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "BW": {
+   "wetbulb_c": 14.97,
+   "wue": 1.227,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 14.94 C -> WUE 1.226."
+  },
+  "BY": {
+   "wetbulb_c": 4.96,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 7.3 C / RH 77% (annual means) -> mean of monthly Stull Tw. Tw 5.0 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.204, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "BZ": {
+   "wetbulb_c": 23.18,
+   "wue": 1.492,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.5 C / RH 82% (annual means) -> mean of monthly Stull Tw."
+  },
+  "CA": {
+   "wetbulb_c": -5.68,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T -3.8 C / RH 75% (annual means) -> mean of monthly Stull Tw. Tw -5.7 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.544, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower. Very large/climatically diverse country: area-weighted national mean is dominated by sparsely populated regions and may not reflect where data centers sit."
+  },
+  "CC": {
+   "wetbulb_c": 23.4,
+   "wue": 1.503,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.2 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "CD": {
+   "wetbulb_c": 21.21,
+   "wue": 1.408,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 24.1 C / RH 78% (annual means) -> mean of monthly Stull Tw."
+  },
+  "CF": {
+   "wetbulb_c": 20.82,
+   "wue": 1.393,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 20.83 C -> WUE 1.394."
+  },
+  "CG": {
+   "wetbulb_c": 20.68,
+   "wue": 1.388,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 22.47 C -> WUE 1.461."
+  },
+  "CH": {
+   "wetbulb_c": 3.34,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 5.5 C / RH 77% (annual means) -> mean of monthly Stull Tw. Tw 3.3 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.232, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "CI": {
+   "wetbulb_c": 22.68,
+   "wue": 1.47,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.4 C / RH 74% (annual means) -> mean of monthly Stull Tw."
+  },
+  "CK": {
+   "wetbulb_c": 21.98,
+   "wue": 1.44,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 24.9 C / RH 78% (annual means) -> mean of monthly Stull Tw."
+  },
+  "CL": {
+   "wetbulb_c": 5.44,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 9.0 C / RH 64% (annual means) -> mean of monthly Stull Tw. Tw 5.4 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.198, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower. Very large/climatically diverse country: area-weighted national mean is dominated by sparsely populated regions and may not reflect where data centers sit."
+  },
+  "CM": {
+   "wetbulb_c": 18.93,
+   "wue": 1.327,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 20.69 C -> WUE 1.388."
+  },
+  "CN": {
+   "wetbulb_c": 3.51,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 7.2 C / RH 60% (annual means) -> mean of monthly Stull Tw. Tw 3.5 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.229, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower. Very large/climatically diverse country: area-weighted national mean is dominated by sparsely populated regions and may not reflect where data centers sit."
+  },
+  "CO": {
+   "wetbulb_c": 21.8,
+   "wue": 1.432,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 23.9 C / RH 84% (annual means) -> mean of monthly Stull Tw."
+  },
+  "CR": {
+   "wetbulb_c": 21.07,
+   "wue": 1.403,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 23.1 C / RH 84% (annual means) -> mean of monthly Stull Tw."
+  },
+  "CU": {
+   "wetbulb_c": 22.23,
+   "wue": 1.451,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.5 C / RH 76% (annual means) -> mean of monthly Stull Tw."
+  },
+  "CV": {
+   "wetbulb_c": 22.14,
+   "wue": 1.446,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 20.33 C -> WUE 1.375."
+  },
+  "CW": {
+   "wetbulb_c": 24.41,
+   "wue": 1.552,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.7 C / RH 83% (annual means) -> mean of monthly Stull Tw."
+  },
+  "CX": {
+   "wetbulb_c": 23.7,
+   "wue": 1.517,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.5 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "CY": {
+   "wetbulb_c": 15.24,
+   "wue": 1.232,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 19.7 C / RH 65% (annual means) -> mean of monthly Stull Tw."
+  },
+  "CZ": {
+   "wetbulb_c": 6.14,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 8.6 C / RH 77% (annual means) -> mean of monthly Stull Tw. Tw 6.1 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.190, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "DE": {
+   "wetbulb_c": 7.02,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 9.4 C / RH 78% (annual means) -> mean of monthly Stull Tw. Tw 7.0 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.182, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "DJ": {
+   "wetbulb_c": 21.52,
+   "wue": 1.421,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 28.3 C / RH 55% (annual means) -> mean of monthly Stull Tw."
+  },
+  "DK": {
+   "wetbulb_c": 6.97,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 8.9 C / RH 81% (annual means) -> mean of monthly Stull Tw. Tw 7.0 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.182, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "DM": {
+   "wetbulb_c": 23.21,
+   "wue": 1.494,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.7 C / RH 81% (annual means) -> mean of monthly Stull Tw."
+  },
+  "DO": {
+   "wetbulb_c": 21.38,
+   "wue": 1.415,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 24.1 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "DZ": {
+   "wetbulb_c": 14.13,
+   "wue": 1.212,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 13.05 C -> WUE 1.197."
+  },
+  "EC": {
+   "wetbulb_c": 18.83,
+   "wue": 1.324,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 20.6 C / RH 86% (annual means) -> mean of monthly Stull Tw."
+  },
+  "EE": {
+   "wetbulb_c": 4.31,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 6.3 C / RH 80% (annual means) -> mean of monthly Stull Tw. Tw 4.3 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.214, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "EG": {
+   "wetbulb_c": 17.12,
+   "wue": 1.275,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 14.38 C -> WUE 1.216."
+  },
+  "ER": {
+   "wetbulb_c": 16.58,
+   "wue": 1.261,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 19.78 C -> WUE 1.355."
+  },
+  "ES": {
+   "wetbulb_c": 10.22,
+   "wue": 1.175,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 14.2 C / RH 66% (annual means) -> mean of monthly Stull Tw."
+  },
+  "ET": {
+   "wetbulb_c": 13.04,
+   "wue": 1.196,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 17.33 C -> WUE 1.280."
+  },
+  "FI": {
+   "wetbulb_c": 1.04,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 2.9 C / RH 80% (annual means) -> mean of monthly Stull Tw. Tw 1.0 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.286, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "FJ": {
+   "wetbulb_c": 22.07,
+   "wue": 1.444,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 24.4 C / RH 83% (annual means) -> mean of monthly Stull Tw."
+  },
+  "FM": {
+   "wetbulb_c": 24.74,
+   "wue": 1.568,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 27.1 C / RH 83% (annual means) -> mean of monthly Stull Tw."
+  },
+  "FO": {
+   "wetbulb_c": 5.32,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 7.1 C / RH 82% (annual means) -> mean of monthly Stull Tw. Tw 5.3 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.199, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "FR": {
+   "wetbulb_c": 8.83,
+   "wue": 1.174,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 11.4 C / RH 76% (annual means) -> mean of monthly Stull Tw."
+  },
+  "GA": {
+   "wetbulb_c": 21.91,
+   "wue": 1.437,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 22.47 C -> WUE 1.461."
+  },
+  "GB": {
+   "wetbulb_c": 7.57,
+   "wue": 1.178,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 9.5 C / RH 82% (annual means) -> mean of monthly Stull Tw."
+  },
+  "GD": {
+   "wetbulb_c": 23.93,
+   "wue": 1.528,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.5 C / RH 81% (annual means) -> mean of monthly Stull Tw."
+  },
+  "GE": {
+   "wetbulb_c": 5.49,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 8.0 C / RH 74% (annual means) -> mean of monthly Stull Tw. Tw 5.5 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.197, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "GF": {
+   "wetbulb_c": 23.4,
+   "wue": 1.503,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.9 C / RH 82% (annual means) -> mean of monthly Stull Tw."
+  },
+  "GG": {
+   "wetbulb_c": 10.13,
+   "wue": 1.174,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 12.2 C / RH 81% (annual means) -> mean of monthly Stull Tw."
+  },
+  "GH": {
+   "wetbulb_c": 22.26,
+   "wue": 1.452,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 23.04 C -> WUE 1.486."
+  },
+  "GI": {
+   "wetbulb_c": 14.97,
+   "wue": 1.226,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 17.7 C / RH 77% (annual means) -> mean of monthly Stull Tw."
+  },
+  "GL": {
+   "wetbulb_c": -19.21,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T -18.2 C / RH 72% (annual means) -> mean of monthly Stull Tw. Tw -19.2 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 2.518, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "GM": {
+   "wetbulb_c": 21.59,
+   "wue": 1.424,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 27.9 C / RH 58% (annual means) -> mean of monthly Stull Tw."
+  },
+  "GN": {
+   "wetbulb_c": 19.96,
+   "wue": 1.362,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 21.09 C -> WUE 1.404."
+  },
+  "GP": {
+   "wetbulb_c": 23.22,
+   "wue": 1.495,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.9 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "GQ": {
+   "wetbulb_c": 22.14,
+   "wue": 1.447,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 22.21 C -> WUE 1.449."
+  },
+  "GR": {
+   "wetbulb_c": 11.35,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 14.9 C / RH 70% (annual means) -> mean of monthly Stull Tw."
+  },
+  "GT": {
+   "wetbulb_c": 20.11,
+   "wue": 1.367,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 22.9 C / RH 78% (annual means) -> mean of monthly Stull Tw."
+  },
+  "GU": {
+   "wetbulb_c": 24.63,
+   "wue": 1.563,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 27.1 C / RH 82% (annual means) -> mean of monthly Stull Tw."
+  },
+  "GW": {
+   "wetbulb_c": 22.38,
+   "wue": 1.457,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 27.6 C / RH 64% (annual means) -> mean of monthly Stull Tw."
+  },
+  "GY": {
+   "wetbulb_c": 22.91,
+   "wue": 1.48,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.3 C / RH 82% (annual means) -> mean of monthly Stull Tw."
+  },
+  "HK": {
+   "wetbulb_c": 20.42,
+   "wue": 1.378,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 23.2 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "HM": {
+   "wetbulb_c": 0.13,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 1.6 C / RH 83% (annual means) -> mean of monthly Stull Tw. Tw 0.1 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.312, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "HN": {
+   "wetbulb_c": 20.78,
+   "wue": 1.392,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 23.6 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "HR": {
+   "wetbulb_c": 9.29,
+   "wue": 1.173,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 12.2 C / RH 73% (annual means) -> mean of monthly Stull Tw."
+  },
+  "HT": {
+   "wetbulb_c": 22.01,
+   "wue": 1.441,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.2 C / RH 77% (annual means) -> mean of monthly Stull Tw."
+  },
+  "HU": {
+   "wetbulb_c": 8.2,
+   "wue": 1.175,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 11.3 C / RH 72% (annual means) -> mean of monthly Stull Tw."
+  },
+  "ID": {
+   "wetbulb_c": 23.14,
+   "wue": 1.491,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.2 C / RH 85% (annual means) -> mean of monthly Stull Tw. Very large/climatically diverse country: area-weighted national mean is dominated by sparsely populated regions and may not reflect where data centers sit."
+  },
+  "IE": {
+   "wetbulb_c": 8.09,
+   "wue": 1.176,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 9.9 C / RH 83% (annual means) -> mean of monthly Stull Tw."
+  },
+  "IL": {
+   "wetbulb_c": 15.01,
+   "wue": 1.227,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 20.3 C / RH 59% (annual means) -> mean of monthly Stull Tw."
+  },
+  "IM": {
+   "wetbulb_c": 8.42,
+   "wue": 1.174,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 10.3 C / RH 81% (annual means) -> mean of monthly Stull Tw."
+  },
+  "IN": {
+   "wetbulb_c": 19.21,
+   "wue": 1.336,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 24.2 C / RH 63% (annual means) -> mean of monthly Stull Tw. Very large/climatically diverse country: area-weighted national mean is dominated by sparsely populated regions and may not reflect where data centers sit."
+  },
+  "IO": {
+   "wetbulb_c": 24.14,
+   "wue": 1.538,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.6 C / RH 82% (annual means) -> mean of monthly Stull Tw."
+  },
+  "IQ": {
+   "wetbulb_c": 13.56,
+   "wue": 1.203,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 23.0 C / RH 39% (annual means) -> mean of monthly Stull Tw."
+  },
+  "IR": {
+   "wetbulb_c": 10.42,
+   "wue": 1.175,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 18.3 C / RH 40% (annual means) -> mean of monthly Stull Tw. Very large/climatically diverse country: area-weighted national mean is dominated by sparsely populated regions and may not reflect where data centers sit."
+  },
+  "IS": {
+   "wetbulb_c": 0.29,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 1.9 C / RH 82% (annual means) -> mean of monthly Stull Tw. Tw 0.3 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.307, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "IT": {
+   "wetbulb_c": 10.02,
+   "wue": 1.174,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 13.1 C / RH 72% (annual means) -> mean of monthly Stull Tw."
+  },
+  "JE": {
+   "wetbulb_c": 10.11,
+   "wue": 1.174,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 12.2 C / RH 81% (annual means) -> mean of monthly Stull Tw."
+  },
+  "JM": {
+   "wetbulb_c": 22.8,
+   "wue": 1.475,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.6 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "JO": {
+   "wetbulb_c": 11.98,
+   "wue": 1.185,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 19.4 C / RH 44% (annual means) -> mean of monthly Stull Tw."
+  },
+  "JP": {
+   "wetbulb_c": 9.32,
+   "wue": 1.173,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 12.0 C / RH 74% (annual means) -> mean of monthly Stull Tw."
+  },
+  "KE": {
+   "wetbulb_c": 16.16,
+   "wue": 1.251,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 19.78 C -> WUE 1.355."
+  },
+  "KG": {
+   "wetbulb_c": -2.0,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 0.5 C / RH 68% (annual means) -> mean of monthly Stull Tw. Tw -2.0 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.384, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "KH": {
+   "wetbulb_c": 23.85,
+   "wue": 1.524,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 27.4 C / RH 75% (annual means) -> mean of monthly Stull Tw."
+  },
+  "KI": {
+   "wetbulb_c": 24.09,
+   "wue": 1.536,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.8 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "KM": {
+   "wetbulb_c": 22.59,
+   "wue": 1.466,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.3 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "KN": {
+   "wetbulb_c": 23.4,
+   "wue": 1.503,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.2 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "KP": {
+   "wetbulb_c": 4.61,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 7.3 C / RH 70% (annual means) -> mean of monthly Stull Tw. Tw 4.6 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.209, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "KR": {
+   "wetbulb_c": 9.23,
+   "wue": 1.173,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 12.5 C / RH 68% (annual means) -> mean of monthly Stull Tw."
+  },
+  "KW": {
+   "wetbulb_c": 15.39,
+   "wue": 1.235,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.2 C / RH 35% (annual means) -> mean of monthly Stull Tw."
+  },
+  "KY": {
+   "wetbulb_c": 23.87,
+   "wue": 1.525,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.8 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "KZ": {
+   "wetbulb_c": 2.78,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 7.0 C / RH 61% (annual means) -> mean of monthly Stull Tw. Tw 2.8 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.243, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower. Very large/climatically diverse country: area-weighted national mean is dominated by sparsely populated regions and may not reflect where data centers sit."
+  },
+  "LA": {
+   "wetbulb_c": 20.4,
+   "wue": 1.377,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 23.0 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "LB": {
+   "wetbulb_c": 11.27,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 15.5 C / RH 64% (annual means) -> mean of monthly Stull Tw."
+  },
+  "LC": {
+   "wetbulb_c": 23.31,
+   "wue": 1.498,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.6 C / RH 76% (annual means) -> mean of monthly Stull Tw."
+  },
+  "LI": {
+   "wetbulb_c": 3.93,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 6.1 C / RH 77% (annual means) -> mean of monthly Stull Tw. Tw 3.9 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.221, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "LK": {
+   "wetbulb_c": 23.59,
+   "wue": 1.512,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.6 C / RH 78% (annual means) -> mean of monthly Stull Tw."
+  },
+  "LR": {
+   "wetbulb_c": 21.98,
+   "wue": 1.44,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 23.05 C -> WUE 1.487."
+  },
+  "LS": {
+   "wetbulb_c": 10.82,
+   "wue": 1.177,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 7.18 C -> WUE 1.181."
+  },
+  "LT": {
+   "wetbulb_c": 5.13,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 7.3 C / RH 79% (annual means) -> mean of monthly Stull Tw. Tw 5.1 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.202, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "LU": {
+   "wetbulb_c": 7.23,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 9.4 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "LV": {
+   "wetbulb_c": 4.68,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 6.8 C / RH 79% (annual means) -> mean of monthly Stull Tw. Tw 4.7 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.209, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "LY": {
+   "wetbulb_c": 16.32,
+   "wue": 1.255,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 13.25 C -> WUE 1.199."
+  },
+  "MA": {
+   "wetbulb_c": 14.67,
+   "wue": 1.221,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 12.32 C -> WUE 1.188."
+  },
+  "MC": {
+   "wetbulb_c": 11.93,
+   "wue": 1.185,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 14.7 C / RH 75% (annual means) -> mean of monthly Stull Tw."
+  },
+  "MD": {
+   "wetbulb_c": 7.32,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 10.5 C / RH 71% (annual means) -> mean of monthly Stull Tw."
+  },
+  "ME": {
+   "wetbulb_c": 6.91,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 9.6 C / RH 74% (annual means) -> mean of monthly Stull Tw. Tw 6.9 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.183, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "MF": {
+   "wetbulb_c": 23.37,
+   "wue": 1.501,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.2 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "MG": {
+   "wetbulb_c": 17.09,
+   "wue": 1.274,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 19.00 C -> WUE 1.329."
+  },
+  "MH": {
+   "wetbulb_c": 24.55,
+   "wue": 1.558,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 27.0 C / RH 82% (annual means) -> mean of monthly Stull Tw."
+  },
+  "MK": {
+   "wetbulb_c": 7.7,
+   "wue": 1.177,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 11.2 C / RH 68% (annual means) -> mean of monthly Stull Tw."
+  },
+  "ML": {
+   "wetbulb_c": 16.74,
+   "wue": 1.265,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 17.27 C -> WUE 1.279."
+  },
+  "MM": {
+   "wetbulb_c": 20.38,
+   "wue": 1.377,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 23.6 C / RH 76% (annual means) -> mean of monthly Stull Tw."
+  },
+  "MN": {
+   "wetbulb_c": -2.43,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 1.4 C / RH 52% (annual means) -> mean of monthly Stull Tw. Tw -2.4 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.401, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower. Very large/climatically diverse country: area-weighted national mean is dominated by sparsely populated regions and may not reflect where data centers sit."
+  },
+  "MO": {
+   "wetbulb_c": 20.69,
+   "wue": 1.388,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 23.3 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "MP": {
+   "wetbulb_c": 24.41,
+   "wue": 1.552,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 27.0 C / RH 81% (annual means) -> mean of monthly Stull Tw."
+  },
+  "MQ": {
+   "wetbulb_c": 23.27,
+   "wue": 1.497,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.0 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "MR": {
+   "wetbulb_c": 17.93,
+   "wue": 1.297,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 16.15 C -> WUE 1.251."
+  },
+  "MS": {
+   "wetbulb_c": 23.44,
+   "wue": 1.505,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.2 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "MT": {
+   "wetbulb_c": 16.41,
+   "wue": 1.257,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 19.3 C / RH 76% (annual means) -> mean of monthly Stull Tw."
+  },
+  "MU": {
+   "wetbulb_c": 20.78,
+   "wue": 1.392,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 23.7 C / RH 78% (annual means) -> mean of monthly Stull Tw."
+  },
+  "MV": {
+   "wetbulb_c": 24.46,
+   "wue": 1.554,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 27.3 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "MW": {
+   "wetbulb_c": 16.24,
+   "wue": 1.253,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 18.17 C -> WUE 1.304."
+  },
+  "MX": {
+   "wetbulb_c": 15.69,
+   "wue": 1.241,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 20.9 C / RH 59% (annual means) -> mean of monthly Stull Tw."
+  },
+  "MY": {
+   "wetbulb_c": 23.51,
+   "wue": 1.508,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.5 C / RH 85% (annual means) -> mean of monthly Stull Tw."
+  },
+  "MZ": {
+   "wetbulb_c": 20.92,
+   "wue": 1.397,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 19.71 C -> WUE 1.353."
+  },
+  "NA": {
+   "wetbulb_c": 13.34,
+   "wue": 1.2,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 13.52 C -> WUE 1.203."
+  },
+  "NC": {
+   "wetbulb_c": 19.54,
+   "wue": 1.347,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 22.5 C / RH 77% (annual means) -> mean of monthly Stull Tw."
+  },
+  "NE": {
+   "wetbulb_c": 16.38,
+   "wue": 1.256,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 15.46 C -> WUE 1.236."
+  },
+  "NF": {
+   "wetbulb_c": 16.6,
+   "wue": 1.262,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 19.9 C / RH 73% (annual means) -> mean of monthly Stull Tw."
+  },
+  "NG": {
+   "wetbulb_c": 20.61,
+   "wue": 1.385,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 20.86 C -> WUE 1.395."
+  },
+  "NI": {
+   "wetbulb_c": 22.68,
+   "wue": 1.47,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.3 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "NL": {
+   "wetbulb_c": 8.35,
+   "wue": 1.175,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 10.5 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "NO": {
+   "wetbulb_c": 0.72,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 2.6 C / RH 79% (annual means) -> mean of monthly Stull Tw. Tw 0.7 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.295, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "NP": {
+   "wetbulb_c": 9.81,
+   "wue": 1.174,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 12.7 C / RH 72% (annual means) -> mean of monthly Stull Tw."
+  },
+  "NR": {
+   "wetbulb_c": 24.65,
+   "wue": 1.564,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 27.3 C / RH 81% (annual means) -> mean of monthly Stull Tw."
+  },
+  "NU": {
+   "wetbulb_c": 22.5,
+   "wue": 1.462,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.3 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "NZ": {
+   "wetbulb_c": 8.18,
+   "wue": 1.175,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 10.3 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "OM": {
+   "wetbulb_c": 19.24,
+   "wue": 1.337,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 27.9 C / RH 44% (annual means) -> mean of monthly Stull Tw."
+  },
+  "PA": {
+   "wetbulb_c": 23.03,
+   "wue": 1.486,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.0 C / RH 85% (annual means) -> mean of monthly Stull Tw."
+  },
+  "PE": {
+   "wetbulb_c": 16.28,
+   "wue": 1.254,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 18.8 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "PF": {
+   "wetbulb_c": 23.0,
+   "wue": 1.484,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.7 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "PG": {
+   "wetbulb_c": 21.76,
+   "wue": 1.43,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 23.5 C / RH 87% (annual means) -> mean of monthly Stull Tw."
+  },
+  "PH": {
+   "wetbulb_c": 23.69,
+   "wue": 1.517,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.9 C / RH 84% (annual means) -> mean of monthly Stull Tw."
+  },
+  "PK": {
+   "wetbulb_c": 14.13,
+   "wue": 1.212,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 20.6 C / RH 50% (annual means) -> mean of monthly Stull Tw."
+  },
+  "PL": {
+   "wetbulb_c": 6.38,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 8.7 C / RH 77% (annual means) -> mean of monthly Stull Tw. Tw 6.4 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.187, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "PM": {
+   "wetbulb_c": 4.21,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 5.8 C / RH 82% (annual means) -> mean of monthly Stull Tw. Tw 4.2 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.216, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "PN": {
+   "wetbulb_c": 20.05,
+   "wue": 1.365,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 23.1 C / RH 77% (annual means) -> mean of monthly Stull Tw."
+  },
+  "PR": {
+   "wetbulb_c": 22.7,
+   "wue": 1.471,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.4 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "PS": {
+   "wetbulb_c": 15.25,
+   "wue": 1.232,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 20.2 C / RH 61% (annual means) -> mean of monthly Stull Tw."
+  },
+  "PT": {
+   "wetbulb_c": 11.81,
+   "wue": 1.184,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 15.3 C / RH 70% (annual means) -> mean of monthly Stull Tw."
+  },
+  "PW": {
+   "wetbulb_c": 24.78,
+   "wue": 1.57,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 27.1 C / RH 83% (annual means) -> mean of monthly Stull Tw."
+  },
+  "PY": {
+   "wetbulb_c": 19.68,
+   "wue": 1.352,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 23.9 C / RH 68% (annual means) -> mean of monthly Stull Tw."
+  },
+  "QA": {
+   "wetbulb_c": 20.31,
+   "wue": 1.374,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 27.4 C / RH 53% (annual means) -> mean of monthly Stull Tw."
+  },
+  "RE": {
+   "wetbulb_c": 18.27,
+   "wue": 1.307,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 20.6 C / RH 81% (annual means) -> mean of monthly Stull Tw."
+  },
+  "RO": {
+   "wetbulb_c": 7.26,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 10.0 C / RH 74% (annual means) -> mean of monthly Stull Tw."
+  },
+  "RS": {
+   "wetbulb_c": 8.22,
+   "wue": 1.175,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 11.2 C / RH 73% (annual means) -> mean of monthly Stull Tw."
+  },
+  "RU": {
+   "wetbulb_c": -5.5,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T -3.5 C / RH 74% (annual means) -> mean of monthly Stull Tw. Tw -5.5 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.536, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower. Very large/climatically diverse country: area-weighted national mean is dominated by sparsely populated regions and may not reflect where data centers sit."
+  },
+  "RW": {
+   "wetbulb_c": 17.05,
+   "wue": 1.273,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 15.97 C -> WUE 1.247."
+  },
+  "SA": {
+   "wetbulb_c": 14.89,
+   "wue": 1.225,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.0 C / RH 31% (annual means) -> mean of monthly Stull Tw. Very large/climatically diverse country: area-weighted national mean is dominated by sparsely populated regions and may not reflect where data centers sit."
+  },
+  "SB": {
+   "wetbulb_c": 24.2,
+   "wue": 1.541,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.1 C / RH 86% (annual means) -> mean of monthly Stull Tw."
+  },
+  "SC": {
+   "wetbulb_c": 23.25,
+   "wue": 1.496,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 23.67 C -> WUE 1.515."
+  },
+  "SD": {
+   "wetbulb_c": 19.65,
+   "wue": 1.351,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 16.54 C -> WUE 1.260."
+  },
+  "SE": {
+   "wetbulb_c": 1.79,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 3.8 C / RH 79% (annual means) -> mean of monthly Stull Tw. Tw 1.8 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.266, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "SG": {
+   "wetbulb_c": 24.71,
+   "wue": 1.567,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 27.0 C / RH 83% (annual means) -> mean of monthly Stull Tw."
+  },
+  "SH": {
+   "wetbulb_c": 15.95,
+   "wue": 1.247,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 18.8 C / RH 77% (annual means) -> mean of monthly Stull Tw."
+  },
+  "SI": {
+   "wetbulb_c": 7.64,
+   "wue": 1.178,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 10.1 C / RH 76% (annual means) -> mean of monthly Stull Tw."
+  },
+  "SJ": {
+   "wetbulb_c": -8.68,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T -7.6 C / RH 84% (annual means) -> mean of monthly Stull Tw. Tw -8.7 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.708, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "SK": {
+   "wetbulb_c": 6.26,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 8.8 C / RH 76% (annual means) -> mean of monthly Stull Tw. Tw 6.3 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.188, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "SL": {
+   "wetbulb_c": 22.22,
+   "wue": 1.45,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 22.90 C -> WUE 1.480."
+  },
+  "SM": {
+   "wetbulb_c": 11.53,
+   "wue": 1.181,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 14.7 C / RH 72% (annual means) -> mean of monthly Stull Tw."
+  },
+  "SN": {
+   "wetbulb_c": 20.83,
+   "wue": 1.394,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 20.79 C -> WUE 1.392."
+  },
+  "SO": {
+   "wetbulb_c": 21.29,
+   "wue": 1.412,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 20.59 C -> WUE 1.384."
+  },
+  "SR": {
+   "wetbulb_c": 23.24,
+   "wue": 1.495,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.9 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "SS": {
+   "wetbulb_c": 20.63,
+   "wue": 1.386,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 20.97 C -> WUE 1.399."
+  },
+  "ST": {
+   "wetbulb_c": 23.42,
+   "wue": 1.504,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.7 C / RH 83% (annual means) -> mean of monthly Stull Tw."
+  },
+  "SV": {
+   "wetbulb_c": 21.66,
+   "wue": 1.427,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.9 C / RH 70% (annual means) -> mean of monthly Stull Tw."
+  },
+  "SX": {
+   "wetbulb_c": 23.37,
+   "wue": 1.501,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.2 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "SY": {
+   "wetbulb_c": 12.31,
+   "wue": 1.188,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 19.0 C / RH 50% (annual means) -> mean of monthly Stull Tw."
+  },
+  "SZ": {
+   "wetbulb_c": 15.95,
+   "wue": 1.246,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 19.7 C / RH 69% (annual means) -> mean of monthly Stull Tw."
+  },
+  "TC": {
+   "wetbulb_c": 23.16,
+   "wue": 1.492,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.0 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "TD": {
+   "wetbulb_c": 17.55,
+   "wue": 1.286,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 16.42 C -> WUE 1.257."
+  },
+  "TF": {
+   "wetbulb_c": 1.75,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 3.3 C / RH 83% (annual means) -> mean of monthly Stull Tw. Tw 1.7 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.268, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "TG": {
+   "wetbulb_c": 21.03,
+   "wue": 1.401,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 22.56 C -> WUE 1.465."
+  },
+  "TH": {
+   "wetbulb_c": 22.94,
+   "wue": 1.482,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.4 C / RH 75% (annual means) -> mean of monthly Stull Tw."
+  },
+  "TJ": {
+   "wetbulb_c": -2.68,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 0.2 C / RH 65% (annual means) -> mean of monthly Stull Tw. Tw -2.7 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.411, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "TK": {
+   "wetbulb_c": 24.73,
+   "wue": 1.568,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 27.3 C / RH 82% (annual means) -> mean of monthly Stull Tw."
+  },
+  "TL": {
+   "wetbulb_c": 21.9,
+   "wue": 1.436,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 24.6 C / RH 80% (annual means) -> mean of monthly Stull Tw."
+  },
+  "TM": {
+   "wetbulb_c": 9.96,
+   "wue": 1.174,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 16.6 C / RH 50% (annual means) -> mean of monthly Stull Tw."
+  },
+  "TN": {
+   "wetbulb_c": 16.04,
+   "wue": 1.248,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 14.23 C -> WUE 1.214."
+  },
+  "TO": {
+   "wetbulb_c": 21.84,
+   "wue": 1.434,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 24.8 C / RH 78% (annual means) -> mean of monthly Stull Tw."
+  },
+  "TR": {
+   "wetbulb_c": 7.55,
+   "wue": 1.178,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 11.6 C / RH 63% (annual means) -> mean of monthly Stull Tw."
+  },
+  "TT": {
+   "wetbulb_c": 23.87,
+   "wue": 1.525,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.3 C / RH 82% (annual means) -> mean of monthly Stull Tw."
+  },
+  "TV": {
+   "wetbulb_c": 24.82,
+   "wue": 1.573,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 27.4 C / RH 81% (annual means) -> mean of monthly Stull Tw."
+  },
+  "TW": {
+   "wetbulb_c": 18.0,
+   "wue": 1.299,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 20.3 C / RH 81% (annual means) -> mean of monthly Stull Tw."
+  },
+  "TZ": {
+   "wetbulb_c": 17.41,
+   "wue": 1.282,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 18.35 C -> WUE 1.309."
+  },
+  "UA": {
+   "wetbulb_c": 6.32,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 9.2 C / RH 73% (annual means) -> mean of monthly Stull Tw. Tw 6.3 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.188, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower."
+  },
+  "UG": {
+   "wetbulb_c": 17.99,
+   "wue": 1.298,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 19.22 C -> WUE 1.336."
+  },
+  "UM": {
+   "wetbulb_c": 22.42,
+   "wue": 1.459,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.3 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "US": {
+   "wetbulb_c": 5.93,
+   "wue": 1.18,
+   "source": "era5_cckp_stull",
+   "clamped": true,
+   "note": "ERA5 1991-2020 area-weighted monthly T 9.6 C / RH 64% (annual means) -> mean of monthly Stull Tw. Tw 5.9 C is below the formula's stated 45 F (7.2 C) lower limit; WUE clamped to the value at 45 F (unclamped extrapolation would be 1.192, which is a fitting artifact: the quadratic rises again below ~9.3 C). In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower. Very large/climatically diverse country: area-weighted national mean is dominated by sparsely populated regions and may not reflect where data centers sit."
+  },
+  "UY": {
+   "wetbulb_c": 14.43,
+   "wue": 1.217,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 17.5 C / RH 74% (annual means) -> mean of monthly Stull Tw."
+  },
+  "UZ": {
+   "wetbulb_c": 7.65,
+   "wue": 1.178,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 13.4 C / RH 53% (annual means) -> mean of monthly Stull Tw."
+  },
+  "VA": {
+   "wetbulb_c": 12.29,
+   "wue": 1.188,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 15.7 C / RH 71% (annual means) -> mean of monthly Stull Tw."
+  },
+  "VC": {
+   "wetbulb_c": 23.79,
+   "wue": 1.521,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.4 C / RH 81% (annual means) -> mean of monthly Stull Tw."
+  },
+  "VE": {
+   "wetbulb_c": 22.58,
+   "wue": 1.466,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.5 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "VG": {
+   "wetbulb_c": 23.37,
+   "wue": 1.501,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.2 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "VI": {
+   "wetbulb_c": 23.51,
+   "wue": 1.508,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.3 C / RH 79% (annual means) -> mean of monthly Stull Tw."
+  },
+  "VN": {
+   "wetbulb_c": 21.41,
+   "wue": 1.416,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 23.9 C / RH 81% (annual means) -> mean of monthly Stull Tw."
+  },
+  "VU": {
+   "wetbulb_c": 22.56,
+   "wue": 1.465,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.1 C / RH 81% (annual means) -> mean of monthly Stull Tw."
+  },
+  "WF": {
+   "wetbulb_c": 24.41,
+   "wue": 1.552,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.9 C / RH 82% (annual means) -> mean of monthly Stull Tw."
+  },
+  "WS": {
+   "wetbulb_c": 23.38,
+   "wue": 1.502,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.5 C / RH 84% (annual means) -> mean of monthly Stull Tw."
+  },
+  "YE": {
+   "wetbulb_c": 17.28,
+   "wue": 1.279,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 25.8 C / RH 42% (annual means) -> mean of monthly Stull Tw."
+  },
+  "YT": {
+   "wetbulb_c": 23.21,
+   "wue": 1.494,
+   "source": "era5_cckp_stull",
+   "clamped": false,
+   "note": "ERA5 1991-2020 area-weighted monthly T 26.2 C / RH 78% (annual means) -> mean of monthly Stull Tw."
+  },
+  "ZA": {
+   "wetbulb_c": 13.77,
+   "wue": 1.206,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 12.30 C -> WUE 1.188."
+  },
+  "ZM": {
+   "wetbulb_c": 15.57,
+   "wue": 1.238,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 16.77 C -> WUE 1.266."
+  },
+  "ZW": {
+   "wetbulb_c": 14.34,
+   "wue": 1.215,
+   "source": "shumba2025_published",
+   "clamped": false,
+   "note": "Published value from Shumba et al. 2025 Country_Summary.csv (WeatherAPI, Aug 2023-Aug 2024). For comparison our ERA5/CCKP+Stull method gives Tw 16.15 C -> WUE 1.251."
+  }
+ },
+ "caveats": [
+  "Evaporative cooling-tower basis only: many real data centers (especially in cool climates, and hyperscalers using air-side economization or closed-loop/dry coolers) consume far less on-site water; treat values as a climate-driven estimate for a tower-cooled facility, roughly an upper-ish bound, not a measured national average.",
+  "The fitted quadratic has a minimum near 48.7 F (9.3 C) and rises again at lower wet-bulbs; its authors state a 45 F lower limit. Countries with annual-mean Tw below 7.2 C are clamped to 1.180 L/kWh (flag 'clamped'); the formula therefore cannot express the low WUE that free cooling achieves in cold climates, and cold-country values are not meaningfully differentiated.",
+  "The formula is fairly flat: across all climates here it spans only ~1.17-1.57 L/kWh, so it differentiates hot-humid tropics from temperate zones but understates real-world spread (reported fleet WUEs range from ~0 to >2 L/kWh).",
+  "Applying a convex formula to an annual-mean wet-bulb (as the source dataset does) underestimates the mean of hourly WUE in seasonal climates; the national-mean approach also ignores diurnal and seasonal extremes.",
+  "Area-weighted national means are crude for large or climatically diverse countries (USA, Canada, Russia, China, Brazil, Australia, India, Kazakhstan, Chile, Argentina, Indonesia, Saudi Arabia, Iran, Mongolia): the mean is dominated by sparsely populated land (e.g. Canadian/Russian Arctic, Australian outback, Tibetan plateau) rather than where data centers are.",
+  "Stull (2011) is an empirical fit valid roughly for RH 5-99% and T -20 to 50 C at sea-level pressure, accuracy about +/-1 C; applying it to monthly-mean T and RH (rather than hourly data) adds further error, larger in arid countries (wet-bulb of means vs mean of hourly wet-bulbs differs by up to ~1 C for Iraq/Saudi Arabia/Iran).",
+  "Mixed sources: the 44 African countries in Shumba et al. use Shumba et al.'s published WeatherAPI-based values (a single year, Aug 2023-Aug 2024) while the rest use the ERA5 1991-2020 climatology; for Kenya and Ethiopia the two methods differ by ~3.6-4.3 C in Tw (~0.08-0.10 L/kWh), probably because the published values reflect cooler highland locations. ERA5-method values for these are given in each note.",
+  "Only on-site (direct) WUE; excludes off-site water embedded in electricity generation, which is often larger."
+ ]
+}

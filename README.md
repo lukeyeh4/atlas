@@ -99,7 +99,8 @@ To rebuild the data: `python3 data/scripts/build_all.py` (see
 | `data/` | Generated data the app reads, the sources it's built from, and the build scripts |
 | `docs/locale-contract.md` | The agreed shape of the data files: the interface between data and app |
 | `docs/database.md` | The database plan (Postgres, read-only to the public) |
-| `db/` | Schema and seed for that database |
+| `db/schema.sql` | Postgres schema for that database, keyed by ISO code |
+| `db/seed-from-index.mjs` | Generates `db/seed.sql` from `index.html` and `data/locales.json` |
 | `countries.json` | Natural Earth 110m geometry from v0.3; no longer loaded, kept for reference |
 | `CHANGELOG.md` | Every version, with the reasoning |
 | `ROADMAP.md` | Blocking questions and planned work |

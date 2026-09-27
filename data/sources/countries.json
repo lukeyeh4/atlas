@@ -1,0 +1,388 @@
+{
+ "sources": {
+  "ci": {
+   "source": "Ember Yearly Electricity Data, via Our World in Data 'Carbon intensity of electricity generation'",
+   "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity",
+   "year": 2024,
+   "confidence": "measured",
+   "unit": "gCO2/kWh"
+  },
+  "ws": {
+   "source": "WRI Aqueduct 4.0 Country Rankings, baseline water stress (bws), all-sector weighting (Tot); score 0-5 divided by 5",
+   "url": "https://files.wri.org/aqueduct/aqueduct-4-0-country-rankings.zip",
+   "year": 2023,
+   "confidence": "estimated",
+   "unit": "0-1 (Aqueduct score/5)"
+  },
+  "aq": {
+   "source": "World Bank WDI EN.ATM.PM25.MC.M3 (population-weighted mean annual PM2.5 exposure; underlying data GBD 2023 / IHME, satellite+model derived)",
+   "url": "https://api.worldbank.org/v2/country/all/indicator/EN.ATM.PM25.MC.M3?format=json",
+   "year": 2023,
+   "confidence": "estimated",
+   "unit": "µg/m³ PM2.5"
+  }
+ },
+ "countries": {
+  "United States of America": [
+   383.8,
+   0.521,
+   7.0
+  ],
+  "Canada": [
+   185.3,
+   0.247,
+   6.6
+  ],
+  "Mexico": [
+   483.1,
+   0.799,
+   16.6
+  ],
+  "Brazil": [
+   106.1,
+   0.208,
+   13.4
+  ],
+  "Argentina": [
+   344.8,
+   0.367,
+   14.3
+  ],
+  "Chile": [
+   259.9,
+   0.894,
+   23.1
+  ],
+  "Colombia": [
+   298.3,
+   0.099,
+   18.4
+  ],
+  "Peru": [
+   258.7,
+   0.749,
+   31.1
+  ],
+  "Venezuela": [
+   85.9,
+   0.364,
+   19.2
+  ],
+  "United Kingdom": [
+   216.5,
+   0.26,
+   9.5
+  ],
+  "Ireland": [
+   270.9,
+   0.073,
+   7.5
+  ],
+  "France": [
+   40.5,
+   0.383,
+   8.2
+  ],
+  "Germany": [
+   336.4,
+   0.408,
+   8.8
+  ],
+  "Netherlands": [
+   250.7,
+   0.316,
+   8.6
+  ],
+  "Belgium": [
+   127.0,
+   0.882,
+   8.4
+  ],
+  "Spain": [
+   146.2,
+   0.788,
+   10.1
+  ],
+  "Portugal": [
+   110.6,
+   0.652,
+   8.8
+  ],
+  "Italy": [
+   281.4,
+   0.669,
+   14.3
+  ],
+  "Switzerland": [
+   34.6,
+   0.081,
+   8.3
+  ],
+  "Austria": [
+   103.5,
+   0.052,
+   10.0
+  ],
+  "Poland": [
+   608.2,
+   0.332,
+   16.5
+  ],
+  "Czechia": [
+   414.2,
+   0.367,
+   12.7
+  ],
+  "Sweden": [
+   34.9,
+   0.156,
+   5.3
+  ],
+  "Norway": [
+   29.7,
+   0.038,
+   5.5
+  ],
+  "Finland": [
+   66.6,
+   0.162,
+   4.6
+  ],
+  "Denmark": [
+   131.8,
+   0.19,
+   7.5
+  ],
+  "Iceland": [
+   27.8,
+   0.0,
+   4.9
+  ],
+  "Greece": [
+   321.6,
+   0.868,
+   14.1
+  ],
+  "Romania": [
+   251.3,
+   0.238,
+   16.0
+  ],
+  "Ukraine": [
+   250.5,
+   0.275,
+   14.9
+  ],
+  "Russia": [
+   446.0,
+   0.234,
+   11.6
+  ],
+  "Turkey": [
+   469.7,
+   0.677,
+   26.4
+  ],
+  "Kazakhstan": [
+   802.0,
+   0.502,
+   19.6
+  ],
+  "China": [
+   555.4,
+   0.56,
+   32.0
+  ],
+  "India": [
+   705.4,
+   0.822,
+   54.1
+  ],
+  "Japan": [
+   483.4,
+   0.394,
+   11.5
+  ],
+  "South Korea": [
+   415.5,
+   0.476,
+   21.9
+  ],
+  "Taiwan": [
+   635.2,
+   null,
+   12.8
+  ],
+  "Mongolia": [
+   810.7,
+   0.626,
+   42.7
+  ],
+  "Vietnam": [
+   484.3,
+   0.423,
+   24.8
+  ],
+  "Thailand": [
+   554.7,
+   0.725,
+   23.5
+  ],
+  "Malaysia": [
+   600.4,
+   0.207,
+   15.9
+  ],
+  "Indonesia": [
+   680.2,
+   0.534,
+   20.8
+  ],
+  "Philippines": [
+   621.7,
+   0.405,
+   22.2
+  ],
+  "Singapore": [
+   498.7,
+   null,
+   15.1
+  ],
+  "Bangladesh": [
+   695.7,
+   0.532,
+   69.3
+  ],
+  "Pakistan": [
+   373.7,
+   0.758,
+   58.4
+  ],
+  "Saudi Arabia": [
+   692.0,
+   0.996,
+   73.5
+  ],
+  "United Arab Emirates": [
+   467.5,
+   1.0,
+   57.2
+  ],
+  "Iran": [
+   648.7,
+   0.931,
+   40.2
+  ],
+  "Iraq": [
+   683.1,
+   0.829,
+   49.5
+  ],
+  "Israel": [
+   540.5,
+   0.988,
+   21.9
+  ],
+  "Egypt": [
+   574.5,
+   0.97,
+   43.1
+  ],
+  "Morocco": [
+   594.8,
+   0.798,
+   18.7
+  ],
+  "Algeria": [
+   632.9,
+   0.775,
+   16.5
+  ],
+  "Nigeria": [
+   495.7,
+   0.16,
+   65.7
+  ],
+  "South Africa": [
+   717.4,
+   0.834,
+   27.7
+  ],
+  "Kenya": [
+   85.2,
+   0.158,
+   20.3
+  ],
+  "Ethiopia": [
+   23.4,
+   0.192,
+   23.8
+  ],
+  "Ghana": [
+   468.9,
+   0.022,
+   28.1
+  ],
+  "Tanzania": [
+   345.0,
+   0.381,
+   20.2
+  ],
+  "Angola": [
+   185.4,
+   0.226,
+   19.9
+  ],
+  "Australia": [
+   553.8,
+   0.581,
+   6.4
+  ],
+  "New Zealand": [
+   112.0,
+   0.01,
+   6.9
+  ]
+ },
+ "exceptions": {
+  "Ukraine": {
+   "ci": {
+    "value": 250.5,
+    "source": "Ember via Our World in Data (latest available year; no 2023/2024 data published for Ukraine)",
+    "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity",
+    "year": 2022
+   }
+  },
+  "Taiwan": {
+   "aq": {
+    "value": 12.8,
+    "source": "Taiwan Ministry of Environment national annual average PM2.5 (station monitoring), as reported by Taipei Times 2026-03-26; ministry reports 12.8 for both 2024 and 2025. IQAir reported 17.5 (2024) and 13.3 (2025). Not directly comparable to the GBD population-weighted modelled values used for other countries.",
+    "url": "https://www.taipeitimes.com/News/front/archives/2026/03/26/2003854484",
+    "year": 2024,
+    "confidence": "measured"
+   },
+   "ws": {
+    "value": null,
+    "source": "Taiwan is not included in WRI Aqueduct 4.0 country or province rankings",
+    "url": "https://files.wri.org/aqueduct/aqueduct-4-0-country-rankings.zip",
+    "year": 2023
+   }
+  },
+  "Singapore": {
+   "ws": {
+    "value": null,
+    "source": "Aqueduct 4.0 reports 'NoData' (-9999) for Singapore baseline water stress",
+    "url": "https://files.wri.org/aqueduct/aqueduct-4-0-country-rankings.zip",
+    "year": 2023
+   }
+  }
+ },
+ "caveats": [
+  "ci: 2024 values used throughout (OWID/Ember CSV also has partial 2025 values for many countries; not used for consistency). Ukraine uses 2022 (latest available).",
+  "ci: Taiwan is covered by Ember/OWID directly (2024 = 635.2).",
+  "ws: Aqueduct baseline covers hydrology 1979-2019; ranking file published 2023 (Y2023M07D05). Iceland scores 0 (genuinely low, not missing).",
+  "ws: Aqueduct score is a banded score (0-1 Low <10%, 1-2 Low-Medium, 2-3 Medium-High, 3-4 High, 4-5 Extremely High >80% withdrawals/supply); dividing by 5 gives a 0-1 index, not a withdrawal ratio.",
+  "aq: World Bank 2023 is the latest year in the API (last updated 2026-07-13); values are GBD 2023 modelled population-weighted exposure and differ from IQAir monitor averages.",
+  "aq: Taiwan not in World Bank data; ministry station average used instead (different methodology)."
+ ]
+}

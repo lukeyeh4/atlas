@@ -1,0 +1,448 @@
+{
+ "v": 1,
+ "built": "2026-09-27",
+ "types": {
+  "mine": {
+   "n": "Mine",
+   "stage": "raw",
+   "p": {
+    "v": 64.0,
+    "low": 18.4,
+    "high": 220.0,
+    "conf": "estimated",
+    "src": "mine-p",
+    "note": "Geometric mean of the two sourced mines; a judgement across very different scales (lithium, grid-only vs. giant copper, self-generated)."
+   },
+   "u": {
+    "v": 1.0,
+    "conf": "estimated",
+    "src": "model-convention"
+   },
+   "pue": {
+    "v": 1.0,
+    "conf": "estimated",
+    "src": "model-convention"
+   },
+   "g": {
+    "v": 0.073,
+    "low": -0.032,
+    "high": 0.26,
+    "conf": "estimated",
+    "src": "mine-g",
+    "note": "Median of four sourced growth figures (one is planned capacity)."
+   },
+   "water": {
+    "v": 8.66,
+    "low": 2.94,
+    "high": 11.7,
+    "conf": "estimated",
+    "src": "mine-water",
+    "basis": "withdrawal",
+    "note": "Median of company total water withdrawal / energy."
+   }
+  },
+  "materials": {
+   "n": "Materials & wafers",
+   "stage": "raw",
+   "p": {
+    "v": 15.0,
+    "low": 11.2,
+    "high": 22.1,
+    "conf": "estimated",
+    "src": "materials-p",
+    "note": "Silicon wafer plants only (company totals / plant count)."
+   },
+   "u": {
+    "v": 1.0,
+    "conf": "estimated",
+    "src": "model-convention"
+   },
+   "pue": {
+    "v": 1.0,
+    "conf": "estimated",
+    "src": "model-convention"
+   },
+   "g": {
+    "v": 0.022,
+    "conf": "estimated",
+    "src": "materials-g",
+    "note": "Median company electricity growth."
+   },
+   "water": {
+    "v": 6.32,
+    "low": 4.3,
+    "high": 10.8,
+    "conf": "estimated",
+    "src": "materials-water",
+    "basis": "withdrawal",
+    "note": "Median of company total water withdrawal / energy."
+   }
+  },
+  "fab": {
+   "n": "Fab",
+   "stage": "chip",
+   "p": {
+    "v": 195.0,
+    "low": 173.0,
+    "high": 269.0,
+    "conf": "estimated",
+    "src": "fab-p",
+    "note": "Mean of single-fab sites (Hiroshima 173, Chandler electricity-only ~216)."
+   },
+   "u": {
+    "v": 1.0,
+    "conf": "estimated",
+    "src": "model-convention"
+   },
+   "pue": {
+    "v": 1.0,
+    "conf": "estimated",
+    "src": "model-convention"
+   },
+   "g": {
+    "v": 0.053,
+    "low": 0.023,
+    "high": 0.082,
+    "conf": "estimated",
+    "src": "fab-g",
+    "note": "Median of six fab growth figures (four are company-wide)."
+   },
+   "water": {
+    "v": 5.25,
+    "low": 4.7,
+    "high": 5.25,
+    "conf": "estimated",
+    "src": "fab-water",
+    "basis": "withdrawal",
+    "note": "TSMC total water intake / total electricity (2025; 2024 = 4.70)."
+   }
+  },
+  "packaging": {
+   "n": "Packaging & test",
+   "stage": "chip",
+   "p": {
+    "v": 146.0,
+    "conf": "disclosed",
+    "src": "packaging-p",
+    "note": "One sourced site (ASE Kaohsiung)."
+   },
+   "u": {
+    "v": 1.0,
+    "conf": "estimated",
+    "src": "model-convention"
+   },
+   "pue": {
+    "v": 1.0,
+    "conf": "estimated",
+    "src": "model-convention"
+   },
+   "g": {
+    "v": 0.024,
+    "conf": "disclosed",
+    "src": "packaging-g",
+    "note": "ASE Kaohsiung."
+   },
+   "water": {
+    "v": 5.1,
+    "low": 1.72,
+    "high": 8.75,
+    "conf": "estimated",
+    "src": "packaging-water",
+    "basis": "withdrawal",
+    "note": "Median of company total water withdrawal / energy."
+   }
+  },
+  "equipment": {
+   "n": "Equipment & optics",
+   "stage": "chip",
+   "p": {
+    "v": 40.0,
+    "high": 60.6,
+    "conf": "estimated",
+    "src": "equipment-p",
+    "note": "Upper bound: ASML EU renewable electricity 2025 (all EU sites incl. Veldhoven) = 40 MW; ASML group 60.6, ZEISS group 59."
+   },
+   "u": {
+    "v": 1.0,
+    "conf": "estimated",
+    "src": "model-convention"
+   },
+   "pue": {
+    "v": 1.0,
+    "conf": "estimated",
+    "src": "model-convention"
+   },
+   "g": {
+    "v": 0.079,
+    "low": 0.049,
+    "high": 0.109,
+    "conf": "estimated",
+    "src": "equipment-g",
+    "note": "Mean of ASML and ZEISS company-wide growth."
+   },
+   "water": {
+    "v": 3.36,
+    "low": 2.46,
+    "high": 4.1,
+    "conf": "estimated",
+    "src": "equipment-water",
+    "basis": "withdrawal",
+    "note": "Median of company total water withdrawal / energy."
+   }
+  },
+  "dc-training": {
+   "n": "Data center (training)",
+   "stage": "infra",
+   "p": {
+    "v": 200.0,
+    "low": 200.0,
+    "high": 1200.0,
+    "conf": "estimated",
+    "src": "dc-training-p",
+    "note": "Only sourced single campus: Abilene ~200 MW operational (Apr 2026), 1.2 GW planned by end-2026."
+   },
+   "pue": {
+    "v": 1.3,
+    "low": 1.08,
+    "high": 1.56,
+    "conf": "projected",
+    "src": "dc-training-pue",
+    "note": "Crusoe design range 1.2-1.4 for Abilene; Google campuses 1.08-1.10; Uptime 2024 industry average 1.56."
+   },
+   "u": {
+    "v": 0.436,
+    "conf": "estimated",
+    "src": "dc-training-u",
+    "note": "Ireland metered: 2025 data-center electricity / installed IT capacity = u x PUE = 0.567; divided by this profile PUE."
+   },
+   "g": {
+    "v": 0.1,
+    "low": 0.089,
+    "high": 0.42,
+    "conf": "measured",
+    "src": "dc-training-g",
+    "note": "Ireland metered electricity growth."
+   }
+  },
+  "assembly": {
+   "n": "Hardware assembly",
+   "stage": "infra",
+   "p": {
+    "v": 5.0,
+    "low": 1.75,
+    "high": 22.8,
+    "conf": "estimated",
+    "src": "assembly-p",
+    "note": "Median per-plant electricity of server/ODM makers (company totals / plant count, and Quanta per-plant)."
+   },
+   "u": {
+    "v": 1.0,
+    "conf": "estimated",
+    "src": "model-convention"
+   },
+   "pue": {
+    "v": 1.0,
+    "conf": "estimated",
+    "src": "model-convention"
+   },
+   "g": {
+    "v": 0.06,
+    "low": -0.29,
+    "high": 0.92,
+    "conf": "estimated",
+    "src": "assembly-g",
+    "note": "Median company electricity growth; AI-server makers grow far faster (Wistron +21%, Wiwynn +92%)."
+   },
+   "water": {
+    "v": 3.59,
+    "low": 2.28,
+    "high": 5.29,
+    "conf": "estimated",
+    "src": "assembly-water",
+    "basis": "withdrawal",
+    "note": "Median of company total water withdrawal / energy."
+   }
+  },
+  "lab": {
+   "n": "AI lab",
+   "stage": "model",
+   "p": {
+    "v": 1.5,
+    "low": 0.3,
+    "high": 1.9,
+    "conf": "estimated",
+    "src": "lab-p",
+    "note": "Office floor area x US office energy benchmark (EIA CBECS 13.6 kWh/sq ft/yr); cross-checked with Alphabet office electricity per employee."
+   },
+   "u": {
+    "v": 1.0,
+    "conf": "estimated",
+    "src": "model-convention"
+   },
+   "pue": {
+    "v": 1.0,
+    "conf": "estimated",
+    "src": "model-convention"
+   },
+   "g": {
+    "v": 0.35,
+    "high": 0.63,
+    "conf": "estimated",
+    "src": "lab-g",
+    "note": "Floor-area growth of OpenAI SF 2023-2026 (Anthropic implies 0.63)."
+   }
+  },
+  "dc-inference": {
+   "n": "Data center (inference)",
+   "stage": "delivery",
+   "p": {
+    "v": 20.0,
+    "low": 10.0,
+    "high": 100.0,
+    "conf": "estimated",
+    "src": "dc-inference-p",
+    "note": "CoreWeave ~850 MW across 43 sites (~20 MW/site); IEA conventional data centre 10-25 MW; Digital Realty ~9.4 MW/facility."
+   },
+   "pue": {
+    "v": 1.56,
+    "low": 1.08,
+    "high": 1.56,
+    "conf": "estimated",
+    "src": "dc-inference-pue",
+    "note": "Uptime Institute 2024 global average (colocation-heavy)."
+   },
+   "u": {
+    "v": 0.363,
+    "conf": "estimated",
+    "src": "dc-inference-u",
+    "note": "Ireland metered u x PUE = 0.567, divided by PUE 1.56."
+   },
+   "g": {
+    "v": 0.3,
+    "low": 0.1,
+    "high": 0.3,
+    "conf": "projected",
+    "src": "dc-inference-g",
+    "note": "IEA Base Case growth of accelerated-server electricity 2024-2030 (all data centers: 0.15; Ireland metered: 0.10)."
+   }
+  }
+ },
+ "sources": {
+  "assembly-g": {
+   "title": "Hardware assembly growth: Quanta Computer QSMC - Shanghai Manufacturing City (notebook/server mega-complex) 0.257 (2023); Quanta Computer QCI - Taiwan plant (G…",
+   "url": "https://esg.wistron.com/en/environment/EnergyandGHG/EnergyUse"
+  },
+  "assembly-p": {
+   "title": "Hardware assembly power: Quanta Computer QSMC - Shanghai Manufacturing City (notebook/server mega-complex) 62.78 (2023); Quanta Computer QCI - Taiwan plant (Gu…",
+   "url": "https://esg.wistron.com/en/environment/EnergyandGHG/EnergyUse"
+  },
+  "assembly-water": {
+   "title": "Hardware assembly process water: Hon Hai / Foxconn Group 4.99 (2025); Wistron Wistron + consolidated subsidiaries excl. Wiwynn 5.29 (2025); Wiwynn All consolid…",
+   "url": "https://esg.inventec.com/esg-uploads/uploads/files/shares/esg-report/Inventec%202025%20Sustainabiltly%20Report_TC_Final.pdf"
+  },
+  "dc-inference-g": {
+   "title": "Data center (inference) growth: IEA Base Case growth of accelerated-server electricity 2024-2030 (all data centers: 0.15; Ireland metered: 0.10).",
+   "url": "https://github.com/lukeyeh4/atlas/blob/main/data/node-profiles.csv"
+  },
+  "dc-inference-p": {
+   "title": "Data center (inference) power: IEA 'conventional data centre' typical single conventional DC (enterprise/colocation) 25 (2025); IEA 'hyperscale, AI-focused dat…",
+   "url": "https://iea.blob.core.windows.net/assets/34eac603-ecf1-464f-b813-2ecceb8f81c2/EnergyandAI.pdf"
+  },
+  "dc-inference-pue": {
+   "title": "Data center (inference) PUE: frank 1.56 (2024, estimated)",
+   "url": "https://datacenter.uptimeinstitute.com/rs/711-RIA-145/images/2024.GlobalDataCenterSurvey.Report.pdf"
+  },
+  "dc-inference-u": {
+   "title": "Data center (inference) utilisation: dubl 0.363 (2025, estimated)",
+   "url": "https://www.cso.ie/en/releasesandpublications/ep/p-dcmec/datacentresmeteredelectricityconsumption2025/keyfindings/"
+  },
+  "dc-training-g": {
+   "title": "Data center (training) growth: dubl 0.1 (2025, measured); ashb 0.373 (2026, estimated); frank 0.23 (2026, estimated); saopa 0.089 (2026, estimated); mumb 0.42…",
+   "url": "https://www.cbre.com/insights/reports/global-data-center-trends-2026"
+  },
+  "dc-training-p": {
+   "title": "Data center (training) power: abil 200 (2026, estimated)",
+   "url": "https://epochai.substack.com/p/openai-stargate-where-the-us-sites"
+  },
+  "dc-training-pue": {
+   "title": "Data center (training) PUE: abil 1.3 (2025, disclosed); dalles 1.08 (2026, disclosed); cbluff 1.1 (2026, disclosed)",
+   "url": "https://datacenters.google/efficiency/"
+  },
+  "dc-training-u": {
+   "title": "Data center (training) utilisation: dubl 0.363 (2025, estimated); dubl 1528 (2025, estimated)",
+   "url": "https://enterprise.gov.ie/en/publications/publication-files/the-value-of-data-centres-to-ireland.pdf"
+  },
+  "equipment-g": {
+   "title": "Equipment & optics growth: veld 0.109 (2025, estimated); ober 0.049 (2025, estimated)",
+   "url": "https://asset-downloads.zeiss.com/catalogs/download/cco2/199bb605-36f6-4108-8b14-b2b1e1885565/ZEISS_Sustainability_Report_2024_2025.pdf"
+  },
+  "equipment-p": {
+   "title": "Equipment & optics power: veld None (2025, disclosed); ober None (2025, disclosed)",
+   "url": "https://asset-downloads.zeiss.com/catalogs/download/cco2/199bb605-36f6-4108-8b14-b2b1e1885565/ZEISS_Sustainability_Report_2024_2025.pdf"
+  },
+  "equipment-water": {
+   "title": "Equipment & optics process water: ASML ASML Holding, group-wide (ESRS) 3.0 (2024); Lam Research Global, calendar year 4.1 (2024); Tokyo Electron (TEL) TEL Grou…",
+   "url": "https://ourbrand.asml.com/m/3035813cf1b8ea4f/original/2024-Annual-Report-based-on-IFRS-FINAL.pdf"
+  },
+  "fab-g": {
+   "title": "Fab growth: hsin 0.04 (2025, estimated); tainan 0.023 (2025, estimated); hiro 0.068 (2025, estimated); chand 0.056 (2024, estimated); ptaek 0.0816 (2024, discl…",
+   "url": "https://csrreportbuilder.intel.com/pdfbuilder/pdfs/CSR-2024-25-Executive-Summary.pdf"
+  },
+  "fab-p": {
+   "title": "Fab power: hiro 173.3 (2023, estimated); chand 268.9 (2024, disclosed); hsin 1420.3 (2025, measured); tainan 2046.7 (2025, estimated)",
+   "url": "https://data.gov.tw/dataset/14135"
+  },
+  "fab-water": {
+   "title": "Fab process water: TSMC 2025",
+   "url": "https://github.com/lukeyeh4/atlas/blob/main/data/node-profiles.csv"
+  },
+  "lab-g": {
+   "title": "AI lab growth: Floor-area growth of OpenAI SF 2023-2026 (Anthropic implies 0.63).",
+   "url": "https://github.com/lukeyeh4/atlas/blob/main/data/node-profiles.csv"
+  },
+  "lab-p": {
+   "title": "AI lab power: Alphabet offices & other facilities (all Google offices globally) company-wide offices 154.6 (2024); Anthropic SF office footprint (~1M sqft) AI…",
+   "url": "https://sfstandard.com/2023/10/27/openai-uber-headquarters-mission-bay/"
+  },
+  "materials-g": {
+   "title": "Materials & wafers growth: Siltronic Average of 4 wafer production sites (Burghausen, Freiberg, Singapore, Portland) 0.031 (2025); Siltronic Average of 4 produ…",
+   "url": "https://www.entegris.com/en/home/about-us/corporate-responsibility.html"
+  },
+  "materials-p": {
+   "title": "Materials & wafers power: Siltronic Average of 4 wafer production sites (Burghausen, Freiberg, Singapore, Portland) 22.05 (2025); Siltronic Average of 4 produc…",
+   "url": "https://www.sas-globalwafers.com/wp-content/uploads/2022/07/GlobalWafers_2022-Sustainability-Report-_EN.pdf"
+  },
+  "materials-water": {
+   "title": "Materials & wafers process water: Entegris Manufacturing operations under Entegris control 6.32 (2024); SUMCO SUMCO Group, Japan domestic sites (silicon wafers…",
+   "url": "https://assets.linde.com/-/media/global/corporate/corporate/documents/sustainable-development/2025-sustainable-development-report.pdf"
+  },
+  "mine-g": {
+   "title": "Mine growth: green -0.032 (2024, measured); grasb 0.038 (2023, measured); bayan 0.108 (2024, disclosed); spruce 0.26 (2025, projected)",
+   "url": "https://static1.squarespace.com/static/5c0754e24611a07f1ab91992/t/667e620d92f1c75a39fed585/1719558732183/Talison+Lithium-Sustainability+Report-2023.pdf"
+  },
+  "mine-p": {
+   "title": "Mine power: green 18.44 (2024, measured); grasb 220 (2018, disclosed)",
+   "url": "https://im-mining.com/2021/09/30/freeports-interim-scope-1-emissions-reduction-plan-includes-diesel-electric-drive-trucks-grasberg-dual-fuel-power-plant/"
+  },
+  "mine-water": {
+   "title": "Mine process water: Freeport-McMoRan (PT Freeport Indonesia) Grasberg minerals district, Indonesia (copper-gold mine + concentrator; on-site coal/diesel power,…",
+   "url": "https://lynasrareearths.com/wp-content/uploads/2025/10/LYC-Sustainability-Report-2025-Oct25V2-1.pdf"
+  },
+  "model-convention": {
+   "title": "Model convention: p is average draw from annual consumption, so utilisation and overhead are already inside it",
+   "url": "https://github.com/lukeyeh4/atlas/blob/main/data/node-profiles.csv"
+  },
+  "packaging-g": {
+   "title": "Packaging & test growth: kaoh 0.024 (2024, disclosed)",
+   "url": "https://ase.aseglobal.com/public/downloads/en/2024-asekh-csr-report-en.pdf"
+  },
+  "packaging-p": {
+   "title": "Packaging & test power: kaoh 146.4 (2024, disclosed)",
+   "url": "https://ase.aseglobal.com/public/downloads/en/2024-asekh-csr-report-en.pdf"
+  },
+  "packaging-water": {
+   "title": "Packaging & test process water: ASE Technology Holding (ASEH) Group-wide: ASE + SPIL + USI (USI is EMS/system assembly, so not pure OSAT) 5.1 (2024); Amkor Tec…",
+   "url": "https://amkormarcomexternal.blob.core.windows.net/amkordotcom/wp-content/uploads/2026/05/2025-Amkor-Corporate-Responsibility-Report.pdf"
+  }
+ }
+}

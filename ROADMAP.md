@@ -60,17 +60,109 @@ the same way (v0.9.0). What's left is finer location data and site scale.
       if this workload ran in Region A vs B" at fleet scale, which is the
       question the original notes opened with.
 
+### Location data (`data/locales.json`)
+Ordered by how likely each is to work, surest first. Coverage checked
+2026-09-27 against the live sources.
+- [x] **Validate in the build.** Turn the contract checks into a step in
+      `build_all.py`, so a rebuild can't produce a file the app rejects. No
+      new data.
+- [x] **Every country, not just 64.** A place in any other country gets no
+      inputs and can't be modelled. The bulk sources already cover most of
+      the world, keyed by ISO3: Ember CI, fossil share and trend for 213
+      countries; World Bank PM2.5 (2023) for ~217; ERA5 climate (for WUE) for
+      any country; Aqueduct water stress for 164. Mostly script work.
+      Operator WUE disclosures stay hand-researched (29 countries).
+- [x] **Water stress below country level.** Done per 0.25° cell from Aqueduct
+      4.0 sub-basins (see below), which is finer than by province (Phoenix
+      1.0, Ashburn 0.03, against the US's 0.52). Aqueduct also has
+      2030/2050/2080 projections, for when time returns.
+- [ ] **Grid gaps with data already in hand.** Tasmania's trend from its
+      consumption-based series (229.7 → 124.4 g/kWh, 2015–2023). Tibet's CI
+      from the Southwest regional grid figure (247.2 g/kWh, 2023) as a
+      stand-in; its trend needs the 2021–2022 regional figures (unchecked).
+      Both mix bases, so each needs a note. Under the all-three rule, each
+      fix moves the place back onto its own grid.
+- [ ] **Canadian provinces.** The national average hides hydro Quebec and
+      fossil Alberta. Canada's National Inventory Report (Annex 13) publishes
+      electricity intensity by province and year; Statistics Canada has
+      generation by fuel. Researched by hand.
+- [ ] **Grid gaps that need new research.** Northern Territory fossil share
+      and trend; Chandigarh and Dadra & Nagar Haveli–Daman & Diu fossil share;
+      Lakshadweep trend. Small places with thin sources.
+- [ ] **Japanese regions.** Emission factors are published per utility, not
+      per prefecture, so each prefecture maps to its utility area; a few
+      straddle two.
+- [ ] **US consumption-based intensity.** State values count in-state
+      generation, so importers such as Virginia look cleaner than the power
+      they use. EPA's eGRID is by grid subregion, not state: fixing it means
+      weighting subregions per state, or keying US values by grid region,
+      which the contract would need a new level for.
+
+Per-point values (`data/cells/`, 0.25° tiles), so each city differs from its
+neighbours, not just its state:
+- [x] `pop` — people within 100 km, from the GHSL grid already built.
+- [x] `ws` — Aqueduct 4.0 sub-basin water stress (baseline annual file).
+- [ ] `wue` — not planned: the formula spans only 1.17–1.57 L/kWh, so a finer
+      grid adds little.
+- [ ] `pm25` — not planned for now: see Air pollution; background PM2.5 matters
+      less than emissions and exposure.
+- [x] `data/node-types.json` — facility-type defaults from `node-profiles.csv`.
+
+### Air pollution
+Most of the chain's air pollution is emitted at the power plants that supply
+it, not at the facilities, so this starts with the grid, not with wind.
+Relates to blocking question 4. In order:
+- [ ] **Physical units.** Replace the air-quality index (normalized against
+      the largest site, so it moves when nodes change) with a quantity:
+      tonnes of SO₂ / NOₓ / PM2.5 per year, and population exposed.
+- [ ] **Emissions from electricity, where it is generated.** Per-grid
+      emissions per kWh (Ember, EPA eGRID for the US) times each node's
+      energy, with exposure from the population around that grid's power
+      plants rather than around the node.
+- [ ] **On-site combustion flag** for facility types that burn fuel on site
+      (self-generating mines, data centers on gas turbines, e.g. xAI Memphis).
+      Only these get a local-exposure term.
+- [ ] Wind — not planned. Wind-rose weighting would sharpen only the on-site
+      term, by perhaps 1.5–2×, less than the uncertainty in emissions; real
+      dispersion models (InMAP, EASIUR) exist for the US only. Revisit only
+      if self-generating sites become a focus.
+
 ### Node editing
 - [ ] Edit a node's inputs in the panel (utilization, PUE) beyond data
       center size, which has a slider (v0.10.0).
 - [ ] Draw and edit flows for added nodes. Right now a new node has no chain.
+- [ ] **Radial node menu.** Clicking a node opens a radial sub-menu around it
+      with three actions: **Remove**, **Change type** (switch stage) and
+      **Relocate** (move the node on the map).
+- [ ] **Auto-populate connections.** When a node's type changes or a new node
+      is added, create its upstream and downstream flows automatically from
+      the stage order (raw → chip → infra → model → delivery), e.g. linking
+      to the nearest nodes in the adjacent stages.
 - [ ] Persist edits. Nothing survives a reload today. The database branch
-      built this (`atlas.edits.v1` in localStorage, with export/import) on
-      the pre-globe d3 map; port it to the current app.
+      built this (`atlas.edits.v1` in localStorage, a small diff against the
+      reference data) on the pre-globe d3 map; port it to the current app.
+- [ ] Then export / import edits as a JSON file, to back them up or move them
+      between browsers.
 
 ### Connections diagram
 - [ ] Click a part to show its sites on the map (the count is already there).
 - [ ] Per-site connections: the diagram is by part, not by site.
+
+### Database
+Prepared, not provisioned — see `docs/database.md`. No accounts, no login:
+the database holds reference data only (public read, maintainer write);
+visitors' edits stay in their browser.
+- [x] Decided: no accounts.
+- [ ] Decide between a Supabase database and a `data/baseline.json` file in the
+      repo. The same schema shapes either; a database pays off once someone other
+      than the maintainer edits values.
+- [ ] If Supabase: create the project, run `db/schema.sql` and `db/seed.sql`,
+      and load the `atlas_baseline` view at boot, keeping the inline data as an
+      offline fallback.
+- [ ] Move sourced values and their confidence into `site_input` /
+      `region_input` rather than editing `index.html`.
+- [ ] Optional: share a scenario as a link by encoding the edits in the URL
+      hash. Still no accounts or server.
 
 ### Layers
 - [ ] Click a country to see its exact values (grid carbon, water stress,
@@ -85,6 +177,10 @@ the same way (v0.9.0). What's left is finer location data and site scale.
       is hidden.
 - [ ] Flat map is Mercator, so high latitudes are enlarged. Revisit an
       equal-area flat projection if Mapbox adds hillshade support for it.
+
+### Map
+- [x] **A more accurate map provider**: Mapbox GL globe with vector tiles
+      and terrain since v0.4.0 (the Natural Earth 110m basemap is retired).
 
 ### Time
 - [ ] The year scrubber was removed in v0.3.2, but the year math is still in

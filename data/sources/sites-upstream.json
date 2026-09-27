@@ -1,0 +1,672 @@
+{
+ "sites": {
+  "spruce": {
+   "p": {
+    "value": null,
+    "unit": "MW",
+    "year": null,
+    "source": "No public site-level electricity disclosure found (searched Sibelco news releases, The Quartz Corp site, Duke Energy/Helene coverage)",
+    "url": "https://www.sibelco.com/en/news/sibelco-announces-a-major-expansion-of-its-spruce-pine-usa-high-purity-quartz-operations",
+    "confidence": "estimated",
+    "note": "Null. Sibelco and The Quartz Corp publish no Spruce Pine MWh or MW figures. Sibelco's group sustainability report is not broken out by site. Duke Energy serves the mines (a large-account manager is quoted in Helene coverage) but gives no load."
+   },
+   "u": {
+    "value": null,
+    "unit": "ratio",
+    "year": null,
+    "source": "",
+    "url": "",
+    "confidence": "",
+    "note": "Left null because p is null: u and pue are only meaningful paired with a p derived from annual site consumption (then both are 1 by construction)."
+   },
+   "pue": {
+    "value": null,
+    "unit": "ratio",
+    "year": null,
+    "source": "",
+    "url": "",
+    "confidence": "",
+    "note": "Left null because p is null: u and pue are only meaningful paired with a p derived from annual site consumption (then both are 1 by construction)."
+   },
+   "g": {
+    "value": 0.26,
+    "unit": "per year",
+    "year": 2025,
+    "source": "Sibelco, 'Sibelco announces a major expansion of its Spruce Pine (USA) high purity quartz operations'",
+    "url": "https://www.sibelco.com/en/news/sibelco-announces-a-major-expansion-of-its-spruce-pine-usa-high-purity-quartz-operations",
+    "confidence": "projected",
+    "note": "Sibelco says a $200M investment will double HPQ installed capacity from the 2022 base between 2023 and 2025. (2)^(1/3)-1 = 26%/yr. This is capacity growth for Sibelco only (not TQC), and it assumes energy scales with capacity, which is an assumption. Historical proxy from the same release: HPQ production rose more than 30% from 2019 to 2022, so 1.3^(1/3)-1 = 9.1%/yr."
+   },
+   "pop": {
+    "value": 2.302,
+    "unit": "million people",
+    "year": 2025,
+    "source": "European Commission JRC, GHSL GHS-POP R2023A, epoch 2025, 30 arc-second (~1 km) WGS84 grid",
+    "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=pop",
+    "confidence": "estimated",
+    "note": "Sum of GHS-POP 2025 grid cells whose centres lie within 100 km great-circle distance of Spruce Pine, NC (35.915, -82.065). Computed by us from the raster (no admin-boundary guesswork); GHSL 2025 is a modelled projection from census data, so treat as ±5-10%. Site coordinates are approximate (±2 km)."
+   }
+  },
+  "bayan": {
+   "p": {
+    "value": null,
+    "unit": "MW",
+    "year": 2024,
+    "source": "No mine-level disclosure found. Related figure: China Northern Rare Earth 2024 ESG report, as reported by Securities Times (证券时报) 'ESG信披洞察', 2025-05-09",
+    "url": "https://stcn.com/article/detail/1823379.html",
+    "confidence": "disclosed",
+    "note": "Null for the Bayan Obo mine itself, which Baotou Steel (Baogang) operates. No MWh or MW figure was found in Baogang or government sources. Related, NOT the mine: China Northern Rare Earth (Baotou processing/smelting, company-wide) bought 819,700 MWh (81.97万兆瓦时) of electricity in 2024, so 819,700/8760 = 93.6 MW. Use it only as a downstream-processing proxy."
+   },
+   "u": {
+    "value": null,
+    "unit": "ratio",
+    "year": null,
+    "source": "",
+    "url": "",
+    "confidence": "",
+    "note": "Left null because p is null: u and pue are only meaningful paired with a p derived from annual site consumption (then both are 1 by construction)."
+   },
+   "pue": {
+    "value": null,
+    "unit": "ratio",
+    "year": null,
+    "source": "",
+    "url": "",
+    "confidence": "",
+    "note": "Left null because p is null: u and pue are only meaningful paired with a p derived from annual site consumption (then both are 1 by construction)."
+   },
+   "g": {
+    "value": 0.108,
+    "unit": "per year",
+    "year": 2024,
+    "source": "China Northern Rare Earth 2024 ESG report, as reported by Securities Times (stcn.com), 2025-05-09",
+    "url": "https://stcn.com/article/detail/1823379.html",
+    "confidence": "disclosed",
+    "note": "PROXY: CNRE purchased electricity grew 10.8% YoY in 2024. This is Baotou rare-earth processing (company-wide), not the Bayan Obo mine. The article says scope 1 and scope 2 emissions rose about 58% and 132% YoY as production expanded (green smelting upgrade, phase 1)."
+   },
+   "pop": {
+    "value": 0.309,
+    "unit": "million people",
+    "year": 2025,
+    "source": "European Commission JRC, GHSL GHS-POP R2023A, epoch 2025, 30 arc-second (~1 km) WGS84 grid",
+    "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=pop",
+    "confidence": "estimated",
+    "note": "Sum of GHS-POP 2025 grid cells whose centres lie within 100 km great-circle distance of Bayan Obo mine (41.78, 109.97). Computed by us from the raster (no admin-boundary guesswork); GHSL 2025 is a modelled projection from census data, so treat as ±5-10%. Site coordinates are approximate (±2 km)."
+   }
+  },
+  "yamag": {
+   "p": {
+    "value": null,
+    "unit": "MW",
+    "year": 2023,
+    "source": "Ministry of the Environment Japan (EEGS) - 温室効果ガス排出量算定・報告・公表制度 事業所別排出量 (セントラル硝子株式会社 宇部工場, 特定排出者コード 985350103)",
+    "url": "https://eegs.env.go.jp/ghg-santeikohyo-result/search",
+    "confidence": "estimated",
+    "note": "Plant chosen: Central Glass Co. Ube Plant (Ube, Yamaguchi), which makes semiconductor process gases (etching/cleaning gases such as NF3/WF6); Central Glass Integrated Report 2025 notes exporting 半導体プロセスガス from Ube port next to the plant. No site-level electricity figure is published: Central Glass's Environment & Safety Data 2025 gives only group totals (group energy 4,721 TJ FY2024, including the glass business), and the 温対法 disclosure gives only CO2. EEGS FY2023 (Apr 2023-Mar 2024): total GHG 67,959 t, energy-origin CO2 58,123 t (FY2021: 64,554 t). Fuel and electricity are not split, so electricity can't be isolated. For scale only: IF all energy CO2 came from grid power at Chugoku Electric's FY2023 basic factor of 0.511 kgCO2/kWh, 58,123 t / 0.000511 = 113,744 MWh, or 13.0 MW. That is not a strict bound. A chemical plant also burns fuel for steam, so its real electricity use is probably lower. Left null. Other Yamaguchi candidates (Tokuyama Tokuyama Factory, Tosoh Nanyo) have in-house coal power, and chlor-alkali and other bulk chemicals dominate their load, so they are not representative of specialty gases."
+   },
+   "u": {
+    "value": null,
+    "unit": "ratio",
+    "year": null,
+    "source": "",
+    "url": "",
+    "confidence": "",
+    "note": "Left null because p is null: u and pue are only meaningful paired with a p derived from annual site consumption (then both are 1 by construction)."
+   },
+   "pue": {
+    "value": null,
+    "unit": "ratio",
+    "year": null,
+    "source": "",
+    "url": "",
+    "confidence": "",
+    "note": "Left null because p is null: u and pue are only meaningful paired with a p derived from annual site consumption (then both are 1 by construction)."
+   },
+   "g": {
+    "value": null,
+    "unit": "fraction/yr",
+    "year": 2023,
+    "source": "Ministry of the Environment Japan (EEGS) - 事業所別排出量, セントラル硝子 宇部工場",
+    "url": "https://eegs.env.go.jp/ghg-santeikohyo-result/search",
+    "confidence": "estimated",
+    "note": "There is no electricity time series. The only site trend is energy-origin CO2: 64,554 t (FY2021) to 58,123 t (FY2023), a CAGR of (58123/64554)^0.5 - 1 = -5.1%/yr, and FY2022 was not reported. Emission-factor changes muddle this, so it is not used as an electricity growth rate. Central Glass group energy-origin CO2 went 300,512 t (FY2023) to 280,382 t (FY2024) (Environment & Safety Data 2025, https://www.cgco.co.jp/assets/pdf/sustainability/environment/environment_02.pdf)."
+   },
+   "pop": {
+    "value": 6.891,
+    "unit": "million people",
+    "year": 2025,
+    "source": "European Commission JRC, GHSL GHS-POP R2023A, epoch 2025, 30 arc-second (~1 km) WGS84 grid",
+    "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=pop",
+    "confidence": "estimated",
+    "note": "Sum of GHS-POP 2025 grid cells whose centres lie within 100 km great-circle distance of Ube, Yamaguchi — Central Glass Ube plant area (33.95, 131.25). Computed by us from the raster (no admin-boundary guesswork); GHSL 2025 is a modelled projection from census data, so treat as ±5-10%. Site coordinates are approximate (±2 km)."
+   }
+  },
+  "green": {
+   "p": {
+    "value": 18.44,
+    "unit": "MW",
+    "year": 2024,
+    "source": "Talison Lithium, '2024 Sustainability Report' (performance data table)",
+    "url": "https://static1.squarespace.com/static/5c0754e24611a07f1ab91992/t/68511903a861164b37ea16de/1758102635710/Talison+2024+Sustainability+Report+v2+WEB.pdf",
+    "confidence": "measured",
+    "note": "Grid electricity bought (SWIS) in CY2024 was 581,531 GJ. 581,531/3.6 = 161,536 MWh, and 161,536/8760 = 18.44 MW. Earlier years: CY2022 was 621,144 GJ (19.70 MW) and CY2023 was 605,375 GJ (19.20 MW), per the 2023 Sustainability Report. Electricity is a small share of site energy. Total CY2024 energy was 2,274,399 GJ, and diesel was 1,624,253 GJ (not included in p). Set u=1 and pue=1."
+   },
+   "u": {
+    "value": 1,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Derived: p comes from annual metered MWh",
+    "url": "https://static1.squarespace.com/static/5c0754e24611a07f1ab91992/t/68511903a861164b37ea16de/1758102635710/Talison+2024+Sustainability+Report+v2+WEB.pdf",
+    "confidence": "measured",
+    "note": "p = annual MWh / 8760, so u = 1."
+   },
+   "pue": {
+    "value": 1,
+    "unit": "ratio",
+    "year": 2024,
+    "source": "Derived: p comes from annual metered MWh",
+    "url": "https://static1.squarespace.com/static/5c0754e24611a07f1ab91992/t/68511903a861164b37ea16de/1758102635710/Talison+2024+Sustainability+Report+v2+WEB.pdf",
+    "confidence": "measured",
+    "note": "p is total site grid electricity, so pue = 1."
+   },
+   "g": {
+    "value": -0.032,
+    "unit": "per year",
+    "year": 2024,
+    "source": "Talison Lithium 2023 and 2024 Sustainability Reports (CY grid electricity series)",
+    "url": "https://static1.squarespace.com/static/5c0754e24611a07f1ab91992/t/667e620d92f1c75a39fed585/1719558732183/Talison+Lithium-Sustainability+Report-2023.pdf",
+    "confidence": "measured",
+    "note": "CAGR of grid electricity from CY2022 to CY2024: (581,531/621,144)^(1/2)-1 = -3.2%/yr. CY2024 alone was -3.9% YoY. Total site energy grew about 19% in 2024 (diesel-driven). Upside is expected: Talison commissioned a 132 kV line and substation in 2023 to supply its expanding operations (CGP3 expansion), and a Rockingham waste-to-energy PPA was slated for late 2024 but delayed. Neither is quantified in MW."
+   },
+   "pop": {
+    "value": 0.192,
+    "unit": "million people",
+    "year": 2025,
+    "source": "European Commission JRC, GHSL GHS-POP R2023A, epoch 2025, 30 arc-second (~1 km) WGS84 grid",
+    "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=pop",
+    "confidence": "estimated",
+    "note": "Sum of GHS-POP 2025 grid cells whose centres lie within 100 km great-circle distance of Greenbushes mine (-33.86, 116.06). Computed by us from the raster (no admin-boundary guesswork); GHSL 2025 is a modelled projection from census data, so treat as ±5-10%. Site coordinates are approximate (±2 km)."
+   }
+  },
+  "grasb": {
+   "p": {
+    "value": 220,
+    "unit": "MW",
+    "year": 2018,
+    "source": "Freeport-McMoRan, '2020 Climate Report' (as reported by International Mining, 2021-09-30)",
+    "url": "https://im-mining.com/2021/09/30/freeports-interim-scope-1-emissions-reduction-plan-includes-diesel-electric-drive-trucks-grasberg-dual-fuel-power-plant/",
+    "confidence": "disclosed",
+    "note": "Quote: 'PT-FI expects its average power demand to increase by 50 MW to a total of 270 MW annually (from a 2018 baseline year average of 220 MW)'. This is average demand, not capacity. The site generates all of its own power: a coal plant built in 1998, diesel peakers, and a 128 MW Wärtsilä dual-fuel plant commissioned in 2023. PT-FI reports zero Scope 2 and zero indirect energy. Total direct energy in 2023 was 30,239 TJ from all fuels (coal/coke 59%, diesel 27%, B30 biodiesel 14%), per 'Sustainability at PT Freeport Indonesia' (Dec 2024). Electricity cannot be separated from that total. Projected at full underground ramp-up: 270 MW."
+   },
+   "u": {
+    "value": 1,
+    "unit": "fraction",
+    "year": 2018,
+    "source": "Derived: p is a disclosed annual average demand",
+    "url": "https://im-mining.com/2021/09/30/freeports-interim-scope-1-emissions-reduction-plan-includes-diesel-electric-drive-trucks-grasberg-dual-fuel-power-plant/",
+    "confidence": "disclosed",
+    "note": "p is already an annual-average load, so u = 1."
+   },
+   "pue": {
+    "value": 1,
+    "unit": "ratio",
+    "year": 2018,
+    "source": "Derived",
+    "url": "https://im-mining.com/2021/09/30/freeports-interim-scope-1-emissions-reduction-plan-includes-diesel-electric-drive-trucks-grasberg-dual-fuel-power-plant/",
+    "confidence": "disclosed",
+    "note": "p is total site power demand, so pue = 1."
+   },
+   "g": {
+    "value": 0.038,
+    "unit": "per year",
+    "year": 2023,
+    "source": "Freeport-McMoRan / PT-FI, 'Sustainability at PT Freeport Indonesia' (Dec 2024), Energy Consumption table",
+    "url": "https://www.fcx.com/sites/fcx/files/documents/sustainability/PTFI_Sustainability_Report_DEC2024.pdf",
+    "confidence": "measured",
+    "note": "PT-FI total energy was 26,066 TJ (2019), 24,217 (2020), 26,422 (2021), 28,854 (2022) and 30,239 (2023). CAGR = (30,239/26,066)^(1/4)-1 = 3.8%/yr. 2023 alone was +4.8% YoY. This covers all fuels, not electricity only. Cross-check from the projected power demand of 220 to 270 MW: over about 5 years, (270/220)^(1/5)-1 = 4.2%/yr. The horizon is assumed because the report gives no end year."
+   },
+   "pop": {
+    "value": 1.591,
+    "unit": "million people",
+    "year": 2025,
+    "source": "European Commission JRC, GHSL GHS-POP R2023A, epoch 2025, 30 arc-second (~1 km) WGS84 grid",
+    "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=pop",
+    "confidence": "estimated",
+    "note": "Sum of GHS-POP 2025 grid cells whose centres lie within 100 km great-circle distance of Grasberg (-4.05, 137.11). Computed by us from the raster (no admin-boundary guesswork); GHSL 2025 is a modelled projection from census data, so treat as ±5-10%. Site coordinates are approximate (±2 km)."
+   }
+  },
+  "hsin": {
+   "p": {
+    "value": 1420.3,
+    "unit": "MW",
+    "year": 2025,
+    "source": "National Science and Technology Council (Taiwan), Science Park statistics database, table F-1 用電負載量 (electricity load, 萬kW), release 2026-09-10",
+    "url": "https://wsts.nstc.gov.tw/stsweb/sciencepark/ScienceParkReport.aspx?language=C&quyid=tqelectric02",
+    "confidence": "measured",
+    "note": "Hsinchu Science Park, 新竹園區 (core park only; excludes Zhunan/Longtan/Tongluo/Yilan/biomed sub-parks). Mean of the 12 monthly load readings for 2025 (127.90...143.30 萬kW) = 142.03 萬kW = 1,420.3 MW. This is the whole park (TSMC Fabs 2/3/5/8/12A + R&D, plus UMC, Macronix, VIS, etc.), not TSMC alone; TSMC does not publish per-site electricity (its 2024 total was 25.55 TWh = 2,917 MW worldwide). Monthly readings are load (demand) figures, so treating their mean as average load may slightly overstate energy. 2024 mean = 1,349.4 MW; 2023 = 1,292.2 MW. Cross-check: Taipower 2025 extra-high-voltage sales in Hsinchu City (6,962 GWh) + Baoshan (2,519 GWh) = 9,481 GWh = 1,082 MW (EHV only; park tenants also take high-voltage supply)."
+   },
+   "u": {
+    "value": 1.0,
+    "unit": "ratio",
+    "year": null,
+    "source": "Model convention",
+    "url": "",
+    "confidence": "estimated",
+    "note": "p is derived from total annual site electricity (MWh/yr / 8760), which already reflects actual utilisation and all facility overhead; so u=1 and pue=1 by construction (not a measured value)."
+   },
+   "pue": {
+    "value": 1.0,
+    "unit": "ratio",
+    "year": null,
+    "source": "Model convention",
+    "url": "",
+    "confidence": "estimated",
+    "note": "p is derived from total annual site electricity (MWh/yr / 8760), which already reflects actual utilisation and all facility overhead; so u=1 and pue=1 by construction (not a measured value)."
+   },
+   "g": {
+    "value": 0.04,
+    "unit": "fraction/yr",
+    "year": 2025,
+    "source": "National Science and Technology Council (Taiwan), Science Park statistics database, table F-1 用電負載量 (electricity load, 萬kW), release 2026-09-10",
+    "url": "https://wsts.nstc.gov.tw/stsweb/sciencepark/ScienceParkReport.aspx?language=C&quyid=tqelectric02",
+    "confidence": "estimated",
+    "note": "CAGR of annual-mean park load 2022->2025: (1420.3/1261.7)^(1/3)-1 = 4.0%/yr. Latest YoY 2024->2025 = 1420.3/1349.4-1 = 5.3%. Jan-Aug 2026 mean is 1,507 MW (+6% vs 2025 full-year mean, partly seasonal). For context TSMC company-wide electricity grew 23.22 -> 25.55 TWh (+10%) 2023->2024."
+   },
+   "pop": {
+    "value": 16.245,
+    "unit": "million people",
+    "year": 2025,
+    "source": "European Commission JRC, GHSL GHS-POP R2023A, epoch 2025, 30 arc-second (~1 km) WGS84 grid",
+    "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=pop",
+    "confidence": "estimated",
+    "note": "Sum of GHS-POP 2025 grid cells whose centres lie within 100 km great-circle distance of Hsinchu Science Park (24.78, 121.01). Computed by us from the raster (no admin-boundary guesswork); GHSL 2025 is a modelled projection from census data, so treat as ±5-10%. Site coordinates are approximate (±2 km)."
+   }
+  },
+  "tainan": {
+   "p": {
+    "value": 2046.7,
+    "unit": "MW",
+    "year": 2025,
+    "source": "Taiwan Power Company open data, 鄉鎮市(郵遞區)別用電統計 (electricity sales by township/postal district), dist_kwh_112/113/114.csv",
+    "url": "https://data.gov.tw/dataset/14135",
+    "confidence": "estimated",
+    "note": "Southern Taiwan Science Park (Tainan park) straddles Xinshi (744), Shanhua (741) and Anding (745) districts. Taipower 2025 extra-high-voltage (特高壓電力) sales: Xinshi 4,989 + Shanhua 6,092 + Anding 6,848 = 17,929 GWh -> 17,929,000 MWh / 8760 = 2,046.7 MW. EHV customers in these districts are overwhelmingly park fabs (TSMC Fabs 14 & 18, plus UMC 12A, Innolux etc.), but a few non-park EHV users may be included and park tenants on high-voltage supply are excluded. For comparison, the STSP Bureau reports the Tainan park approved/contracted supply (核供量, published as 用電負載量) at 2,374 MW average for 2025 (dataset 41299 / NSTC table F-1), i.e. actual use is ~86% of approved supply. Not TSMC-only."
+   },
+   "u": {
+    "value": 1.0,
+    "unit": "ratio",
+    "year": null,
+    "source": "Model convention",
+    "url": "",
+    "confidence": "estimated",
+    "note": "p is derived from total annual site electricity (MWh/yr / 8760), which already reflects actual utilisation and all facility overhead; so u=1 and pue=1 by construction (not a measured value)."
+   },
+   "pue": {
+    "value": 1.0,
+    "unit": "ratio",
+    "year": null,
+    "source": "Model convention",
+    "url": "",
+    "confidence": "estimated",
+    "note": "p is derived from total annual site electricity (MWh/yr / 8760), which already reflects actual utilisation and all facility overhead; so u=1 and pue=1 by construction (not a measured value)."
+   },
+   "g": {
+    "value": 0.023,
+    "unit": "fraction/yr",
+    "year": 2025,
+    "source": "Taiwan Power Company open data, 鄉鎮市(郵遞區)別用電統計 (electricity sales by township/postal district), dist_kwh_112/113/114.csv",
+    "url": "https://data.gov.tw/dataset/14135",
+    "confidence": "estimated",
+    "note": "Same three districts, EHV sales: 2023 17,147 GWh; 2024 17,613 GWh; 2025 17,929 GWh. CAGR 2023->2025 = (17929/17147)^0.5-1 = 2.3%/yr. Contracted supply grew faster earlier: 2022 mean 1,978 MW -> 2025 2,357 MW (6.0%/yr, STSP dataset 41299). Planned Shalun park (up to ~2.7 GW, TSMC sub-2nm) is not included."
+   },
+   "pop": {
+    "value": 7.273,
+    "unit": "million people",
+    "year": 2025,
+    "source": "European Commission JRC, GHSL GHS-POP R2023A, epoch 2025, 30 arc-second (~1 km) WGS84 grid",
+    "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=pop",
+    "confidence": "estimated",
+    "note": "Sum of GHS-POP 2025 grid cells whose centres lie within 100 km great-circle distance of STSP Tainan park (23.11, 120.27). Computed by us from the raster (no admin-boundary guesswork); GHSL 2025 is a modelled projection from census data, so treat as ±5-10%. Site coordinates are approximate (±2 km)."
+   }
+  },
+  "ptaek": {
+   "p": {
+    "value": null,
+    "unit": "MW",
+    "year": 2024,
+    "source": "No site-level disclosure found. Upper bounds: Samsung Electronics, Sustainability Report 2025 (ESG data, Energy Management); Greenpeace Korea & Energy Transition Forum press release on local-government renewable self-sufficiency (reported by Seoul Shinmun, 2026-05-25)",
+    "url": "https://www.greenpeace.org/korea/report/37491/presslease-renewable-energy/",
+    "confidence": "disclosed",
+    "note": "Samsung does not split electricity by campus. Two upper bounds only. (1) Samsung Korea electricity 2024 = 25,111 GWh, which covers every Korean site: Pyeongtaek, Giheung/Hwaseong, Onyang, Cheonan, Suwon, Gumi and others. 25,111,000 MWh / 8760 = 2,867 MW. (2) All electricity used in Pyeongtaek city in 2024 = 21.77 TWh (Greenpeace/Energy Transition Forum, from Power Exchange statistics). 21,770,000 / 8760 = 2,485 MW. This city total includes all non-Samsung users. Pyeongtaek city (21.77 TWh) plus Hwaseong city (21.37 TWh) comes to 43.1 TWh, well above Samsung's entire Korea total of 25.1 TWh. So the city totals are clearly not Samsung-only, and neither can be used as the campus value. KEPCO's city-level industrial sales dataset (data.go.kr 3069444) could not be downloaded, and no environmental impact assessment gave a disclosed MW figure. A null is left rather than an allocation, because no defensible Pyeongtaek share exists."
+   },
+   "u": {
+    "value": null,
+    "unit": "ratio",
+    "year": null,
+    "source": "",
+    "url": "",
+    "confidence": "",
+    "note": "Left null because p is null: u and pue are only meaningful paired with a p derived from annual site consumption (then both are 1 by construction)."
+   },
+   "pue": {
+    "value": null,
+    "unit": "ratio",
+    "year": null,
+    "source": "",
+    "url": "",
+    "confidence": "",
+    "note": "Left null because p is null: u and pue are only meaningful paired with a p derived from annual site consumption (then both are 1 by construction)."
+   },
+   "g": {
+    "value": 0.0816,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Samsung Electronics, Sustainability Report 2025, ESG data 'Energy Management': Electricity, Korea (GWh)",
+    "url": "https://www.samsung.com/global/sustainability/",
+    "confidence": "disclosed",
+    "note": "This is company-level growth (all Samsung Korea sites), not Pyeongtaek-specific. Korea electricity was 21,360 GWh in 2022, 23,217 in 2023 and 25,111 in 2024. 25,111/23,217 - 1 = 8.16% for 2024. The prior year was 23,217/21,360 - 1 = 8.69%. Cross-check: DS (semiconductor) division electricity worldwide was 25,249 / 27,042 / 28,996 GWh, which is +7.23% in 2024 (28,996/27,042 - 1). Pyeongtaek is the main new-capacity site (P3/P4 ramps), so its own growth is likely higher than the company average. That is not quantified. The URL is the sustainability landing page. The figures were read from the report PDF already in the scratchpad (research/pdf/sam25.pdf)."
+   },
+   "pop": {
+    "value": 32.005,
+    "unit": "million people",
+    "year": 2025,
+    "source": "European Commission JRC, GHSL GHS-POP R2023A, epoch 2025, 30 arc-second (~1 km) WGS84 grid",
+    "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=pop",
+    "confidence": "estimated",
+    "note": "Sum of GHS-POP 2025 grid cells whose centres lie within 100 km great-circle distance of Samsung Pyeongtaek campus, Godeok (37.02, 127.05). Computed by us from the raster (no admin-boundary guesswork); GHSL 2025 is a modelled projection from census data, so treat as ±5-10%. Site coordinates are approximate (±2 km)."
+   }
+  },
+  "icheon": {
+   "p": {
+    "value": null,
+    "unit": "MW",
+    "year": 2024,
+    "source": "No site-level disclosure found. Upper bound: SK hynix, 2025 Sustainability Report (지속가능경영보고서 2025), ESG Data, 총전력 사용량",
+    "url": "https://k-esg.org/post/4392",
+    "confidence": "disclosed",
+    "note": "SK hynix reports electricity only company-wide. Scope: Icheon, Cheongju, Bundang, Seoul offices, Wuxi, Chongqing. Total electricity 2024 = 12,620 GWh, including SEC self-generation. 12,620,000 MWh / 8760 = 1,441 MW, a hard upper bound for Icheon. Site-level tables exist only for air pollutants, effluent quality and energy savings. The 2023 energy savings of Icheon 295 / Cheongju 223 / Wuxi 64.6 / Chongqing 2.4 GWh (2024 report, p.40) are savings, not consumption, so they are not a defensible allocation key. City-level KEPCO industrial sales for Icheon-si could not be retrieved, and no Icheon figure appears in the Greenpeace/Energy Transition Forum top-20 city list. A null is left rather than allocating."
+   },
+   "u": {
+    "value": null,
+    "unit": "ratio",
+    "year": null,
+    "source": "",
+    "url": "",
+    "confidence": "",
+    "note": "Left null because p is null: u and pue are only meaningful paired with a p derived from annual site consumption (then both are 1 by construction)."
+   },
+   "pue": {
+    "value": null,
+    "unit": "ratio",
+    "year": null,
+    "source": "",
+    "url": "",
+    "confidence": "",
+    "note": "Left null because p is null: u and pue are only meaningful paired with a p derived from annual site consumption (then both are 1 by construction)."
+   },
+   "g": {
+    "value": 0.0507,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "SK hynix, 2025 Sustainability Report (지속가능경영보고서 2025), ESG Data, 총전력 사용량 (GWh); prior year from 지속가능경영보고서 2024 p.81",
+    "url": "https://k-esg.org/post/4392",
+    "confidence": "disclosed",
+    "note": "This is company-wide growth, not Icheon-specific. Total electricity was 12,011 GWh in 2023 and 12,620 GWh in 2024. 12,620/12,011 - 1 = 5.07%. Earlier years (9,887 / 10,921 / 12,083 GWh for 2020-2022) are domestic-only, while 2023 onward covers the whole company. So only the 2024 YoY is like-for-like. 2024 report PDF: https://kind.krx.co.kr/external/2024/07/23/000345/20240723001065/SK%ED%95%98%EC%9D%B4%EB%8B%89%EC%8A%A4%20%EC%A7%80%EC%86%8D%EA%B0%80%EB%8A%A5%EA%B2%BD%EC%98%81%EB%B3%B4%EA%B3%A0%EC%84%9C%202024.pdf. Icheon hosts the HBM ramp (M16), so its own growth may differ. That is not quantified."
+   },
+   "pop": {
+    "value": 31.802,
+    "unit": "million people",
+    "year": 2025,
+    "source": "European Commission JRC, GHSL GHS-POP R2023A, epoch 2025, 30 arc-second (~1 km) WGS84 grid",
+    "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=pop",
+    "confidence": "estimated",
+    "note": "Sum of GHS-POP 2025 grid cells whose centres lie within 100 km great-circle distance of SK hynix Icheon campus (37.21, 127.48). Computed by us from the raster (no admin-boundary guesswork); GHSL 2025 is a modelled projection from census data, so treat as ±5-10%. Site coordinates are approximate (±2 km)."
+   }
+  },
+  "veld": {
+   "p": {
+    "value": null,
+    "unit": "MW",
+    "year": 2025,
+    "source": "ASML - 2025 Annual Report based on IFRS (ESRS E1-5 energy consumption and mix; energy attribute certificates)",
+    "url": "https://ourbrand.asml.com/m/6ea363f69344ebd4/original/asml-2025-annual-report-based-on-ifrs.pdf",
+    "confidence": "disclosed",
+    "note": "ASML discloses only group energy. The 2024 and 2025 annual reports give no Veldhoven or Netherlands share. Group electricity 2025 = fossil purchased 3,251 + nuclear 0 + renewable purchased 525,147 + self-generated renewable 2,600 = 530,998 MWh. That figure also covers purchased heat, steam and cooling, which are minor. 530,998 / 8760 = 60.6 MW for ALL ASML sites, including Wilton, San Diego, Linkou, Tainan and Pyeongtaek. European renewable electricity, shown by Guarantees of Origin, was 350,694 MWh in 2025, or 40.0 MW. That covers all EU sites (Veldhoven, Eindhoven, Oirschot, Berlin), so it is a reasonable upper bound for Veldhoven, but no defensible Veldhoven-only share exists, so the value is null. Total group energy including natural gas was 639,585 MWh in 2025."
+   },
+   "u": {
+    "value": null,
+    "unit": "ratio",
+    "year": null,
+    "source": "",
+    "url": "",
+    "confidence": "",
+    "note": "Left null because p is null: u and pue are only meaningful paired with a p derived from annual site consumption (then both are 1 by construction)."
+   },
+   "pue": {
+    "value": null,
+    "unit": "ratio",
+    "year": null,
+    "source": "",
+    "url": "",
+    "confidence": "",
+    "note": "Left null because p is null: u and pue are only meaningful paired with a p derived from annual site consumption (then both are 1 by construction)."
+   },
+   "g": {
+    "value": 0.109,
+    "unit": "fraction/yr",
+    "year": 2025,
+    "source": "ASML - 2025 Annual Report based on IFRS (E1-5 table with 2024 and 2025 columns)",
+    "url": "https://ourbrand.asml.com/m/6ea363f69344ebd4/original/asml-2025-annual-report-based-on-ifrs.pdf",
+    "confidence": "estimated",
+    "note": "COMPANY-level proxy. Electricity 2024 = 17,517 + 3,094 + 457,368 + 760 = 478,739 MWh; 2025 = 3,251 + 0 + 525,147 + 2,600 = 530,998 MWh. Growth: 530,998 / 478,739 - 1 = +10.9%. The EU Guarantees of Origin, a proxy for European electricity, rose from 313,250 to 350,694 MWh (+12.0%). Total energy went 582,244 to 639,585 MWh (+9.8%). ASML has started construction of a new Eindhoven (BIC Noord) campus for about 20,000 more workplaces. That campus is next to Veldhoven, not part of it."
+   },
+   "pop": {
+    "value": 19.94,
+    "unit": "million people",
+    "year": 2025,
+    "source": "European Commission JRC, GHSL GHS-POP R2023A, epoch 2025, 30 arc-second (~1 km) WGS84 grid",
+    "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=pop",
+    "confidence": "estimated",
+    "note": "Sum of GHS-POP 2025 grid cells whose centres lie within 100 km great-circle distance of ASML Veldhoven (51.405, 5.415). Computed by us from the raster (no admin-boundary guesswork); GHSL 2025 is a modelled projection from census data, so treat as ±5-10%. Site coordinates are approximate (±2 km)."
+   }
+  },
+  "ober": {
+   "p": {
+    "value": null,
+    "unit": "MW",
+    "year": 2025,
+    "source": "ZEISS Group - Sustainability Report 2024/25 (energy consumption and mix table)",
+    "url": "https://asset-downloads.zeiss.com/catalogs/download/cco2/199bb605-36f6-4108-8b14-b2b1e1885565/ZEISS_Sustainability_Report_2024_2025.pdf",
+    "confidence": "disclosed",
+    "note": "ZEISS discloses only group-wide energy. No site or SMT-segment energy is published, and no EMAS statement was found for Carl Zeiss SMT Oberkochen. FY2024/25 (Oct-Sep) group totals: total energy 680 GWh, or 77.6 MW. Purchased electricity, heat, steam and cooling (fossil 32 + renewable 481) plus self-generated renewable 4 = 517 GWh, or 59.0 MW. These are upper bounds covering all ZEISS sites worldwide, including Jena, Wetzlar, Aalen, the Oberkochen main plant and non-SMT segments. SMT's share of revenue is not a defensible energy share, so the value is null. The report notes a new heat-pump energy center (NBG 5) at the SMT South Factory in Oberkochen, and Oberkochen PV produced about 1 GWh in FY2024/25."
+   },
+   "u": {
+    "value": null,
+    "unit": "ratio",
+    "year": null,
+    "source": "",
+    "url": "",
+    "confidence": "",
+    "note": "Left null because p is null: u and pue are only meaningful paired with a p derived from annual site consumption (then both are 1 by construction)."
+   },
+   "pue": {
+    "value": null,
+    "unit": "ratio",
+    "year": null,
+    "source": "",
+    "url": "",
+    "confidence": "",
+    "note": "Left null because p is null: u and pue are only meaningful paired with a p derived from annual site consumption (then both are 1 by construction)."
+   },
+   "g": {
+    "value": 0.049,
+    "unit": "fraction/yr",
+    "year": 2025,
+    "source": "ZEISS Group - Sustainability Report 2024/25",
+    "url": "https://asset-downloads.zeiss.com/catalogs/download/cco2/199bb605-36f6-4108-8b14-b2b1e1885565/ZEISS_Sustainability_Report_2024_2025.pdf",
+    "confidence": "estimated",
+    "note": "COMPANY-level proxy based on total energy, not electricity; no electricity split is given for the prior year. Total energy went from 648 GWh (FY2023/24) to 680 GWh (FY2024/25): 680 / 648 - 1 = +4.9%. The 2018/19 baseline was 549 GWh."
+   },
+   "pop": {
+    "value": 8.137,
+    "unit": "million people",
+    "year": 2025,
+    "source": "European Commission JRC, GHSL GHS-POP R2023A, epoch 2025, 30 arc-second (~1 km) WGS84 grid",
+    "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=pop",
+    "confidence": "estimated",
+    "note": "Sum of GHS-POP 2025 grid cells whose centres lie within 100 km great-circle distance of Zeiss Oberkochen (48.785, 10.10). Computed by us from the raster (no admin-boundary guesswork); GHSL 2025 is a modelled projection from census data, so treat as ±5-10%. Site coordinates are approximate (±2 km)."
+   }
+  },
+  "kaoh": {
+   "p": {
+    "value": 146.4,
+    "unit": "MW",
+    "year": 2024,
+    "source": "ASE Kaohsiung (ASEKH), 2024 ASE Kaohsiung Sustainability Report, p.45 \"Analysis of Electricity Consumption\"",
+    "url": "https://ase.aseglobal.com/public/downloads/en/2024-asekh-csr-report-en.pdf",
+    "confidence": "disclosed",
+    "note": "ASE Kaohsiung (K-sites in Nanzih Technology Industrial Park) consumed 1,282,901 MWh in 2024 -> 1,282,901/8760 = 146.4 MW. Covers ASE Kaohsiung only. TSMC Kaohsiung Fab 22 (2nm, Nanzi) is not included; Taipower data show Nanzi district extra-high-voltage sales jumping from 506 GWh (2024) to 1,448 GWh (2025) as it ramps (+108 MW average), and Kaohsiung (Lujhu) science park load of ~233 MW in 2025 (NSTC table F-1)."
+   },
+   "u": {
+    "value": 1.0,
+    "unit": "ratio",
+    "year": null,
+    "source": "Model convention",
+    "url": "",
+    "confidence": "estimated",
+    "note": "p is derived from total annual site electricity (MWh/yr / 8760), which already reflects actual utilisation and all facility overhead; so u=1 and pue=1 by construction (not a measured value)."
+   },
+   "pue": {
+    "value": 1.0,
+    "unit": "ratio",
+    "year": null,
+    "source": "Model convention",
+    "url": "",
+    "confidence": "estimated",
+    "note": "p is derived from total annual site electricity (MWh/yr / 8760), which already reflects actual utilisation and all facility overhead; so u=1 and pue=1 by construction (not a measured value)."
+   },
+   "g": {
+    "value": 0.024,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "ASE Kaohsiung (ASEKH), 2024 ASE Kaohsiung Sustainability Report, p.45 \"Analysis of Electricity Consumption\"",
+    "url": "https://ase.aseglobal.com/public/downloads/en/2024-asekh-csr-report-en.pdf",
+    "confidence": "disclosed",
+    "note": "ASEKH electricity 2023 = 1,252,590 MWh; 2024 = 1,282,901 MWh -> +2.4%. Longer run 2015 (929,001 MWh) -> 2024: (1282901/929001)^(1/9)-1 = 3.7%/yr."
+   },
+   "pop": {
+    "value": 6.105,
+    "unit": "million people",
+    "year": 2025,
+    "source": "European Commission JRC, GHSL GHS-POP R2023A, epoch 2025, 30 arc-second (~1 km) WGS84 grid",
+    "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=pop",
+    "confidence": "estimated",
+    "note": "Sum of GHS-POP 2025 grid cells whose centres lie within 100 km great-circle distance of ASE Kaohsiung, Nanzih (22.72, 120.30). Computed by us from the raster (no admin-boundary guesswork); GHSL 2025 is a modelled projection from census data, so treat as ±5-10%. Site coordinates are approximate (±2 km)."
+   }
+  },
+  "hiro": {
+   "p": {
+    "value": 173.3,
+    "unit": "MW",
+    "year": 2023,
+    "source": "Ministry of the Environment Japan (EEGS) - 温室効果ガス排出量算定・報告・公表制度 事業所別排出量: マイクロンメモリジャパン株式会社 FAB15 (Higashihiroshima), 特定排出者コード 987907697; Micron Technology 2026 Sustainability Report (energy table); Chugoku Electric 環境関連データ集 2025 (emission factor)",
+    "url": "https://eegs.env.go.jp/ghg-santeikohyo-result/office?spEmitCode=987907697&office=%E3%83%9E%E3%82%A4%E3%82%AF%E3%83%AD%E3%83%B3%E3%83%A1%E3%83%A2%E3%83%AA%E3%80%80%E3%82%B8%E3%83%A3%E3%83%91%E3%83%B3%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%E3%80%80FAB15",
+    "confidence": "estimated",
+    "note": "Neither Micron nor the Japanese government publishes the site's electricity use in MWh. The Micron 2026 Sustainability Report gives only company totals. This value is back-calculated from the disclosed site CO2. EEGS FY2023 (Apr 2023-Mar 2024) for FAB15: total GHG 1,108,474 t, energy-origin CO2 844,033 t. Assumptions: (a) grid factor = Chugoku Electric basic factor 0.511 kgCO2/kWh (FY2023 actual); (b) the fuel-to-electricity energy ratio matches Micron's global FY25 mix, 2,454,135 / 9,791,521 = 0.2506 MWh fuel per MWh electricity; (c) fuel is city gas at about 0.180 tCO2/MWh. Electricity = 844,033 / (0.511 + 0.2506 x 0.180) = 1,517,800 MWh, and 1,517,800 / 8760 = 173.3 MW. Upper-leaning variant (all energy CO2 from electricity): 844,033 / 0.000511 = 1,651,700 MWh, or 188.6 MW. Treat the range as roughly 170-190 MW, and more uncertain than that if Micron buys from a retailer with a different emission factor. For context, Micron company-wide electricity in FY25 was 9,791,521 MWh (1,118 MW), so FAB15 would be about 15% of the company."
+   },
+   "u": {
+    "value": 1,
+    "unit": "fraction",
+    "year": 2023,
+    "source": "Model convention",
+    "url": "",
+    "confidence": "estimated",
+    "note": "Set u=1 because p is average annual power (annual MWh / 8760)."
+   },
+   "pue": {
+    "value": 1,
+    "unit": "ratio",
+    "year": 2023,
+    "source": "Model convention",
+    "url": "",
+    "confidence": "estimated",
+    "note": "Set pue=1 because p is whole-site electricity, which includes fab utilities."
+   },
+   "g": {
+    "value": 0.068,
+    "unit": "fraction/yr",
+    "year": 2025,
+    "source": "Micron Technology - 2026 Sustainability Report, Performance at a glance: Energy",
+    "url": "https://tw.micron.com/content/dam/micron/global/public/programs/sustainability/documents/micron-technology-2026-sustainability-report.pdf",
+    "confidence": "estimated",
+    "note": "COMPANY-level proxy, not the site. Micron electricity = purchased nonrenewable + purchased renewable + onsite renewable. FY24: 8,384,845 + 783,604 + 270 = 9,168,719 MWh. FY25: 8,530,107 + 1,260,476 + 938 = 9,791,521 MWh. Growth: 9,791,521 / 9,168,719 - 1 = +6.8%. Site-specific upside: Micron broke ground in July 2026 on a new Hiroshima cleanroom within a ~1.5 trillion yen investment plan with METI support of up to 536 billion yen (Nikkei, EE Times Japan), so Hiroshima growth after 2027 is likely to run above this company rate. The expansion's electricity demand has not been published."
+   },
+   "pop": {
+    "value": 5.465,
+    "unit": "million people",
+    "year": 2025,
+    "source": "European Commission JRC, GHSL GHS-POP R2023A, epoch 2025, 30 arc-second (~1 km) WGS84 grid",
+    "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=pop",
+    "confidence": "estimated",
+    "note": "Sum of GHS-POP 2025 grid cells whose centres lie within 100 km great-circle distance of Micron Hiroshima, Higashihiroshima (34.44, 132.75). Computed by us from the raster (no admin-boundary guesswork); GHSL 2025 is a modelled projection from census data, so treat as ±5-10%. Site coordinates are approximate (±2 km)."
+   }
+  },
+  "chand": {
+   "p": {
+    "value": 268.9,
+    "unit": "MW",
+    "year": 2024,
+    "source": "Intel - Explore Intel site environmental performance pages (Ocotillo and Chandler campuses, calendar-year 2024 data)",
+    "url": "https://www.exploreintel.com/ocotillo",
+    "confidence": "disclosed",
+    "note": "Site 'Energy Used' for CY2024: Ocotillo campus 2,111,443 MWh (https://www.exploreintel.com/ocotillo) plus Chandler campus 243,936 MWh (https://www.exploreintel.com/chandler) = 2,355,379 MWh. 2,355,379 / 8760 = 268.9 MW. Caveat: Intel's corporate 'energy use' metric includes electricity, gas and diesel, so this site figure probably includes natural gas. Electricity-only estimate: the NIST Draft Environmental Assessment for Intel Ocotillo (July 2024) says Ocotillo used about 15,800,000 therms of gas in 2023. At 29.3071 kWh/therm that is 463,052 MWh, giving (2,355,379 - 463,052) / 8760 = 216.0 MW. That still includes the Chandler campus's unknown gas use, so it leans high. Same EA: Fab 42 alone has an estimated maximum demand of 1.7 GWh/day (70.8 MW), and SRP's High-Tech Interconnection Project provides about 630 MW of load-serving capacity (all phases done April 2024). Renewable electricity: 98%."
+   },
+   "u": {
+    "value": 1,
+    "unit": "fraction",
+    "year": 2024,
+    "source": "Model convention",
+    "url": "",
+    "confidence": "estimated",
+    "note": "Set u=1 because p is average annual power (annual MWh / 8760)."
+   },
+   "pue": {
+    "value": 1,
+    "unit": "ratio",
+    "year": 2024,
+    "source": "Model convention",
+    "url": "",
+    "confidence": "estimated",
+    "note": "Set pue=1 because p is whole-site energy, which includes fab utilities."
+   },
+   "g": {
+    "value": 0.056,
+    "unit": "fraction/yr",
+    "year": 2024,
+    "source": "Intel - 2024-25 Corporate Responsibility Report Executive Summary (key metrics table)",
+    "url": "https://csrreportbuilder.intel.com/pdfbuilder/pdfs/CSR-2024-25-Executive-Summary.pdf",
+    "confidence": "estimated",
+    "note": "COMPANY-level proxy. Intel energy use (electricity, gas and diesel) went from 10.8 billion kWh (2023) to 11.4 billion kWh (2024): 11.4 / 10.8 - 1 = +5.6%. The earlier series was 10.6 (2020), 11.6 (2021), 10.9 (2022), so it is flat-to-noisy. Site-specific projection: the NIST Draft EA (July 2024, https://www.nist.gov/system/files/documents/2024/07/08/Intel%20Ocotillo%20EA_DRAFT%20FINAL_VOLUME%201%208July2024.pdf) puts full-production demand for Fabs 42+52+62 at 8.5 GWh/day, or 354 MW. That is 1.7 GWh/day for Fab 42 and an estimated 3.4 GWh/day each for the new Fabs 52 and 62. So the ramp of Fabs 52 and 62 could add up to about 283 MW over several years, but the ramp timing is not disclosed."
+   },
+   "pop": {
+    "value": 5.445,
+    "unit": "million people",
+    "year": 2025,
+    "source": "European Commission JRC, GHSL GHS-POP R2023A, epoch 2025, 30 arc-second (~1 km) WGS84 grid",
+    "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=pop",
+    "confidence": "estimated",
+    "note": "Sum of GHS-POP 2025 grid cells whose centres lie within 100 km great-circle distance of Intel Ocotillo, Chandler (33.27, -111.88). Computed by us from the raster (no admin-boundary guesswork); GHSL 2025 is a modelled projection from census data, so treat as ±5-10%. Site coordinates are approximate (±2 km)."
+   }
+  }
+ },
+ "caveats": [
+  "Taiwan sites (hsin, tainan) are science-park-wide figures, not TSMC-only: TSMC does not publish electricity by fab or park. They include other tenants (UMC, Innolux, Macronix, etc.).",
+  "No site-level electricity is published for Samsung Pyeongtaek, SK hynix Icheon, ASML Veldhoven, Zeiss Oberkochen, the Yamaguchi specialty-gas plant, Spruce Pine or the Bayan Obo mine: p is null; notes give company totals / upper bounds.",
+  "Where g is a company-wide growth rate (ptaek, icheon, hiro, veld, ober, chand) it is marked estimated and stated as a proxy in the note.",
+  "u=1 and pue=1 wherever p comes from total annual site consumption; this is a model convention, not a measurement.",
+  "hiro p is derived from Japan GHG register energy-CO2 for Micron FAB15 converted with Chugoku Electric emission factor (see note); chand p (Intel Explore Intel site pages) may include natural gas energy (electricity-only ~216 MW estimated).",
+  "grasb p (220 MW) is Freeport-disclosed average power demand for 2018 (self-generated, mostly coal); ramp-up to ~270 MW was guided.",
+  "green p covers grid electricity only (~1/4 of site energy; diesel dominates mobile fleet). spruce g is a projected capacity-doubling growth, not metered.",
+  "Population = GHSL 2025 cells within 100 km radius; coastal/island sites (Taiwan, Hiroshima, Yamaguchi) include sea cells with zero population, which is correct for a radius measure."
+ ]
+}

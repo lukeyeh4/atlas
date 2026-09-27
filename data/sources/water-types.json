@@ -1,0 +1,366 @@
+{
+  "types": {
+    "mine": {
+      "default_l_per_kwh": 8.66,
+      "low": 2.94,
+      "high": 11.7,
+      "basis": "Total site WITHDRAWAL (new water, excl. recycled; no seawater in any point) / TOTAL site energy incl. diesel/gas/coal (mines self-generate much of their power, so electricity-only ratios are not comparable: 17-25 L/kWh when only purchased electricity is counted). Default = median of 6 latest-year site points (Grasberg 7.27, FCX South America 10.05, FCX North America 11.70, Greenbushes 5.47, Pilgangoora 5.93, Mt Weld 10.05); low = Greenbushes 2023. Sub-defaults if the app distinguishes minerals: copper ~10 (FCX segment 9.70), hard-rock lithium ~5.7, rare earths ~10 (one point), high-purity quartz null (no source found).",
+      "by_mineral": {
+        "copper": 9.7,
+        "lithium_spodumene": 5.7,
+        "rare_earths": 10.05,
+        "high_purity_quartz": null
+      },
+      "points": [
+        {
+          "company": "Freeport-McMoRan (PT Freeport Indonesia)",
+          "scope": "Grasberg minerals district, Indonesia (copper-gold mine + concentrator; on-site coal/diesel power, no grid)",
+          "year": 2024,
+          "water": "65,148 thousand m3 new water withdrawn (groundwater 35,050 + surface 6,328 + stormwater 23,771; no seawater); consumption only 3,902 thousand m3 (61,245 discharged)",
+          "energy": "32,276 TJ total (all direct; indirect = 0 because PTFI self-generates) = 8,965.6 GWh",
+          "l_per_kwh": 7.27,
+          "arithmetic": "65,148e6 L / (32,276 TJ x 277,778 kWh/TJ = 8.966e9 kWh) = 7.27 L/kWh (withdrawal, total-energy basis); consumption basis 3,902e6/8.966e9 = 0.44 L/kWh; electricity-only n/a (self-generated power counted as fuel input)",
+          "source": "Freeport-McMoRan 2024 Annual Report on Sustainability, data tables pp.137-151 (Energy consumption by site; Water performance by region)",
+          "url": "https://www.fcx.com/sites/fcx/files/documents/sustainability/2024-annual-report-on-sustainability.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Freeport-McMoRan",
+          "scope": "South America copper mining (Cerro Verde, Peru + El Abra, Chile)",
+          "year": 2024,
+          "water": "74,832 thousand m3 new water withdrawn (no seawater; incl. 31,237 third-party); consumption 73,990 thousand m3 (zero discharge)",
+          "energy": "26,812 TJ total (direct 10,046+1,181 = 11,227; indirect/purchased 13,108+2,477 = 15,585) = 7,447.8 GWh",
+          "l_per_kwh": 10.05,
+          "arithmetic": "74,832e6 L / (26,812 TJ x 277,778 = 7.448e9 kWh) = 10.05 L/kWh total-energy basis; indirect (purchased electricity) only 15,585 TJ = 4.329e9 kWh -> 17.29 L/kWh",
+          "source": "Freeport-McMoRan 2024 Annual Report on Sustainability, data tables pp.137-151 (Energy consumption by site; Water performance by region)",
+          "url": "https://www.fcx.com/sites/fcx/files/documents/sustainability/2024-annual-report-on-sustainability.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Freeport-McMoRan",
+          "scope": "North America copper mining (Morenci, Bagdad, Safford/Lone Star, Sierrita, Chino/Cobre, Tyrone; Arizona/New Mexico)",
+          "year": 2024,
+          "water": "111,704 thousand m3 new water withdrawn (groundwater 72,107, surface 22,800, stormwater 15,113, third-party 1,685); consumption 111,133 thousand m3",
+          "energy": "34,361 TJ total (direct 18,118 + indirect 16,243) = 9,544.7 GWh",
+          "l_per_kwh": 11.7,
+          "arithmetic": "111,704e6 L / (34,361 TJ x 277,778 = 9.545e9 kWh) = 11.70 L/kWh total-energy basis; indirect (purchased electricity) only 16,243 TJ = 4.512e9 kWh -> 24.76 L/kWh",
+          "source": "Freeport-McMoRan 2024 Annual Report on Sustainability, data tables pp.137-151 (Energy consumption by site; Water performance by region)",
+          "url": "https://www.fcx.com/sites/fcx/files/documents/sustainability/2024-annual-report-on-sustainability.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Freeport-McMoRan",
+          "scope": "All FCX copper mining (segment total, 9 mines incl. the three above)",
+          "year": 2024,
+          "water": "251,684 thousand m3 new water withdrawn (no seawater; recycled 1,494,884 excluded); consumption 189,024 thousand m3",
+          "energy": "93,449 TJ (Copper Mining segment total energy) = 25,958 GWh",
+          "l_per_kwh": 9.7,
+          "arithmetic": "251,684e6 L / (93,449 TJ x 277,778 = 2.596e10 kWh) = 9.70 L/kWh (withdrawal); consumption 189,024e6/2.596e10 = 7.28 L/kWh",
+          "source": "Freeport-McMoRan 2024 Annual Report on Sustainability, data tables pp.137-151 (Energy consumption by site; Water performance by region)",
+          "url": "https://www.fcx.com/sites/fcx/files/documents/sustainability/2024-annual-report-on-sustainability.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Talison Lithium (JV: Tianqi/IGO 51%, Albemarle 49%)",
+          "scope": "Greenbushes hard-rock spodumene mine + concentrators, WA (incl. Bunbury storage, Perth office)",
+          "year": 2024,
+          "water": "3,457 ML total water withdrawn (collected rainwater 3,366 + municipal 83.5; groundwater 0); consumed 3,201 ML",
+          "energy": "2,274,399 GJ total (diesel 1,624,253; grid electricity 581,531; other 68,616) = 631.8 GWh",
+          "l_per_kwh": 5.47,
+          "arithmetic": "3,457e6 L / (2,274,399 GJ x 277.778 = 6.318e8 kWh) = 5.47 L/kWh total-energy basis; electricity only 581,531 GJ = 1.615e8 kWh -> 21.40 L/kWh; consumption basis 3,201e6/6.318e8 = 5.07",
+          "source": "Talison Lithium Sustainability Report 2024, performance data pp.38-39",
+          "url": "https://static1.squarespace.com/static/5c0754e24611a07f1ab91992/t/68511903a861164b37ea16de/1758102635710/Talison+2024+Sustainability+Report+v2+WEB.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Talison Lithium",
+          "scope": "Greenbushes (same scope), prior year to show variability",
+          "year": 2023,
+          "water": "1,560 ML total water withdrawn (rainwater 1,500 + municipal 59.9); consumed 2,749 ML (draws on stored water)",
+          "energy": "1,913,373 GJ total (diesel 1,239,219; grid electricity 605,375) = 531.5 GWh",
+          "l_per_kwh": 2.94,
+          "arithmetic": "1,560e6 L / (1,913,373 GJ x 277.778 = 5.315e8 kWh) = 2.94 L/kWh (withdrawal); consumption 2,749e6/5.315e8 = 5.17 L/kWh",
+          "source": "Talison Lithium Sustainability Report 2023, performance data",
+          "url": "https://static1.squarespace.com/static/5c0754e24611a07f1ab91992/t/667e620d92f1c75a39fed585/1719558732183/Talison+Lithium-Sustainability+Report-2023.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Pilbara Minerals (PLS)",
+          "scope": "Pilgangoora spodumene operation, WA (company-level NGER energy; PLS's only operating site)",
+          "year": 2024,
+          "water": "4.3 GL water abstracted in FY24 (Jul 2023-Jun 2024), groundwater (stated in FY25 annual report as the base for +19% to 5.1 GL in FY25)",
+          "energy": "2,610,790 GJ net energy consumed, Pilbara Minerals Limited, NGER 2023-24 = 725.2 GWh",
+          "l_per_kwh": 5.93,
+          "arithmetic": "4.3e9 L / (2,610,790 GJ x 277.778 = 7.252e8 kWh) = 5.93 L/kWh (withdrawal, total-energy basis; power is on-site gas/diesel/solar). Water and energy come from two different publications.",
+          "source": "PLS Annual Report 2025 (Sustainability - Water management) + Clean Energy Regulator 'Greenhouse and energy information by registered corporation 2023-24'",
+          "url": "https://www.pls.com/storage/announcements/2025-annual-report-incorporating-appendix-4e-2025-08-25.pdf ; https://cer.gov.au/document/greenhouse-and-energy-information-registered-corporation-2023-24-0",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Lynas Rare Earths",
+          "scope": "Mt Weld rare-earth mine + concentration plant, WA (FY Jul 2024-Jun 2025)",
+          "year": 2025,
+          "water": "1,922,825 m3 total water withdrawn (bore abstraction; consumed = withdrawn; recycled 529,591 m3 excluded)",
+          "energy": "688,530 GJ = 191,258 MWh total energy consumed (incl. self-produced); net 174,030 MWh",
+          "l_per_kwh": 10.05,
+          "arithmetic": "1,922,825e3 L / 191,258e3 kWh = 10.05 L/kWh (total-energy basis); net-energy basis 1,922,825e3/174,030e3 = 11.05",
+          "source": "Lynas Rare Earths 2025 Sustainability Report, Performance Data Tables pp.38-40",
+          "url": "https://lynasrareearths.com/wp-content/uploads/2025/10/LYC-Sustainability-Report-2025-Oct25V2-1.pdf",
+          "confidence": "estimated"
+        }
+      ]
+    },
+    "packaging": {
+      "default_l_per_kwh": 5.1,
+      "low": 1.72,
+      "high": 8.75,
+      "basis": "Company-wide total WITHDRAWAL (freshwater, excl. recycled) / ELECTRICITY (same basis as the TSMC 5.25 figure). Default = median of ASE 5.10, Amkor 8.75, JCET 7.94, PTI 4.52, KYEC 1.72. Test-only houses sit low (KYEC 1.7); bump/substrate-heavy packaging higher (Amkor, JCET ~8).",
+      "points": [
+        {
+          "company": "ASE Technology Holding (ASEH)",
+          "scope": "Group-wide: ASE + SPIL + USI (USI is EMS/system assembly, so not pure OSAT)",
+          "year": 2024,
+          "water": "21,886,295 m3 total withdrawal (municipal 83.26%, groundwater 16.00%, surface 0.08%, third-party 0.66%); rainwater appears in the water-flow chart; recycled 40.6 Mm3 excluded; consumption 6,014,921 m3",
+          "energy": "4,294,177 MWh electricity (incl. 824,401 MWh renewable/REC); plus 443,140 GJ (123,094 MWh) fossil fuels -> 4,417,271 MWh total",
+          "l_per_kwh": 5.1,
+          "arithmetic": "21,886,295,000 L / 4,294,177,000 kWh = 5.10 L/kWh (electricity); / 4,417,271,000 kWh total = 4.95; consumption 6,014,921,000/4,294,177,000 = 1.40",
+          "source": "ASE Technology Holding 2024 Sustainability Report, pp.123-124 (energy), PDF p.138 water flow, p.244 GRI 303 table",
+          "url": "https://www.aseglobal.com/en/pdf/aseh-2024-csr-en-final.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Amkor Technology",
+          "scope": "All facilities and offices worldwide",
+          "year": 2025,
+          "water": "17,195,469 m3 total withdrawal (groundwater 2,269,899 + surface 5,645 + third-party 14,919,925); consumption 3,521,619 m3",
+          "energy": "7,689,700 GJ total energy = 2,136,045 MWh; electricity not stated directly, derived as 92% of energy (74% grid + 18% renewable per SASB) = 1,965,161 MWh",
+          "l_per_kwh": 8.75,
+          "arithmetic": "17,195,469,000 L / 1,965,161,277 kWh = 8.75 (electricity, derived); / 2,136,044,866 kWh total energy = 8.05. 2024: 15,977,116 m3 / 1,867,148 MWh (derived) = 8.56",
+          "source": "2025 Amkor Technology Corporate Responsibility Report, SASB index p.49, Metrics Table 3 p.54",
+          "url": "https://amkormarcomexternal.blob.core.windows.net/amkordotcom/wp-content/uploads/2026/05/2025-Amkor-Corporate-Responsibility-Report.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "JCET (Jiangsu Changjiang Electronics Technology)",
+          "scope": "11 factories (JSAC and JME excluded)",
+          "year": 2025,
+          "water": "13,056,817.71 t (= m3) total withdrawal; consumption 6,990,834.92 m3",
+          "energy": "1,644,394 MWh electricity (purchased 1,610,330.75 + self-used PV 34,063.69); total energy 222,257 tce (~1,809,409 MWh, derived at 29.3076 GJ/tce)",
+          "l_per_kwh": 7.94,
+          "arithmetic": "13,056,817,710 L / 1,644,394,440 kWh = 7.94 (electricity); total energy basis 7.22 (derived). 2024: 11,022,707.65 m3 / 1,344,124.79 MWh purchased = 8.20",
+          "source": "长电科技 2025年度ESG报告 (JCET 2025 ESG Report), PDF pp.57, 61, 120",
+          "url": "https://www.jcetglobal.com/uploads/2026-04-10/%E9%95%BF%E7%94%B5%E7%A7%91%E6%8A%802025%E5%B9%B4%E5%BA%A6ESG%E6%8A%A5%E5%91%8A.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Powertech Technology (PTI)",
+          "scope": "PTI standalone, Taiwan (Greatek, TeraPower, Tera Probe excluded)",
+          "year": 2025,
+          "water": "3,276.266 ML total withdrawal (municipal 3,244.419 + groundwater 31.847)",
+          "energy": "724,555,807.6 kWh electricity; total energy 2,629,429.826 GJ = 730,403,017 kWh",
+          "l_per_kwh": 4.52,
+          "arithmetic": "3,276,266,000 L / 724,555,808 kWh = 4.52 (electricity); / 730,403,017 = 4.49 total",
+          "source": "Powertech Technology Inc. 2025 Sustainability Report (EN), pp.156, 160",
+          "url": "https://www.pti.com.tw/Handlers/CsrDownload.ashx?lang=en&id=2b296355-8d47-4f6d-90d8-6fc7918fc178",
+          "confidence": "estimated"
+        },
+        {
+          "company": "KYEC (King Yuan Electronics)",
+          "scope": "KYEC parent, Taiwan sites (test-dominated; Suzhou subsidiaries divested 2024)",
+          "year": 2025,
+          "water": "1,481.570 ML total withdrawal (freshwater, mainly third-party); recycled 205.339 ML excluded",
+          "energy": "861,624 MWh electricity (grid 2,765,207.59 GJ + purchased renewable 336,614.34 GJ); total energy 863,518 MWh",
+          "l_per_kwh": 1.72,
+          "arithmetic": "1,481,570,000 L / 861,624,096 kWh = 1.72 (electricity and total energy both ~1.72)",
+          "source": "京元電子 2025 永續報告書 (KYEC 2025 Sustainability Report), pp.84, 97",
+          "url": "https://www.kyec.com.tw/Upfiles/EDUp/files/KYEC%20%E6%B0%B8%E7%BA%8C%E5%A0%B1%E5%91%8A%E6%9B%B8_2025_%E4%B8%AD.pdf",
+          "confidence": "estimated",
+          "note": "Final-test house, not packaging; low end of range. Use only if node is test-only."
+        }
+      ]
+    },
+    "equipment": {
+      "default_l_per_kwh": 3.36,
+      "low": 2.46,
+      "high": 4.1,
+      "basis": "Company-wide WITHDRAWAL / ELECTRICITY (ASML: purchased energy; Lam: derived grid electricity). Default = median of ASML 3.00, Lam 4.10, TEL 3.36; low = ASML on total-energy basis. Applied Materials and ZEISS not obtained.",
+      "points": [
+        {
+          "company": "ASML",
+          "scope": "ASML Holding, group-wide (ESRS)",
+          "year": 2024,
+          "water": "1,432,410 m3 total withdrawal (incl. 104,940 m3 ultrapure water; ~0.9% recycled)",
+          "energy": "477,979 MWh purchased electricity+heat+steam+cooling (no pure electricity line; electricity ~80% of energy); total energy 582,244 MWh",
+          "l_per_kwh": 3.0,
+          "arithmetic": "1,432,410,000 L / 477,979,000 kWh = 3.00 (purchased energy ~electricity); / 582,244,000 kWh total = 2.46",
+          "source": "ASML 2024 Annual Report based on IFRS, sustainability statements p.180 (water), p.216 (E1-5 energy)",
+          "url": "https://ourbrand.asml.com/m/3035813cf1b8ea4f/original/2024-Annual-Report-based-on-IFRS-FINAL.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Lam Research",
+          "scope": "Global, calendar year",
+          "year": 2024,
+          "water": "396 million US gal total water withdrawn (SASB) = 1,499,022 m3 (incl. 105M gal UPW; ~50% in high water stress)",
+          "energy": "501 GWh total energy; electricity not stated, derived as 73% grid share x 501 GWh = 365.7 GWh",
+          "l_per_kwh": 4.1,
+          "arithmetic": "1,499,022,000 L / 365,730,000 kWh = 4.10 (electricity, derived from grid %); / 501,000,000 kWh total energy = 2.99",
+          "source": "Lam Research 2024 Impact Frameworks (Performance summary p.2; SASB TC-SC-130a.1/140a.1 p.16)",
+          "url": "https://www.lamresearch.com/wp-content/uploads/2025/07/Lam-Research-2024-Impact-Frameworks.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Tokyo Electron (TEL)",
+          "scope": "TEL Group, 26 consolidated companies, FY Apr 2024-Mar 2025",
+          "year": 2025,
+          "water": "1,587 thousand m3 water intake (withdrawal); consumption 398 thousand m3",
+          "energy": "471,956 MWh electricity; total energy not published as absolute value",
+          "l_per_kwh": 3.36,
+          "arithmetic": "1,587,000,000 L / 471,956,000 kWh = 3.36 (electricity)",
+          "source": "Tokyo Electron Sustainability Data (web page)",
+          "url": "https://www.tel.com/sustainability/data/index.html",
+          "confidence": "estimated"
+        }
+      ]
+    },
+    "materials_gases": {
+      "default_l_per_kwh": 6.32,
+      "low": 4.3,
+      "high": 10.8,
+      "basis": "Company-wide WITHDRAWAL / ELECTRICITY where available (Shin-Etsu: total energy, conversion assumed). Default = median of Entegris 6.32, Shin-Etsu 5.30, SUMCO 10.8 (Linde excluded - cooling/seawater dominated). Wafer makers (SUMCO ~11) are more water-intensive than chemical/filtration suppliers (~4-6). No specialty-gas-specific (electronics) data found; Air Liquide, Resonac, Central Glass not obtained.",
+      "points": [
+        {
+          "company": "Entegris",
+          "scope": "Manufacturing operations under Entegris control",
+          "year": 2024,
+          "water": "1,702,973 m3 total water withdrawn (SASB; footnote says potable, partly estimated); consumed 592,323 m3",
+          "energy": "1,425,480 GJ total energy (SASB) = 395,970 MWh; electricity derived as 68% grid = 269,259 MWh (report table p.33 labels 270,177 MWh as 'Total Energy Consumption', inconsistent)",
+          "l_per_kwh": 6.32,
+          "arithmetic": "1,702,973,000 L / 269,259,000 kWh = 6.32 (electricity, derived); / 395,969,834 kWh total energy = 4.30",
+          "source": "Entegris 'Innovation with Impact' 2024 CSR Report, pp.33, 47, 48",
+          "url": "https://www.entegris.com/content/dam/web/resources/reports/corporate-social-responsibility-report-2024-14044.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "SUMCO",
+          "scope": "SUMCO Group, Japan domestic sites (silicon wafers; incl. polysilicon subsidiary from 2024)",
+          "year": 2025,
+          "water": "20.1 million m3 water supplied (intake) - value read from rendered chart; recycling rate 38.9%",
+          "energy": "1,858 GWh electricity (Japan); group incl. overseas 2,534 GWh",
+          "l_per_kwh": 10.8,
+          "arithmetic": "20,100,000,000 L / 1,858,000,000 kWh = 10.8 (electricity, Japan scope)",
+          "source": "SUMCO 'Effective Use of Water Resources' and 'Combating Global Warming' web pages",
+          "url": "https://www.sumcosi.com/english/csr/environmental/water.html ; https://www.sumcosi.com/english/csr/environmental/warming.html",
+          "confidence": "estimated",
+          "note": "Water figure read from a chart, not a table."
+        },
+        {
+          "company": "Shin-Etsu Chemical",
+          "scope": "Consolidated group (incl. Shintech PVC/chlor-alkali; not wafer-only)",
+          "year": 2024,
+          "water": "180 million m3 water withdrawal (FY2024); 196 million m3 FY2025",
+          "energy": "3,154 million L crude-oil-equivalent total energy (FY2024); no electricity figure. Converted at 38.76 GJ/kL (Japanese Energy Conservation Act factor - our assumption) = 33.96 TWh",
+          "l_per_kwh": 5.3,
+          "arithmetic": "180e9 L / (3,154,000 kL x 38.76 GJ/kL x 277.78 kWh/GJ = 33.96e9 kWh) = 5.30 (total energy, conversion assumed); FY2025 196e9/35.58e9 = 5.51",
+          "source": "Shin-Etsu Sustainability Report 2025, data table PDF p.131",
+          "url": "https://www.shinetsu.co.jp/en/sustainability/assets/pdf/sustainability/esg_bn/Sustainability2025E_0729.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Linde plc",
+          "scope": "Group-wide (industrial gases; no electronics split)",
+          "year": 2025,
+          "water": "1,123.3 million m3 total withdrawal: freshwater 453.2 (of which ~352 once-through cooling returned), seawater 400.0, third-party/recycled 270.1; consumption 95.8 million m3",
+          "energy": "42,674,000 MWh electricity; total energy 71,616,000 MWh",
+          "l_per_kwh": 10.6,
+          "arithmetic": "Freshwater only: 453.2e9 L / 42.674e9 kWh = 10.6 (electricity). All sources incl. seawater: 1,123.3e9/42.674e9 = 26.3. Consumption: 95.8e9/42.674e9 = 2.24",
+          "source": "Linde 2025 Sustainable Development Report, pp.45-48",
+          "url": "https://assets.linde.com/-/media/global/corporate/corporate/documents/sustainable-development/2025-sustainable-development-report.pdf",
+          "confidence": "estimated",
+          "note": "Excluded from default: withdrawal is mostly cooling/seawater/SMR steam, not representative of electronic specialty gases."
+        }
+      ]
+    },
+    "assembly": {
+      "default_l_per_kwh": 3.59,
+      "low": 2.28,
+      "high": 5.29,
+      "basis": "Company-wide total WITHDRAWAL / ELECTRICITY. Default = median of Foxconn 4.99, Wistron 5.29, Wiwynn 2.28, Inventec 3.44, Jabil 3.59. Server-rack-focused ODM (Wiwynn) is lowest. Quanta (site blocked) and Flex (no energy total) not obtained.",
+      "points": [
+        {
+          "company": "Hon Hai / Foxconn",
+          "scope": "Group",
+          "year": 2025,
+          "water": "77,832.53 ML total withdrawal (groundwater 283.57 + third-party 77,548.96)",
+          "energy": "Total energy 16,469.70 GWh; electricity derived as total minus fuels (863.54 GWh) = 15,606.16 GWh",
+          "l_per_kwh": 4.99,
+          "arithmetic": "77,832,530,000 L / 15,606,160,000 kWh = 4.99 (electricity, derived); / 16,469,700,000 total = 4.73",
+          "source": "2025 Hon Hai Foxconn Sustainability Report - Appendix, printed pp.207-208",
+          "url": "https://www.honhai.com/s3/reports/CSR/sustainability/EN/09_2025%20Hon%20Hai%20Foxconn%20Sustainability%20Report_Appendix.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Wistron",
+          "scope": "Wistron + consolidated subsidiaries excl. Wiwynn",
+          "year": 2025,
+          "water": "2,561.57 ML total withdrawal (tap 2,560.70 + surface 0.87)",
+          "energy": "484,513,346 kWh electricity (on-site solar + RECs + PPA + non-renewable); total energy 505,856.65 MWh",
+          "l_per_kwh": 5.29,
+          "arithmetic": "2,561,570,000 L / 484,513,346 kWh = 5.29 (electricity); / 505,856,650 = 5.06 total",
+          "source": "Wistron 2025 Sustainability Report (EN), pp.102, 117",
+          "url": "https://esg.wistron.com/en/report-download/esg/yeEo7V41ZrAj/2025SustainabilityReportEN.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Wiwynn",
+          "scope": "All consolidated subsidiaries (Taiwan, Mexico, Malaysia) - hyperscale server/rack ODM",
+          "year": 2024,
+          "water": "277.56 ML total withdrawal (includes rainwater harvesting)",
+          "energy": "121,487,890 kWh electricity; total energy 452,900 GJ = 125,805,727 kWh",
+          "l_per_kwh": 2.28,
+          "arithmetic": "277,563,000 L / 121,487,890 kWh = 2.28 (electricity); / 125,805,727 = 2.21 total",
+          "source": "Wiwynn 2024 Sustainability Report (EN), PDF pp.81-82",
+          "url": "https://www.wiwynn.com/hubfs/ESG/2025/files/Wiwynn_Sustainability_Report_EN.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Inventec",
+          "scope": "Parent + 50 consolidated subsidiaries",
+          "year": 2025,
+          "water": "1,251 ML withdrawal (all third-party tap water; recycled/rainwater separate)",
+          "energy": "363,354 MWh electricity (derived: non-renewable 304,753 + purchased renewable 58,601); total energy 379,680 MWh",
+          "l_per_kwh": 3.44,
+          "arithmetic": "1,251,000,000 L / 363,354,000 kWh = 3.44 (electricity, derived); / 379,680,000 = 3.29 total",
+          "source": "英業達 2025 永續報告書 (Inventec 2025 Sustainability Report), pp.71-72, 77",
+          "url": "https://esg.inventec.com/esg-uploads/uploads/files/shares/esg-report/Inventec%202025%20Sustainabiltly%20Report_TC_Final.pdf",
+          "confidence": "estimated"
+        },
+        {
+          "company": "Jabil",
+          "scope": "97 sites (energy) / 94 sites (water), FY Sep 2024-Aug 2025",
+          "year": 2025,
+          "water": "5,336,752 m3 'acquired' (purchased) water only - rainwater/well water not reported, so lower bound on withdrawal",
+          "energy": "1,485,578 MWh electricity; total energy 1,629,178 MWh",
+          "l_per_kwh": 3.59,
+          "arithmetic": "5,336,752,000 L / 1,485,578,000 kWh = 3.59 (electricity); / 1,629,178,000 = 3.28 total. FY2024: 7,101,341 m3 / 2,092,139 MWh = 3.39",
+          "source": "Jabil 2025 Sustainability Progress Report, pp.66-67",
+          "url": "https://jabil.com/dam/jcr:6437dea3-e6e3-4f38-ae36-085b0aade185/FY25%20Sustainability%20Report_Jabil.pdf",
+          "confidence": "estimated"
+        }
+      ]
+    }
+  },
+  "caveats": [
+    "Every l_per_kwh is our own division of two company-disclosed figures, so all ratios are marked 'estimated' even though the inputs are company self-reports. Several electricity figures are also derived (Amkor, Lam, Entegris, Foxconn, Inventec) - see each arithmetic string.",
+    "Basis differs by type: mines use total energy (incl. diesel/coal/gas self-generation) because much of a mine's power is not grid electricity. All manufacturing types use electricity, consistent with the TSMC 5.25 L/kWh figure. Where a total-energy ratio exists it is given in the arithmetic string and is 3-15% lower.",
+    "All defaults are WITHDRAWAL. Consumption is much lower for sites that discharge most water: Grasberg 0.44 vs 7.27, ASE 1.40 vs 5.10. For arid zero-discharge mines (FCX Americas), consumption is about equal to withdrawal. Talison consumption (5.07) is close to withdrawal.",
+    "Mines: FCX 'new water withdrawn' includes stormwater (Grasberg 23.8 Mm3 of 65.1). Talison withdrawal is ~97% captured rainwater and swings with rainfall (2.94 L/kWh in 2023 vs 5.47 in 2024). No mining point includes seawater. BHP Escondida (desalinated seawater) was not reachable (access denied). MP Materials publishes water (~154M gal in 2023) but no energy total, so null. Sibelco / The Quartz Corp: no water volume published, so high-purity quartz is null.",
+    "PLS point combines water from the PLS FY25 annual report with energy from the Australian Clean Energy Regulator NGER 2023-24 corporate table ('net energy consumed'). Same company and year, different publications.",
+    "Rare earths: only Mt Weld (mine + concentrator). Lynas Malaysia separation plant (processing, not mining) is ~18.9 L/kWh (5,254,809 m3 / 278,478 MWh fuel+electricity, FY25), for reference if the app ever models RE refining.",
+    "Packaging: ASEH group data include USI (EMS/system assembly), so ASE is a blend of OSAT and assembly. TSMC advanced packaging (CoWoS/SoIC) is not separable in TSMC disclosures.",
+    "Equipment and materials company-wide figures include offices, R&D and cleanroom labs, not just production.",
+    "Shin-Etsu energy is published only in crude-oil-equivalent kL. The 38.76 GJ/kL conversion is our assumption.",
+    "SUMCO water value was read off a web chart, not a data table.",
+    "Web search budget ran out. Not researched or not obtained: Applied Materials (403), ZEISS, Air Liquide, Resonac, Central Glass, Quanta (bot wall), Flex (no energy total), Codelco, BHP."
+  ]
+}

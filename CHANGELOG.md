@@ -8,6 +8,29 @@ this repo, served from GitHub Pages. v0.4 is dated 2026-09-26; v0.5 onward, 2026
 
 ---
 
+## Data (2026-09-27, released with v0.12.1)
+
+Sourced inputs for the app, in `data/`. The app reads only three files; their
+shape is fixed by `docs/locale-contract.md`, agreed with the app side.
+- **`data/locales.json`** — location inputs keyed by the ISO codes Mapbox
+  returns: 248 countries and 126 states/provinces (US, China, India,
+  Australia). Each value has a confidence and a source; unknown values are
+  left out, not zeroed.
+- **`data/cells/`** — per 0.25° cell, in 10° tiles (8.5 MB): people within
+  100 km, and the water stress of the cell's river sub-basin (Aqueduct 4.0).
+- State and province water stress (Aqueduct 4.0 province scores) for 122 of
+  the 126 subdivisions, so US states can be coloured individually.
+- **`data/node-types.json`** — default inputs for the nine facility types.
+  Built-in sites use these plus location lookup, like added nodes (v0.9.0).
+- Water use: `wue` is the location's climate estimate; operator figures are a
+  separate, display-only `wue_disclosed`.
+- The build checks all three files against the contract and stops on any
+  problem.
+- Database schema keyed by ISO code, with state/province tables, seeded from
+  `locales.json`.
+
+---
+
 ## v0.12.1 — Key
 - **The stage toggles sit inside a "Key" that opens sideways** in the top
   bar, as the stage row always did, and folds away to a single "Key"
@@ -408,6 +431,36 @@ restriction behind the v0.3 inline geometry no longer applies.
 
 ---
 
+## Database branch, parallel to v0.4 (2026-09-26)
+
+Built on the pre-globe d3 map alongside v0.4.0–v0.4.2. The database groundwork
+carried over; **saved edits did not**: the app took the Mapbox version of
+`index.html`, so persistence is back on the roadmap to be ported.
+
+### saved edits, data groundwork
+- **Edits persist** (on the d3 map only; not in the current app). Adding and removing nodes is saved to localStorage as a
+  small diff against the built-in data (`{v, added, removed}`), not a copy of
+  the dataset. Reloading restores it; other open tabs follow along.
+- **Reset** in the bottom bar returns to the sample data. Saved edits are
+  validated on load: unknown ids, bad stages and non-numeric inputs are
+  dropped. Export / Import is on the roadmap, not built.
+- `db/schema.sql`: a Postgres (Supabase) schema for the reference data.
+  - Per-value confidence and sources.
+  - A one-request `atlas_baseline` view.
+  - Row-level security: public read, maintainer-only write.
+- No accounts and no login, by decision. Visitors' edits never go to a
+  database; they stay in the browser.
+- `db/seed-from-index.mjs` generates `db/seed.sql` from `index.html`, so the
+  database starts from the app's own numbers. Plan in `docs/database.md`.
+- Added `<!doctype html>` and `<meta charset="utf-8">`. The page was written
+  as an artifact fragment and rendered `·` and `é` as mojibake when served
+  without a charset header (e.g. `python3 -m http.server`). The layout is
+  unchanged in standards mode.
+- Direction change: the Atlas is now built as a standalone web app, not
+  around claude.ai artifact features.
+
+---
+
 ## v0.3 — Quiet Atlas, full build
 **Artifact:** https://claude.ai/artifact/9beLBKGJksuNZJVMdSXr3V
 
@@ -456,7 +509,7 @@ revisions of this same artifact.
   a placeholder ring rather than deleting it, so it can be re-added as a
   different type. Flows to a removed node hide and return on re-add.
 
-### v0.3.3 — square glyphs and layer palettes  ← current
+### v0.3.3 — square glyphs and layer palettes
 - Every glyph normalized to an exact 15 × 15 bounding box, so all five marks
   carry the same visual weight.
 - Each layer now has its own muted ramp, defined as theme-aware CSS tokens:
