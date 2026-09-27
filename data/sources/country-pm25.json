@@ -1,0 +1,807 @@
+{
+ "source": "World Bank WDI EN.ATM.PM25.MC.M3 (population-weighted mean annual PM2.5 exposure; underlying data GBD 2023 / IHME, satellite+model derived)",
+ "url": "https://data.worldbank.org/indicator/EN.ATM.PM25.MC.M3",
+ "confidence": "estimated",
+ "countries": {
+  "AD": {
+   "value": 8.9,
+   "year": 2023
+  },
+  "AE": {
+   "value": 57.2,
+   "year": 2023
+  },
+  "AF": {
+   "value": 37.9,
+   "year": 2023
+  },
+  "AG": {
+   "value": 8.4,
+   "year": 2023
+  },
+  "AL": {
+   "value": 15.5,
+   "year": 2023
+  },
+  "AM": {
+   "value": 28.6,
+   "year": 2023
+  },
+  "AO": {
+   "value": 19.9,
+   "year": 2023
+  },
+  "AR": {
+   "value": 14.3,
+   "year": 2023
+  },
+  "AS": {
+   "value": 4.3,
+   "year": 2023
+  },
+  "AT": {
+   "value": 10.0,
+   "year": 2023
+  },
+  "AU": {
+   "value": 6.4,
+   "year": 2023
+  },
+  "AZ": {
+   "value": 23.7,
+   "year": 2023
+  },
+  "BA": {
+   "value": 26.1,
+   "year": 2023
+  },
+  "BB": {
+   "value": 10.9,
+   "year": 2023
+  },
+  "BD": {
+   "value": 69.3,
+   "year": 2023
+  },
+  "BE": {
+   "value": 8.4,
+   "year": 2023
+  },
+  "BF": {
+   "value": 37.3,
+   "year": 2023
+  },
+  "BG": {
+   "value": 19.7,
+   "year": 2023
+  },
+  "BH": {
+   "value": 56.6,
+   "year": 2023
+  },
+  "BI": {
+   "value": 35.7,
+   "year": 2023
+  },
+  "BJ": {
+   "value": 39.7,
+   "year": 2023
+  },
+  "BM": {
+   "value": 4.6,
+   "year": 2023
+  },
+  "BN": {
+   "value": 7.6,
+   "year": 2023
+  },
+  "BO": {
+   "value": 28.1,
+   "year": 2023
+  },
+  "BR": {
+   "value": 13.4,
+   "year": 2023
+  },
+  "BS": {
+   "value": 5.3,
+   "year": 2023
+  },
+  "BT": {
+   "value": 30.1,
+   "year": 2023
+  },
+  "BW": {
+   "value": 13.2,
+   "year": 2023
+  },
+  "BY": {
+   "value": 12.0,
+   "year": 2023
+  },
+  "BZ": {
+   "value": 16.8,
+   "year": 2023
+  },
+  "CA": {
+   "value": 6.6,
+   "year": 2023
+  },
+  "CD": {
+   "value": 35.8,
+   "year": 2023
+  },
+  "CF": {
+   "value": 33.3,
+   "year": 2023
+  },
+  "CG": {
+   "value": 36.5,
+   "year": 2023
+  },
+  "CH": {
+   "value": 8.3,
+   "year": 2023
+  },
+  "CI": {
+   "value": 20.4,
+   "year": 2023
+  },
+  "CL": {
+   "value": 23.1,
+   "year": 2023
+  },
+  "CM": {
+   "value": 55.6,
+   "year": 2023
+  },
+  "CN": {
+   "value": 32.0,
+   "year": 2023
+  },
+  "CO": {
+   "value": 18.4,
+   "year": 2023
+  },
+  "CR": {
+   "value": 17.7,
+   "year": 2023
+  },
+  "CU": {
+   "value": 9.4,
+   "year": 2023
+  },
+  "CV": {
+   "value": 20.2,
+   "year": 2023
+  },
+  "CY": {
+   "value": 16.1,
+   "year": 2023
+  },
+  "CZ": {
+   "value": 12.7,
+   "year": 2023
+  },
+  "DE": {
+   "value": 8.8,
+   "year": 2023
+  },
+  "DJ": {
+   "value": 40.3,
+   "year": 2023
+  },
+  "DK": {
+   "value": 7.5,
+   "year": 2023
+  },
+  "DM": {
+   "value": 11.5,
+   "year": 2023
+  },
+  "DO": {
+   "value": 13.5,
+   "year": 2023
+  },
+  "DZ": {
+   "value": 16.5,
+   "year": 2023
+  },
+  "EC": {
+   "value": 18.6,
+   "year": 2023
+  },
+  "EE": {
+   "value": 5.9,
+   "year": 2023
+  },
+  "EG": {
+   "value": 43.1,
+   "year": 2023
+  },
+  "ER": {
+   "value": 33.7,
+   "year": 2023
+  },
+  "ES": {
+   "value": 10.1,
+   "year": 2023
+  },
+  "ET": {
+   "value": 23.8,
+   "year": 2023
+  },
+  "FI": {
+   "value": 4.6,
+   "year": 2023
+  },
+  "FJ": {
+   "value": 6.4,
+   "year": 2023
+  },
+  "FM": {
+   "value": 3.5,
+   "year": 2023
+  },
+  "FR": {
+   "value": 8.2,
+   "year": 2023
+  },
+  "GA": {
+   "value": 31.3,
+   "year": 2023
+  },
+  "GB": {
+   "value": 9.5,
+   "year": 2023
+  },
+  "GD": {
+   "value": 11.0,
+   "year": 2023
+  },
+  "GE": {
+   "value": 18.6,
+   "year": 2023
+  },
+  "GH": {
+   "value": 28.1,
+   "year": 2023
+  },
+  "GL": {
+   "value": 1.6,
+   "year": 2023
+  },
+  "GM": {
+   "value": 38.3,
+   "year": 2023
+  },
+  "GN": {
+   "value": 27.3,
+   "year": 2023
+  },
+  "GQ": {
+   "value": 42.2,
+   "year": 2023
+  },
+  "GR": {
+   "value": 14.1,
+   "year": 2023
+  },
+  "GT": {
+   "value": 29.7,
+   "year": 2023
+  },
+  "GU": {
+   "value": 3.5,
+   "year": 2023
+  },
+  "GW": {
+   "value": 32.3,
+   "year": 2023
+  },
+  "GY": {
+   "value": 16.9,
+   "year": 2023
+  },
+  "HN": {
+   "value": 30.7,
+   "year": 2023
+  },
+  "HR": {
+   "value": 15.8,
+   "year": 2023
+  },
+  "HT": {
+   "value": 15.8,
+   "year": 2023
+  },
+  "HU": {
+   "value": 13.7,
+   "year": 2023
+  },
+  "ID": {
+   "value": 20.8,
+   "year": 2023
+  },
+  "IE": {
+   "value": 7.5,
+   "year": 2023
+  },
+  "IL": {
+   "value": 21.9,
+   "year": 2023
+  },
+  "IN": {
+   "value": 54.1,
+   "year": 2023
+  },
+  "IQ": {
+   "value": 49.5,
+   "year": 2023
+  },
+  "IR": {
+   "value": 40.2,
+   "year": 2023
+  },
+  "IS": {
+   "value": 4.9,
+   "year": 2023
+  },
+  "IT": {
+   "value": 14.3,
+   "year": 2023
+  },
+  "JM": {
+   "value": 21.7,
+   "year": 2023
+  },
+  "JO": {
+   "value": 32.6,
+   "year": 2023
+  },
+  "JP": {
+   "value": 11.5,
+   "year": 2023
+  },
+  "KE": {
+   "value": 20.3,
+   "year": 2023
+  },
+  "KG": {
+   "value": 20.1,
+   "year": 2023
+  },
+  "KH": {
+   "value": 19.4,
+   "year": 2023
+  },
+  "KI": {
+   "value": 3.9,
+   "year": 2023
+  },
+  "KM": {
+   "value": 10.2,
+   "year": 2023
+  },
+  "KN": {
+   "value": 8.9,
+   "year": 2023
+  },
+  "KP": {
+   "value": 21.8,
+   "year": 2023
+  },
+  "KR": {
+   "value": 21.9,
+   "year": 2023
+  },
+  "KW": {
+   "value": 62.3,
+   "year": 2023
+  },
+  "KZ": {
+   "value": 19.6,
+   "year": 2023
+  },
+  "LA": {
+   "value": 26.0,
+   "year": 2023
+  },
+  "LB": {
+   "value": 26.7,
+   "year": 2023
+  },
+  "LC": {
+   "value": 10.4,
+   "year": 2023
+  },
+  "LK": {
+   "value": 22.7,
+   "year": 2023
+  },
+  "LR": {
+   "value": 17.9,
+   "year": 2023
+  },
+  "LS": {
+   "value": 26.4,
+   "year": 2023
+  },
+  "LT": {
+   "value": 10.7,
+   "year": 2023
+  },
+  "LU": {
+   "value": 7.4,
+   "year": 2023
+  },
+  "LV": {
+   "value": 13.0,
+   "year": 2023
+  },
+  "LY": {
+   "value": 20.0,
+   "year": 2023
+  },
+  "MA": {
+   "value": 18.7,
+   "year": 2023
+  },
+  "MC": {
+   "value": 11.4,
+   "year": 2023
+  },
+  "MD": {
+   "value": 14.9,
+   "year": 2023
+  },
+  "ME": {
+   "value": 18.5,
+   "year": 2023
+  },
+  "MG": {
+   "value": 12.4,
+   "year": 2023
+  },
+  "MH": {
+   "value": 4.1,
+   "year": 2023
+  },
+  "MK": {
+   "value": 21.8,
+   "year": 2023
+  },
+  "ML": {
+   "value": 35.5,
+   "year": 2023
+  },
+  "MM": {
+   "value": 35.1,
+   "year": 2023
+  },
+  "MN": {
+   "value": 42.7,
+   "year": 2023
+  },
+  "MP": {
+   "value": 2.7,
+   "year": 2023
+  },
+  "MR": {
+   "value": 46.5,
+   "year": 2023
+  },
+  "MT": {
+   "value": 10.8,
+   "year": 2023
+  },
+  "MU": {
+   "value": 14.1,
+   "year": 2023
+  },
+  "MV": {
+   "value": 11.2,
+   "year": 2023
+  },
+  "MW": {
+   "value": 16.7,
+   "year": 2023
+  },
+  "MX": {
+   "value": 16.6,
+   "year": 2023
+  },
+  "MY": {
+   "value": 15.9,
+   "year": 2023
+  },
+  "MZ": {
+   "value": 13.7,
+   "year": 2023
+  },
+  "NA": {
+   "value": 14.2,
+   "year": 2023
+  },
+  "NE": {
+   "value": 65.2,
+   "year": 2023
+  },
+  "NG": {
+   "value": 65.7,
+   "year": 2023
+  },
+  "NI": {
+   "value": 20.4,
+   "year": 2023
+  },
+  "NL": {
+   "value": 8.6,
+   "year": 2023
+  },
+  "NO": {
+   "value": 5.5,
+   "year": 2023
+  },
+  "NP": {
+   "value": 53.2,
+   "year": 2023
+  },
+  "NR": {
+   "value": 4.8,
+   "year": 2023
+  },
+  "NZ": {
+   "value": 6.9,
+   "year": 2023
+  },
+  "OM": {
+   "value": 46.9,
+   "year": 2023
+  },
+  "PA": {
+   "value": 15.1,
+   "year": 2023
+  },
+  "PE": {
+   "value": 31.1,
+   "year": 2023
+  },
+  "PG": {
+   "value": 14.1,
+   "year": 2023
+  },
+  "PH": {
+   "value": 22.2,
+   "year": 2023
+  },
+  "PK": {
+   "value": 58.4,
+   "year": 2023
+  },
+  "PL": {
+   "value": 16.5,
+   "year": 2023
+  },
+  "PR": {
+   "value": 7.8,
+   "year": 2023
+  },
+  "PS": {
+   "value": 22.4,
+   "year": 2023
+  },
+  "PT": {
+   "value": 8.8,
+   "year": 2023
+  },
+  "PW": {
+   "value": 4.9,
+   "year": 2023
+  },
+  "PY": {
+   "value": 15.3,
+   "year": 2023
+  },
+  "QA": {
+   "value": 107.8,
+   "year": 2023
+  },
+  "RO": {
+   "value": 16.0,
+   "year": 2023
+  },
+  "RS": {
+   "value": 19.3,
+   "year": 2023
+  },
+  "RU": {
+   "value": 11.6,
+   "year": 2023
+  },
+  "RW": {
+   "value": 36.0,
+   "year": 2023
+  },
+  "SA": {
+   "value": 73.5,
+   "year": 2023
+  },
+  "SB": {
+   "value": 9.8,
+   "year": 2023
+  },
+  "SC": {
+   "value": 9.3,
+   "year": 2023
+  },
+  "SD": {
+   "value": 37.6,
+   "year": 2023
+  },
+  "SE": {
+   "value": 5.3,
+   "year": 2023
+  },
+  "SG": {
+   "value": 15.1,
+   "year": 2023
+  },
+  "SI": {
+   "value": 12.6,
+   "year": 2023
+  },
+  "SK": {
+   "value": 13.7,
+   "year": 2023
+  },
+  "SL": {
+   "value": 22.5,
+   "year": 2023
+  },
+  "SM": {
+   "value": 12.7,
+   "year": 2023
+  },
+  "SN": {
+   "value": 41.6,
+   "year": 2023
+  },
+  "SO": {
+   "value": 18.5,
+   "year": 2023
+  },
+  "SR": {
+   "value": 15.7,
+   "year": 2023
+  },
+  "SS": {
+   "value": 23.7,
+   "year": 2023
+  },
+  "ST": {
+   "value": 15.1,
+   "year": 2023
+  },
+  "SV": {
+   "value": 29.6,
+   "year": 2023
+  },
+  "SY": {
+   "value": 32.1,
+   "year": 2023
+  },
+  "SZ": {
+   "value": 16.7,
+   "year": 2023
+  },
+  "TD": {
+   "value": 43.0,
+   "year": 2023
+  },
+  "TG": {
+   "value": 34.3,
+   "year": 2023
+  },
+  "TH": {
+   "value": 23.5,
+   "year": 2023
+  },
+  "TJ": {
+   "value": 33.3,
+   "year": 2023
+  },
+  "TL": {
+   "value": 12.0,
+   "year": 2023
+  },
+  "TM": {
+   "value": 31.2,
+   "year": 2023
+  },
+  "TN": {
+   "value": 18.9,
+   "year": 2023
+  },
+  "TO": {
+   "value": 4.7,
+   "year": 2023
+  },
+  "TR": {
+   "value": 26.4,
+   "year": 2023
+  },
+  "TT": {
+   "value": 13.8,
+   "year": 2023
+  },
+  "TV": {
+   "value": 5.2,
+   "year": 2023
+  },
+  "TZ": {
+   "value": 20.2,
+   "year": 2023
+  },
+  "UA": {
+   "value": 14.9,
+   "year": 2023
+  },
+  "UG": {
+   "value": 31.2,
+   "year": 2023
+  },
+  "US": {
+   "value": 7.0,
+   "year": 2023
+  },
+  "UY": {
+   "value": 10.9,
+   "year": 2023
+  },
+  "UZ": {
+   "value": 32.8,
+   "year": 2023
+  },
+  "VC": {
+   "value": 10.6,
+   "year": 2023
+  },
+  "VE": {
+   "value": 19.2,
+   "year": 2023
+  },
+  "VI": {
+   "value": 6.8,
+   "year": 2023
+  },
+  "VN": {
+   "value": 24.8,
+   "year": 2023
+  },
+  "VU": {
+   "value": 7.0,
+   "year": 2023
+  },
+  "WS": {
+   "value": 4.6,
+   "year": 2023
+  },
+  "YE": {
+   "value": 46.8,
+   "year": 2023
+  },
+  "ZA": {
+   "value": 27.7,
+   "year": 2023
+  },
+  "ZM": {
+   "value": 20.2,
+   "year": 2023
+  },
+  "ZW": {
+   "value": 15.0,
+   "year": 2023
+  }
+ }
+}

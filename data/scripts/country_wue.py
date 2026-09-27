@@ -4,23 +4,29 @@ WUE = cooling-tower formula applied to the annual-mean wet-bulb temperature
 (Sen Gupta et al. 2024; Shumba et al. 2025). Wet-bulb comes from World Bank
 CCKP ERA5 1991-2020 monthly temperature and humidity via Stull (2011). The 44
 African countries in Shumba et al.'s dataset are used to validate the method;
-the 9 in our list take their published values directly.
+those take their published values directly.
 
-Writes data/sources/country-wue.json.
+Writes data/sources/country-wue.json, keyed by ISO2.
 """
 import csv, json, math
-from common import download, save
+from common import countries as country_codes, download, save
 
-iso = {"United States of America":"USA","Canada":"CAN","Mexico":"MEX","Brazil":"BRA","Argentina":"ARG","Chile":"CHL","Colombia":"COL","Peru":"PER","Venezuela":"VEN","United Kingdom":"GBR","Ireland":"IRL","France":"FRA","Germany":"DEU","Netherlands":"NLD","Belgium":"BEL","Spain":"ESP","Portugal":"PRT","Italy":"ITA","Switzerland":"CHE","Austria":"AUT","Poland":"POL","Czechia":"CZE","Sweden":"SWE","Norway":"NOR","Finland":"FIN","Denmark":"DNK","Iceland":"ISL","Greece":"GRC","Romania":"ROU","Ukraine":"UKR","Russia":"RUS","Turkey":"TUR","Kazakhstan":"KAZ","China":"CHN","India":"IND","Japan":"JPN","South Korea":"KOR","Taiwan":"TWN","Mongolia":"MNG","Vietnam":"VNM","Thailand":"THA","Malaysia":"MYS","Indonesia":"IDN","Philippines":"PHL","Singapore":"SGP","Bangladesh":"BGD","Pakistan":"PAK","Saudi Arabia":"SAU","United Arab Emirates":"ARE","Iran":"IRN","Iraq":"IRQ","Israel":"ISR","Egypt":"EGY","Morocco":"MAR","Algeria":"DZA","Nigeria":"NGA","South Africa":"ZAF","Kenya":"KEN","Ethiopia":"ETH","Ghana":"GHA","Tanzania":"TZA","Angola":"AGO","Australia":"AUS","New Zealand":"NZL",
- "Benin":"BEN","Botswana":"BWA","Cameroon":"CMR","Chad":"TCD","Gabon":"GAB","Mali":"MLI","Namibia":"NAM","Senegal":"SEN","Sudan":"SDN","Tunisia":"TUN","Zambia":"ZMB","Lesotho":"LSO","Libya":"LBY","Mozambique":"MOZ","Uganda":"UGA"}
+CODES3 = country_codes()                     # {ISO3: (ISO2, name)}
+# Shumba et al. name -> ISO2, where it differs from ours. Their 'United States'
+# and 'Global' rows are reference rows, not African countries.
+AF_ALIAS = {'Cape Verde': 'CV'}
+LARGE = {'US', 'CN', 'RU', 'AU', 'CA', 'BR', 'IN', 'KZ', 'AR', 'CL', 'MN', 'ID', 'IR', 'SA'}
 
-CODES = ','.join(sorted(set(iso.values())))
+CODES = ','.join(sorted(CODES3))
 CCKP = ('https://cckpapi.worldbank.org/cckp/v1/era5-x0.25_climatology_{v}_climatology_monthly_1991-2020_mean_'
         'historical_era5_x0.25_mean/' + CODES + '?_format=json')
 AFRICA_CSV = 'https://huggingface.co/datasets/PengfeiLi/WaterEfficientDatasetForAfricanDataCenters/resolve/main/Country_Summary.csv'
-tas = json.load(open(download(CCKP.format(v='tas'), 'cckp-tas.json')))['data']
-hurs = json.load(open(download(CCKP.format(v='hurs'), 'cckp-hurs.json')))['data']
-af = {r['Country']: r for r in csv.DictReader(open(download(AFRICA_CSV, 'africa-wue-country-summary.csv'), encoding='utf-8'))}
+tas = json.load(open(download(CCKP.format(v='tas'), 'cckp-tas-all.json')))['data']
+hurs = json.load(open(download(CCKP.format(v='hurs'), 'cckp-hurs-all.json')))['data']
+by_name = {n: i2 for i2, n in CODES3.values()}
+af = {AF_ALIAS.get(r['Country']) or by_name[r['Country']]: r
+      for r in csv.DictReader(open(download(AFRICA_CSV, 'africa-wue-country-summary.csv'), encoding='utf-8'))
+      if r['Country'] not in ('United States', 'Global')}
 
 def stull(T, RH):
     return (T * math.atan(0.151977 * (RH + 8.313659) ** 0.5) + math.atan(T + RH) - math.atan(RH - 1.676331)
@@ -35,20 +41,21 @@ def months(c):
     k = sorted(tas[c]); return [(tas[c][m], hurs[c][m]) for m in k]
 
 res = {}
-for name, c in iso.items():
+for c, (iso2, _) in CODES3.items():
+    if not tas.get(c) or not hurs.get(c):
+        continue                                  # CCKP has no climate for some small territories
     ms = months(c)
     tw_monthly = [stull(T, RH) for T, RH in ms]
     tw_mean = sum(tw_monthly) / 12
     Tann = sum(t for t, _ in ms) / 12; RHann = sum(r for _, r in ms) / 12
-    res[name] = dict(iso=c, T=Tann, RH=RHann, tw=tw_mean, tw_of_means=stull(Tann, RHann),
+    res[iso2] = dict(iso=c, T=Tann, RH=RHann, tw=tw_mean, tw_of_means=stull(Tann, RHann),
                      minRH=min(r for _, r in ms), minT=min(t for t, _ in ms), wue=wue_f(c2f(tw_mean)))
 
-TARGET = list(iso)[:64]
 LOWER_F = 45.0
 LOWER_C = (LOWER_F - 32) * 5 / 9
 
 countries = {}
-for n in TARGET:
+for n in sorted(res):
     r = res[n]
     era_tw = r["tw"]
     if n in af and af[n]["WB (°C)"]:
@@ -66,7 +73,7 @@ for n in TARGET:
         note += (f" Tw {era_tw:.1f} C is below the formula's stated 45 F ({LOWER_C:.1f} C) lower limit; WUE clamped to the value at 45 F "
                  f"(unclamped extrapolation would be {raw:.3f}, which is a fitting artifact: the quadratic rises again below ~9.3 C). "
                  "In climates this cold, real facilities largely use free/air-side cooling, so actual on-site WUE is likely far lower.")
-    if n in ("United States of America", "China", "Russia", "Australia", "Canada", "Brazil", "India", "Kazakhstan", "Argentina", "Chile", "Mongolia", "Indonesia", "Iran", "Saudi Arabia"):
+    if n in LARGE:
         note += " Very large/climatically diverse country: area-weighted national mean is dominated by sparsely populated regions and may not reflect where data centers sit."
     countries[n] = {"wetbulb_c": round(era_tw, 2), "wue": round(wue, 3), "source": "era5_cckp_stull", "clamped": clamped, "note": note}
 
@@ -99,7 +106,7 @@ doc = {
         "Applying a convex formula to an annual-mean wet-bulb (as the source dataset does) underestimates the mean of hourly WUE in seasonal climates; the national-mean approach also ignores diurnal and seasonal extremes.",
         "Area-weighted national means are crude for large or climatically diverse countries (USA, Canada, Russia, China, Brazil, Australia, India, Kazakhstan, Chile, Argentina, Indonesia, Saudi Arabia, Iran, Mongolia): the mean is dominated by sparsely populated land (e.g. Canadian/Russian Arctic, Australian outback, Tibetan plateau) rather than where data centers are.",
         "Stull (2011) is an empirical fit valid roughly for RH 5-99% and T -20 to 50 C at sea-level pressure, accuracy about +/-1 C; applying it to monthly-mean T and RH (rather than hourly data) adds further error, larger in arid countries (wet-bulb of means vs mean of hourly wet-bulbs differs by up to ~1 C for Iraq/Saudi Arabia/Iran).",
-        "Mixed sources: 9 African countries (Nigeria, Egypt, Morocco, Algeria, South Africa, Kenya, Ethiopia, Ghana, Tanzania) use Shumba et al.'s published WeatherAPI-based values (a single year, Aug 2023-Aug 2024) while the rest use the ERA5 1991-2020 climatology; for Kenya and Ethiopia the two methods differ by ~3.6-4.3 C in Tw (~0.08-0.10 L/kWh), probably because the published values reflect cooler highland locations. ERA5-method values for these are given in each note.",
+        "Mixed sources: the 44 African countries in Shumba et al. use Shumba et al.'s published WeatherAPI-based values (a single year, Aug 2023-Aug 2024) while the rest use the ERA5 1991-2020 climatology; for Kenya and Ethiopia the two methods differ by ~3.6-4.3 C in Tw (~0.08-0.10 L/kWh), probably because the published values reflect cooler highland locations. ERA5-method values for these are given in each note.",
         "Only on-site (direct) WUE; excludes off-site water embedded in electricity generation, which is often larger.",
     ],
 }

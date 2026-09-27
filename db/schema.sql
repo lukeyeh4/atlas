@@ -9,7 +9,7 @@
 -- the Supabase dashboard or migrations. Visitors' own edits never reach the
 -- database — they stay in the browser (localStorage, Export / Import).
 --
--- The whole baseline is ~31 sites, ~25 regions, 64 countries and ~130
+-- The whole baseline is ~31 sites, ~25 regions, ~250 countries and ~130
 -- subdivisions: the app reads it in a single request through the
 -- `atlas_baseline` view and never queries per node. See docs/database.md.
 

@@ -1,22 +1,24 @@
 """Location inputs keyed by ISO code, for the app: data/locales.json.
 
 The file is the interface to the app; its shape is fixed by
-docs/locale-contract.md. Reads the same sources as country_inputs.py and
-subnational_grid.py, and keeps each value's own confidence and source.
+docs/locale-contract.md. Countries come from country_data.py (shared with
+country_inputs.py); subdivisions from the same sources as subnational_grid.py.
+Each value keeps its own confidence and source.
 Unknown values are left out, never written as null or zero.
 """
 import datetime, json
 
-from common import DATA, ISO2, iso_3166_2, load
+from common import DATA, iso_3166_2, load
+from country_data import CI_YEAR, records
 
-c, g, w, d = load('countries.json'), load('country-grid.json'), load('country-wue.json'), load('water-disclosed.json')
+g, w = load('country-grid.json'), load('country-wue.json')
+ws_src, pm_src = load('country-ws.json'), load('country-pm25.json')
 us, cn, ia = load('grid-us-states.json'), load('grid-china-provinces.json'), load('grid-india-australia.json')
 
 SOURCES = {
-    'ember-owid': {'title': c['sources']['ci']['source'], 'url': c['sources']['ci']['url']},
     'ember': {'title': g['source'], 'url': g['url']},
-    'aqueduct': {'title': 'WRI Aqueduct 4.0 country rankings, baseline water stress', 'url': c['sources']['ws']['url']},
-    'wdi-pm25': {'title': c['sources']['aq']['source'], 'url': c['sources']['aq']['url']},
+    'aqueduct': {'title': 'WRI Aqueduct 4.0 country rankings, baseline water stress', 'url': ws_src['url']},
+    'wdi-pm25': {'title': pm_src['source'], 'url': pm_src['url']},
     'wue-climate': {'title': 'Cooling-tower WUE at annual-mean wet-bulb (Shumba et al. 2025; Sen Gupta et al. 2024) on ERA5 climate',
                     'url': w['formula']['url'].split(' ; ')[0]},
     'ember-us': {'title': us['source'], 'url': us['url']},
@@ -50,10 +52,6 @@ def entry(name, **values):
     return {'n': name, **{k: x for k, x in values.items() if x is not None}}
 
 
-def year_of(y):
-    return y if isinstance(y, int) else None
-
-
 def slug(s):
     return ''.join(ch if ch.isalnum() else '-' for ch in s.lower()).strip('-')
 
@@ -65,33 +63,37 @@ WS_NOTE = {
     'Singapore': "WRI's 2015 score for 2040; natural freshwater only, ignores NEWater and desalination.",
 }
 countries = {}
-for name, (ci, ws, aq) in c['countries'].items():
-    ex, gw, ww, dw = c['exceptions'].get(name, {}), g['countries'][name], w['countries'][name], d['wue'].get(name) or {}
+for r in records():
+    name, iso = r['name'], r['iso2']
+    ci, fos, dec, ws, ww, dw, pm = (r[k] or {} for k in ('ci', 'fos', 'dec', 'ws', 'climate', 'disclosed', 'pm25'))
 
-    ci_ex = ex.get('ci', {})
-    ci_v = val(ci, c['sources']['ci']['confidence'], 'ember-owid', ci_ex.get('year', c['sources']['ci']['year']),
-               'lifecycle', 'Latest year Ember publishes for this country.' if ci_ex else None)
+    # Ember's CO2 intensity is generation times lifecycle factors: modelled,
+    # so estimated, as for US and Indian states.
+    ci_v = val(ci.get('value'), 'estimated', 'ember', ci.get('year'), 'lifecycle',
+               'Latest year Ember publishes for this country.' if ci.get('year', CI_YEAR) < CI_YEAR else None)
 
-    ws_v = val(ws, c['sources']['ws']['confidence'], 'aqueduct', c['sources']['ws']['year'])
-    if ws is None and name in d['water_stress']:
-        alt = d['water_stress'][name]
-        key = f'ws-{ISO2[name].lower()}'
-        SOURCES[key] = {'title': alt['source'].split(':')[0], 'url': alt['url']}
-        ws_v = val(alt['value'], alt['confidence'], key, alt['year'], note='Not in Aqueduct 4.0; ' + WS_NOTE[name])
+    if ws.get('override'):
+        key = f'ws-{iso.lower()}'
+        SOURCES[key] = {'title': ws['source'].split(':')[0], 'url': ws['url']}
+        ws_v = val(ws['value'], ws['confidence'], key, ws['year'], note='Not in Aqueduct 4.0; ' + WS_NOTE[name])
+    else:
+        ws_v = val(ws.get('value'), ws_src['confidence'], 'aqueduct', ws_src['year'])
 
     # `wue` is the climate estimate: a property of the place. An operator's
     # disclosure describes its own fleet or region, not a new site there, so
     # it goes in `wue_disclosed` (including stated zeros). Design values for
     # regions not yet running are projections.
-    note = f"Cooling-tower estimate at annual-mean wet-bulb {ww['wetbulb_c']} °C"
-    if ww.get('clamped'):
-        note += '; clamped at the formula floor, so free cooling is not reflected'
-    wue_v = val(ww.get('wue'), 'estimated', 'wue-climate', basis='direct', note=note)
+    wue_v = None
+    if ww:
+        note = f"Cooling-tower estimate at annual-mean wet-bulb {ww['wetbulb_c']} °C"
+        if ww.get('clamped'):
+            note += '; clamped at the formula floor, so free cooling is not reflected'
+        wue_v = val(ww.get('wue'), 'estimated', 'wue-climate', basis='direct', note=note)
 
     wue_d = None
     dv = dw.get('value')
     if dv is not None:
-        key = f'wue-{slug(dw["operator"])}-{ISO2[name].lower()}'
+        key = f'wue-{slug(dw["operator"])}-{iso.lower()}'
         SOURCES[key] = {'title': f"{dw['operator']}, {dw['region_code']} ({dw['scope']})", 'url': dw['url']}
         unbuilt = 'not yet in operation' in (dw.get('source', '') + dw.get('note', '')).lower()
         where = dw['region_code'] if dw['scope'] == 'design' else dw['scope']
@@ -99,18 +101,18 @@ for name, (ci, ws, aq) in c['countries'].items():
                     f"{dw['operator']} {where}" + ('; design value, not yet in operation' if unbuilt
                                                    else '; no cooling water used' if dv == 0 else ''))
 
-    aq_ex = ex.get('aq')
-    if aq_ex:
-        SOURCES['pm25-tw-moe'] = {'title': 'Taiwan Ministry of Environment national annual average PM2.5', 'url': aq_ex['url']}
-        pm_v = val(aq_ex['value'], aq_ex['confidence'], 'pm25-tw-moe', aq_ex['year'],
+    if pm.get('override'):
+        key = f'pm25-{iso.lower()}'
+        SOURCES[key] = {'title': pm['source'].split(',')[0], 'url': pm['url']}
+        pm_v = val(pm['value'], pm['confidence'], key, pm['year'],
                    note='Station average; not comparable to the modelled values used elsewhere.')
     else:
-        pm_v = val(aq, c['sources']['aq']['confidence'], 'wdi-pm25', c['sources']['aq']['year'])
+        pm_v = val(pm.get('value'), pm_src['confidence'], 'wdi-pm25', pm.get('year'))
 
-    countries[ISO2[name]] = entry(
+    countries[iso] = entry(
         name, ci=ci_v,
-        fos=val(gw['fos']['value'], 'measured', 'ember', gw['fos']['year'], 'generation'),
-        dec=val(gw['dec']['value'], 'estimated', 'ember', note=gw['dec']['note']),
+        fos=val(fos.get('value'), 'measured', 'ember', fos.get('year'), 'generation'),
+        dec=val(dec.get('value'), 'estimated', 'ember', note=dec.get('note')),
         ws=ws_v, wue=wue_v, wue_disclosed=wue_d, pm25=pm_v)
 
 # --------------------------------------------------------- subdivisions ----

@@ -2,587 +2,16 @@
  "source": "Ember Yearly Electricity Data (bulk long-format CSV)",
  "url": "https://ember-energy.org/data/yearly-electricity-data/",
  "countries": {
-  "United States of America": {
-   "fos": {
-    "value": 0.5812,
-    "year": 2024,
-    "note": "Fossil share of generation 58.12% (2024)."
-   },
-   "dec": {
-    "value": 0.03,
-    "year": 2024,
-    "note": "CI 2015 504.95 -> 2024 383.81 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Canada": {
-   "fos": {
-    "value": 0.2231,
-    "year": 2024,
-    "note": "Fossil share of generation 22.31% (2024)."
-   },
-   "dec": {
-    "value": -0.0006,
-    "year": 2024,
-    "note": "CI 2015 184.46 -> 2024 185.41 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Mexico": {
-   "fos": {
-    "value": 0.7542,
-    "year": 2024,
-    "note": "Fossil share of generation 75.42% (2024)."
-   },
-   "dec": {
-    "value": 0.011,
-    "year": 2024,
-    "note": "CI 2015 533.9 -> 2024 483.14 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Brazil": {
-   "fos": {
-    "value": 0.1055,
-    "year": 2024,
-    "note": "Fossil share of generation 10.55% (2024)."
-   },
-   "dec": {
-    "value": 0.062,
-    "year": 2024,
-    "note": "CI 2015 188.64 -> 2024 106.06 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Argentina": {
-   "fos": {
-    "value": 0.5876,
-    "year": 2024,
-    "note": "Fossil share of generation 58.76% (2024)."
-   },
-   "dec": {
-    "value": 0.0234,
-    "year": 2024,
-    "note": "CI 2015 426.56 -> 2024 344.83 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Chile": {
-   "fos": {
-    "value": 0.2996,
-    "year": 2024,
-    "note": "Fossil share of generation 29.96% (2024)."
-   },
-   "dec": {
-    "value": 0.0683,
-    "year": 2024,
-    "note": "CI 2015 493.26 -> 2024 260.89 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Colombia": {
-   "fos": {
-    "value": 0.3866,
-    "year": 2024,
-    "note": "Fossil share of generation 38.66% (2024)."
-   },
-   "dec": {
-    "value": -0.0089,
-    "year": 2024,
-    "note": "CI 2015 275.36 -> 2024 298.3 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Peru": {
-   "fos": {
-    "value": 0.3989,
-    "year": 2024,
-    "note": "Fossil share of generation 39.89% (2024)."
-   },
-   "dec": {
-    "value": 0.0184,
-    "year": 2024,
-    "note": "CI 2015 305.78 -> 2024 258.73 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Venezuela": {
-   "fos": {
-    "value": 0.0886,
-    "year": 2024,
-    "note": "Fossil share of generation 8.86% (2024)."
-   },
-   "dec": {
-    "value": 0.1357,
-    "year": 2024,
-    "note": "CI 2015 318.93 -> 2024 85.86 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "United Kingdom": {
-   "fos": {
-    "value": 0.3507,
-    "year": 2024,
-    "note": "Fossil share of generation 35.07% (2024)."
-   },
-   "dec": {
-    "value": 0.0654,
-    "year": 2024,
-    "note": "CI 2015 397.79 -> 2024 216.5 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Ireland": {
-   "fos": {
-    "value": 0.5347,
-    "year": 2024,
-    "note": "Fossil share of generation 53.47% (2024)."
-   },
-   "dec": {
-    "value": 0.0524,
-    "year": 2024,
-    "note": "CI 2015 439.79 -> 2024 270.91 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "France": {
-   "fos": {
-    "value": 0.051,
-    "year": 2024,
-    "note": "Fossil share of generation 5.1% (2024)."
-   },
-   "dec": {
-    "value": 0.0413,
-    "year": 2024,
-    "note": "CI 2015 59.18 -> 2024 40.49 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Germany": {
-   "fos": {
-    "value": 0.4136,
-    "year": 2024,
-    "note": "Fossil share of generation 41.36% (2024)."
-   },
-   "dec": {
-    "value": 0.0436,
-    "year": 2024,
-    "note": "CI 2015 503.59 -> 2024 337.12 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Netherlands": {
-   "fos": {
-    "value": 0.4635,
-    "year": 2024,
-    "note": "Fossil share of generation 46.35% (2024)."
-   },
-   "dec": {
-    "value": 0.0839,
-    "year": 2024,
-    "note": "CI 2015 551.43 -> 2024 250.72 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Belgium": {
-   "fos": {
-    "value": 0.2372,
-    "year": 2024,
-    "note": "Fossil share of generation 23.72% (2024)."
-   },
-   "dec": {
-    "value": 0.0569,
-    "year": 2024,
-    "note": "CI 2015 215.55 -> 2024 127.28 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Spain": {
-   "fos": {
-    "value": 0.2326,
-    "year": 2024,
-    "note": "Fossil share of generation 23.26% (2024)."
-   },
-   "dec": {
-    "value": 0.086,
-    "year": 2024,
-    "note": "CI 2015 328.5 -> 2024 146.22 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Portugal": {
-   "fos": {
-    "value": 0.1481,
-    "year": 2024,
-    "note": "Fossil share of generation 14.81% (2024)."
-   },
-   "dec": {
-    "value": 0.1364,
-    "year": 2024,
-    "note": "CI 2015 413.96 -> 2024 110.64 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Italy": {
-   "fos": {
-    "value": 0.4983,
-    "year": 2024,
-    "note": "Fossil share of generation 49.83% (2024)."
-   },
-   "dec": {
-    "value": 0.038,
-    "year": 2024,
-    "note": "CI 2015 398.68 -> 2024 281.43 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Switzerland": {
-   "fos": {
-    "value": 0.019,
-    "year": 2024,
-    "note": "Fossil share of generation 1.9% (2024)."
-   },
-   "dec": {
-    "value": 0.0031,
-    "year": 2024,
-    "note": "CI 2015 35.57 -> 2024 34.58 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Austria": {
-   "fos": {
-    "value": 0.1378,
-    "year": 2024,
-    "note": "Fossil share of generation 13.78% (2024)."
-   },
-   "dec": {
-    "value": 0.0549,
-    "year": 2024,
-    "note": "CI 2015 172.06 -> 2024 103.48 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Poland": {
-   "fos": {
-    "value": 0.6885,
-    "year": 2024,
-    "note": "Fossil share of generation 68.85% (2024)."
-   },
-   "dec": {
-    "value": 0.0334,
-    "year": 2024,
-    "note": "CI 2015 826.11 -> 2024 608.36 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Czechia": {
-   "fos": {
-    "value": 0.4232,
-    "year": 2024,
-    "note": "Fossil share of generation 42.32% (2024)."
-   },
-   "dec": {
-    "value": 0.0316,
-    "year": 2024,
-    "note": "CI 2015 553.16 -> 2024 414.23 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Sweden": {
-   "fos": {
-    "value": 0.012,
-    "year": 2024,
-    "note": "Fossil share of generation 1.2% (2024)."
-   },
-   "dec": {
-    "value": 0.0173,
-    "year": 2024,
-    "note": "CI 2015 40.86 -> 2024 34.91 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Norway": {
-   "fos": {
-    "value": 0.014,
-    "year": 2024,
-    "note": "Fossil share of generation 1.4% (2024)."
-   },
-   "dec": {
-    "value": 0.0139,
-    "year": 2024,
-    "note": "CI 2015 33.64 -> 2024 29.66 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Finland": {
-   "fos": {
-    "value": 0.0465,
-    "year": 2024,
-    "note": "Fossil share of generation 4.65% (2024)."
-   },
-   "dec": {
-    "value": 0.1055,
-    "year": 2024,
-    "note": "CI 2015 182.04 -> 2024 66.75 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Denmark": {
-   "fos": {
-    "value": 0.1075,
-    "year": 2024,
-    "note": "Fossil share of generation 10.75% (2024)."
-   },
-   "dec": {
-    "value": 0.0918,
-    "year": 2024,
-    "note": "CI 2015 313.76 -> 2024 131.92 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Iceland": {
-   "fos": {
-    "value": 0.0,
-    "year": 2024,
-    "note": "Fossil share of generation 0.0% (2024)."
-   },
-   "dec": {
-    "value": -0.0013,
-    "year": 2024,
-    "note": "CI 2015 27.49 -> 2024 27.82 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Greece": {
-   "fos": {
-    "value": 0.5077,
-    "year": 2024,
-    "note": "Fossil share of generation 50.77% (2024)."
-   },
-   "dec": {
-    "value": 0.0675,
-    "year": 2024,
-    "note": "CI 2015 603.53 -> 2024 321.83 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Romania": {
-   "fos": {
-    "value": 0.328,
-    "year": 2024,
-    "note": "Fossil share of generation 32.8% (2024)."
-   },
-   "dec": {
-    "value": 0.0383,
-    "year": 2024,
-    "note": "CI 2015 369.02 -> 2024 259.67 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Ukraine": {
-   "fos": {
-    "value": 0.2783,
-    "year": 2022,
-    "note": "Fossil share of generation 27.83% (2022)."
-   },
-   "dec": {
-    "value": 0.0579,
-    "year": 2022,
-    "note": "CI 2015 380.13 -> 2022 250.47 gCO2/kWh; compound annual decline over 7 yrs, derived by us."
-   }
-  },
-  "Russia": {
-   "fos": {
-    "value": 0.6406,
-    "year": 2024,
-    "note": "Fossil share of generation 64.06% (2024)."
-   },
-   "dec": {
-    "value": -0.0004,
-    "year": 2024,
-    "note": "CI 2015 444.35 -> 2024 446.11 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Turkey": {
-   "fos": {
-    "value": 0.5438,
-    "year": 2024,
-    "note": "Fossil share of generation 54.38% (2024)."
-   },
-   "dec": {
-    "value": 0.0077,
-    "year": 2024,
-    "note": "CI 2015 504.91 -> 2024 470.83 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Kazakhstan": {
-   "fos": {
-    "value": 0.8479,
-    "year": 2024,
-    "note": "Fossil share of generation 84.79% (2024)."
-   },
-   "dec": {
-    "value": 0.0046,
-    "year": 2024,
-    "note": "CI 2015 836.12 -> 2024 801.87 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "China": {
-   "fos": {
-    "value": 0.6183,
-    "year": 2024,
-    "note": "Fossil share of generation 61.83% (2024)."
-   },
-   "dec": {
-    "value": 0.0201,
-    "year": 2024,
-    "note": "CI 2015 667.95 -> 2024 556.27 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "India": {
-   "fos": {
-    "value": 0.775,
-    "year": 2024,
-    "note": "Fossil share of generation 77.5% (2024)."
-   },
-   "dec": {
-    "value": 0.0067,
-    "year": 2024,
-    "note": "CI 2015 750.85 -> 2024 706.67 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Japan": {
-   "fos": {
-    "value": 0.6872,
-    "year": 2024,
-    "note": "Fossil share of generation 68.72% (2024)."
-   },
-   "dec": {
-    "value": 0.0196,
-    "year": 2024,
-    "note": "CI 2015 578.14 -> 2024 483.58 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "South Korea": {
-   "fos": {
-    "value": 0.6011,
-    "year": 2024,
-    "note": "Fossil share of generation 60.11% (2024)."
-   },
-   "dec": {
-    "value": 0.0176,
-    "year": 2024,
-    "note": "CI 2015 487.64 -> 2024 415.62 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Taiwan": {
-   "fos": {
-    "value": 0.8487,
-    "year": 2024,
-    "note": "Fossil share of generation 84.87% (2024)."
-   },
-   "dec": {
-    "value": 0.0025,
-    "year": 2024,
-    "note": "CI 2015 650.5 -> 2024 636.23 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Mongolia": {
-   "fos": {
-    "value": 0.9115,
-    "year": 2024,
-    "note": "Fossil share of generation 91.15% (2024)."
-   },
-   "dec": {
-    "value": 0.0066,
-    "year": 2024,
-    "note": "CI 2015 867.51 -> 2024 817.46 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Vietnam": {
-   "fos": {
-    "value": 0.5771,
-    "year": 2024,
-    "note": "Fossil share of generation 57.71% (2024)."
-   },
-   "dec": {
-    "value": -0.0001,
-    "year": 2024,
-    "note": "CI 2015 486.51 -> 2024 486.99 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Thailand": {
-   "fos": {
-    "value": 0.8516,
-    "year": 2024,
-    "note": "Fossil share of generation 85.16% (2024)."
-   },
-   "dec": {
-    "value": 0.0082,
-    "year": 2024,
-    "note": "CI 2015 598.04 -> 2024 555.38 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Malaysia": {
-   "fos": {
-    "value": 0.7963,
-    "year": 2024,
-    "note": "Fossil share of generation 79.63% (2024)."
-   },
-   "dec": {
-    "value": 0.0117,
-    "year": 2024,
-    "note": "CI 2015 669.18 -> 2024 601.71 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Indonesia": {
-   "fos": {
-    "value": 0.8191,
-    "year": 2024,
-    "note": "Fossil share of generation 81.91% (2024)."
-   },
-   "dec": {
-    "value": 0.0025,
-    "year": 2024,
-    "note": "CI 2015 696.65 -> 2024 681.11 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Philippines": {
-   "fos": {
-    "value": 0.7953,
-    "year": 2024,
-    "note": "Fossil share of generation 79.53% (2024)."
-   },
-   "dec": {
-    "value": -0.016,
-    "year": 2024,
-    "note": "CI 2015 545.75 -> 2024 629.46 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Singapore": {
-   "fos": {
-    "value": 0.9507,
-    "year": 2024,
-    "note": "Fossil share of generation 95.07% (2024)."
-   },
-   "dec": {
-    "value": 0.0018,
-    "year": 2024,
-    "note": "CI 2015 506.96 -> 2024 498.74 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Bangladesh": {
-   "fos": {
-    "value": 0.9811,
-    "year": 2024,
-    "note": "Fossil share of generation 98.11% (2024)."
-   },
-   "dec": {
-    "value": -0.0033,
-    "year": 2024,
-    "note": "CI 2015 675.83 -> 2024 695.89 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Pakistan": {
-   "fos": {
-    "value": 0.4321,
-    "year": 2024,
-    "note": "Fossil share of generation 43.21% (2024)."
-   },
-   "dec": {
-    "value": 0.0276,
-    "year": 2024,
-    "note": "CI 2015 431.78 -> 2024 335.65 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Saudi Arabia": {
-   "fos": {
-    "value": 0.9784,
-    "year": 2024,
-    "note": "Fossil share of generation 97.84% (2024)."
-   },
-   "dec": {
-    "value": 0.0002,
-    "year": 2024,
-    "note": "CI 2015 693.08 -> 2024 691.95 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "United Arab Emirates": {
+  "AE": {
+   "name": "United Arab Emirates",
    "fos": {
     "value": 0.6827,
     "year": 2024,
     "note": "Fossil share of generation 68.27% (2024)."
+   },
+   "ci": {
+    "value": 467.51,
+    "year": 2024
    },
    "dec": {
     "value": 0.04,
@@ -590,155 +19,67 @@
     "note": "CI 2015 675.22 -> 2024 467.51 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
    }
   },
-  "Iran": {
+  "AF": {
+   "name": "Afghanistan",
    "fos": {
-    "value": 0.9282,
+    "value": 0.1313,
     "year": 2024,
-    "note": "Fossil share of generation 92.82% (2024)."
+    "note": "Fossil share of generation 13.13% (2024)."
+   },
+   "ci": {
+    "value": 131.31,
+    "year": 2024
    },
    "dec": {
-    "value": 0.0004,
+    "value": -0.0113,
     "year": 2024,
-    "note": "CI 2015 650.84 -> 2024 648.68 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+    "note": "CI 2015 118.64 -> 2024 131.31 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
    }
   },
-  "Iraq": {
+  "AG": {
+   "name": "Antigua and Barbuda",
    "fos": {
-    "value": 0.9838,
+    "value": 0.9189,
     "year": 2024,
-    "note": "Fossil share of generation 98.38% (2024)."
+    "note": "Fossil share of generation 91.89% (2024)."
+   },
+   "ci": {
+    "value": 594.6,
+    "year": 2024
    },
    "dec": {
-    "value": -0.0048,
+    "value": 0.0062,
     "year": 2024,
-    "note": "CI 2015 654.45 -> 2024 683.1 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+    "note": "CI 2015 628.57 -> 2024 594.6 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
    }
   },
-  "Israel": {
+  "AM": {
+   "name": "Armenia",
    "fos": {
-    "value": 0.8619,
+    "value": 0.3898,
     "year": 2024,
-    "note": "Fossil share of generation 86.19% (2024)."
+    "note": "Fossil share of generation 38.98% (2024)."
+   },
+   "ci": {
+    "value": 240.31,
+    "year": 2024
    },
    "dec": {
-    "value": 0.0272,
+    "value": -0.0073,
     "year": 2024,
-    "note": "CI 2015 692.67 -> 2024 540.55 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+    "note": "CI 2015 225.17 -> 2024 240.31 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
    }
   },
-  "Egypt": {
-   "fos": {
-    "value": 0.888,
-    "year": 2024,
-    "note": "Fossil share of generation 88.8% (2024)."
-   },
-   "dec": {
-    "value": 0.0034,
-    "year": 2024,
-    "note": "CI 2015 592.26 -> 2024 574.5 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Morocco": {
-   "fos": {
-    "value": 0.7559,
-    "year": 2024,
-    "note": "Fossil share of generation 75.59% (2024)."
-   },
-   "dec": {
-    "value": 0.008,
-    "year": 2024,
-    "note": "CI 2015 639.92 -> 2024 595.28 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Algeria": {
-   "fos": {
-    "value": 0.9893,
-    "year": 2024,
-    "note": "Fossil share of generation 98.93% (2024)."
-   },
-   "dec": {
-    "value": 0.0008,
-    "year": 2024,
-    "note": "CI 2015 637.42 -> 2024 632.94 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Nigeria": {
-   "fos": {
-    "value": 0.75,
-    "year": 2024,
-    "note": "Fossil share of generation 75.0% (2024)."
-   },
-   "dec": {
-    "value": 0.0073,
-    "year": 2024,
-    "note": "CI 2015 529.7 -> 2024 495.74 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "South Africa": {
-   "fos": {
-    "value": 0.8433,
-    "year": 2024,
-    "note": "Fossil share of generation 84.33% (2024)."
-   },
-   "dec": {
-    "value": 0.0107,
-    "year": 2024,
-    "note": "CI 2015 790.96 -> 2024 717.72 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Kenya": {
-   "fos": {
-    "value": 0.0852,
-    "year": 2024,
-    "note": "Fossil share of generation 8.52% (2024)."
-   },
-   "dec": {
-    "value": 0.0219,
-    "year": 2024,
-    "note": "CI 2015 103.98 -> 2024 85.22 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Ethiopia": {
-   "fos": {
-    "value": 0.0,
-    "year": 2024,
-    "note": "Fossil share of generation 0.0% (2024)."
-   },
-   "dec": {
-    "value": 0.003,
-    "year": 2024,
-    "note": "CI 2015 24.06 -> 2024 23.41 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Ghana": {
-   "fos": {
-    "value": 0.6378,
-    "year": 2024,
-    "note": "Fossil share of generation 63.78% (2024)."
-   },
-   "dec": {
-    "value": -0.0268,
-    "year": 2024,
-    "note": "CI 2015 369.42 -> 2024 468.89 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Tanzania": {
-   "fos": {
-    "value": 0.6708,
-    "year": 2024,
-    "note": "Fossil share of generation 67.08% (2024)."
-   },
-   "dec": {
-    "value": 0.0079,
-    "year": 2024,
-    "note": "CI 2015 370.6 -> 2024 345.02 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
-   }
-  },
-  "Angola": {
+  "AO": {
+   "name": "Angola",
    "fos": {
     "value": 0.263,
     "year": 2024,
     "note": "Fossil share of generation 26.3% (2024)."
+   },
+   "ci": {
+    "value": 185.38,
+    "year": 2024
    },
    "dec": {
     "value": 0.0565,
@@ -746,11 +87,67 @@
     "note": "CI 2015 312.88 -> 2024 185.38 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
    }
   },
-  "Australia": {
+  "AR": {
+   "name": "Argentina",
+   "fos": {
+    "value": 0.5876,
+    "year": 2024,
+    "note": "Fossil share of generation 58.76% (2024)."
+   },
+   "ci": {
+    "value": 344.83,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0234,
+    "year": 2024,
+    "note": "CI 2015 426.56 -> 2024 344.83 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "AS": {
+   "name": "American Samoa",
+   "fos": {
+    "value": 0.9444,
+    "year": 2024,
+    "note": "Fossil share of generation 94.44% (2024)."
+   },
+   "ci": {
+    "value": 611.11,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.013,
+    "year": 2024,
+    "note": "CI 2015 687.5 -> 2024 611.11 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "AT": {
+   "name": "Austria",
+   "fos": {
+    "value": 0.1378,
+    "year": 2024,
+    "note": "Fossil share of generation 13.78% (2024)."
+   },
+   "ci": {
+    "value": 103.48,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0549,
+    "year": 2024,
+    "note": "CI 2015 172.06 -> 2024 103.48 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "AU": {
+   "name": "Australia",
    "fos": {
     "value": 0.6492,
     "year": 2024,
     "note": "Fossil share of generation 64.92% (2024)."
+   },
+   "ci": {
+    "value": 554.01,
+    "year": 2024
    },
    "dec": {
     "value": 0.0302,
@@ -758,16 +155,3466 @@
     "note": "CI 2015 729.83 -> 2024 554.01 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
    }
   },
-  "New Zealand": {
+  "AW": {
+   "name": "Aruba",
+   "fos": {
+    "value": 0.83,
+    "year": 2024,
+    "note": "Fossil share of generation 83.0% (2024)."
+   },
+   "ci": {
+    "value": 550.0,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0029,
+    "year": 2024,
+    "note": "CI 2015 536.08 -> 2024 550.0 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "AZ": {
+   "name": "Azerbaijan",
+   "fos": {
+    "value": 0.8825,
+    "year": 2024,
+    "note": "Fossil share of generation 88.25% (2024)."
+   },
+   "ci": {
+    "value": 634.34,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.005,
+    "year": 2024,
+    "note": "CI 2015 663.82 -> 2024 634.34 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BA": {
+   "name": "Bosnia and Herzegovina",
+   "fos": {
+    "value": 0.598,
+    "year": 2024,
+    "note": "Fossil share of generation 59.8% (2024)."
+   },
+   "ci": {
+    "value": 602.45,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0108,
+    "year": 2024,
+    "note": "CI 2015 664.03 -> 2024 602.45 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BB": {
+   "name": "Barbados",
+   "fos": {
+    "value": 0.9099,
+    "year": 2024,
+    "note": "Fossil share of generation 90.99% (2024)."
+   },
+   "ci": {
+    "value": 594.6,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0089,
+    "year": 2024,
+    "note": "CI 2015 644.23 -> 2024 594.6 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BD": {
+   "name": "Bangladesh",
+   "fos": {
+    "value": 0.9811,
+    "year": 2024,
+    "note": "Fossil share of generation 98.11% (2024)."
+   },
+   "ci": {
+    "value": 695.89,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0033,
+    "year": 2024,
+    "note": "CI 2015 675.83 -> 2024 695.89 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BE": {
+   "name": "Belgium",
+   "fos": {
+    "value": 0.2372,
+    "year": 2024,
+    "note": "Fossil share of generation 23.72% (2024)."
+   },
+   "ci": {
+    "value": 127.28,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0569,
+    "year": 2024,
+    "note": "CI 2015 215.55 -> 2024 127.28 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BF": {
+   "name": "Burkina Faso",
+   "fos": {
+    "value": 0.8284,
+    "year": 2024,
+    "note": "Fossil share of generation 82.84% (2024)."
+   },
+   "ci": {
+    "value": 562.13,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0061,
+    "year": 2024,
+    "note": "CI 2015 594.06 -> 2024 562.13 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BG": {
+   "name": "Bulgaria",
+   "fos": {
+    "value": 0.2888,
+    "year": 2024,
+    "note": "Fossil share of generation 28.88% (2024)."
+   },
+   "ci": {
+    "value": 278.85,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0617,
+    "year": 2024,
+    "note": "CI 2015 494.56 -> 2024 278.85 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BH": {
+   "name": "Bahrain",
+   "fos": {
+    "value": 0.9974,
+    "year": 2024,
+    "note": "Fossil share of generation 99.74% (2024)."
+   },
+   "ci": {
+    "value": 902.24,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0003,
+    "year": 2024,
+    "note": "CI 2015 904.53 -> 2024 902.24 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BI": {
+   "name": "Burundi",
+   "fos": {
+    "value": 0.2449,
+    "year": 2024,
+    "note": "Fossil share of generation 24.49% (2024)."
+   },
+   "ci": {
+    "value": 183.67,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0574,
+    "year": 2024,
+    "note": "CI 2015 111.11 -> 2024 183.67 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BJ": {
+   "name": "Benin",
+   "fos": {
+    "value": 0.9604,
+    "year": 2024,
+    "note": "Fossil share of generation 96.04% (2024)."
+   },
+   "ci": {
+    "value": 584.16,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0075,
+    "year": 2024,
+    "note": "CI 2015 625.0 -> 2024 584.16 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BM": {
+   "name": "Bermuda",
+   "fos": {
+    "value": 0.9836,
+    "year": 2024,
+    "note": "Fossil share of generation 98.36% (2024)."
+   },
+   "ci": {
+    "value": 639.34,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0004,
+    "year": 2024,
+    "note": "CI 2015 641.79 -> 2024 639.34 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BN": {
+   "name": "Brunei",
+   "fos": {
+    "value": 0.9982,
+    "year": 2024,
+    "note": "Fossil share of generation 99.82% (2024)."
+   },
+   "ci": {
+    "value": 892.09,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0013,
+    "year": 2024,
+    "note": "CI 2015 902.38 -> 2024 892.09 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BO": {
+   "name": "Bolivia",
+   "fos": {
+    "value": 0.66,
+    "year": 2024,
+    "note": "Fossil share of generation 66.0% (2024)."
+   },
+   "ci": {
+    "value": 495.2,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0068,
+    "year": 2024,
+    "note": "CI 2015 526.67 -> 2024 495.2 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BR": {
+   "name": "Brazil",
+   "fos": {
+    "value": 0.1055,
+    "year": 2024,
+    "note": "Fossil share of generation 10.55% (2024)."
+   },
+   "ci": {
+    "value": 106.06,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.062,
+    "year": 2024,
+    "note": "CI 2015 188.64 -> 2024 106.06 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BS": {
+   "name": "Bahamas",
+   "fos": {
+    "value": 0.9911,
+    "year": 2024,
+    "note": "Fossil share of generation 99.11% (2024)."
+   },
+   "ci": {
+    "value": 653.33,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0011,
+    "year": 2024,
+    "note": "CI 2015 660.0 -> 2024 653.33 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BT": {
+   "name": "Bhutan",
+   "fos": {
+    "value": 0.0,
+    "year": 2024,
+    "note": "Fossil share of generation 0.0% (2024)."
+   },
+   "ci": {
+    "value": 23.64,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0017,
+    "year": 2024,
+    "note": "CI 2015 23.29 -> 2024 23.64 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BW": {
+   "name": "Botswana",
+   "fos": {
+    "value": 0.9971,
+    "year": 2024,
+    "note": "Fossil share of generation 99.71% (2024)."
+   },
+   "ci": {
+    "value": 851.31,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0004,
+    "year": 2024,
+    "note": "CI 2015 848.49 -> 2024 851.31 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BY": {
+   "name": "Belarus",
+   "fos": {
+    "value": 0.6268,
+    "year": 2024,
+    "note": "Fossil share of generation 62.68% (2024)."
+   },
+   "ci": {
+    "value": 329.55,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0467,
+    "year": 2024,
+    "note": "CI 2015 506.89 -> 2024 329.55 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "BZ": {
+   "name": "Belize",
+   "fos": {
+    "value": 0.1277,
+    "year": 2024,
+    "note": "Fossil share of generation 12.77% (2024)."
+   },
+   "ci": {
+    "value": 170.21,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0229,
+    "year": 2024,
+    "note": "CI 2015 138.89 -> 2024 170.21 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "CA": {
+   "name": "Canada",
+   "fos": {
+    "value": 0.2231,
+    "year": 2024,
+    "note": "Fossil share of generation 22.31% (2024)."
+   },
+   "ci": {
+    "value": 185.41,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0006,
+    "year": 2024,
+    "note": "CI 2015 184.46 -> 2024 185.41 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "CD": {
+   "name": "Democratic Republic of the Congo",
+   "fos": {
+    "value": 0.0,
+    "year": 2024,
+    "note": "Fossil share of generation 0.0% (2024)."
+   },
+   "ci": {
+    "value": 27.64,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0117,
+    "year": 2024,
+    "note": "CI 2015 24.89 -> 2024 27.64 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "CF": {
+   "name": "Central African Republic",
+   "fos": {
+    "value": 0.0,
+    "year": 2023,
+    "note": "Fossil share of generation 0.0% (2023)."
+   },
+   "ci": {
+    "value": 0.0,
+    "year": 2023
+   }
+  },
+  "CG": {
+   "name": "Republic of the Congo",
+   "fos": {
+    "value": 0.7912,
+    "year": 2024,
+    "note": "Fossil share of generation 79.12% (2024)."
+   },
+   "ci": {
+    "value": 716.12,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0316,
+    "year": 2024,
+    "note": "CI 2015 541.22 -> 2024 716.12 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "CH": {
+   "name": "Switzerland",
+   "fos": {
+    "value": 0.019,
+    "year": 2024,
+    "note": "Fossil share of generation 1.9% (2024)."
+   },
+   "ci": {
+    "value": 34.58,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0031,
+    "year": 2024,
+    "note": "CI 2015 35.57 -> 2024 34.58 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "CI": {
+   "name": "Ivory Coast",
+   "fos": {
+    "value": 0.7109,
+    "year": 2024,
+    "note": "Fossil share of generation 71.09% (2024)."
+   },
+   "ci": {
+    "value": 405.01,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0178,
+    "year": 2024,
+    "note": "CI 2015 475.86 -> 2024 405.01 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "CK": {
+   "name": "Cook Islands",
+   "fos": {
+    "value": 0.5,
+    "year": 2024,
+    "note": "Fossil share of generation 50.0% (2024)."
+   },
+   "ci": {
+    "value": 250.0,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.1033,
+    "year": 2024,
+    "note": "CI 2015 666.67 -> 2024 250.0 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "CL": {
+   "name": "Chile",
+   "fos": {
+    "value": 0.2996,
+    "year": 2024,
+    "note": "Fossil share of generation 29.96% (2024)."
+   },
+   "ci": {
+    "value": 260.89,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0683,
+    "year": 2024,
+    "note": "CI 2015 493.26 -> 2024 260.89 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "CM": {
+   "name": "Cameroon",
+   "fos": {
+    "value": 0.2686,
+    "year": 2024,
+    "note": "Fossil share of generation 26.86% (2024)."
+   },
+   "ci": {
+    "value": 225.9,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0434,
+    "year": 2024,
+    "note": "CI 2015 336.68 -> 2024 225.9 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "CN": {
+   "name": "China",
+   "fos": {
+    "value": 0.6183,
+    "year": 2024,
+    "note": "Fossil share of generation 61.83% (2024)."
+   },
+   "ci": {
+    "value": 556.27,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0201,
+    "year": 2024,
+    "note": "CI 2015 667.95 -> 2024 556.27 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "CO": {
+   "name": "Colombia",
+   "fos": {
+    "value": 0.3866,
+    "year": 2024,
+    "note": "Fossil share of generation 38.66% (2024)."
+   },
+   "ci": {
+    "value": 298.3,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0089,
+    "year": 2024,
+    "note": "CI 2015 275.36 -> 2024 298.3 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "CR": {
+   "name": "Costa Rica",
+   "fos": {
+    "value": 0.0009,
+    "year": 2024,
+    "note": "Fossil share of generation 0.09% (2024)."
+   },
+   "ci": {
+    "value": 25.46,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0298,
+    "year": 2024,
+    "note": "CI 2015 33.43 -> 2024 25.46 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "CU": {
+   "name": "Cuba",
+   "fos": {
+    "value": 0.9599,
+    "year": 2024,
+    "note": "Fossil share of generation 95.99% (2024)."
+   },
+   "ci": {
+    "value": 642.82,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0002,
+    "year": 2024,
+    "note": "CI 2015 643.94 -> 2024 642.82 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "CV": {
+   "name": "Cabo Verde",
+   "fos": {
+    "value": 0.6923,
+    "year": 2024,
+    "note": "Fossil share of generation 69.23% (2024)."
+   },
+   "ci": {
+    "value": 461.54,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0114,
+    "year": 2024,
+    "note": "CI 2015 511.63 -> 2024 461.54 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "CY": {
+   "name": "Cyprus",
+   "fos": {
+    "value": 0.7599,
+    "year": 2024,
+    "note": "Fossil share of generation 75.99% (2024)."
+   },
+   "ci": {
+    "value": 511.23,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0183,
+    "year": 2024,
+    "note": "CI 2015 603.52 -> 2024 511.23 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "CZ": {
+   "name": "Czechia",
+   "fos": {
+    "value": 0.4232,
+    "year": 2024,
+    "note": "Fossil share of generation 42.32% (2024)."
+   },
+   "ci": {
+    "value": 414.23,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0316,
+    "year": 2024,
+    "note": "CI 2015 553.16 -> 2024 414.23 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "DE": {
+   "name": "Germany",
+   "fos": {
+    "value": 0.4136,
+    "year": 2024,
+    "note": "Fossil share of generation 41.36% (2024)."
+   },
+   "ci": {
+    "value": 337.12,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0436,
+    "year": 2024,
+    "note": "CI 2015 503.59 -> 2024 337.12 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "DJ": {
+   "name": "Djibouti",
+   "fos": {
+    "value": 0.65,
+    "year": 2024,
+    "note": "Fossil share of generation 65.0% (2024)."
+   },
+   "ci": {
+    "value": 450.0,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0427,
+    "year": 2024,
+    "note": "CI 2015 666.67 -> 2024 450.0 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "DK": {
+   "name": "Denmark",
+   "fos": {
+    "value": 0.1075,
+    "year": 2024,
+    "note": "Fossil share of generation 10.75% (2024)."
+   },
+   "ci": {
+    "value": 131.92,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0918,
+    "year": 2024,
+    "note": "CI 2015 313.76 -> 2024 131.92 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "DM": {
+   "name": "Dominica",
+   "fos": {
+    "value": 0.8667,
+    "year": 2023,
+    "note": "Fossil share of generation 86.67% (2023)."
+   },
+   "ci": {
+    "value": 600.0,
+    "year": 2023
+   },
+   "dec": {
+    "value": 0.0,
+    "year": 2023,
+    "note": "CI 2015 600.0 -> 2023 600.0 gCO2/kWh; compound annual decline over 8 yrs, derived by us."
+   }
+  },
+  "DO": {
+   "name": "Dominican Republic",
+   "fos": {
+    "value": 0.8115,
+    "year": 2024,
+    "note": "Fossil share of generation 81.15% (2024)."
+   },
+   "ci": {
+    "value": 567.62,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0073,
+    "year": 2024,
+    "note": "CI 2015 606.11 -> 2024 567.62 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "DZ": {
+   "name": "Algeria",
+   "fos": {
+    "value": 0.9893,
+    "year": 2024,
+    "note": "Fossil share of generation 98.93% (2024)."
+   },
+   "ci": {
+    "value": 632.94,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0008,
+    "year": 2024,
+    "note": "CI 2015 637.42 -> 2024 632.94 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "EC": {
+   "name": "Ecuador",
+   "fos": {
+    "value": 0.2756,
+    "year": 2024,
+    "note": "Fossil share of generation 27.56% (2024)."
+   },
+   "ci": {
+    "value": 203.61,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0571,
+    "year": 2024,
+    "note": "CI 2015 345.72 -> 2024 203.61 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "EE": {
+   "name": "Estonia",
+   "fos": {
+    "value": 0.4425,
+    "year": 2024,
+    "note": "Fossil share of generation 44.25% (2024)."
+   },
+   "ci": {
+    "value": 343.45,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0554,
+    "year": 2024,
+    "note": "CI 2015 573.4 -> 2024 343.45 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "EG": {
+   "name": "Egypt",
+   "fos": {
+    "value": 0.888,
+    "year": 2024,
+    "note": "Fossil share of generation 88.8% (2024)."
+   },
+   "ci": {
+    "value": 574.5,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0034,
+    "year": 2024,
+    "note": "CI 2015 592.26 -> 2024 574.5 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "EH": {
+   "name": "Western Sahara",
+   "fos": {
+    "value": 1.0,
+    "year": 2009,
+    "note": "Fossil share of generation 100.0% (2009)."
+   }
+  },
+  "ER": {
+   "name": "Eritrea",
+   "fos": {
+    "value": 0.8889,
+    "year": 2024,
+    "note": "Fossil share of generation 88.89% (2024)."
+   },
+   "ci": {
+    "value": 577.78,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0136,
+    "year": 2024,
+    "note": "CI 2015 653.85 -> 2024 577.78 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "ES": {
+   "name": "Spain",
+   "fos": {
+    "value": 0.2326,
+    "year": 2024,
+    "note": "Fossil share of generation 23.26% (2024)."
+   },
+   "ci": {
+    "value": 146.22,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.086,
+    "year": 2024,
+    "note": "CI 2015 328.5 -> 2024 146.22 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "ET": {
+   "name": "Ethiopia",
+   "fos": {
+    "value": 0.0,
+    "year": 2024,
+    "note": "Fossil share of generation 0.0% (2024)."
+   },
+   "ci": {
+    "value": 23.41,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.003,
+    "year": 2024,
+    "note": "CI 2015 24.06 -> 2024 23.41 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "FI": {
+   "name": "Finland",
+   "fos": {
+    "value": 0.0465,
+    "year": 2024,
+    "note": "Fossil share of generation 4.65% (2024)."
+   },
+   "ci": {
+    "value": 66.75,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.1055,
+    "year": 2024,
+    "note": "CI 2015 182.04 -> 2024 66.75 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "FJ": {
+   "name": "Fiji",
+   "fos": {
+    "value": 0.3652,
+    "year": 2024,
+    "note": "Fossil share of generation 36.52% (2024)."
+   },
+   "ci": {
+    "value": 278.26,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0299,
+    "year": 2024,
+    "note": "CI 2015 365.59 -> 2024 278.26 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "FK": {
+   "name": "Falkland Islands",
+   "fos": {
+    "value": 1.0,
+    "year": 2023,
+    "note": "Fossil share of generation 100.0% (2023)."
+   },
+   "ci": {
+    "value": 1000.0,
+    "year": 2023
+   },
+   "dec": {
+    "value": -0.0905,
+    "year": 2023,
+    "note": "CI 2015 500.0 -> 2023 1000.0 gCO2/kWh; compound annual decline over 8 yrs, derived by us."
+   }
+  },
+  "FO": {
+   "name": "Faroe Islands",
+   "fos": {
+    "value": 0.5306,
+    "year": 2023,
+    "note": "Fossil share of generation 53.06% (2023)."
+   },
+   "ci": {
+    "value": 346.94,
+    "year": 2023
+   },
+   "dec": {
+    "value": -0.0266,
+    "year": 2023,
+    "note": "CI 2015 281.25 -> 2023 346.94 gCO2/kWh; compound annual decline over 8 yrs, derived by us."
+   }
+  },
+  "FR": {
+   "name": "France",
+   "fos": {
+    "value": 0.051,
+    "year": 2024,
+    "note": "Fossil share of generation 5.1% (2024)."
+   },
+   "ci": {
+    "value": 40.49,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0413,
+    "year": 2024,
+    "note": "CI 2015 59.18 -> 2024 40.49 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "GA": {
+   "name": "Gabon",
+   "fos": {
+    "value": 0.6461,
+    "year": 2024,
+    "note": "Fossil share of generation 64.61% (2024)."
+   },
+   "ci": {
+    "value": 523.08,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0104,
+    "year": 2024,
+    "note": "CI 2015 476.42 -> 2024 523.08 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "GB": {
+   "name": "United Kingdom",
+   "fos": {
+    "value": 0.3507,
+    "year": 2024,
+    "note": "Fossil share of generation 35.07% (2024)."
+   },
+   "ci": {
+    "value": 216.5,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0654,
+    "year": 2024,
+    "note": "CI 2015 397.79 -> 2024 216.5 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "GD": {
+   "name": "Grenada",
+   "fos": {
+    "value": 1.0,
+    "year": 2024,
+    "note": "Fossil share of generation 100.0% (2024)."
+   },
+   "ci": {
+    "value": 666.67,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0,
+    "year": 2024,
+    "note": "CI 2015 666.67 -> 2024 666.67 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "GE": {
+   "name": "Georgia",
+   "fos": {
+    "value": 0.2017,
+    "year": 2024,
+    "note": "Fossil share of generation 20.17% (2024)."
+   },
+   "ci": {
+    "value": 145.01,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0089,
+    "year": 2024,
+    "note": "CI 2015 157.21 -> 2024 145.01 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "GF": {
+   "name": "French Guiana",
+   "fos": {
+    "value": 0.3469,
+    "year": 2023,
+    "note": "Fossil share of generation 34.69% (2023)."
+   },
+   "ci": {
+    "value": 244.9,
+    "year": 2023
+   },
+   "dec": {
+    "value": 0.0164,
+    "year": 2023,
+    "note": "CI 2015 279.57 -> 2023 244.9 gCO2/kWh; compound annual decline over 8 yrs, derived by us."
+   }
+  },
+  "GH": {
+   "name": "Ghana",
+   "fos": {
+    "value": 0.6378,
+    "year": 2024,
+    "note": "Fossil share of generation 63.78% (2024)."
+   },
+   "ci": {
+    "value": 468.89,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0268,
+    "year": 2024,
+    "note": "CI 2015 369.42 -> 2024 468.89 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "GI": {
+   "name": "Gibraltar",
+   "fos": {
+    "value": 1.0,
+    "year": 2024,
+    "note": "Fossil share of generation 100.0% (2024)."
+   },
+   "ci": {
+    "value": 590.91,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0082,
+    "year": 2024,
+    "note": "CI 2015 636.36 -> 2024 590.91 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "GL": {
+   "name": "Greenland",
+   "fos": {
+    "value": 0.1667,
+    "year": 2024,
+    "note": "Fossil share of generation 16.67% (2024)."
+   },
+   "ci": {
+    "value": 150.0,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0099,
+    "year": 2024,
+    "note": "CI 2015 137.26 -> 2024 150.0 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "GM": {
+   "name": "Gambia",
+   "fos": {
+    "value": 1.0,
+    "year": 2024,
+    "note": "Fossil share of generation 100.0% (2024)."
+   },
+   "ci": {
+    "value": 666.67,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.004,
+    "year": 2024,
+    "note": "CI 2015 642.86 -> 2024 666.67 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "GN": {
+   "name": "Guinea",
+   "fos": {
+    "value": 0.2481,
+    "year": 2024,
+    "note": "Fossil share of generation 24.81% (2024)."
+   },
+   "ci": {
+    "value": 181.14,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0154,
+    "year": 2024,
+    "note": "CI 2015 157.9 -> 2024 181.14 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "GP": {
+   "name": "Guadeloupe",
+   "fos": {
+    "value": 0.6467,
+    "year": 2023,
+    "note": "Fossil share of generation 64.67% (2023)."
+   },
+   "ci": {
+    "value": 497.01,
+    "year": 2023
+   },
+   "dec": {
+    "value": 0.0226,
+    "year": 2023,
+    "note": "CI 2015 596.59 -> 2023 497.01 gCO2/kWh; compound annual decline over 8 yrs, derived by us."
+   }
+  },
+  "GQ": {
+   "name": "Equatorial Guinea",
+   "fos": {
+    "value": 0.7315,
+    "year": 2024,
+    "note": "Fossil share of generation 73.15% (2024)."
+   },
+   "ci": {
+    "value": 644.3,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0139,
+    "year": 2024,
+    "note": "CI 2015 569.23 -> 2024 644.3 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "GR": {
+   "name": "Greece",
+   "fos": {
+    "value": 0.5077,
+    "year": 2024,
+    "note": "Fossil share of generation 50.77% (2024)."
+   },
+   "ci": {
+    "value": 321.83,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0675,
+    "year": 2024,
+    "note": "CI 2015 603.53 -> 2024 321.83 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "GT": {
+   "name": "Guatemala",
+   "fos": {
+    "value": 0.3166,
+    "year": 2024,
+    "note": "Fossil share of generation 31.66% (2024)."
+   },
+   "ci": {
+    "value": 301.46,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0222,
+    "year": 2024,
+    "note": "CI 2015 368.85 -> 2024 301.46 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "GU": {
+   "name": "Guam",
+   "fos": {
+    "value": 0.914,
+    "year": 2024,
+    "note": "Fossil share of generation 91.4% (2024)."
+   },
+   "ci": {
+    "value": 607.53,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0073,
+    "year": 2024,
+    "note": "CI 2015 649.12 -> 2024 607.53 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "GW": {
+   "name": "Guinea-Bissau",
+   "fos": {
+    "value": 1.0,
+    "year": 2024,
+    "note": "Fossil share of generation 100.0% (2024)."
+   },
+   "ci": {
+    "value": 625.0,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0071,
+    "year": 2024,
+    "note": "CI 2015 666.67 -> 2024 625.0 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "GY": {
+   "name": "Guyana",
+   "fos": {
+    "value": 0.971,
+    "year": 2024,
+    "note": "Fossil share of generation 97.1% (2024)."
+   },
+   "ci": {
+    "value": 644.93,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0002,
+    "year": 2024,
+    "note": "CI 2015 643.56 -> 2024 644.93 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "HK": {
+   "name": "Hong Kong",
+   "fos": {
+    "value": 0.9895,
+    "year": 2024,
+    "note": "Fossil share of generation 98.95% (2024)."
+   },
+   "ci": {
+    "value": 675.48,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0206,
+    "year": 2024,
+    "note": "CI 2015 814.84 -> 2024 675.48 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "HN": {
+   "name": "Honduras",
+   "fos": {
+    "value": 0.4455,
+    "year": 2024,
+    "note": "Fossil share of generation 44.55% (2024)."
+   },
+   "ci": {
+    "value": 322.12,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0221,
+    "year": 2024,
+    "note": "CI 2015 394.01 -> 2024 322.12 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "HR": {
+   "name": "Croatia",
+   "fos": {
+    "value": 0.2656,
+    "year": 2024,
+    "note": "Fossil share of generation 26.56% (2024)."
+   },
+   "ci": {
+    "value": 170.7,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0516,
+    "year": 2024,
+    "note": "CI 2015 274.91 -> 2024 170.7 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "HT": {
+   "name": "Haiti",
+   "fos": {
+    "value": 0.814,
+    "year": 2024,
+    "note": "Fossil share of generation 81.4% (2024)."
+   },
+   "ci": {
+    "value": 534.88,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0148,
+    "year": 2024,
+    "note": "CI 2015 611.65 -> 2024 534.88 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "HU": {
+   "name": "Hungary",
+   "fos": {
+    "value": 0.2636,
+    "year": 2024,
+    "note": "Fossil share of generation 26.36% (2024)."
+   },
+   "ci": {
+    "value": 184.47,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0523,
+    "year": 2024,
+    "note": "CI 2015 299.04 -> 2024 184.47 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "ID": {
+   "name": "Indonesia",
+   "fos": {
+    "value": 0.8191,
+    "year": 2024,
+    "note": "Fossil share of generation 81.91% (2024)."
+   },
+   "ci": {
+    "value": 681.11,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0025,
+    "year": 2024,
+    "note": "CI 2015 696.65 -> 2024 681.11 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "IE": {
+   "name": "Ireland",
+   "fos": {
+    "value": 0.5347,
+    "year": 2024,
+    "note": "Fossil share of generation 53.47% (2024)."
+   },
+   "ci": {
+    "value": 270.91,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0524,
+    "year": 2024,
+    "note": "CI 2015 439.79 -> 2024 270.91 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "IL": {
+   "name": "Israel",
+   "fos": {
+    "value": 0.8619,
+    "year": 2024,
+    "note": "Fossil share of generation 86.19% (2024)."
+   },
+   "ci": {
+    "value": 540.55,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0272,
+    "year": 2024,
+    "note": "CI 2015 692.67 -> 2024 540.55 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "IN": {
+   "name": "India",
+   "fos": {
+    "value": 0.775,
+    "year": 2024,
+    "note": "Fossil share of generation 77.5% (2024)."
+   },
+   "ci": {
+    "value": 706.67,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0067,
+    "year": 2024,
+    "note": "CI 2015 750.85 -> 2024 706.67 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "IQ": {
+   "name": "Iraq",
+   "fos": {
+    "value": 0.9838,
+    "year": 2024,
+    "note": "Fossil share of generation 98.38% (2024)."
+   },
+   "ci": {
+    "value": 683.1,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0048,
+    "year": 2024,
+    "note": "CI 2015 654.45 -> 2024 683.1 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "IR": {
+   "name": "Iran",
+   "fos": {
+    "value": 0.9282,
+    "year": 2024,
+    "note": "Fossil share of generation 92.82% (2024)."
+   },
+   "ci": {
+    "value": 648.68,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0004,
+    "year": 2024,
+    "note": "CI 2015 650.84 -> 2024 648.68 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "IS": {
+   "name": "Iceland",
+   "fos": {
+    "value": 0.0,
+    "year": 2024,
+    "note": "Fossil share of generation 0.0% (2024)."
+   },
+   "ci": {
+    "value": 27.82,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0013,
+    "year": 2024,
+    "note": "CI 2015 27.49 -> 2024 27.82 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "IT": {
+   "name": "Italy",
+   "fos": {
+    "value": 0.4983,
+    "year": 2024,
+    "note": "Fossil share of generation 49.83% (2024)."
+   },
+   "ci": {
+    "value": 281.43,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.038,
+    "year": 2024,
+    "note": "CI 2015 398.68 -> 2024 281.43 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "JM": {
+   "name": "Jamaica",
+   "fos": {
+    "value": 0.874,
+    "year": 2024,
+    "note": "Fossil share of generation 87.4% (2024)."
+   },
+   "ci": {
+    "value": 563.01,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0071,
+    "year": 2024,
+    "note": "CI 2015 600.47 -> 2024 563.01 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "JO": {
+   "name": "Jordan",
+   "fos": {
+    "value": 0.7592,
+    "year": 2024,
+    "note": "Fossil share of generation 75.92% (2024)."
+   },
+   "ci": {
+    "value": 529.79,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0252,
+    "year": 2024,
+    "note": "CI 2015 666.84 -> 2024 529.79 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "JP": {
+   "name": "Japan",
+   "fos": {
+    "value": 0.6872,
+    "year": 2024,
+    "note": "Fossil share of generation 68.72% (2024)."
+   },
+   "ci": {
+    "value": 483.58,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0196,
+    "year": 2024,
+    "note": "CI 2015 578.14 -> 2024 483.58 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "KE": {
+   "name": "Kenya",
+   "fos": {
+    "value": 0.0852,
+    "year": 2024,
+    "note": "Fossil share of generation 8.52% (2024)."
+   },
+   "ci": {
+    "value": 85.22,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0219,
+    "year": 2024,
+    "note": "CI 2015 103.98 -> 2024 85.22 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "KG": {
+   "name": "Kyrgyzstan",
+   "fos": {
+    "value": 0.1122,
+    "year": 2024,
+    "note": "Fossil share of generation 11.22% (2024)."
+   },
+   "ci": {
+    "value": 119.21,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0286,
+    "year": 2024,
+    "note": "CI 2015 154.8 -> 2024 119.21 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "KH": {
+   "name": "Cambodia",
+   "fos": {
+    "value": 0.6434,
+    "year": 2024,
+    "note": "Fossil share of generation 64.34% (2024)."
+   },
+   "ci": {
+    "value": 538.76,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0208,
+    "year": 2024,
+    "note": "CI 2015 447.66 -> 2024 538.76 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "KI": {
+   "name": "Kiribati",
+   "fos": {
+    "value": 0.75,
+    "year": 2024,
+    "note": "Fossil share of generation 75.0% (2024)."
+   },
+   "ci": {
+    "value": 500.0,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0315,
+    "year": 2024,
+    "note": "CI 2015 666.67 -> 2024 500.0 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "KM": {
+   "name": "Comoros",
+   "fos": {
+    "value": 1.0,
+    "year": 2023,
+    "note": "Fossil share of generation 100.0% (2023)."
+   },
+   "ci": {
+    "value": 642.86,
+    "year": 2023
+   },
+   "dec": {
+    "value": -0.0087,
+    "year": 2023,
+    "note": "CI 2015 600.0 -> 2023 642.86 gCO2/kWh; compound annual decline over 8 yrs, derived by us."
+   }
+  },
+  "KN": {
+   "name": "Saint Kitts and Nevis",
+   "fos": {
+    "value": 0.913,
+    "year": 2024,
+    "note": "Fossil share of generation 91.3% (2024)."
+   },
+   "ci": {
+    "value": 608.7,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0049,
+    "year": 2024,
+    "note": "CI 2015 636.36 -> 2024 608.7 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "KP": {
+   "name": "North Korea",
+   "fos": {
+    "value": 0.3664,
+    "year": 2024,
+    "note": "Fossil share of generation 36.64% (2024)."
+   },
+   "ci": {
+    "value": 340.59,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0264,
+    "year": 2024,
+    "note": "CI 2015 433.18 -> 2024 340.59 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "KR": {
+   "name": "South Korea",
+   "fos": {
+    "value": 0.6011,
+    "year": 2024,
+    "note": "Fossil share of generation 60.11% (2024)."
+   },
+   "ci": {
+    "value": 415.62,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0176,
+    "year": 2024,
+    "note": "CI 2015 487.64 -> 2024 415.62 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "KW": {
+   "name": "Kuwait",
+   "fos": {
+    "value": 0.9776,
+    "year": 2024,
+    "note": "Fossil share of generation 97.76% (2024)."
+   },
+   "ci": {
+    "value": 635.2,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0026,
+    "year": 2024,
+    "note": "CI 2015 650.51 -> 2024 635.2 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "KY": {
+   "name": "Cayman Islands",
+   "fos": {
+    "value": 0.9577,
+    "year": 2024,
+    "note": "Fossil share of generation 95.77% (2024)."
+   },
+   "ci": {
+    "value": 633.8,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0039,
+    "year": 2024,
+    "note": "CI 2015 656.25 -> 2024 633.8 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "KZ": {
+   "name": "Kazakhstan",
+   "fos": {
+    "value": 0.8479,
+    "year": 2024,
+    "note": "Fossil share of generation 84.79% (2024)."
+   },
+   "ci": {
+    "value": 801.87,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0046,
+    "year": 2024,
+    "note": "CI 2015 836.12 -> 2024 801.87 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "LA": {
+   "name": "Laos",
+   "fos": {
+    "value": 0.2328,
+    "year": 2024,
+    "note": "Fossil share of generation 23.28% (2024)."
+   },
+   "ci": {
+    "value": 232.08,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0508,
+    "year": 2024,
+    "note": "CI 2015 148.52 -> 2024 232.08 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "LB": {
+   "name": "Lebanon",
+   "fos": {
+    "value": 0.5618,
+    "year": 2024,
+    "note": "Fossil share of generation 56.18% (2024)."
+   },
+   "ci": {
+    "value": 389.51,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0539,
+    "year": 2024,
+    "note": "CI 2015 641.09 -> 2024 389.51 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "LC": {
+   "name": "Saint Lucia",
+   "fos": {
+    "value": 0.975,
+    "year": 2024,
+    "note": "Fossil share of generation 97.5% (2024)."
+   },
+   "ci": {
+    "value": 650.0,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0013,
+    "year": 2024,
+    "note": "CI 2015 657.9 -> 2024 650.0 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "LK": {
+   "name": "Sri Lanka",
+   "fos": {
+    "value": 0.4437,
+    "year": 2024,
+    "note": "Fossil share of generation 44.37% (2024)."
+   },
+   "ci": {
+    "value": 375.73,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0117,
+    "year": 2024,
+    "note": "CI 2015 417.87 -> 2024 375.73 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "LR": {
+   "name": "Liberia",
+   "fos": {
+    "value": 0.4561,
+    "year": 2024,
+    "note": "Fossil share of generation 45.61% (2024)."
+   },
+   "ci": {
+    "value": 315.79,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0763,
+    "year": 2024,
+    "note": "CI 2015 645.16 -> 2024 315.79 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "LS": {
+   "name": "Lesotho",
+   "fos": {
+    "value": 0.0,
+    "year": 2024,
+    "note": "Fossil share of generation 0.0% (2024)."
+   },
+   "ci": {
+    "value": 20.83,
+    "year": 2022
+   },
+   "dec": {
+    "value": -0.0142,
+    "year": 2022,
+    "note": "CI 2015 18.87 -> 2022 20.83 gCO2/kWh; compound annual decline over 7 yrs, derived by us."
+   }
+  },
+  "LT": {
+   "name": "Lithuania",
+   "fos": {
+    "value": 0.157,
+    "year": 2024,
+    "note": "Fossil share of generation 15.7% (2024)."
+   },
+   "ci": {
+    "value": 116.37,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0984,
+    "year": 2024,
+    "note": "CI 2015 295.51 -> 2024 116.37 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "LU": {
+   "name": "Luxembourg",
+   "fos": {
+    "value": 0.0928,
+    "year": 2024,
+    "note": "Fossil share of generation 9.28% (2024)."
+   },
+   "ci": {
+    "value": 132.45,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0756,
+    "year": 2024,
+    "note": "CI 2015 268.66 -> 2024 132.45 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "LV": {
+   "name": "Latvia",
+   "fos": {
+    "value": 0.2654,
+    "year": 2024,
+    "note": "Fossil share of generation 26.54% (2024)."
+   },
+   "ci": {
+    "value": 134.28,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0535,
+    "year": 2024,
+    "note": "CI 2015 220.22 -> 2024 134.28 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "LY": {
+   "name": "Libya",
+   "fos": {
+    "value": 0.9997,
+    "year": 2024,
+    "note": "Fossil share of generation 99.97% (2024)."
+   },
+   "ci": {
+    "value": 826.83,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0065,
+    "year": 2024,
+    "note": "CI 2015 780.33 -> 2024 826.83 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MA": {
+   "name": "Morocco",
+   "fos": {
+    "value": 0.7559,
+    "year": 2024,
+    "note": "Fossil share of generation 75.59% (2024)."
+   },
+   "ci": {
+    "value": 595.28,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.008,
+    "year": 2024,
+    "note": "CI 2015 639.92 -> 2024 595.28 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MD": {
+   "name": "Moldova",
+   "fos": {
+    "value": 0.8929,
+    "year": 2024,
+    "note": "Fossil share of generation 89.29% (2024)."
+   },
+   "ci": {
+    "value": 634.27,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.008,
+    "year": 2024,
+    "note": "CI 2015 682.12 -> 2024 634.27 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "ME": {
+   "name": "Montenegro",
+   "fos": {
+    "value": 0.4051,
+    "year": 2024,
+    "note": "Fossil share of generation 40.51% (2024)."
+   },
+   "ci": {
+    "value": 422.1,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0236,
+    "year": 2024,
+    "note": "CI 2015 523.33 -> 2024 422.1 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MG": {
+   "name": "Madagascar",
+   "fos": {
+    "value": 0.5762,
+    "year": 2024,
+    "note": "Fossil share of generation 57.62% (2024)."
+   },
+   "ci": {
+    "value": 432.1,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0325,
+    "year": 2024,
+    "note": "CI 2015 324.02 -> 2024 432.1 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MK": {
+   "name": "North Macedonia",
+   "fos": {
+    "value": 0.6053,
+    "year": 2024,
+    "note": "Fossil share of generation 60.53% (2024)."
+   },
+   "ci": {
+    "value": 510.3,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0235,
+    "year": 2024,
+    "note": "CI 2015 631.86 -> 2024 510.3 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "ML": {
+   "name": "Mali",
+   "fos": {
+    "value": 0.8054,
+    "year": 2024,
+    "note": "Fossil share of generation 80.54% (2024)."
+   },
+   "ci": {
+    "value": 538.59,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0462,
+    "year": 2024,
+    "note": "CI 2015 358.57 -> 2024 538.59 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MM": {
+   "name": "Myanmar",
+   "fos": {
+    "value": 0.5214,
+    "year": 2024,
+    "note": "Fossil share of generation 52.14% (2024)."
+   },
+   "ci": {
+    "value": 502.99,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0263,
+    "year": 2024,
+    "note": "CI 2015 398.15 -> 2024 502.99 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MN": {
+   "name": "Mongolia",
+   "fos": {
+    "value": 0.9115,
+    "year": 2024,
+    "note": "Fossil share of generation 91.15% (2024)."
+   },
+   "ci": {
+    "value": 817.46,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0066,
+    "year": 2024,
+    "note": "CI 2015 867.51 -> 2024 817.46 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MO": {
+   "name": "Macao",
+   "fos": {
+    "value": 0.6923,
+    "year": 2024,
+    "note": "Fossil share of generation 69.23% (2024)."
+   },
+   "ci": {
+    "value": 474.36,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0179,
+    "year": 2024,
+    "note": "CI 2015 557.9 -> 2024 474.36 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MQ": {
+   "name": "Martinique",
+   "fos": {
+    "value": 0.7417,
+    "year": 2023,
+    "note": "Fossil share of generation 74.17% (2023)."
+   },
+   "ci": {
+    "value": 529.8,
+    "year": 2023
+   },
+   "dec": {
+    "value": 0.0198,
+    "year": 2023,
+    "note": "CI 2015 621.8 -> 2023 529.8 gCO2/kWh; compound annual decline over 8 yrs, derived by us."
+   }
+  },
+  "MR": {
+   "name": "Mauritania",
+   "fos": {
+    "value": 0.7729,
+    "year": 2024,
+    "note": "Fossil share of generation 77.29% (2024)."
+   },
+   "ci": {
+    "value": 512.08,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0086,
+    "year": 2024,
+    "note": "CI 2015 474.14 -> 2024 512.08 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MS": {
+   "name": "Montserrat",
+   "fos": {
+    "value": 1.0,
+    "year": 2024,
+    "note": "Fossil share of generation 100.0% (2024)."
+   },
+   "ci": {
+    "value": 1000.0,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0,
+    "year": 2024,
+    "note": "CI 2015 1000.0 -> 2024 1000.0 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MT": {
+   "name": "Malta",
+   "fos": {
+    "value": 0.8448,
+    "year": 2024,
+    "note": "Fossil share of generation 84.48% (2024)."
+   },
+   "ci": {
+    "value": 488.58,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0239,
+    "year": 2024,
+    "note": "CI 2015 607.69 -> 2024 488.58 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MU": {
+   "name": "Mauritius",
+   "fos": {
+    "value": 0.8212,
+    "year": 2024,
+    "note": "Fossil share of generation 82.12% (2024)."
+   },
+   "ci": {
+    "value": 642.23,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0036,
+    "year": 2024,
+    "note": "CI 2015 622.07 -> 2024 642.23 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MV": {
+   "name": "Maldives",
+   "fos": {
+    "value": 0.9294,
+    "year": 2024,
+    "note": "Fossil share of generation 92.94% (2024)."
+   },
+   "ci": {
+    "value": 611.77,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0059,
+    "year": 2024,
+    "note": "CI 2015 645.16 -> 2024 611.77 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MW": {
+   "name": "Malawi",
+   "fos": {
+    "value": 0.0437,
+    "year": 2024,
+    "note": "Fossil share of generation 4.37% (2024)."
+   },
+   "ci": {
+    "value": 54.65,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0258,
+    "year": 2024,
+    "note": "CI 2015 69.12 -> 2024 54.65 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MX": {
+   "name": "Mexico",
+   "fos": {
+    "value": 0.7542,
+    "year": 2024,
+    "note": "Fossil share of generation 75.42% (2024)."
+   },
+   "ci": {
+    "value": 483.14,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.011,
+    "year": 2024,
+    "note": "CI 2015 533.9 -> 2024 483.14 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MY": {
+   "name": "Malaysia",
+   "fos": {
+    "value": 0.7963,
+    "year": 2024,
+    "note": "Fossil share of generation 79.63% (2024)."
+   },
+   "ci": {
+    "value": 601.71,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0117,
+    "year": 2024,
+    "note": "CI 2015 669.18 -> 2024 601.71 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "MZ": {
+   "name": "Mozambique",
+   "fos": {
+    "value": 0.1658,
+    "year": 2024,
+    "note": "Fossil share of generation 16.58% (2024)."
+   },
+   "ci": {
+    "value": 129.36,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0741,
+    "year": 2024,
+    "note": "CI 2015 68.01 -> 2024 129.36 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "NA": {
+   "name": "Namibia",
+   "fos": {
+    "value": 0.0244,
+    "year": 2024,
+    "note": "Fossil share of generation 2.44% (2024)."
+   },
+   "ci": {
+    "value": 48.78,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0108,
+    "year": 2024,
+    "note": "CI 2015 44.3 -> 2024 48.78 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "NC": {
+   "name": "New Caledonia",
+   "fos": {
+    "value": 0.7308,
+    "year": 2024,
+    "note": "Fossil share of generation 73.08% (2024)."
+   },
+   "ci": {
+    "value": 560.9,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0124,
+    "year": 2024,
+    "note": "CI 2015 627.59 -> 2024 560.9 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "NE": {
+   "name": "Niger",
+   "fos": {
+    "value": 0.9683,
+    "year": 2024,
+    "note": "Fossil share of generation 96.83% (2024)."
+   },
+   "ci": {
+    "value": 673.68,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0077,
+    "year": 2024,
+    "note": "CI 2015 722.22 -> 2024 673.68 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "NG": {
+   "name": "Nigeria",
+   "fos": {
+    "value": 0.75,
+    "year": 2024,
+    "note": "Fossil share of generation 75.0% (2024)."
+   },
+   "ci": {
+    "value": 495.74,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0073,
+    "year": 2024,
+    "note": "CI 2015 529.7 -> 2024 495.74 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "NI": {
+   "name": "Nicaragua",
+   "fos": {
+    "value": 0.3761,
+    "year": 2024,
+    "note": "Fossil share of generation 37.61% (2024)."
+   },
+   "ci": {
+    "value": 300.89,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0202,
+    "year": 2024,
+    "note": "CI 2015 361.66 -> 2024 300.89 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "NL": {
+   "name": "Netherlands",
+   "fos": {
+    "value": 0.4635,
+    "year": 2024,
+    "note": "Fossil share of generation 46.35% (2024)."
+   },
+   "ci": {
+    "value": 250.72,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0839,
+    "year": 2024,
+    "note": "CI 2015 551.43 -> 2024 250.72 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "NO": {
+   "name": "Norway",
+   "fos": {
+    "value": 0.014,
+    "year": 2024,
+    "note": "Fossil share of generation 1.4% (2024)."
+   },
+   "ci": {
+    "value": 29.66,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0139,
+    "year": 2024,
+    "note": "CI 2015 33.64 -> 2024 29.66 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "NP": {
+   "name": "Nepal",
+   "fos": {
+    "value": 0.0,
+    "year": 2024,
+    "note": "Fossil share of generation 0.0% (2024)."
+   },
+   "ci": {
+    "value": 24.26,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0054,
+    "year": 2024,
+    "note": "CI 2015 23.12 -> 2024 24.26 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "NR": {
+   "name": "Nauru",
+   "fos": {
+    "value": 0.8,
+    "year": 2024,
+    "note": "Fossil share of generation 80.0% (2024)."
+   },
+   "ci": {
+    "value": 600.0,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0116,
+    "year": 2024,
+    "note": "CI 2015 666.67 -> 2024 600.0 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "NU": {
+   "name": "Niue",
+   "fos": {
+    "value": 0.0,
+    "year": 2023,
+    "note": "Fossil share of generation 0.0% (2023)."
+   }
+  },
+  "NZ": {
+   "name": "New Zealand",
    "fos": {
     "value": 0.1402,
     "year": 2024,
     "note": "Fossil share of generation 14.02% (2024)."
    },
+   "ci": {
+    "value": 112.02,
+    "year": 2024
+   },
    "dec": {
     "value": 0.0266,
     "year": 2024,
     "note": "CI 2015 142.76 -> 2024 112.02 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "OM": {
+   "name": "Oman",
+   "fos": {
+    "value": 0.9511,
+    "year": 2024,
+    "note": "Fossil share of generation 95.11% (2024)."
+   },
+   "ci": {
+    "value": 542.77,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0049,
+    "year": 2024,
+    "note": "CI 2015 567.33 -> 2024 542.77 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "PA": {
+   "name": "Panama",
+   "fos": {
+    "value": 0.3202,
+    "year": 2024,
+    "note": "Fossil share of generation 32.02% (2024)."
+   },
+   "ci": {
+    "value": 221.15,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0171,
+    "year": 2024,
+    "note": "CI 2015 258.25 -> 2024 221.15 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "PE": {
+   "name": "Peru",
+   "fos": {
+    "value": 0.3989,
+    "year": 2024,
+    "note": "Fossil share of generation 39.89% (2024)."
+   },
+   "ci": {
+    "value": 258.73,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0184,
+    "year": 2024,
+    "note": "CI 2015 305.78 -> 2024 258.73 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "PF": {
+   "name": "French Polynesia",
+   "fos": {
+    "value": 0.6528,
+    "year": 2024,
+    "note": "Fossil share of generation 65.28% (2024)."
+   },
+   "ci": {
+    "value": 430.56,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0098,
+    "year": 2024,
+    "note": "CI 2015 470.59 -> 2024 430.56 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "PG": {
+   "name": "Papua New Guinea",
+   "fos": {
+    "value": 0.7632,
+    "year": 2024,
+    "note": "Fossil share of generation 76.32% (2024)."
+   },
+   "ci": {
+    "value": 513.74,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0109,
+    "year": 2024,
+    "note": "CI 2015 465.78 -> 2024 513.74 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "PH": {
+   "name": "Philippines",
+   "fos": {
+    "value": 0.7953,
+    "year": 2024,
+    "note": "Fossil share of generation 79.53% (2024)."
+   },
+   "ci": {
+    "value": 629.46,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.016,
+    "year": 2024,
+    "note": "CI 2015 545.75 -> 2024 629.46 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "PK": {
+   "name": "Pakistan",
+   "fos": {
+    "value": 0.4321,
+    "year": 2024,
+    "note": "Fossil share of generation 43.21% (2024)."
+   },
+   "ci": {
+    "value": 335.65,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0276,
+    "year": 2024,
+    "note": "CI 2015 431.78 -> 2024 335.65 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "PL": {
+   "name": "Poland",
+   "fos": {
+    "value": 0.6885,
+    "year": 2024,
+    "note": "Fossil share of generation 68.85% (2024)."
+   },
+   "ci": {
+    "value": 608.36,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0334,
+    "year": 2024,
+    "note": "CI 2015 826.11 -> 2024 608.36 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "PM": {
+   "name": "Saint Pierre and Miquelon",
+   "fos": {
+    "value": 1.0,
+    "year": 2023,
+    "note": "Fossil share of generation 100.0% (2023)."
+   },
+   "ci": {
+    "value": 600.0,
+    "year": 2023
+   },
+   "dec": {
+    "value": 0.0,
+    "year": 2023,
+    "note": "CI 2015 600.0 -> 2023 600.0 gCO2/kWh; compound annual decline over 8 yrs, derived by us."
+   }
+  },
+  "PR": {
+   "name": "Puerto Rico",
+   "fos": {
+    "value": 0.94,
+    "year": 2024,
+    "note": "Fossil share of generation 94.0% (2024)."
+   },
+   "ci": {
+    "value": 656.5,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.004,
+    "year": 2024,
+    "note": "CI 2015 680.86 -> 2024 656.5 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "PS": {
+   "name": "Palestine",
+   "fos": {
+    "value": 0.6061,
+    "year": 2024,
+    "note": "Fossil share of generation 60.61% (2024)."
+   },
+   "ci": {
+    "value": 414.14,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0495,
+    "year": 2024,
+    "note": "CI 2015 653.85 -> 2024 414.14 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "PT": {
+   "name": "Portugal",
+   "fos": {
+    "value": 0.1481,
+    "year": 2024,
+    "note": "Fossil share of generation 14.81% (2024)."
+   },
+   "ci": {
+    "value": 110.64,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.1364,
+    "year": 2024,
+    "note": "CI 2015 413.96 -> 2024 110.64 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "PY": {
+   "name": "Paraguay",
+   "fos": {
+    "value": 0.0,
+    "year": 2024,
+    "note": "Fossil share of generation 0.0% (2024)."
+   },
+   "ci": {
+    "value": 24.76,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0027,
+    "year": 2024,
+    "note": "CI 2015 24.16 -> 2024 24.76 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "QA": {
+   "name": "Qatar",
+   "fos": {
+    "value": 0.9598,
+    "year": 2024,
+    "note": "Fossil share of generation 95.98% (2024)."
+   },
+   "ci": {
+    "value": 581.69,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0039,
+    "year": 2024,
+    "note": "CI 2015 602.45 -> 2024 581.69 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "RE": {
+   "name": "Reunion",
+   "fos": {
+    "value": 0.4332,
+    "year": 2023,
+    "note": "Fossil share of generation 43.32% (2023)."
+   },
+   "ci": {
+    "value": 394.14,
+    "year": 2023
+   },
+   "dec": {
+    "value": 0.0412,
+    "year": 2023,
+    "note": "CI 2015 551.72 -> 2023 394.14 gCO2/kWh; compound annual decline over 8 yrs, derived by us."
+   }
+  },
+  "RO": {
+   "name": "Romania",
+   "fos": {
+    "value": 0.328,
+    "year": 2024,
+    "note": "Fossil share of generation 32.8% (2024)."
+   },
+   "ci": {
+    "value": 259.67,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0383,
+    "year": 2024,
+    "note": "CI 2015 369.02 -> 2024 259.67 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "RS": {
+   "name": "Serbia",
+   "fos": {
+    "value": 0.6793,
+    "year": 2024,
+    "note": "Fossil share of generation 67.93% (2024)."
+   },
+   "ci": {
+    "value": 668.02,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0119,
+    "year": 2024,
+    "note": "CI 2015 744.35 -> 2024 668.02 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "RU": {
+   "name": "Russia",
+   "fos": {
+    "value": 0.6406,
+    "year": 2024,
+    "note": "Fossil share of generation 64.06% (2024)."
+   },
+   "ci": {
+    "value": 446.11,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0004,
+    "year": 2024,
+    "note": "CI 2015 444.35 -> 2024 446.11 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "RW": {
+   "name": "Rwanda",
+   "fos": {
+    "value": 0.5044,
+    "year": 2024,
+    "note": "Fossil share of generation 50.44% (2024)."
+   },
+   "ci": {
+    "value": 353.98,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0208,
+    "year": 2024,
+    "note": "CI 2015 294.12 -> 2024 353.98 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "SA": {
+   "name": "Saudi Arabia",
+   "fos": {
+    "value": 0.9784,
+    "year": 2024,
+    "note": "Fossil share of generation 97.84% (2024)."
+   },
+   "ci": {
+    "value": 691.95,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0002,
+    "year": 2024,
+    "note": "CI 2015 693.08 -> 2024 691.95 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "SB": {
+   "name": "Solomon Islands",
+   "fos": {
+    "value": 0.9091,
+    "year": 2024,
+    "note": "Fossil share of generation 90.91% (2024)."
+   },
+   "ci": {
+    "value": 636.36,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0052,
+    "year": 2024,
+    "note": "CI 2015 666.67 -> 2024 636.36 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "SC": {
+   "name": "Seychelles",
+   "fos": {
+    "value": 0.8413,
+    "year": 2024,
+    "note": "Fossil share of generation 84.13% (2024)."
+   },
+   "ci": {
+    "value": 555.56,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0177,
+    "year": 2024,
+    "note": "CI 2015 652.17 -> 2024 555.56 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "SD": {
+   "name": "Sudan",
+   "fos": {
+    "value": 0.2031,
+    "year": 2024,
+    "note": "Fossil share of generation 20.31% (2024)."
+   },
+   "ci": {
+    "value": 153.69,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0525,
+    "year": 2024,
+    "note": "CI 2015 249.81 -> 2024 153.69 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "SE": {
+   "name": "Sweden",
+   "fos": {
+    "value": 0.012,
+    "year": 2024,
+    "note": "Fossil share of generation 1.2% (2024)."
+   },
+   "ci": {
+    "value": 34.91,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0173,
+    "year": 2024,
+    "note": "CI 2015 40.86 -> 2024 34.91 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "SG": {
+   "name": "Singapore",
+   "fos": {
+    "value": 0.9507,
+    "year": 2024,
+    "note": "Fossil share of generation 95.07% (2024)."
+   },
+   "ci": {
+    "value": 498.74,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0018,
+    "year": 2024,
+    "note": "CI 2015 506.96 -> 2024 498.74 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "SH": {
+   "name": "Saint Helena",
+   "fos": {
+    "value": 1.0,
+    "year": 2023,
+    "note": "Fossil share of generation 100.0% (2023)."
+   },
+   "ci": {
+    "value": 1000.0,
+    "year": 2023
+   },
+   "dec": {
+    "value": 0.0,
+    "year": 2023,
+    "note": "CI 2015 1000.0 -> 2023 1000.0 gCO2/kWh; compound annual decline over 8 yrs, derived by us."
+   }
+  },
+  "SI": {
+   "name": "Slovenia",
+   "fos": {
+    "value": 0.2394,
+    "year": 2024,
+    "note": "Fossil share of generation 23.94% (2024)."
+   },
+   "ci": {
+    "value": 230.4,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0348,
+    "year": 2024,
+    "note": "CI 2015 316.89 -> 2024 230.4 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "SK": {
+   "name": "Slovakia",
+   "fos": {
+    "value": 0.142,
+    "year": 2024,
+    "note": "Fossil share of generation 14.2% (2024)."
+   },
+   "ci": {
+    "value": 96.88,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.065,
+    "year": 2024,
+    "note": "CI 2015 177.31 -> 2024 96.88 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "SL": {
+   "name": "Sierra Leone",
+   "fos": {
+    "value": 0.0476,
+    "year": 2024,
+    "note": "Fossil share of generation 4.76% (2024)."
+   },
+   "ci": {
+    "value": 47.62,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.1413,
+    "year": 2024,
+    "note": "CI 2015 187.5 -> 2024 47.62 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "SN": {
+   "name": "Senegal",
+   "fos": {
+    "value": 0.8021,
+    "year": 2024,
+    "note": "Fossil share of generation 80.21% (2024)."
+   },
+   "ci": {
+    "value": 539.97,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0151,
+    "year": 2024,
+    "note": "CI 2015 619.37 -> 2024 539.97 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "SO": {
+   "name": "Somalia",
+   "fos": {
+    "value": 0.7907,
+    "year": 2024,
+    "note": "Fossil share of generation 79.07% (2024)."
+   },
+   "ci": {
+    "value": 511.63,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0274,
+    "year": 2024,
+    "note": "CI 2015 657.14 -> 2024 511.63 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "SR": {
+   "name": "Suriname",
+   "fos": {
+    "value": 0.4713,
+    "year": 2024,
+    "note": "Fossil share of generation 47.13% (2024)."
+   },
+   "ci": {
+    "value": 321.84,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0455,
+    "year": 2024,
+    "note": "CI 2015 489.25 -> 2024 321.84 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "SS": {
+   "name": "South Sudan",
+   "fos": {
+    "value": 0.9821,
+    "year": 2024,
+    "note": "Fossil share of generation 98.21% (2024)."
+   },
+   "ci": {
+    "value": 642.86,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0021,
+    "year": 2024,
+    "note": "CI 2015 655.17 -> 2024 642.86 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "ST": {
+   "name": "Sao Tome and Principe",
+   "fos": {
+    "value": 0.8889,
+    "year": 2023,
+    "note": "Fossil share of generation 88.89% (2023)."
+   },
+   "ci": {
+    "value": 555.56,
+    "year": 2023
+   },
+   "dec": {
+    "value": 0.0096,
+    "year": 2023,
+    "note": "CI 2015 600.0 -> 2023 555.56 gCO2/kWh; compound annual decline over 8 yrs, derived by us."
+   }
+  },
+  "SV": {
+   "name": "El Salvador",
+   "fos": {
+    "value": 0.0919,
+    "year": 2024,
+    "note": "Fossil share of generation 9.19% (2024)."
+   },
+   "ci": {
+    "value": 113.32,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.1052,
+    "year": 2024,
+    "note": "CI 2015 308.07 -> 2024 113.32 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "SY": {
+   "name": "Syria",
+   "fos": {
+    "value": 0.9646,
+    "year": 2024,
+    "note": "Fossil share of generation 96.46% (2024)."
+   },
+   "ci": {
+    "value": 706.19,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0044,
+    "year": 2024,
+    "note": "CI 2015 734.59 -> 2024 706.19 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "SZ": {
+   "name": "Eswatini",
+   "fos": {
+    "value": 0.0328,
+    "year": 2024,
+    "note": "Fossil share of generation 3.28% (2024)."
+   },
+   "ci": {
+    "value": 131.15,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.037,
+    "year": 2024,
+    "note": "CI 2015 184.21 -> 2024 131.15 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "TC": {
+   "name": "Turks and Caicos Islands",
+   "fos": {
+    "value": 0.963,
+    "year": 2024,
+    "note": "Fossil share of generation 96.3% (2024)."
+   },
+   "ci": {
+    "value": 629.63,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0039,
+    "year": 2024,
+    "note": "CI 2015 652.17 -> 2024 629.63 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "TD": {
+   "name": "Chad",
+   "fos": {
+    "value": 0.9459,
+    "year": 2024,
+    "note": "Fossil share of generation 94.59% (2024)."
+   },
+   "ci": {
+    "value": 621.62,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0021,
+    "year": 2024,
+    "note": "CI 2015 633.33 -> 2024 621.62 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "TG": {
+   "name": "Togo",
+   "fos": {
+    "value": 0.7042,
+    "year": 2024,
+    "note": "Fossil share of generation 70.42% (2024)."
+   },
+   "ci": {
+    "value": 422.54,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0234,
+    "year": 2024,
+    "note": "CI 2015 522.73 -> 2024 422.54 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "TH": {
+   "name": "Thailand",
+   "fos": {
+    "value": 0.8516,
+    "year": 2024,
+    "note": "Fossil share of generation 85.16% (2024)."
+   },
+   "ci": {
+    "value": 555.38,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0082,
+    "year": 2024,
+    "note": "CI 2015 598.04 -> 2024 555.38 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "TJ": {
+   "name": "Tajikistan",
+   "fos": {
+    "value": 0.054,
+    "year": 2024,
+    "note": "Fossil share of generation 5.4% (2024)."
+   },
+   "ci": {
+    "value": 71.17,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0927,
+    "year": 2024,
+    "note": "CI 2015 32.05 -> 2024 71.17 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "TL": {
+   "name": "Timor Leste",
+   "fos": {
+    "value": 1.0,
+    "year": 2024,
+    "note": "Fossil share of generation 100.0% (2024)."
+   },
+   "ci": {
+    "value": 666.67,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0016,
+    "year": 2024,
+    "note": "CI 2015 657.14 -> 2024 666.67 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "TM": {
+   "name": "Turkmenistan",
+   "fos": {
+    "value": 0.9997,
+    "year": 2024,
+    "note": "Fossil share of generation 99.97% (2024)."
+   },
+   "ci": {
+    "value": 1306.27,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0,
+    "year": 2024,
+    "note": "CI 2015 1306.7 -> 2024 1306.27 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "TN": {
+   "name": "Tunisia",
+   "fos": {
+    "value": 0.9561,
+    "year": 2024,
+    "note": "Fossil share of generation 95.61% (2024)."
+   },
+   "ci": {
+    "value": 558.26,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0019,
+    "year": 2024,
+    "note": "CI 2015 567.76 -> 2024 558.26 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "TO": {
+   "name": "Tonga",
+   "fos": {
+    "value": 0.8571,
+    "year": 2024,
+    "note": "Fossil share of generation 85.71% (2024)."
+   },
+   "ci": {
+    "value": 571.43,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0054,
+    "year": 2024,
+    "note": "CI 2015 600.0 -> 2024 571.43 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "TR": {
+   "name": "Turkey",
+   "fos": {
+    "value": 0.5438,
+    "year": 2024,
+    "note": "Fossil share of generation 54.38% (2024)."
+   },
+   "ci": {
+    "value": 470.83,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0077,
+    "year": 2024,
+    "note": "CI 2015 504.91 -> 2024 470.83 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "TT": {
+   "name": "Trinidad and Tobago",
+   "fos": {
+    "value": 0.999,
+    "year": 2024,
+    "note": "Fossil share of generation 99.9% (2024)."
+   },
+   "ci": {
+    "value": 681.68,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0001,
+    "year": 2024,
+    "note": "CI 2015 681.3 -> 2024 681.68 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "TW": {
+   "name": "Taiwan",
+   "fos": {
+    "value": 0.8487,
+    "year": 2024,
+    "note": "Fossil share of generation 84.87% (2024)."
+   },
+   "ci": {
+    "value": 636.23,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0025,
+    "year": 2024,
+    "note": "CI 2015 650.5 -> 2024 636.23 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "TZ": {
+   "name": "Tanzania",
+   "fos": {
+    "value": 0.6708,
+    "year": 2024,
+    "note": "Fossil share of generation 67.08% (2024)."
+   },
+   "ci": {
+    "value": 345.02,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0079,
+    "year": 2024,
+    "note": "CI 2015 370.6 -> 2024 345.02 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "UA": {
+   "name": "Ukraine",
+   "fos": {
+    "value": 0.2783,
+    "year": 2022,
+    "note": "Fossil share of generation 27.83% (2022)."
+   },
+   "ci": {
+    "value": 250.47,
+    "year": 2022
+   },
+   "dec": {
+    "value": 0.0579,
+    "year": 2022,
+    "note": "CI 2015 380.13 -> 2022 250.47 gCO2/kWh; compound annual decline over 7 yrs, derived by us."
+   }
+  },
+  "UG": {
+   "name": "Uganda",
+   "fos": {
+    "value": 0.0293,
+    "year": 2024,
+    "note": "Fossil share of generation 2.93% (2024)."
+   },
+   "ci": {
+    "value": 58.52,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0042,
+    "year": 2024,
+    "note": "CI 2015 56.34 -> 2024 58.52 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "US": {
+   "name": "United States of America",
+   "fos": {
+    "value": 0.5812,
+    "year": 2024,
+    "note": "Fossil share of generation 58.12% (2024)."
+   },
+   "ci": {
+    "value": 383.81,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.03,
+    "year": 2024,
+    "note": "CI 2015 504.95 -> 2024 383.81 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "UY": {
+   "name": "Uruguay",
+   "fos": {
+    "value": 0.0112,
+    "year": 2024,
+    "note": "Fossil share of generation 1.12% (2024)."
+   },
+   "ci": {
+    "value": 69.56,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0384,
+    "year": 2024,
+    "note": "CI 2015 98.98 -> 2024 69.56 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "UZ": {
+   "name": "Uzbekistan",
+   "fos": {
+    "value": 0.8404,
+    "year": 2024,
+    "note": "Fossil share of generation 84.04% (2024)."
+   },
+   "ci": {
+    "value": 1040.12,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0074,
+    "year": 2024,
+    "note": "CI 2015 1111.65 -> 2024 1040.12 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "VC": {
+   "name": "Saint Vincent and the Grenadines",
+   "fos": {
+    "value": 0.8667,
+    "year": 2024,
+    "note": "Fossil share of generation 86.67% (2024)."
+   },
+   "ci": {
+    "value": 600.0,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0,
+    "year": 2024,
+    "note": "CI 2015 600.0 -> 2024 600.0 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "VE": {
+   "name": "Venezuela",
+   "fos": {
+    "value": 0.0886,
+    "year": 2024,
+    "note": "Fossil share of generation 8.86% (2024)."
+   },
+   "ci": {
+    "value": 85.86,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.1357,
+    "year": 2024,
+    "note": "CI 2015 318.93 -> 2024 85.86 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "VG": {
+   "name": "British Virgin Islands",
+   "fos": {
+    "value": 1.0,
+    "year": 2023,
+    "note": "Fossil share of generation 100.0% (2023)."
+   },
+   "ci": {
+    "value": 647.06,
+    "year": 2023
+   },
+   "dec": {
+    "value": 0.0037,
+    "year": 2023,
+    "note": "CI 2015 666.67 -> 2023 647.06 gCO2/kWh; compound annual decline over 8 yrs, derived by us."
+   }
+  },
+  "VI": {
+   "name": "U.S. Virgin Islands",
+   "fos": {
+    "value": 0.9706,
+    "year": 2023,
+    "note": "Fossil share of generation 97.06% (2023)."
+   },
+   "ci": {
+    "value": 632.35,
+    "year": 2023
+   },
+   "dec": {
+    "value": 0.0042,
+    "year": 2023,
+    "note": "CI 2015 653.85 -> 2023 632.35 gCO2/kWh; compound annual decline over 8 yrs, derived by us."
+   }
+  },
+  "VN": {
+   "name": "Vietnam",
+   "fos": {
+    "value": 0.5771,
+    "year": 2024,
+    "note": "Fossil share of generation 57.71% (2024)."
+   },
+   "ci": {
+    "value": 486.99,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.0001,
+    "year": 2024,
+    "note": "CI 2015 486.51 -> 2024 486.99 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "VU": {
+   "name": "Vanuatu",
+   "fos": {
+    "value": 0.75,
+    "year": 2023,
+    "note": "Fossil share of generation 75.0% (2023)."
+   },
+   "ci": {
+    "value": 500.0,
+    "year": 2023
+   },
+   "dec": {
+    "value": 0.0,
+    "year": 2023,
+    "note": "CI 2015 500.0 -> 2023 500.0 gCO2/kWh; compound annual decline over 8 yrs, derived by us."
+   }
+  },
+  "WS": {
+   "name": "Samoa",
+   "fos": {
+    "value": 0.5625,
+    "year": 2024,
+    "note": "Fossil share of generation 56.25% (2024)."
+   },
+   "ci": {
+    "value": 375.0,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0228,
+    "year": 2024,
+    "note": "CI 2015 461.54 -> 2024 375.0 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "XK": {
+   "name": "Kosovo",
+   "fos": {
+    "value": 0.9141,
+    "year": 2024,
+    "note": "Fossil share of generation 91.41% (2024)."
+   },
+   "ci": {
+    "value": 924.44,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0074,
+    "year": 2024,
+    "note": "CI 2015 988.54 -> 2024 924.44 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "YE": {
+   "name": "Yemen",
+   "fos": {
+    "value": 0.8876,
+    "year": 2024,
+    "note": "Fossil share of generation 88.76% (2024)."
+   },
+   "ci": {
+    "value": 592.38,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0205,
+    "year": 2024,
+    "note": "CI 2015 713.54 -> 2024 592.38 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "ZA": {
+   "name": "South Africa",
+   "fos": {
+    "value": 0.8433,
+    "year": 2024,
+    "note": "Fossil share of generation 84.33% (2024)."
+   },
+   "ci": {
+    "value": 717.72,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.0107,
+    "year": 2024,
+    "note": "CI 2015 790.96 -> 2024 717.72 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "ZM": {
+   "name": "Zambia",
+   "fos": {
+    "value": 0.1252,
+    "year": 2024,
+    "note": "Fossil share of generation 12.52% (2024)."
+   },
+   "ci": {
+    "value": 125.76,
+    "year": 2024
+   },
+   "dec": {
+    "value": -0.1247,
+    "year": 2024,
+    "note": "CI 2015 43.67 -> 2024 125.76 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
+   }
+  },
+  "ZW": {
+   "name": "Zimbabwe",
+   "fos": {
+    "value": 0.4288,
+    "year": 2024,
+    "note": "Fossil share of generation 42.88% (2024)."
+   },
+   "ci": {
+    "value": 384.02,
+    "year": 2024
+   },
+   "dec": {
+    "value": 0.01,
+    "year": 2024,
+    "note": "CI 2015 420.23 -> 2024 384.02 gCO2/kWh; compound annual decline over 9 yrs, derived by us."
    }
   }
  }

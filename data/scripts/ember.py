@@ -1,22 +1,16 @@
 """Grid fossil share and decarbonisation rate from Ember's bulk yearly data.
 
-Writes data/sources/country-grid.json (the 64 map countries) and
-data/sources/grid-us-states.json (50 states + DC, with carbon intensity).
+Writes data/sources/country-grid.json (every country Ember covers, keyed by
+ISO2) and data/sources/grid-us-states.json (50 states + DC).
 """
 import collections, csv
-from common import download, load, save
+from common import countries as country_codes, download, save
 
 EMBER_URL = 'https://ember-energy.org/data/yearly-electricity-data/'
 EMBER_CSV = 'https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv'
 US_URL = 'https://ember-energy.org/data/us-electricity-data/'
 US_CSV = 'https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/us_yearly_full_release_long_format.csv'
 Y0, Y1 = 2015, 2024
-
-# Natural Earth name -> Ember area name, where they differ.
-ALIAS = {'Venezuela': 'Venezuela (Bolivarian Republic of)', 'Russia': 'Russian Federation (the)',
-         'Vietnam': 'Viet Nam', 'Philippines': 'Philippines (the)',
-         'Iran': 'Iran (Islamic Republic of)', 'Tanzania': 'Tanzania, the United Republic of'}
-
 
 def decline(c0, c1, years):
     """Compound annual rate of decline; negative when intensity rose."""
@@ -29,7 +23,7 @@ def read(path, area_col, area_type):
         if x[area_type[0]] != area_type[1] or not x['Value']:
             continue
         a, y = x[area_col], int(x['Year'])
-        code[a] = x.get('State code', '')
+        code[a] = x.get('State code') or x.get('ISO 3 code', '')
         if x['Variable'] == 'CO2 intensity':
             ci[a][y] = float(x['Value'])
         elif x['Variable'] == 'Fossil' and x['Unit'] == '%' and x['Category'] == 'Electricity generation':
@@ -38,16 +32,23 @@ def read(path, area_col, area_type):
 
 
 def countries():
-    ci, fs, _ = read(download(EMBER_CSV, 'ember-yearly.csv'), 'Area', ('Area type', 'Country or economy'))
+    ci, fs, iso3 = read(download(EMBER_CSV, 'ember-yearly.csv'), 'Area', ('Area type', 'Country or economy'))
+    codes = country_codes()
     out = {}
-    for n in load('countries.json')['countries']:
-        a = ALIAS.get(n, n)
-        c, f = ci[a], fs[a]
-        y1 = max(y for y in c if y <= Y1)          # Ukraine stops at 2022
-        fy = max(y for y in f if y <= Y1)
-        out[n] = {'fos': {'value': round(f[fy] / 100, 4), 'year': fy, 'note': f'Fossil share of generation {f[fy]}% ({fy}).'},
-                  'dec': {'value': round(decline(c[Y0], c[y1], y1 - Y0), 4), 'year': y1,
-                          'note': f'CI {Y0} {c[Y0]} -> {y1} {c[y1]} gCO2/kWh; compound annual decline over {y1 - Y0} yrs, derived by us.'}}
+    for a in sorted(fs, key=lambda a: codes[iso3[a]][0]):
+        iso2, name = codes[iso3[a]]
+        c, f = ci.get(a, {}), fs[a]
+        r = {'name': name}
+        fy = max((y for y in f if y <= Y1), default=None)
+        if fy:
+            r['fos'] = {'value': round(f[fy] / 100, 4), 'year': fy, 'note': f'Fossil share of generation {f[fy]}% ({fy}).'}
+        y1 = max((y for y in c if Y0 < y <= Y1), default=None)    # Ukraine stops at 2022
+        if y1:
+            r['ci'] = {'value': c[y1], 'year': y1}
+            if c.get(Y0):
+                r['dec'] = {'value': round(decline(c[Y0], c[y1], y1 - Y0), 4), 'year': y1,
+                            'note': f'CI {Y0} {c[Y0]} -> {y1} {c[y1]} gCO2/kWh; compound annual decline over {y1 - Y0} yrs, derived by us.'}
+        out[iso2] = r
     save('country-grid.json', {'source': 'Ember Yearly Electricity Data (bulk long-format CSV)', 'url': EMBER_URL, 'countries': out})
     print(f'country-grid.json: {len(out)} countries')
 

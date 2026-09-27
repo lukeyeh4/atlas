@@ -45,10 +45,10 @@ avoids rework.
 ### Location data (`data/locales.json`)
 Ordered by how likely each is to work, surest first. Coverage checked
 2026-09-27 against the live sources.
-- [ ] **Validate in the build.** Turn the contract checks into a step in
+- [x] **Validate in the build.** Turn the contract checks into a step in
       `build_all.py`, so a rebuild can't produce a file the app rejects. No
       new data.
-- [ ] **Every country, not just 64.** A place in any other country gets no
+- [x] **Every country, not just 64.** A place in any other country gets no
       inputs and can't be modelled. The bulk sources already cover most of
       the world, keyed by ISO3: Ember CI, fossil share and trend for 213
       countries; World Bank PM2.5 (2023) for ~217; ERA5 climate (for WUE) for

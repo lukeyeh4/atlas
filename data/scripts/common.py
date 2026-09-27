@@ -75,6 +75,27 @@ ISO2 = {
     'New Zealand': 'NZ',
 }
 
+GEONAMES_URL = 'https://download.geonames.org/export/dump/countryInfo.txt'
+NAME_FIXES = {'PS': 'Palestine'}
+
+
+def countries():
+    """{ISO3: (ISO2, display name)} for every country GeoNames lists.
+
+    The bulk sources key by ISO3; the app keys by ISO2. Names are Natural
+    Earth's for the countries in ISO2 above, GeoNames' common names otherwise.
+    """
+    ne = {v: k for k, v in ISO2.items()}
+    out = {}
+    for line in open(download(GEONAMES_URL, 'geonames-countries.txt'), encoding='utf-8'):
+        if line.startswith('#'):
+            continue
+        f = line.rstrip('\n').split('\t')
+        if f[0] in ('AN', 'CS'):                 # dissolved: Netherlands Antilles, Serbia and Montenegro
+            continue
+        out[f[1]] =(f[0], ne.get(f[0]) or NAME_FIXES.get(f[0]) or f[4].strip())
+    return out
+
 # ISO 3166-2 suffixes by the names the grid sources use. US states use their
 # postal code, which ISO matches (incl. US-DC).
 # India uses the pre-2023 codes (TG, CT, OR, UT), which is what Mapbox returns.

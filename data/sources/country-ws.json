@@ -1,0 +1,828 @@
+{
+ "source": "WRI Aqueduct 4.0 Country Rankings, baseline water stress (bws), all-sector weighting (Tot); score 0-5 divided by 5",
+ "url": "https://files.wri.org/aqueduct/aqueduct-4-0-country-rankings.zip",
+ "year": 2023,
+ "confidence": "estimated",
+ "countries": {
+  "AD": {
+   "value": 0.709,
+   "score": 3.545,
+   "label": "High (40-80%)"
+  },
+  "AE": {
+   "value": 1.0,
+   "score": 5.0,
+   "label": "Extremely High (>80%)"
+  },
+  "AF": {
+   "value": 0.674,
+   "score": 3.369,
+   "label": "High (40-80%)"
+  },
+  "AL": {
+   "value": 0.695,
+   "score": 3.474,
+   "label": "High (40-80%)"
+  },
+  "AM": {
+   "value": 0.598,
+   "score": 2.992,
+   "label": "Medium - High (20-40%)"
+  },
+  "AO": {
+   "value": 0.226,
+   "score": 1.131,
+   "label": "Low - Medium (10-20%)"
+  },
+  "AR": {
+   "value": 0.367,
+   "score": 1.835,
+   "label": "Low - Medium (10-20%)"
+  },
+  "AT": {
+   "value": 0.052,
+   "score": 0.262,
+   "label": "Low (<10%)"
+  },
+  "AU": {
+   "value": 0.581,
+   "score": 2.907,
+   "label": "Medium - High (20-40%)"
+  },
+  "AZ": {
+   "value": 0.494,
+   "score": 2.468,
+   "label": "Medium - High (20-40%)"
+  },
+  "BA": {
+   "value": 0.079,
+   "score": 0.396,
+   "label": "Low (<10%)"
+  },
+  "BD": {
+   "value": 0.532,
+   "score": 2.661,
+   "label": "Medium - High (20-40%)"
+  },
+  "BE": {
+   "value": 0.882,
+   "score": 4.411,
+   "label": "Extremely High (>80%)"
+  },
+  "BF": {
+   "value": 0.329,
+   "score": 1.646,
+   "label": "Low - Medium (10-20%)"
+  },
+  "BG": {
+   "value": 0.291,
+   "score": 1.457,
+   "label": "Low - Medium (10-20%)"
+  },
+  "BH": {
+   "value": 1.0,
+   "score": 5.0,
+   "label": "Extremely High (>80%)"
+  },
+  "BI": {
+   "value": 0.0,
+   "score": 0.0,
+   "label": "Low (<10%)"
+  },
+  "BJ": {
+   "value": 0.001,
+   "score": 0.003,
+   "label": "Low (<10%)"
+  },
+  "BN": {
+   "value": 0.0,
+   "score": 0.0,
+   "label": "Low (<10%)"
+  },
+  "BO": {
+   "value": 0.031,
+   "score": 0.156,
+   "label": "Low (<10%)"
+  },
+  "BR": {
+   "value": 0.208,
+   "score": 1.038,
+   "label": "Low - Medium (10-20%)"
+  },
+  "BT": {
+   "value": 0.074,
+   "score": 0.368,
+   "label": "Low (<10%)"
+  },
+  "BW": {
+   "value": 0.933,
+   "score": 4.664,
+   "label": "Extremely High (>80%)"
+  },
+  "BY": {
+   "value": 0.236,
+   "score": 1.181,
+   "label": "Low - Medium (10-20%)"
+  },
+  "BZ": {
+   "value": 0.014,
+   "score": 0.068,
+   "label": "Low (<10%)"
+  },
+  "CA": {
+   "value": 0.247,
+   "score": 1.233,
+   "label": "Low - Medium (10-20%)"
+  },
+  "CD": {
+   "value": 0.002,
+   "score": 0.012,
+   "label": "Low (<10%)"
+  },
+  "CF": {
+   "value": 0.002,
+   "score": 0.01,
+   "label": "Low (<10%)"
+  },
+  "CG": {
+   "value": 0.003,
+   "score": 0.014,
+   "label": "Low (<10%)"
+  },
+  "CH": {
+   "value": 0.081,
+   "score": 0.406,
+   "label": "Low (<10%)"
+  },
+  "CI": {
+   "value": 0.0,
+   "score": 0.0,
+   "label": "Low (<10%)"
+  },
+  "CL": {
+   "value": 0.894,
+   "score": 4.472,
+   "label": "Extremely High (>80%)"
+  },
+  "CM": {
+   "value": 0.002,
+   "score": 0.008,
+   "label": "Low (<10%)"
+  },
+  "CN": {
+   "value": 0.56,
+   "score": 2.8,
+   "label": "Medium - High (20-40%)"
+  },
+  "CO": {
+   "value": 0.099,
+   "score": 0.496,
+   "label": "Low (<10%)"
+  },
+  "CR": {
+   "value": 0.13,
+   "score": 0.648,
+   "label": "Low (<10%)"
+  },
+  "CU": {
+   "value": 0.33,
+   "score": 1.651,
+   "label": "Low - Medium (10-20%)"
+  },
+  "CY": {
+   "value": 1.0,
+   "score": 5.0,
+   "label": "Extremely High (>80%)"
+  },
+  "CZ": {
+   "value": 0.367,
+   "score": 1.836,
+   "label": "Low - Medium (10-20%)"
+  },
+  "DE": {
+   "value": 0.408,
+   "score": 2.042,
+   "label": "Medium - High (20-40%)"
+  },
+  "DJ": {
+   "value": 0.635,
+   "score": 3.176,
+   "label": "High (40-80%)"
+  },
+  "DK": {
+   "value": 0.19,
+   "score": 0.951,
+   "label": "Low (<10%)"
+  },
+  "DO": {
+   "value": 0.321,
+   "score": 1.604,
+   "label": "Low - Medium (10-20%)"
+  },
+  "DZ": {
+   "value": 0.775,
+   "score": 3.874,
+   "label": "High (40-80%)"
+  },
+  "EC": {
+   "value": 0.131,
+   "score": 0.657,
+   "label": "Low (<10%)"
+  },
+  "EE": {
+   "value": 0.244,
+   "score": 1.218,
+   "label": "Low - Medium (10-20%)"
+  },
+  "EG": {
+   "value": 0.97,
+   "score": 4.852,
+   "label": "Extremely High (>80%)"
+  },
+  "ER": {
+   "value": 0.789,
+   "score": 3.943,
+   "label": "High (40-80%)"
+  },
+  "ES": {
+   "value": 0.788,
+   "score": 3.94,
+   "label": "High (40-80%)"
+  },
+  "ET": {
+   "value": 0.192,
+   "score": 0.961,
+   "label": "Low (<10%)"
+  },
+  "FI": {
+   "value": 0.162,
+   "score": 0.809,
+   "label": "Low (<10%)"
+  },
+  "FR": {
+   "value": 0.383,
+   "score": 1.916,
+   "label": "Low - Medium (10-20%)"
+  },
+  "GA": {
+   "value": 0.0,
+   "score": 0.0,
+   "label": "Low (<10%)"
+  },
+  "GB": {
+   "value": 0.26,
+   "score": 1.298,
+   "label": "Low - Medium (10-20%)"
+  },
+  "GE": {
+   "value": 0.186,
+   "score": 0.928,
+   "label": "Low (<10%)"
+  },
+  "GH": {
+   "value": 0.022,
+   "score": 0.112,
+   "label": "Low (<10%)"
+  },
+  "GM": {
+   "value": 0.005,
+   "score": 0.025,
+   "label": "Low (<10%)"
+  },
+  "GN": {
+   "value": 0.071,
+   "score": 0.355,
+   "label": "Low (<10%)"
+  },
+  "GQ": {
+   "value": 0.0,
+   "score": 0.0,
+   "label": "Low (<10%)"
+  },
+  "GR": {
+   "value": 0.868,
+   "score": 4.339,
+   "label": "Extremely High (>80%)"
+  },
+  "GT": {
+   "value": 0.205,
+   "score": 1.027,
+   "label": "Low - Medium (10-20%)"
+  },
+  "GW": {
+   "value": 0.061,
+   "score": 0.307,
+   "label": "Low (<10%)"
+  },
+  "GY": {
+   "value": 0.539,
+   "score": 2.696,
+   "label": "Medium - High (20-40%)"
+  },
+  "HN": {
+   "value": 0.023,
+   "score": 0.113,
+   "label": "Low (<10%)"
+  },
+  "HR": {
+   "value": 0.034,
+   "score": 0.168,
+   "label": "Low (<10%)"
+  },
+  "HT": {
+   "value": 0.321,
+   "score": 1.603,
+   "label": "Low - Medium (10-20%)"
+  },
+  "HU": {
+   "value": 0.085,
+   "score": 0.425,
+   "label": "Low (<10%)"
+  },
+  "ID": {
+   "value": 0.534,
+   "score": 2.669,
+   "label": "Medium - High (20-40%)"
+  },
+  "IE": {
+   "value": 0.073,
+   "score": 0.363,
+   "label": "Low (<10%)"
+  },
+  "IL": {
+   "value": 0.988,
+   "score": 4.942,
+   "label": "Extremely High (>80%)"
+  },
+  "IN": {
+   "value": 0.822,
+   "score": 4.108,
+   "label": "Extremely High (>80%)"
+  },
+  "IQ": {
+   "value": 0.829,
+   "score": 4.146,
+   "label": "Extremely High (>80%)"
+  },
+  "IR": {
+   "value": 0.931,
+   "score": 4.653,
+   "label": "Extremely High (>80%)"
+  },
+  "IS": {
+   "value": 0.0,
+   "score": 0.0,
+   "label": "Low (<10%)"
+  },
+  "IT": {
+   "value": 0.669,
+   "score": 3.344,
+   "label": "High (40-80%)"
+  },
+  "JM": {
+   "value": 0.0,
+   "score": 0.0,
+   "label": "Low (<10%)"
+  },
+  "JO": {
+   "value": 0.924,
+   "score": 4.62,
+   "label": "Extremely High (>80%)"
+  },
+  "JP": {
+   "value": 0.394,
+   "score": 1.968,
+   "label": "Low - Medium (10-20%)"
+  },
+  "KE": {
+   "value": 0.158,
+   "score": 0.788,
+   "label": "Low (<10%)"
+  },
+  "KG": {
+   "value": 0.655,
+   "score": 3.277,
+   "label": "High (40-80%)"
+  },
+  "KH": {
+   "value": 0.374,
+   "score": 1.871,
+   "label": "Low - Medium (10-20%)"
+  },
+  "KP": {
+   "value": 0.464,
+   "score": 2.322,
+   "label": "Medium - High (20-40%)"
+  },
+  "KR": {
+   "value": 0.476,
+   "score": 2.381,
+   "label": "Medium - High (20-40%)"
+  },
+  "KW": {
+   "value": 1.0,
+   "score": 5.0,
+   "label": "Extremely High (>80%)"
+  },
+  "KZ": {
+   "value": 0.502,
+   "score": 2.512,
+   "label": "Medium - High (20-40%)"
+  },
+  "LA": {
+   "value": 0.148,
+   "score": 0.742,
+   "label": "Low (<10%)"
+  },
+  "LB": {
+   "value": 1.0,
+   "score": 5.0,
+   "label": "Extremely High (>80%)"
+  },
+  "LI": {
+   "value": 0.163,
+   "score": 0.813,
+   "label": "Low (<10%)"
+  },
+  "LK": {
+   "value": 0.472,
+   "score": 2.361,
+   "label": "Medium - High (20-40%)"
+  },
+  "LR": {
+   "value": 0.0,
+   "score": 0.0,
+   "label": "Low (<10%)"
+  },
+  "LS": {
+   "value": 0.59,
+   "score": 2.95,
+   "label": "Medium - High (20-40%)"
+  },
+  "LT": {
+   "value": 0.428,
+   "score": 2.14,
+   "label": "Medium - High (20-40%)"
+  },
+  "LU": {
+   "value": 0.586,
+   "score": 2.932,
+   "label": "Medium - High (20-40%)"
+  },
+  "LV": {
+   "value": 0.114,
+   "score": 0.572,
+   "label": "Low (<10%)"
+  },
+  "LY": {
+   "value": 0.961,
+   "score": 4.805,
+   "label": "Extremely High (>80%)"
+  },
+  "MA": {
+   "value": 0.798,
+   "score": 3.988,
+   "label": "High (40-80%)"
+  },
+  "MD": {
+   "value": 0.252,
+   "score": 1.262,
+   "label": "Low - Medium (10-20%)"
+  },
+  "ME": {
+   "value": 0.143,
+   "score": 0.715,
+   "label": "Low (<10%)"
+  },
+  "MG": {
+   "value": 0.18,
+   "score": 0.899,
+   "label": "Low (<10%)"
+  },
+  "MK": {
+   "value": 0.602,
+   "score": 3.01,
+   "label": "High (40-80%)"
+  },
+  "ML": {
+   "value": 0.135,
+   "score": 0.677,
+   "label": "Low (<10%)"
+  },
+  "MM": {
+   "value": 0.426,
+   "score": 2.131,
+   "label": "Medium - High (20-40%)"
+  },
+  "MN": {
+   "value": 0.626,
+   "score": 3.128,
+   "label": "High (40-80%)"
+  },
+  "MR": {
+   "value": 0.546,
+   "score": 2.728,
+   "label": "Medium - High (20-40%)"
+  },
+  "MW": {
+   "value": 0.151,
+   "score": 0.753,
+   "label": "Low (<10%)"
+  },
+  "MX": {
+   "value": 0.799,
+   "score": 3.995,
+   "label": "High (40-80%)"
+  },
+  "MY": {
+   "value": 0.207,
+   "score": 1.033,
+   "label": "Low - Medium (10-20%)"
+  },
+  "MZ": {
+   "value": 0.074,
+   "score": 0.371,
+   "label": "Low (<10%)"
+  },
+  "NA": {
+   "value": 0.835,
+   "score": 4.176,
+   "label": "Extremely High (>80%)"
+  },
+  "NE": {
+   "value": 0.694,
+   "score": 3.471,
+   "label": "High (40-80%)"
+  },
+  "NG": {
+   "value": 0.16,
+   "score": 0.802,
+   "label": "Low (<10%)"
+  },
+  "NI": {
+   "value": 0.043,
+   "score": 0.214,
+   "label": "Low (<10%)"
+  },
+  "NL": {
+   "value": 0.316,
+   "score": 1.581,
+   "label": "Low - Medium (10-20%)"
+  },
+  "NO": {
+   "value": 0.038,
+   "score": 0.188,
+   "label": "Low (<10%)"
+  },
+  "NP": {
+   "value": 0.636,
+   "score": 3.182,
+   "label": "High (40-80%)"
+  },
+  "NZ": {
+   "value": 0.01,
+   "score": 0.051,
+   "label": "Low (<10%)"
+  },
+  "OM": {
+   "value": 1.0,
+   "score": 5.0,
+   "label": "Extremely High (>80%)"
+  },
+  "PA": {
+   "value": 0.149,
+   "score": 0.745,
+   "label": "Low (<10%)"
+  },
+  "PE": {
+   "value": 0.749,
+   "score": 3.743,
+   "label": "High (40-80%)"
+  },
+  "PG": {
+   "value": 0.0,
+   "score": 0.0,
+   "label": "Low (<10%)"
+  },
+  "PH": {
+   "value": 0.405,
+   "score": 2.026,
+   "label": "Medium - High (20-40%)"
+  },
+  "PK": {
+   "value": 0.758,
+   "score": 3.791,
+   "label": "High (40-80%)"
+  },
+  "PL": {
+   "value": 0.332,
+   "score": 1.659,
+   "label": "Low - Medium (10-20%)"
+  },
+  "PT": {
+   "value": 0.652,
+   "score": 3.26,
+   "label": "High (40-80%)"
+  },
+  "PY": {
+   "value": 0.0,
+   "score": 0.0,
+   "label": "Low (<10%)"
+  },
+  "QA": {
+   "value": 1.0,
+   "score": 5.0,
+   "label": "Extremely High (>80%)"
+  },
+  "RO": {
+   "value": 0.238,
+   "score": 1.188,
+   "label": "Low - Medium (10-20%)"
+  },
+  "RS": {
+   "value": 0.247,
+   "score": 1.236,
+   "label": "Low - Medium (10-20%)"
+  },
+  "RU": {
+   "value": 0.234,
+   "score": 1.168,
+   "label": "Low - Medium (10-20%)"
+  },
+  "RW": {
+   "value": 0.0,
+   "score": 0.0,
+   "label": "Low (<10%)"
+  },
+  "SA": {
+   "value": 0.996,
+   "score": 4.981,
+   "label": "Extremely High (>80%)"
+  },
+  "SD": {
+   "value": 0.292,
+   "score": 1.458,
+   "label": "Low - Medium (10-20%)"
+  },
+  "SE": {
+   "value": 0.156,
+   "score": 0.781,
+   "label": "Low (<10%)"
+  },
+  "SI": {
+   "value": 0.105,
+   "score": 0.526,
+   "label": "Low (<10%)"
+  },
+  "SK": {
+   "value": 0.323,
+   "score": 1.615,
+   "label": "Low - Medium (10-20%)"
+  },
+  "SL": {
+   "value": 0.0,
+   "score": 0.0,
+   "label": "Low (<10%)"
+  },
+  "SM": {
+   "value": 0.89,
+   "score": 4.449,
+   "label": "Extremely High (>80%)"
+  },
+  "SN": {
+   "value": 0.444,
+   "score": 2.22,
+   "label": "Medium - High (20-40%)"
+  },
+  "SO": {
+   "value": 0.335,
+   "score": 1.675,
+   "label": "Low - Medium (10-20%)"
+  },
+  "SR": {
+   "value": 0.334,
+   "score": 1.668,
+   "label": "Low - Medium (10-20%)"
+  },
+  "SS": {
+   "value": 0.279,
+   "score": 1.393,
+   "label": "Low - Medium (10-20%)"
+  },
+  "SV": {
+   "value": 0.39,
+   "score": 1.948,
+   "label": "Low - Medium (10-20%)"
+  },
+  "SY": {
+   "value": 0.803,
+   "score": 4.013,
+   "label": "Extremely High (>80%)"
+  },
+  "SZ": {
+   "value": 0.063,
+   "score": 0.314,
+   "label": "Low (<10%)"
+  },
+  "TD": {
+   "value": 0.171,
+   "score": 0.853,
+   "label": "Low (<10%)"
+  },
+  "TG": {
+   "value": 0.001,
+   "score": 0.003,
+   "label": "Low (<10%)"
+  },
+  "TH": {
+   "value": 0.725,
+   "score": 3.623,
+   "label": "High (40-80%)"
+  },
+  "TJ": {
+   "value": 0.467,
+   "score": 2.335,
+   "label": "Medium - High (20-40%)"
+  },
+  "TL": {
+   "value": 0.354,
+   "score": 1.772,
+   "label": "Low - Medium (10-20%)"
+  },
+  "TM": {
+   "value": 0.748,
+   "score": 3.738,
+   "label": "High (40-80%)"
+  },
+  "TN": {
+   "value": 0.856,
+   "score": 4.28,
+   "label": "Extremely High (>80%)"
+  },
+  "TR": {
+   "value": 0.677,
+   "score": 3.386,
+   "label": "High (40-80%)"
+  },
+  "TZ": {
+   "value": 0.381,
+   "score": 1.905,
+   "label": "Low - Medium (10-20%)"
+  },
+  "UA": {
+   "value": 0.275,
+   "score": 1.373,
+   "label": "Low - Medium (10-20%)"
+  },
+  "UG": {
+   "value": 0.04,
+   "score": 0.198,
+   "label": "Low (<10%)"
+  },
+  "US": {
+   "value": 0.521,
+   "score": 2.604,
+   "label": "Medium - High (20-40%)"
+  },
+  "UY": {
+   "value": 0.367,
+   "score": 1.833,
+   "label": "Low - Medium (10-20%)"
+  },
+  "UZ": {
+   "value": 0.726,
+   "score": 3.628,
+   "label": "High (40-80%)"
+  },
+  "VE": {
+   "value": 0.364,
+   "score": 1.82,
+   "label": "Low - Medium (10-20%)"
+  },
+  "VN": {
+   "value": 0.423,
+   "score": 2.113,
+   "label": "Medium - High (20-40%)"
+  },
+  "YE": {
+   "value": 0.939,
+   "score": 4.694,
+   "label": "Extremely High (>80%)"
+  },
+  "ZA": {
+   "value": 0.834,
+   "score": 4.168,
+   "label": "Extremely High (>80%)"
+  },
+  "ZM": {
+   "value": 0.169,
+   "score": 0.846,
+   "label": "Low (<10%)"
+  },
+  "ZW": {
+   "value": 0.435,
+   "score": 2.175,
+   "label": "Medium - High (20-40%)"
+  }
+ }
+}

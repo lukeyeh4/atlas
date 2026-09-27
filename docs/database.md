@@ -58,7 +58,7 @@ ids, so saved edits still apply after the reference numbers are updated.
 ## Why the schema is efficient
 
 The data is small: 32 sites, 3 candidate locations, 25 regions, 37 flows,
-64 countries and 126 subdivisions (states, provinces) keyed by ISO code. The costs to avoid are round trips, not table scans.
+248 countries and 126 subdivisions (states, provinces) keyed by ISO code. The costs to avoid are round trips, not table scans.
 
 1. **One read for the whole map.** The `atlas_baseline` view returns
    everything the app draws as a single JSON document, shaped like the
@@ -80,7 +80,7 @@ The data is small: 32 sites, 3 candidate locations, 25 regions, 37 flows,
 Verified locally on Postgres 18 (PGlite) with Supabase's default grants to
 `anon`:
 - the schema and seed load;
-- the view round-trips the app's data (32 sites, 3 candidates, 25 regions, 37 flows) and reproduces `data/locales.json` exactly (64 countries, 126 subdivisions, 43 sources);
+- the view round-trips the app's data (32 sites, 3 candidates, 25 regions, 37 flows) and reproduces `data/locales.json` exactly (248 countries, 126 subdivisions, 42 sources);
 - `anon` can read the view;
 - `anon`'s inserts are refused, and its updates and deletes touch 0 rows.
 
