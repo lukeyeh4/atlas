@@ -1,7 +1,8 @@
 # AI Supply Chain Atlas — Roadmap
 
-Status as of 2026-09-27. Current build: v0.12.2, a single HTML file served
-from GitHub Pages on a Mapbox globe. Location data comes from the database
+Status as of 2026-09-27. Live build: v0.12.2, a single HTML file served
+from GitHub Pages on a Mapbox globe; v0.13.0 to v0.19.0 are in the working
+tree, not yet pushed. Location data comes from the database
 side through `data/locales.json`, `data/node-types.json` and `data/cells/`
 (contract: `docs/locale-contract.md`). Finished work is in `CHANGELOG.md`,
 not here.
@@ -50,11 +51,16 @@ the same way (v0.9.0). What's left is finer location data and site scale.
       that lives (a per-site file would be a new contract section).
 
 ### Scenarios
-- [ ] **Flesh out the presets.** Each one currently applies a single blunt
-      rule (halve grid carbon, move campuses to Sweden, double power). Give
-      each a stated basis, a horizon year, and sourced parameters.
-- [ ] Fleet-wide totals (energy, carbon, water, air vs baseline); the panel
-      only reports per site today.
+- [x] **Presets filled out** (v0.14.0): 2030 values from stated targets
+      and plans, in the data files' shape, with moved sites on the map.
+- [ ] Cite each scenario value's source in the panel, as location values
+      are, and consider moving the scenario files into `data/`.
+- [x] Fleet-wide totals against baseline and the world (Stats, v0.15.0;
+      redesigned v0.19.0).
+- [x] **Custom scenario** (v0.19.0): any edit reads as Custom against a
+      snapshot of the map as sourced; Baseline clears every edit.
+- [ ] Scenario menu: show Custom as its own checked entry once the map is
+      edited (today the preset you started from stays ticked).
 - [ ] Scenarios that users define: pick sites, pick a target grid or scale.
 - [ ] **Scenario compare**: two full states of the world side by side. "What
       if this workload ran in Region A vs B" at fleet scale, which is the
@@ -130,14 +136,17 @@ Relates to blocking question 4. In order:
 ### Node editing
 - [ ] Edit a node's inputs in the panel (utilization, PUE) beyond data
       center size, which has a slider (v0.10.0).
-- [ ] Draw and edit flows for added nodes. Right now a new node has no chain.
 - [ ] **Radial node menu.** Clicking a node opens a radial sub-menu around it
       with three actions: **Remove**, **Change type** (switch stage) and
       **Relocate** (move the node on the map).
-- [ ] **Auto-populate connections.** When a node's type changes or a new node
-      is added, create its upstream and downstream flows automatically from
-      the stage order (raw → chip → infra → model → delivery), e.g. linking
-      to the nearest nodes in the adjacent stages.
+- [x] **Auto-populate connections** (v0.16.0): nearest suppliers and
+      customers by the diagram's rulebook, re-derived on every change.
+- [ ] **Custom connections** (later). Draw, edit and delete links by hand:
+      pick a node, choose "Connect to…", click another node; set what the
+      link carries (goods, compute and models, money); remove or re-point
+      any link, automatic or built-in. Hand-made links would override
+      automatic ones and be saved with the rest of a visitor's edits once
+      persistence lands.
 - [ ] Persist edits. Nothing survives a reload today. The database branch
       built this (`atlas.edits.v1` in localStorage, a small diff against the
       reference data) on the pre-globe d3 map; port it to the current app.
@@ -145,7 +154,10 @@ Relates to blocking question 4. In order:
       between browsers.
 
 ### Connections diagram
-- [ ] Click a part to show its sites on the map (the count is already there).
+- [x] Click a part or a link for a plain-language panel: what happens,
+      what moves, chokepoints, and the part's sites on the map with their
+      yearly totals (v0.19.0).
+- [ ] Cite sources for the diagram's links and chokepoints in that panel.
 - [ ] Per-site connections: the diagram is by part, not by site.
 
 ### Database
@@ -165,9 +177,11 @@ visitors' edits stay in their browser.
       hash. Still no accounts or server.
 
 ### Layers
-- [ ] Click a country to see its exact values (grid carbon, water stress,
-      air quality, etc.).
-- [ ] **Land and cooling** is a placeholder: no data bound, paints neutral.
+- [x] Land and cooling placeholder removed (v0.18.0).
+- [x] Layers can show on countries or as circles around sites (v0.18.0);
+      replaced in v0.19.0 by per-site layers (power used, water used, air
+      pollution produced) as circles sized by value, each layer explained
+      by an ⓘ.
 - [ ] Accessibility pass on the ramps: check each layer's endpoints for
       contrast in both themes, and don't rely on hue alone.
 - [ ] State or province lines beyond the US, if a layer needs them.
@@ -225,8 +239,14 @@ visitors' edits stay in their browser.
 - Air quality is an exposure **index**, not a physical unit, normalized
   against the largest baseline site. It and the metric bars move when nodes
   are added or removed, not when a scenario changes.
-- Scenarios change the model only; the map layers keep showing the data.
-- Added nodes have no upstream or downstream links.
+- Scenarios change the model only; the place layers keep showing the data
+  (the per-site layers do follow the scenario).
+- Per-site layer circles are scaled to the largest baseline site, so under
+  a scenario a circle can grow past the legend's "largest" value.
+- The By stage bubbles give very small shares (under about 1%) a minimum
+  size so they stay visible; the tooltip has the exact share.
+- Automatic links follow distance, not real contracts; they're labelled as
+  automatic until custom connections exist.
 - Dense clusters (Taiwan, Korea) overlap at world zoom; collision-aware
   placement is unimplemented.
 - The compare view drops units: 4.77 (TWh) sits beside 391 (GWh) unlabeled.

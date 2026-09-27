@@ -31,6 +31,328 @@ shape is fixed by `docs/locale-contract.md`, agreed with the app side.
 
 ---
 
+## v0.19.0 — Stats redesign, custom scenarios, site layers, explained connections (not yet pushed)
+
+**Layers**
+- Place layers renamed: **Power emissions**, **Water scarcity**, **Air
+  pollution**. They colour countries and states as before.
+- New **Each site** section in the layer menu replaces v0.18.0's "Around
+  sites" switch: **Power used**, **Water used** and **Air pollution
+  produced**, from the model. Each site gets a circle whose area is its
+  value (colour matches its footprint bar); the legend becomes a size key
+  with the largest value.
+- An ⓘ right of each layer's scale explains it in plain words (what
+  clean and dirty, plenty and scarce, bigger and smaller mean).
+- Legend and layer button are larger and brighter; the bottom bar is taller.
+
+**Stats** (open by default on wide screens)
+- Sans type, less fine print: sources moved behind an ⓘ.
+- **Since you opened the map** moved in from its floating box as a
+  collapsible section at the top. The floating box is gone; the Stats
+  button is in the top bar.
+- Energy, Carbon and Water as cards: the figure, a "vs baseline" tag, a
+  bar with a tick where baseline sits, one everyday comparison, and a
+  share-of-world bar.
+- **By stage** is a bubble chart (area = share) in the chosen measure's
+  colour: ochre energy, charcoal carbon, blue water.
+- **Largest sites and countries** and **Scenarios compared** follow the
+  same Energy/Carbon/Water switch; scenarios show as bars either side of
+  zero.
+
+**Scenarios**
+- Any edit (resize, retype, add, remove) turns the scenario into
+  **Custom**. "vs baseline" now compares against a snapshot of the map as
+  sourced, so adding a node moves it.
+- Choosing **Baseline** clears every edit: sites back as loaded, added
+  nodes removed (their places return), removed sites restored.
+- Moved sites take their new name everywhere (title, tooltips, search,
+  Stats, menus). One rule, `movedTo()`, decides whether a site moved, and
+  `refresh()` sets every site's shown name from it; the sourced name stays
+  in `n0`/`p0` and still finds the site in search.
+- A moved site stays moved when retyped. The move follows the site; the
+  scenario's free-air cooling applies only while it is a data center.
+
+**Connections diagram**
+- Click a part for a side panel in plain words: what happens at that
+  step, whether it's a chokepoint, what it gets and sends (each a
+  button), and its sites on the map with their yearly energy, carbon and
+  water. Click a link (or a row) for what moves along it and what that
+  kind of link means.
+- Keyboard: Enter on a part moves focus into the panel; Escape closes.
+- Updates live while open (scenario, stage toggles). Box counts and the
+  panel count the same sites: those shown on the map.
+- Sans type in the boxes; the toolbar uses the top bar's buttons on one
+  line (link types, then Reset view). With nothing chosen, the side panel
+  introduces the diagram and explains the chokepoint and on-the-map marks
+  that used to sit in the toolbar; it's a one-time box, and once closed it
+  stays closed (remembered per browser). The bottom bar empties to the diagram's
+  background while it is open.
+
+**Chrome**
+- **Key** is a dropdown from one button (Stages; Connections), closed by
+  default; the button says how many things are hidden.
+- Key labels match the diagram: **Raw materials** (was Raw inputs),
+  **Physical goods**, **Designs, data and models**.
+- Top bar: rectangular 32px buttons in mono caps, full ink. Search is a
+  filled field reading "Search city", with one accent focus state and a
+  `/` hint.
+- Zoom in, zoom out and re-center at the bottom right.
+- Node panel: category shows as one line (stage icon, type). Place facts
+  (Power, People nearby, Water, Air pollution) keep their detail in a
+  tooltip. Country panel descriptions and all tooltip text in sans.
+
+**Fixes**
+- Scenario, Key and Layer menus opened underneath the Connections
+  diagram and could not be clicked.
+- `/` jumped to search even while typing in another text box.
+
+## v0.18.0 — Circles around sites, plain place facts (not yet pushed)
+- Layers renamed in plain words: **How dirty the power is**, **How scarce
+  water is**, **How polluted the air is**. The Land and cooling placeholder
+  is gone.
+- New **Show on: Countries | Around sites** switch in the layer menu. Around
+  sites, each site gets a soft circle coloured by its own local value
+  (scenario-aware for power); country fills turn off.
+- Node panel: the italic place line is now a short list — Power, People
+  nearby, Water, Air — each with a plain rating (e.g. "Mostly fossil",
+  "Under pressure") and the number and where it comes from.
+- Supply chain reads top to bottom: suppliers, ↓ supply, this site,
+  ↓ sends to, customers.
+- Footprint bars keep their colours; the coloured squares before the labels
+  are gone.
+- Other wording simplified to match (unit names, ranking and input rows).
+
+## v0.17.4 — Fix: retyped sites losing their links (not yet pushed)
+- Switching a built-in site's type could leave it with no links (Seattle →
+  inference data center, Veldhoven → materials & wafers) or fewer than it
+  should have. Automatic linking skipped any link that already existed as a
+  built-in one, but a retyped site's built-in links are set aside, so when
+  its nearest suppliers were its old partners the link vanished from both.
+  It now checks only the built-in links in effect. Checked every built-in
+  site against every facility type (288 pairs): all get their links.
+
+## v0.17.3 — Clearer buttons, plain words, type-to-compare (not yet pushed)
+- **Buttons read as buttons**: a thin outline on everything that acts —
+  Scenario, Connections, Layer and Key in the bars, the panel's Upstream
+  and Remove, the formulas toggle, the Carbon/Water/Air sort and the
+  "typical" reset — with an accent outline and tint when on. The stage
+  filters stay as underlined toggles.
+- **Side by side takes typing**: the empty side offers "Type a site or
+  city…". Sites on the map come first; any city shows this same site placed
+  there, on that place's grid and population ("Same site, in Oslo":
+  carbon −91%). Enter picks the first match; clicking a site on the map
+  still works; "Change" picks again. Values now carry their units, an
+  unchanged value reads a neutral ±0%, and the footer says in words which
+  grid each runs on.
+- **Bigger type** across the panels: small labels 10.5 px, place lines 12
+  px, detail lines 11.5 px, table headers 10.5 px, callouts 14 px.
+- **Plain explanations**: every ⓘ rewritten in everyday words (“What if this
+  same data center were built somewhere else?”), with terms explained where
+  they stay (a megawatt is about what 800 US homes use). Location inputs
+  are named in words: Grid carbon, Fossil power, Getting cleaner, Cooling
+  water, Company figure, Water stress, Air (PM2.5), People nearby. The unit
+  notes for the air score, fossil share, yearly change, L/kWh and water
+  stress are simpler too.
+
+## v0.17.2 — Node panel, less small text (not yet pushed)
+- **Explanations move to ⓘ callouts**, the same hover box the units use
+  (and on keyboard focus): Footprint, Size, Supply chain, Compare
+  locations and Location inputs each get one beside their title. Compare's
+  intro, colour key and footnote, the automatic-links note and the size
+  slider's min/max labels are gone from the panel as text.
+- **No coordinates** under a node's or location's name (Copy coordinates
+  stays in the right-click menu).
+- **Clearer sections**: a full-strength rule above each, with a larger,
+  darker title; folded sections match.
+- **Footprint bars stand out**: 5 px, each in its own hue (energy ochre,
+  carbon charcoal, water blue, air copper) with a darker end cap and a
+  matching square before the label.
+- **Supply chain shows each link's type**: stage icon, name, and its
+  facility type on the right ("Zhengzhou · Hardware assembly"). Automatic
+  links have a dotted underline; hovering says why and how far.
+- **Compare side by side moves into Compare locations** as an outlined
+  button ("Side by side with a site"); while comparing, "Exit side by side"
+  also shows in the bottom bar. The bottom bar keeps Upstream and Remove.
+- Compare table type one step up (12 px figures, 14.5 px place names).
+
+## v0.17.1 — A clearer node panel (not yet pushed)
+- **Titled sections in reading order**: Footprint per year (with the
+  formulas toggle), Size (data centers), Supply chain, then Compare
+  locations and Location inputs folded below. Each section has a quiet
+  header with a hairline and more air between them. Nothing was removed.
+- **Supply chain reads as Suppliers and Customers** instead of bare arrows.
+- **Slightly larger type** for the detail: metric labels 10.5 px, values
+  15.5 px, the mono detail lines (inputs, sources) 10.5 px.
+- **Compare locations, rebuilt**: a one-line explanation ("the same data
+  center, same size and inputs, placed somewhere else…"); a table with a
+  highlighted **Here** row showing the real values and each place's
+  change against it; **sort by carbon, water or air**; a key (teal better,
+  amber worse); larger place names.
+- **Custom comparisons**: "Add a city to compare…" searches any city
+  (Mapbox geocoding) and adds it to the table with its own grid, water and
+  population; a ✕ removes it. Added places are remembered in this browser
+  and apply to every node.
+- The size slider takes the full width under its "Size" title.
+
+## v0.17.0 — Live counter (not yet pushed)
+- **A live counter in the bottom right**, above the Mapbox attribution:
+  energy used, carbon emitted and water consumed by everything on the map
+  since the page opened, ticking at the model's yearly rates (about 0.7 MWh,
+  0.3 t CO₂e and 2.9 m³ a second at baseline). Units grow with the count
+  (MWh → GWh → TWh). It integrates the rate frame by frame, so a scenario
+  or an edit changes its pace without a jump (the boom roughly triples it).
+  Tabular figures keep it steady; reduced motion updates once a second, and
+  a background tab doesn't add a burst on return.
+- The card matches the Globe/Flat switch (translucent surface, blur,
+  hairline border, mono type), with a slow pulsing dot for "live", and
+  slides aside with the stats panel.
+- **Stats moves into the card** as a small outlined button, out of the top
+  bar.
+- The counts are the card's focus: 21 px serif figures, like the Stats
+  headlines, with small mono units and hairline dividers. Hovering the
+  header says the figures are modelled yearly averages counted per second.
+- The size slider's scenario note ("typical 1 GW in scenario") no longer
+  wraps; the scenario scaling is named on hover instead.
+
+## v0.16.1 — All connections (not yet pushed)
+- **"All connections" in the Key** replaces the fold that hid the connection
+  toggles. On, the globe and flat map draw every supply link at once, built
+  in and automatic, each coloured by what it carries with its travelling
+  markers; off, only the selected site's links show, as before. With a site
+  selected its links stay bright and the rest recede (30% lines, 35%
+  markers). **On by default**; turning it off is remembered per viewer.
+  A small outlined button: a faint rule border when off, an accent border
+  with a light accent tint when on.
+- Goods and Compute stay beside it as filters, always visible; below
+  1360 px wide they show as their arc-and-marker icons, named on hover, so
+  the bar still fits at 1280 px.
+
+## v0.16.0 — Automatic connections (not yet pushed)
+- **A node that is added, or whose type changes, is linked to its nearest
+  suppliers and customers.** The Connections diagram is the rulebook: for
+  each part that feeds this node's part (goods or data; money and policy
+  aren't flows between sites) it takes the nearest site of that part, two
+  when the part has three or more sites; likewise downstream; at most three
+  each way. With nothing found one way it falls back to the nearest site of
+  the previous or next stage. A new fab near Phoenix draws quartz from
+  Spruce Pine, lithography tools from Veldhoven and gases from Yamaguchi,
+  and sends wafers to Kaohsiung for packaging.
+- Automatic links are kept apart from the built-in, researched ones and
+  re-derived from the map whenever a node is added, retyped or removed, so
+  none go stale. A retyped built-in site sets its built-in links aside and
+  gets them back when switched back to its own type.
+- They show wherever links do (globe arcs, moving markers, the Chain list,
+  Upstream), marked in the Chain list with their distance, a hover reason
+  ("nearest lithography tools, 8,784 km away") and a note: "Linked
+  automatically to the nearest suppliers and customers."
+
+## v0.15.1 — Category you can switch, sizes that follow the scenario (not yet pushed)
+- **The size slider shows the size in use.** Under Data center boom the
+  numbers already scaled (Frankfurt +258% energy) but the slider still read
+  the baseline 20 MW. It now reads 60 MW, "typical 60 MW in scenario"
+  (Ashburn: 1 GW); dragging still sets the node's own baseline size, so it
+  stays in proportion when the scenario changes.
+- **Category with its subcategory**, at the top of a node's panel: the
+  stage as the eyebrow ("Infrastructure") and the facility type beneath
+  ("Data center (training)").
+- **Switch it in place.** The type line is a quiet dotted-underline control
+  with a chevron; it opens a menu of every facility type grouped by stage,
+  the current one ticked. Choosing one gives the node that type's typical
+  inputs, keeps its place and the people around it, and confirms ("Ashburn
+  is now fab"). Arrow keys and Escape work in the menu.
+- A switched built-in site counts under its new type in the Connections
+  diagram, and scenario moves (Nordics) apply only while a site is still a
+  training data center.
+
+## v0.15.0 — Stats panel (not yet pushed)
+- **Stats**, a button in the top bar, slides a panel in from the right,
+  mirroring the site panel; the globe stays centred between them and the
+  globe/flat switch steps aside. Open or closed is remembered.
+- **The headline is three totals** for every site on the map, in large type:
+  energy, carbon, water. Each carries an everyday equivalent ("as much
+  electricity as about 2.1 million US homes use in a year", "what about 2.2
+  million petrol cars emit", "enough to fill about 36,000 Olympic pools, or
+  New York City's water for 24 days") and a share of a world figure with a
+  thin bar: the map's data centers against all data centers (~415 TWh), and
+  the totals against world electricity and energy-related CO₂. Under a
+  scenario each total shows its change against baseline.
+- **Folded underneath**: by stage (energy, carbon or water, with bars),
+  the largest emitters by site and by country (clickable), and every
+  scenario's totals side by side.
+- Reference figures are cited in the panel's footnote: IEA Energy and AI
+  (2025), Ember Global Electricity Review (2025), IEA Global Energy Review
+  (2025), EIA, US EPA, NYC DEP.
+- The shared collapsible section can now redraw whichever panel it sits in.
+
+## v0.14.0 — Scenarios, filled out (not yet pushed)
+- **Scenarios are data, in the same shape as the data files**: grid values
+  per country or state (`locales.json` shape), facility inputs per type
+  (`node-types.json` shape) and new places for moved sites. Anything a
+  scenario doesn't name keeps its baseline value. The old one-line rules
+  (halve everything, copy Sweden's grid, double power) are gone.
+- **Fast grid decarbonisation (2030)**: every grid with a site meets its
+  announced clean-power target, e.g. UK Clean Power 2030 (217 → 55 g/kWh),
+  Germany 80% renewables (337 → 180), Australia 82% (554 → 270), Taiwan 30%
+  renewables (636 → 500), Japan's 2030 mix (484 → 300), and US state laws:
+  Washington's coal-free grid (130 → 60), California SB100 (200 → 120),
+  Virginia's Clean Economy Act (322 → 240), North Carolina HB951 (317 →
+  220). 18 countries and 13 states or provinces named; a place without a
+  named value follows its country's change (an added Atlanta data center:
+  −27%, the US change).
+- **Training moves to Nordics**: the seven training campuses move to real
+  Nordic data center towns: Luleå and Borlänge (Sweden), Hamina and Kajaani
+  (Finland), Odense (Denmark), Rennesøy (Norway), Keflavík (Iceland). They
+  move on the map, arcs and all, and take each place's own grid, people
+  nearby and water from the data, with free-air cooling (PUE 1.1, 0.2
+  L/kWh). The panel shows the new place and "Moved from Virginia, US to
+  Luleå, Sweden"; Location inputs describe the new place.
+- **Data center boom (2030)**: training campuses near a gigawatt (1,000 MW,
+  60% utilised, PUE 1.2; Abilene is planned at 1.2 GW), inference sites
+  triple (60 MW, 50%, PUE 1.35). A size set with the slider scales with it.
+- One-line descriptions under each scenario in the menu.
+
+## v0.13.0 — Country panel (not yet pushed)
+- **Click a country** (or "Country details" in its right-click menu) to
+  open it in the side panel. If a site is open, the first click on the map
+  closes it and the next opens the country; a click on water closes it.
+- **Header**: a small flag (flag-icons SVG, 18 × 13 px, hairline border,
+  slightly desaturated) set into the eyebrow line, the name, and how many
+  sites and states or provinces it has on the map.
+- **Its place in the supply chain**: a one-to-two sentence note for 35
+  countries that matter to the chain (Taiwan's leading-edge logic, Korea's
+  HBM, the Netherlands' EUV, China's rare earths and export controls,
+  Ireland's grid limits, Qatar's helium…). Marked as context summarised
+  from public reporting, not from the data files. Below it, "In the chain"
+  lists the diagram parts its sites fill, chokepoints marked with the red
+  diamond.
+- **How it compares**: grid carbon, fossil share, trend, water stress,
+  cooling water and PM2.5, each with a bar and a caption for the share of
+  countries it beats ("cleaner grid than 19% of 212 countries").
+- **A typical 200 MW training data center there**: a year's energy, carbon
+  and water from the model.
+- **States or provinces** (US, China, India, Australia): the cleanest and
+  dirtiest grid. **Sites**: its sites on the map, as links.
+- **Sources and confidence**, folded away, as on a site's panel.
+- Countries with no values say so instead of showing empty rows.
+
+## v0.12.3 — Softer borders, data-only descriptions, real removal (not yet pushed)
+- **Borders softened** after v0.12.2 made them too strong: country borders
+  30% ink (from 50%), US state lines 20% (from 34%), in both themes, keeping
+  the country line a step above the state line. Widths unchanged.
+- **Built-in sites lose their hand-written notes** ("Densest data center
+  market on earth."). Every site's panel now opens with the description
+  generated from its own data, the same as an added node. The notes stay in
+  the source, where search still matches them.
+- **Remove means remove.** "Remove node" (right-click menu) and the panel's
+  Remove button now delete the node completely, place and all, instead of
+  turning it back into an empty location to re-type; its supply links go
+  with it, the Connections counts drop, and a short "Removed Ashburn" notice
+  confirms it. Built-in sites return on reload, since edits aren't saved
+  yet. Every empty location ring (Querétaro, Johannesburg, Riyadh, and
+  dropped or searched points) can be removed: a Remove button in its panel,
+  which had no actions before, and "Remove location" in its right-click
+  menu, both confirming with the same notice.
+
 ## v0.12.2 — Border hierarchy
 - **Country borders read over the fills, the US one included.** They were
   drawn in the pale land-outline grey, which nearly vanished on the tan

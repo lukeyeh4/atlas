@@ -12,7 +12,7 @@ with the environmental load of each node.
 
 ## What it does
 
-- **32 sites** at real coordinates across five stages: raw inputs, chip making,
+- **32 sites** at real coordinates across five stages: raw materials, chip making,
   infrastructure, model building, delivery. Each has a facility type (fab,
   mine, training data center, AI lab, …) and takes its inputs from that type
   and its location values from its coordinates.
@@ -36,21 +36,29 @@ with the environmental load of each node.
   built-in sites; right-click any land to drop a point, named from reverse
   geocoding. Add a node there by stage and facility type; data center size
   is adjustable.
-- **Map layers** — grid carbon intensity, water stress, air quality (PM2.5) —
-  painted by country, and by state for the US. Hovering names the place.
+- **Map layers**, each explained in plain words:
+  - **Places**: power emissions (grid carbon), water scarcity, and air
+    pollution (PM2.5), painted by country and by state for the US.
+    Hovering names the place.
+  - **Each site**: power used, water used, and air pollution produced,
+    drawn as circles sized by each site's modelled value.
 - **Globe arcs** show a selected site's supply chain, coloured by what they
-  carry (goods or compute and models), with small markers travelling in the
-  direction of transfer.
-- **Connections** — the whole system as a diagram: stages as columns, five
-  kinds of link, chokepoints marked, the parts the map models emphasised.
-  Opens on the main chain; hover to trace, click to pin.
-- **Scenarios** — fast grid decarbonisation, training moves to the Nordics,
-  data center boom — with per-site deltas against baseline, and **Compare
-  locations** to see the same node at eleven reference places.
-- **Key** — show or hide stages and kinds of connection; folds into one
-  button.
-- **Search** with `/` or `⌘K`; right-click (or long-press) for context
-  actions.
+  carry (physical goods, or designs, data and models), with small markers
+  travelling in the direction of transfer.
+- **Connections**: the whole system as a diagram. Stages are columns, with
+  five kinds of link and chokepoints marked. Click a step or a link for a
+  plain-language explanation, what moves, and the step's sites on the map
+  with their yearly totals.
+- **Scenarios**: fast grid decarbonisation, training moves to the Nordics,
+  data center boom. Moved sites take their new names. Any edit makes the
+  scenario **Custom**; choosing Baseline clears every edit. **Compare
+  locations** shows the same node at eleven reference places.
+- **Stats**: totals for everything on the map against baseline and the
+  world, a live counter since the page opened, and breakdowns by stage,
+  site, country and scenario.
+- **Key**: a menu to show or hide stages and kinds of connection.
+- **Search** cities with `/` or `⌘K`; zoom and re-center buttons;
+  right-click (or long-press) for context actions.
 
 ## The data
 
@@ -82,7 +90,7 @@ python3 -m http.server 8000
 
 External dependencies: Mapbox GL JS v3 (basemap, terrain, boundaries,
 geocoding), d3 v7 and topojson-client (cdnjs / jsDelivr), US state shapes
-from us-atlas, and two Google Fonts. It needs a network connection.
+from us-atlas, and three Google Fonts. It needs a network connection.
 
 The Mapbox public token is set near the top of the map section in
 `index.html`. Restrict it to the Pages URL (and `localhost` for development)
@@ -111,4 +119,4 @@ Basemap, terrain, boundaries and geocoding © [Mapbox](https://www.mapbox.com/ab
 © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors.
 US state shapes: [us-atlas](https://github.com/topojson/us-atlas) (US Census
 Bureau). Data sources are credited per value in the app and in
-`data/README.md`. Typefaces: Source Serif 4 and IBM Plex Mono.
+`data/README.md`. Typefaces: IBM Plex Sans, IBM Plex Mono and Source Serif 4.
