@@ -22,6 +22,7 @@
     --map-label-on:#4F5757;         /* labels over a coloured layer */
     --label-halo:rgba(255,255,255,.82);
     --state-line:rgba(21,24,26,.34);
+    --country-line:rgba(21,24,26,.5);   /* country borders: a step above state lines */
     --nodata:#D6D9D8;
     --nodata-line:#F2F3F2;
     --hs-shadow:rgba(40,46,46,.30);
@@ -55,6 +56,7 @@
       --map-label-on:#B2B9B8;
       --label-halo:rgba(17,19,19,.82);
       --state-line:rgba(233,235,234,.34);
+      --country-line:rgba(233,235,234,.48);
       --nodata:#2E3232;
       --nodata-line:#4A5050;
       --hs-shadow:rgba(0,0,0,.55);
@@ -73,7 +75,7 @@
   :root[data-theme="dark"]{
     --paper:#111313;--surface:#171A1A;--ink:#E9EBEA;--ink-2:#A7AEAE;--ink-3:#757C7C;
     --rule:#313636;--rule-soft:#232727;--land:#222626;--landline:#3A4140;
-    --water:#0C0F10;--space:#171A1A;--map-label:#5F6767;--map-label-on:#B2B9B8;--label-halo:rgba(17,19,19,.82);--state-line:rgba(233,235,234,.34);--nodata:#2E3232;--nodata-line:#4A5050;--hs-shadow:rgba(0,0,0,.55);--hs-light:rgba(233,235,234,.09);
+    --water:#0C0F10;--space:#171A1A;--map-label:#5F6767;--map-label-on:#B2B9B8;--label-halo:rgba(17,19,19,.82);--state-line:rgba(233,235,234,.34);--country-line:rgba(233,235,234,.48);--nodata:#2E3232;--nodata-line:#4A5050;--hs-shadow:rgba(0,0,0,.55);--hs-light:rgba(233,235,234,.09);
     --accent:#6CC9BF;--accent-soft:#1C2E2C;--ramp0:#1F2322;--ramp1:#8E8471;--warn:#C9A06A;--e-phys:#C99372;--e-data:#6DB5AE;--e-money:#CBB56C;--e-policy:#A597CA;--e-loop:#7AB0C8;--choke:#D98470;
     --r-ci0:#23241B;--r-ci1:#8A7A3A;--r-ws0:#1A2126;--r-ws1:#5484A4;
     --r-aq0:#1F2322;--r-aq1:#878D8D;--r-land0:#1C221C;--r-land1:#66896B;
@@ -1042,7 +1044,9 @@
                 'line-opacity': ['interpolate',['linear'],['zoom'], 1.8,0, 4.5,1]}},
         {id:'borders', type:'line', source:'streets', 'source-layer':'admin',
          filter:['all', ['==', ['get','admin_level'], 0], NOT_TRUE('maritime'), WORLDVIEW],
-         paint:{'line-color': token('--landline'), 'line-width': ['interpolate',['linear'],['zoom'], 1,0.4, 6,1]}},
+         // one step above the US state lines in both ink and weight, so every
+         // country border (the US one included) reads over the fills
+         paint:{'line-color': token('--country-line'), 'line-width': ['interpolate',['linear'],['zoom'], 1,0.6, 6,1.7]}},
         {id:'country-label', type:'symbol', source:'streets', 'source-layer':'place_label',
          minzoom: 2.6, filter:['==', ['get','class'], 'country'],
          layout:{'text-field':['coalesce',['get','name_en'],['get','name']], 'text-font': FONT,
@@ -1125,7 +1129,7 @@
     map.setPaintProperty('relief', 'hillshade-shadow-color', token('--hs-shadow'));
     map.setPaintProperty('relief', 'hillshade-highlight-color', token('--hs-light'));
     map.setPaintProperty('relief', 'hillshade-accent-color', token('--hs-shadow'));
-    map.setPaintProperty('borders', 'line-color', token('--landline'));
+    map.setPaintProperty('borders', 'line-color', token('--country-line'));
     map.setPaintProperty('state-borders', 'line-color', token('--state-line'));
     map.setFog(fog());
     if (map.hasImage('nodata')) map.updateImage('nodata', hatch());

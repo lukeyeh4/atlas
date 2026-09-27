@@ -1,6 +1,6 @@
 # AI Supply Chain Atlas — Roadmap
 
-Status as of 2026-09-27. Current build: v0.12.1, a single HTML file served
+Status as of 2026-09-27. Current build: v0.12.2, a single HTML file served
 from GitHub Pages on a Mapbox globe. Location data comes from the database
 side through `data/locales.json`, `data/node-types.json` and `data/cells/`
 (contract: `docs/locale-contract.md`). Finished work is in `CHANGELOG.md`,
@@ -170,8 +170,6 @@ visitors' edits stay in their browser.
 - [ ] **Land and cooling** is a placeholder: no data bound, paints neutral.
 - [ ] Accessibility pass on the ramps: check each layer's endpoints for
       contrast in both themes, and don't rely on hue alone.
-- [ ] Border hierarchy: US state lines now read stronger than country
-      borders over the fills. Country borders should match or outweigh them.
 - [ ] State or province lines beyond the US, if a layer needs them.
 - [ ] Optional thin major rivers between zoom 3 and 6, where streets water
       is hidden.

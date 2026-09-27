@@ -31,6 +31,15 @@ shape is fixed by `docs/locale-contract.md`, agreed with the app side.
 
 ---
 
+## v0.12.2 — Border hierarchy
+- **Country borders read over the fills, the US one included.** They were
+  drawn in the pale land-outline grey, which nearly vanished on the tan
+  fills, while US state lines used a darker ink; so the US–Canada and
+  US–Mexico borders looked weaker than the state lines beside them. Country
+  borders now have their own token (`--country-line`, a step darker than
+  `--state-line` in both themes) and a width a step above (0.6 → 1.7 px
+  across zooms, vs 0.7 → 1.4 for states).
+
 ## v0.12.1 — Key
 - **The stage toggles sit inside a "Key" that opens sideways** in the top
   bar, as the stage row always did, and folds away to a single "Key"
