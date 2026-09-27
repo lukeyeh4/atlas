@@ -42,6 +42,46 @@ avoids rework.
 - [ ] Country records currently carry `[grid CI, water stress, air quality]`.
       Air quality is a sample index; bind real PM2.5 or AQI data.
 
+### Location data (`data/locales.json`)
+Ordered by how likely each is to work, surest first. Coverage checked
+2026-09-27 against the live sources.
+- [ ] **Validate in the build.** Turn the contract checks into a step in
+      `build_all.py`, so a rebuild can't produce a file the app rejects. No
+      new data.
+- [ ] **Every country, not just 64.** A place in any other country gets no
+      inputs and can't be modelled. The bulk sources already cover most of
+      the world, keyed by ISO3: Ember CI, fossil share and trend for 213
+      countries; World Bank PM2.5 (2023) for ~217; ERA5 climate (for WUE) for
+      any country; Aqueduct water stress for 164. Mostly script work.
+      Operator WUE disclosures stay hand-researched (29 countries).
+- [ ] **Water stress by state and province.** Aqueduct 4.0's province sheet,
+      in the same download, scores ~2,980 provinces (Arizona 0.88 against the
+      US's 0.52). Needs a crosswalk from GADM province ids to ISO 3166-2: by
+      name for the US, China, India and Australia, a published crosswalk for
+      the rest. The same file has 2030/2050/2080 projections, for when time
+      returns.
+- [ ] **Grid gaps with data already in hand.** Tasmania's trend from its
+      consumption-based series (229.7 → 124.4 g/kWh, 2015–2023). Tibet's CI
+      from the Southwest regional grid figure (247.2 g/kWh, 2023) as a
+      stand-in; its trend needs the 2021–2022 regional figures (unchecked).
+      Both mix bases, so each needs a note. Under the all-three rule, each
+      fix moves the place back onto its own grid.
+- [ ] **Canadian provinces.** The national average hides hydro Quebec and
+      fossil Alberta. Canada's National Inventory Report (Annex 13) publishes
+      electricity intensity by province and year; Statistics Canada has
+      generation by fuel. Researched by hand.
+- [ ] **Grid gaps that need new research.** Northern Territory fossil share
+      and trend; Chandigarh and Dadra & Nagar Haveli–Daman & Diu fossil share;
+      Lakshadweep trend. Small places with thin sources.
+- [ ] **Japanese regions.** Emission factors are published per utility, not
+      per prefecture, so each prefecture maps to its utility area; a few
+      straddle two.
+- [ ] **US consumption-based intensity.** State values count in-state
+      generation, so importers such as Virginia look cleaner than the power
+      they use. EPA's eGRID is by grid subregion, not state: fixing it means
+      weighting subregions per state, or keying US values by grid region,
+      which the contract would need a new level for.
+
 ### Node editing
 - [ ] Edit a node's inputs in the panel (power, utilization, PUE), not just
       add and remove it. The model already recomputes on every render.

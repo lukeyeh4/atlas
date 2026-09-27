@@ -7,7 +7,7 @@ import runpy, sys
 from pathlib import Path
 
 HERE = Path(__file__).parent
-STEPS = ['ember.py', 'country_wue.py', 'country_inputs.py', 'subnational_grid.py', 'node_profiles.py', 'research_raw.py']
+STEPS = ['ember.py', 'country_wue.py', 'country_inputs.py', 'subnational_grid.py', 'locales.py', 'node_profiles.py', 'research_raw.py']
 if '--population' in sys.argv:
     STEPS.append('population_grid.py')
 

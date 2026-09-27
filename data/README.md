@@ -24,10 +24,11 @@ All CSVs import directly into Google Sheets.
 | File | What | Rows |
 |---|---|---|
 | `node-profiles.csv` | Typical inputs per node type (mine, fab, data center, …): power, utilisation, PUE, growth, water rate | 46 |
-| `country-inputs.csv` | Location inputs for 64 countries: carbon intensity, fossil share, decarbonisation, water stress, cooling water (WUE), PM2.5 | 64 |
-| `subnational-grid.csv` | Grid inputs for US states, Chinese provinces, Indian states, Australian grids | 125 |
+| `country-inputs.csv` | Location inputs for 64 countries (with ISO `iso2`): carbon intensity, fossil share, decarbonisation, water stress, cooling water (WUE), PM2.5 | 64 |
+| `subnational-grid.csv` | Grid inputs for US states, Chinese provinces, Indian states, Australian grids (with `iso_3166_2`) | 125 |
 | `population-grid-025.csv` | Population per 0.25° cell. Sum cells within 100 km of a node for its air-exposure population | 162,637 |
 | `research-raw.csv` | Every value from the first research round, including the original 32 sites and 25 regions | 479 |
+| `locales.json` | What the app reads: country and subdivision inputs keyed by ISO code (`US`, `US-TX`), each value with confidence and source. Shape fixed by [`docs/locale-contract.md`](../docs/locale-contract.md) | 64 + 126 |
 
 ## How it's built
 
@@ -58,6 +59,7 @@ The population grid needs `pip install numpy tifffile imagecodecs`. Everything e
 | `population_grid.py` | GHSL 2025 population, 30″ | `population-grid-025.csv` |
 | `country_inputs.py` | — | `country-inputs.csv` |
 | `subnational_grid.py` | — | `subnational-grid.csv` |
+| `locales.py` | — | `locales.json` |
 | `node_profiles.py` | — | `node-profiles.csv` |
 | `research_raw.py` | — | `research-raw.csv` |
 
@@ -67,7 +69,8 @@ To refresh a year, re-run: `ember.py` picks up new Ember releases. For values re
 
 - **Carbon intensity basis differs by source:** Ember is lifecycle; MEE (China) and OpenElectricity (Australia) are direct combustion.
 - **Generation vs consumption:** most sub-national values describe generation, so importing regions look cleaner than what they consume. Tasmania shows 4 g/kWh; consumption is about 124–200.
-- **Climate-based WUE is weak.** It spans only 1.17–1.57 L/kWh. `wue_best_l_kwh` prefers operator-disclosed values (26 countries).
+- **Climate-based WUE is weak.** It spans only 1.17–1.57 L/kWh. `wue_best_l_kwh` prefers operator-disclosed values (26 countries). `locales.json` does not: its `wue` is the climate estimate, because a disclosure describes one operator's fleet, not a new site; disclosures go in `wue_disclosed`.
+- **ISO codes:** India uses the pre-2023 codes (`IN-TG`, `IN-CT`, `IN-OR`, `IN-UT`), which is what Mapbox returns. `AU-WA` is the Perth grid (SWIS) only; `AU-ACT` carries NEM NSW values.
 - **Water rates are withdrawal, not consumption.** Grasberg withdraws 7.3 L/kWh but consumes 0.4.
 - **Utilisation:** vacancy-based figures overstate energy about 2.6×. Profiles use Ireland's metered ratio instead.
 - **Gaps:**

@@ -3,12 +3,12 @@
 Reads sources/countries.json, country-grid.json (ember.py), country-wue.json
 (country_wue.py) and water-disclosed.json. Writes data/country-inputs.csv.
 """
-from common import load, write_csv
+from common import ISO2, load, write_csv
 
 c, g, w, d = load('countries.json'), load('country-grid.json'), load('country-wue.json'), load('water-disclosed.json')
 src = c['sources']
 
-HEADER = ['country', 'ci_gco2_kwh', 'ci_year', 'fossil_share', 'fossil_year', 'decarb_rate_per_yr', 'decarb_note',
+HEADER = ['country', 'iso2', 'ci_gco2_kwh', 'ci_year', 'fossil_share', 'fossil_year', 'decarb_rate_per_yr', 'decarb_note',
           'water_stress_0_1', 'water_stress_note', 'wue_best_l_kwh', 'wue_best_basis',
           'wue_disclosed_l_kwh', 'wue_disclosed_scope', 'wue_disclosed_operator', 'wue_disclosed_year', 'wue_disclosed_url',
           'wue_climate_l_kwh', 'wetbulb_c', 'wue_climate_note', 'pm25_ugm3', 'exceptions']
@@ -32,7 +32,7 @@ for name, (ci, ws, aq) in c['countries'].items():
     else:
         best, basis = ww.get('wue'), 'climate formula' + (' (operator stated zero cooling water)' if dv == 0 else '')
 
-    rows.append([name, ci, ex.get('ci', {}).get('year', src['ci']['year']), gw['fos']['value'], gw['fos']['year'],
+    rows.append([name, ISO2[name], ci, ex.get('ci', {}).get('year', src['ci']['year']), gw['fos']['value'], gw['fos']['year'],
                  gw['dec']['value'], gw['dec']['note'], ws, ws_note, best, basis,
                  dv, dw.get('scope', ''), dw.get('operator', ''), dw.get('year', ''), dw.get('url', ''),
                  ww.get('wue'), ww.get('wetbulb_c'), ww.get('note', ''), aq,

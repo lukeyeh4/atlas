@@ -1,16 +1,17 @@
 -- AI Supply Chain Atlas — database schema (PostgreSQL 15+, written for Supabase)
 --
 -- The shared reference data now hard-coded in index.html (regions, sites,
--- flows, country layers), with per-value confidence and source so sourced
--- figures can replace the samples one value at a time.
+-- flows), plus the sourced location inputs in data/locales.json (countries
+-- and subdivisions), with per-value confidence and source so sourced figures
+-- can replace the samples one value at a time.
 --
 -- There are no accounts. The public reads; only the maintainer writes, through
 -- the Supabase dashboard or migrations. Visitors' own edits never reach the
 -- database — they stay in the browser (localStorage, Export / Import).
 --
--- The whole baseline is ~31 sites, ~25 regions and ~180 countries: the app
--- reads it in a single request through the `atlas_baseline` view and never
--- queries per node. See docs/database.md.
+-- The whole baseline is ~31 sites, ~25 regions, 64 countries and ~130
+-- subdivisions: the app reads it in a single request through the
+-- `atlas_baseline` view and never queries per node. See docs/database.md.
 
 -- ---------------------------------------------------------------- types ----
 
@@ -23,6 +24,7 @@ create type confidence as enum ('measured', 'disclosed', 'estimated', 'projected
 
 create table source (
   id           bigint generated always as identity primary key,
+  key          text unique,         -- 'ember', 'aqueduct', ...: the `src` keys in data/locales.json
   title        text not null,
   url          text,
   publisher    text,
@@ -96,25 +98,65 @@ create table flow (
 
 create index flow_to_idx on flow (to_site);
 
--- ---------------------------------------------------- country layers -------
--- Values behind the map's choropleth layers, keyed by Natural Earth name.
--- ci grid carbon intensity gCO2/kWh · ws water stress 0-1 · aq air quality index
+-- ------------------------------------------------------------- locales -----
+-- Location inputs for any place on the map, keyed by ISO code as Mapbox
+-- returns it: country by ISO 3166-1 alpha-2 ('US'), subdivision by full
+-- ISO 3166-2 ('US-TX'). The app resolves subdivision -> country. Same shape
+-- as data/locales.json; see docs/locale-contract.md.
+--
+-- ci   grid carbon intensity, gCO2/kWh    fos  fossil share of generation, 0-1
+-- dec  annual decarbonisation rate, /yr   ws   water stress, 0-1
+--      (negative when ci is rising)       pm25 annual mean PM2.5, µg/m³
+-- wue  on-site water per kWh, L/kWh: climate estimate for a new site
+-- wue_disclosed  an operator's own figure for its fleet or region there
+--
+-- Unknown values have no row; there are no nulls or placeholders.
+
+create table country (
+  iso2 text primary key check (iso2 ~ '^[A-Z]{2}$'),
+  name text not null
+);
 
 create table country_value (
-  country     text not null,
-  key         text not null check (key in ('ci', 'ws', 'aq')),
-  value       double precision not null check (value >= 0),
+  country     text not null references country on delete cascade,
+  key         text not null check (key in ('ci', 'fos', 'dec', 'ws', 'wue', 'wue_disclosed', 'pm25')),
+  value       double precision not null check (key = 'dec' or value >= 0),
   confidence  confidence not null default 'sample',
   source_id   bigint references source on delete set null,
-  as_of       date,
+  year        smallint,
+  basis       text,               -- 'generation', 'consumption', 'lifecycle', 'direct'
+  note        text,
   primary key (country, key)
 );
 
+create table subdivision (
+  code    text primary key check (code ~ '^[A-Z]{2}-[A-Z0-9]{1,3}$'),
+  country text not null references country,
+  name    text not null,
+  check (left(code, 2) = country)
+);
+
+-- Subdivisions carry grid values only (ci, fos, dec) for now; ws follows.
+create table subdivision_value (
+  subdivision text not null references subdivision on delete cascade,
+  key         text not null check (key in ('ci', 'fos', 'dec', 'ws', 'wue', 'wue_disclosed', 'pm25')),
+  value       double precision not null check (key = 'dec' or value >= 0),
+  confidence  confidence not null default 'sample',
+  source_id   bigint references source on delete set null,
+  year        smallint,
+  basis       text,
+  note        text,
+  primary key (subdivision, key)
+);
+
+create index subdivision_country_idx on subdivision (country);
+
 -- Postgres doesn't index foreign keys on its own; these keep deleting a
 -- source cheap.
-create index region_input_source_idx  on region_input  (source_id) where source_id is not null;
-create index site_input_source_idx    on site_input    (source_id) where source_id is not null;
-create index country_value_source_idx on country_value (source_id) where source_id is not null;
+create index region_input_source_idx      on region_input      (source_id) where source_id is not null;
+create index site_input_source_idx        on site_input        (source_id) where source_id is not null;
+create index country_value_source_idx     on country_value     (source_id) where source_id is not null;
+create index subdivision_value_source_idx on subdivision_value (source_id) where source_id is not null;
 
 -- ------------------------------------------------------------ baseline -----
 -- Everything the app needs to draw, as one JSON document shaped like the
@@ -123,7 +165,10 @@ create index country_value_source_idx on country_value (source_id) where source_
 --   sites:     [{id, n, p, s, c:[lon,lat], r, note, in:{...}, conf:{...}}]
 --   cities:    candidate locations, same shape without s/in
 --   flows:     [[from, to, share]]
---   countries: {name: [ci, ws, aq]}
+--   countries, subdivisions, sources: as in data/locales.json, e.g.
+--     countries: {US: {n, ci: {v, conf, src, year?, basis?, note?}, ...}}
+--   Locale values only appear with a source and a confidence other than
+--   'sample', as the contract requires.
 
 create view atlas_baseline with (security_invoker = true) as
 select jsonb_build_object(
@@ -166,15 +211,30 @@ select jsonb_build_object(
     from flow f
   ),
   'countries', (
-    select coalesce(jsonb_object_agg(c.country, c.vals), '{}')
-    from (
-      select country,
-             jsonb_build_array(
-               max(value) filter (where key = 'ci'),
-               max(value) filter (where key = 'ws'),
-               max(value) filter (where key = 'aq')) as vals
-      from country_value group by country
-    ) c
+    select coalesce(jsonb_object_agg(c.iso2, jsonb_build_object('n', c.name) || coalesce(v.vals, '{}')), '{}')
+    from country c
+    left join lateral (
+      select jsonb_object_agg(cv.key, jsonb_strip_nulls(jsonb_build_object(
+               'v', cv.value, 'conf', cv.confidence, 'src', s.key,
+               'year', cv.year, 'basis', cv.basis, 'note', cv.note))) as vals
+      from country_value cv join source s on s.id = cv.source_id
+      where cv.country = c.iso2 and cv.confidence <> 'sample' and s.key is not null
+    ) v on true
+  ),
+  'subdivisions', (
+    select coalesce(jsonb_object_agg(d.code, jsonb_build_object('n', d.name) || coalesce(v.vals, '{}')), '{}')
+    from subdivision d
+    left join lateral (
+      select jsonb_object_agg(sv.key, jsonb_strip_nulls(jsonb_build_object(
+               'v', sv.value, 'conf', sv.confidence, 'src', s.key,
+               'year', sv.year, 'basis', sv.basis, 'note', sv.note))) as vals
+      from subdivision_value sv join source s on s.id = sv.source_id
+      where sv.subdivision = d.code and sv.confidence <> 'sample' and s.key is not null
+    ) v on true
+  ),
+  'sources', (
+    select coalesce(jsonb_object_agg(s.key, jsonb_strip_nulls(jsonb_build_object('title', s.title, 'url', s.url))), '{}')
+    from source s where s.key is not null
   )
 ) as data;
 
@@ -188,7 +248,10 @@ alter table region_input  enable row level security;
 alter table site          enable row level security;
 alter table site_input    enable row level security;
 alter table flow          enable row level security;
-alter table country_value enable row level security;
+alter table country           enable row level security;
+alter table country_value     enable row level security;
+alter table subdivision       enable row level security;
+alter table subdivision_value enable row level security;
 
 create policy read_all on source        for select using (true);
 create policy read_all on region        for select using (true);
@@ -196,6 +259,9 @@ create policy read_all on region_input  for select using (true);
 create policy read_all on site          for select using (true);
 create policy read_all on site_input    for select using (true);
 create policy read_all on flow          for select using (true);
-create policy read_all on country_value for select using (true);
+create policy read_all on country           for select using (true);
+create policy read_all on country_value     for select using (true);
+create policy read_all on subdivision       for select using (true);
+create policy read_all on subdivision_value for select using (true);
 
 grant select on atlas_baseline to anon;

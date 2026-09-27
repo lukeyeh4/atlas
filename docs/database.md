@@ -58,16 +58,18 @@ ids, so saved edits still apply after the reference numbers are updated.
 ## Why the schema is efficient
 
 The data is small: 32 sites, 3 candidate locations, 25 regions, 37 flows,
-64 country records. The costs to avoid are round trips, not table scans.
+64 countries and 126 subdivisions (states, provinces) keyed by ISO code. The costs to avoid are round trips, not table scans.
 
 1. **One read for the whole map.** The `atlas_baseline` view returns
    everything the app draws as a single JSON document, shaped like the
    constants in `index.html`. No per-node queries.
-2. **Per-value provenance without wide tables.** `site_input`, `region_input`
-   and `country_value` hold one row per value with its `confidence`
+2. **Per-value provenance without wide tables.** `site_input`, `region_input`,
+   `country_value` and `subdivision_value` hold one row per value with its `confidence`
    (`measured / disclosed / estimated / projected / sample`) and `source_id`.
    That is the roadmap's confidence mark and citations. Real figures can
-   replace samples one value at a time.
+   replace samples one value at a time. The locale tables are already real:
+   they are seeded from `data/locales.json`, and the view returns them in the
+   same shape ([`docs/locale-contract.md`](locale-contract.md)).
 3. **Indexes only where a query needs them.** The `flow` primary key serves
    downstream lookups and `flow_to_idx` serves upstream ones. Partial indexes
    on `source_id` keep deleting a source cheap.
@@ -78,7 +80,7 @@ The data is small: 32 sites, 3 candidate locations, 25 regions, 37 flows,
 Verified locally on Postgres 18 (PGlite) with Supabase's default grants to
 `anon`:
 - the schema and seed load;
-- the view round-trips the app's data (32 sites, 3 candidates, 25 regions, 37 flows, 64 countries);
+- the view round-trips the app's data (32 sites, 3 candidates, 25 regions, 37 flows) and reproduces `data/locales.json` exactly (64 countries, 126 subdivisions, 43 sources);
 - `anon` can read the view;
 - `anon`'s inserts are refused, and its updates and deletes touch 0 rows.
 
@@ -88,7 +90,7 @@ Verified locally on Postgres 18 (PGlite) with Supabase's default grants to
    ship in the page.
 2. In the SQL editor, run `db/schema.sql`, then `db/seed.sql`.
    Regenerate the seed after changing data in `index.html`:
-   `node db/seed-from-index.mjs > db/seed.sql`.
+   `node db/seed-from-index.mjs > db/seed.sql` (it also reads `data/locales.json`).
 3. In `index.html`, fetch `atlas_baseline` once at boot, over plain `fetch` to
    the REST endpoint; no client library is needed. Use it in place of the
    inline `SITES` / `REGIONS` / `FLOWS` / `COUNTRY` constants, and keep the

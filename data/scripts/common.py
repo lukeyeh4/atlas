@@ -57,3 +57,55 @@ def app_names():
     for sid, n, p in re.findall(r"\{id:'([a-z]+)',\s*n:'([^']+)',\s*p:'([^']+)',\s*s:", html):
         names[sid] = f'{n}, {p}'
     return names
+
+
+# ISO 3166-1 alpha-2 by Natural Earth name, for every country in countries.json.
+ISO2 = {
+    'United States of America': 'US', 'Canada': 'CA', 'Mexico': 'MX', 'Brazil': 'BR', 'Argentina': 'AR',
+    'Chile': 'CL', 'Colombia': 'CO', 'Peru': 'PE', 'Venezuela': 'VE', 'United Kingdom': 'GB', 'Ireland': 'IE',
+    'France': 'FR', 'Germany': 'DE', 'Netherlands': 'NL', 'Belgium': 'BE', 'Spain': 'ES', 'Portugal': 'PT',
+    'Italy': 'IT', 'Switzerland': 'CH', 'Austria': 'AT', 'Poland': 'PL', 'Czechia': 'CZ', 'Sweden': 'SE',
+    'Norway': 'NO', 'Finland': 'FI', 'Denmark': 'DK', 'Iceland': 'IS', 'Greece': 'GR', 'Romania': 'RO',
+    'Ukraine': 'UA', 'Russia': 'RU', 'Turkey': 'TR', 'Kazakhstan': 'KZ', 'China': 'CN', 'India': 'IN',
+    'Japan': 'JP', 'South Korea': 'KR', 'Taiwan': 'TW', 'Mongolia': 'MN', 'Vietnam': 'VN', 'Thailand': 'TH',
+    'Malaysia': 'MY', 'Indonesia': 'ID', 'Philippines': 'PH', 'Singapore': 'SG', 'Bangladesh': 'BD',
+    'Pakistan': 'PK', 'Saudi Arabia': 'SA', 'United Arab Emirates': 'AE', 'Iran': 'IR', 'Iraq': 'IQ',
+    'Israel': 'IL', 'Egypt': 'EG', 'Morocco': 'MA', 'Algeria': 'DZ', 'Nigeria': 'NG', 'South Africa': 'ZA',
+    'Kenya': 'KE', 'Ethiopia': 'ET', 'Ghana': 'GH', 'Tanzania': 'TZ', 'Angola': 'AO', 'Australia': 'AU',
+    'New Zealand': 'NZ',
+}
+
+# ISO 3166-2 suffixes by the names the grid sources use. US states use their
+# postal code, which ISO matches (incl. US-DC).
+# India uses the pre-2023 codes (TG, CT, OR, UT), which is what Mapbox returns.
+# ISO recoded these on 2023-11-23 to TS, CG, OD, UK.
+SUBDIVISION = {
+    'China': {
+        'Beijing': 'BJ', 'Tianjin': 'TJ', 'Hebei': 'HE', 'Shanxi': 'SX', 'Inner Mongolia': 'NM', 'Liaoning': 'LN',
+        'Jilin': 'JL', 'Heilongjiang': 'HL', 'Shanghai': 'SH', 'Jiangsu': 'JS', 'Zhejiang': 'ZJ', 'Anhui': 'AH',
+        'Fujian': 'FJ', 'Jiangxi': 'JX', 'Shandong': 'SD', 'Henan': 'HA', 'Hubei': 'HB', 'Hunan': 'HN',
+        'Guangdong': 'GD', 'Guangxi': 'GX', 'Hainan': 'HI', 'Chongqing': 'CQ', 'Sichuan': 'SC', 'Guizhou': 'GZ',
+        'Yunnan': 'YN', 'Tibet': 'XZ', 'Shaanxi': 'SN', 'Gansu': 'GS', 'Qinghai': 'QH', 'Ningxia': 'NX',
+        'Xinjiang': 'XJ',
+    },
+    'India': {
+        'Andaman and Nicobar': 'AN', 'Andhra Pradesh': 'AP', 'Arunachal Pradesh': 'AR', 'Assam': 'AS', 'Bihar': 'BR',
+        'Chandigarh': 'CH', 'Chhattisgarh': 'CT', 'Dadra and Nagar Haveli and Daman and Diu': 'DH', 'Delhi': 'DL',
+        'Goa': 'GA', 'Gujarat': 'GJ', 'Haryana': 'HR', 'Himachal Pradesh': 'HP', 'Jammu and Kashmir': 'JK',
+        'Jharkhand': 'JH', 'Karnataka': 'KA', 'Kerala': 'KL', 'Ladakh': 'LA', 'Lakshadweep': 'LD',
+        'Madhya Pradesh': 'MP', 'Maharashtra': 'MH', 'Manipur': 'MN', 'Meghalaya': 'ML', 'Mizoram': 'MZ',
+        'Nagaland': 'NL', 'Odisha': 'OR', 'Puducherry': 'PY', 'Punjab': 'PB', 'Rajasthan': 'RJ', 'Sikkim': 'SK',
+        'Tamil Nadu': 'TN', 'Telangana': 'TG', 'Tripura': 'TR', 'Uttar Pradesh': 'UP', 'Uttarakhand': 'UT',
+        'West Bengal': 'WB',
+    },
+    # WA-SWIS is the Perth grid; it stands in for all of WA (see locales.py).
+    'Australia': {'NSW': 'NSW', 'QLD': 'QLD', 'VIC': 'VIC', 'SA': 'SA', 'TAS': 'TAS', 'WA-SWIS': 'WA', 'NT': 'NT'},
+}
+
+
+def iso_3166_2(country, name, code=''):
+    """Full ISO 3166-2 code for a grid-source subregion, or '' if unknown."""
+    if country == 'United States of America':
+        return f'US-{code}'
+    suffix = SUBDIVISION.get(country, {}).get(name)
+    return f'{ISO2[country]}-{suffix}' if suffix else ''
