@@ -16,8 +16,8 @@ shape is fixed by `docs/locale-contract.md`, agreed with the app side.
   returns: 248 countries and 126 states/provinces (US, China, India,
   Australia). Each value has a confidence and a source; unknown values are
   left out, not zeroed.
-- **`data/cells/`** — people within 100 km for every 0.25° cell, in 10° tiles
-  (6.2 MB). Water stress, water use and PM2.5 layers may follow.
+- **`data/cells/`** — per 0.25° cell, in 10° tiles (8.5 MB): people within
+  100 km, and the water stress of the cell's river sub-basin (Aqueduct 4.0).
 - **`data/node-types.json`** — default inputs for the nine facility types.
   Built-in sites will use these plus location lookup, like added nodes.
 - Water use: `wue` is the location's climate estimate; operator figures are a

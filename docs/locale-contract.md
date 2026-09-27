@@ -20,9 +20,11 @@ The app looks its location inputs up by those codes, most specific first:
 cell (0.25°) → subdivision (US-TX) → country (US) → none
 ```
 
-and shows which level each value came from. The curated grid regions
-(`REGIONS` in `index.html`, e.g. `us-pjm`) stay as they are for the built-in
-sites; they are not part of v1.
+and shows which level each value came from. The built-in sites work the same
+way: each has a facility type and ISO codes in `index.html` (`SITE_META`),
+takes its inputs from `node-types.json` and its location values from its
+coordinates. There are no per-site values in the data files. The inline
+sample `REGIONS` and per-site `in` remain only as the offline fallback.
 
 ## Ownership
 

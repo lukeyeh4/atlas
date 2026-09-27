@@ -7,7 +7,12 @@ Shape fixed by docs/locale-contract.md ("Location cells"). Each layer is a
        population-grid-025.csv (population_grid.py) over every cell whose
        centre is within 100 km, the same rule as population_grid.pop_within().
        Cells with fewer than 500 people within 100 km are left out;
-       index.json `absent` says they mean pop 0.
+       index.json `absent` says they mean pop 0, and a cell written for
+       another layer carries that 0 rather than null.
+  ws   baseline water stress of the cell's river sub-basin, 0-1, from
+       water-stress-grid-025.csv (water_stress_grid.py). Unknown where
+       Aqueduct has no data, and in Taiwan and Singapore, whose hand-researched
+       country value replaces Aqueduct's.
 
 Writes data/cells/{S}_{W}.json and data/cells/index.json. Needs numpy.
 """
@@ -54,21 +59,30 @@ def within(grid, km=R_KM):
     return out
 
 
+def grid(name, col):
+    """A committed 0.25° CSV (lat, lon, col) as an array; NaN where absent."""
+    g = np.full((NY, NX), np.nan)
+    for r in csv.DictReader(open(DATA / name)):
+        g[int((90 - float(r['lat'])) / RES), int((float(r['lon']) + 180) / RES)] = float(r[col])
+    return g
+
+
 def layers():
     pop = within(population()) / 1e6
     pop[pop < 0.0005] = np.nan
-    return {'pop': np.round(pop, 3)}
+    return {'pop': np.round(pop, 3), 'ws': grid('water-stress-grid-025.csv', 'ws')}
 
 
 def write(lay):
     keys = list(lay)
     stack = np.stack([lay[k] for k in keys])
     known = ~np.all(np.isnan(stack), axis=0)
+    fill = [CELL_ABSENT[k]['v'] if k in CELL_ABSENT else None for k in keys]
     tiles = {}
     for r, c in zip(*np.nonzero(known)):
         la, lo = 90 - (r + 0.5) * RES, -180 + (c + 0.5) * RES
         tid = f'{math.floor(la / TILE) * TILE}_{math.floor(lo / TILE) * TILE}'
-        vals = [None if math.isnan(v) else float(v) for v in stack[:, r, c]]
+        vals = [f if math.isnan(v) else float(v) for v, f in zip(stack[:, r, c], fill)]
         tiles.setdefault(tid, {})[f'{la:.3f},{lo:.3f}'] = vals
     if OUT.exists():
         shutil.rmtree(OUT)

@@ -137,10 +137,16 @@ def iso_3166_2(country, name, code=''):
 CELL_SOURCES = {
     'ghsl-2025': {'title': 'GHSL GHS-POP R2023A, 2025 epoch, 30 arc-second (JRC), summed within 100 km on a 0.25° grid',
                   'url': 'https://human-settlement.emergency.copernicus.eu/ghs_pop2023.php'},
+    'aqueduct-basin': {'title': 'WRI Aqueduct 4.0 baseline annual water stress by sub-basin (bws), score 0-5 divided by 5, '
+                                'sampled at 0.25° cell centres',
+                       'url': 'https://www.wri.org/data/aqueduct-global-maps-40-data'},
 }
 CELL_META = {
     'pop': {'conf': 'estimated', 'src': 'ghsl-2025', 'year': 2025,
             'note': 'People within 100 km of the cell centre; GHSL 2025 is modelled from census data.'},
+    'ws': {'conf': 'estimated', 'src': 'aqueduct-basin', 'year': 2023,
+           'note': "Water stress of the cell's river sub-basin (1979-2019 hydrology); arid, low-use basins score 1. "
+                   'Upstream inflow counts as local supply, so river-fed dry cities (Las Vegas) can read low.'},
 }
 # What a cell missing from the tiles means, per key (index.json `absent`).
 # Only pop: cells are left out below a threshold. Other keys stay unknown.

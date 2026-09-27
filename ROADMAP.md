@@ -54,12 +54,10 @@ Ordered by how likely each is to work, surest first. Coverage checked
       countries; World Bank PM2.5 (2023) for ~217; ERA5 climate (for WUE) for
       any country; Aqueduct water stress for 164. Mostly script work.
       Operator WUE disclosures stay hand-researched (29 countries).
-- [ ] **Water stress by state and province.** Aqueduct 4.0's province sheet,
-      in the same download, scores ~2,980 provinces (Arizona 0.88 against the
-      US's 0.52). Needs a crosswalk from GADM province ids to ISO 3166-2: by
-      name for the US, China, India and Australia, a published crosswalk for
-      the rest. The same file has 2030/2050/2080 projections, for when time
-      returns.
+- [x] **Water stress below country level.** Done per 0.25° cell from Aqueduct
+      4.0 sub-basins (see below), which is finer than by province (Phoenix
+      1.0, Ashburn 0.03, against the US's 0.52). Aqueduct also has
+      2030/2050/2080 projections, for when time returns.
 - [ ] **Grid gaps with data already in hand.** Tasmania's trend from its
       consumption-based series (229.7 → 124.4 g/kWh, 2015–2023). Tibet's CI
       from the Southwest regional grid figure (247.2 g/kWh, 2023) as a
@@ -85,10 +83,11 @@ Ordered by how likely each is to work, surest first. Coverage checked
 Per-point values (`data/cells/`, 0.25° tiles), so each city differs from its
 neighbours, not just its state:
 - [x] `pop` — people within 100 km, from the GHSL grid already built.
-- [ ] `ws` — Aqueduct 4.0 sub-basin water stress (baseline annual file).
-- [ ] `wue` — the same climate formula on gridded monthly climate (WorldClim
-      or ERA5) instead of a national mean.
-- [ ] `pm25` — gridded annual PM2.5 (ACAG / van Donkelaar), aggregated to 0.25°.
+- [x] `ws` — Aqueduct 4.0 sub-basin water stress (baseline annual file).
+- [ ] `wue` — not planned: the formula spans only 1.17–1.57 L/kWh, so a finer
+      grid adds little.
+- [ ] `pm25` — not planned for now: see Air pollution; background PM2.5 matters
+      less than emissions and exposure.
 - [x] `data/node-types.json` — facility-type defaults from `node-profiles.csv`.
 
 ### Air pollution

@@ -27,7 +27,8 @@ All CSVs import directly into Google Sheets.
 | `country-inputs.csv` | Location inputs for every country the sources cover (with ISO `iso2`): carbon intensity, fossil share, decarbonisation, water stress, cooling water (WUE), PM2.5. Blank where a source has no value | 248 |
 | `subnational-grid.csv` | Grid inputs for US states, Chinese provinces, Indian states, Australian grids (with `iso_3166_2`) | 125 |
 | `population-grid-025.csv` | Population per 0.25° cell. Sum cells within 100 km of a node for its air-exposure population | 162,637 |
-| `cells/` | What the app reads per point: 0.25° cells in 10° tiles, keyed by cell centre. Today one layer, `pop` (people within 100 km, millions); water use, water stress and PM2.5 follow. Shape fixed by the contract | 328 tiles, 250,034 cells, 6.2 MB |
+| `water-stress-grid-025.csv` | Baseline water stress of each 0.25° cell's river sub-basin (WRI Aqueduct 4.0), 0–1 | 243,867 |
+| `cells/` | What the app reads per point: 0.25° cells in 10° tiles, keyed by cell centre. Layers: `pop` (people within 100 km, millions) and `ws` (sub-basin water stress). Shape fixed by the contract | 347 tiles, 292,567 cells, 8.5 MB |
 | `node-types.json` | What the app reads per facility type: the nine types' power, utilisation, PUE, growth and process water, each with confidence and source | 9 |
 | `research-raw.csv` | Every value from the first research round, including the original 32 sites and 25 regions | 479 |
 | `locales.json` | What the app reads: country and subdivision inputs keyed by ISO code (`US`, `US-TX`), each value with confidence and source. Shape fixed by [`docs/locale-contract.md`](../docs/locale-contract.md) | 248 + 126 |
@@ -52,14 +53,15 @@ python3 data/scripts/build_all.py                # everything but the population
 python3 data/scripts/build_all.py --population   # also the population grid (~480 MB download)
 ```
 
-The population grid needs `pip install numpy tifffile imagecodecs`; the cell tiles need `numpy`. Everything else is standard-library Python.
+The population grid needs `pip install numpy tifffile imagecodecs`, the water-stress grid `pip install shapely pyogrio`; the cell tiles need `numpy`. Both grids are committed, so a normal build needs neither download. Everything else is standard-library Python.
 
 | Script | Downloads | Writes |
 |---|---|---|
 | `ember.py` | Ember yearly data (global + US states) | `sources/country-grid.json`, `sources/grid-us-states.json` |
 | `country_wue.py` | World Bank CCKP ERA5 climate; Shumba et al. African WUE dataset | `sources/country-wue.json` |
 | `population_grid.py` | GHSL 2025 population, 30″ | `population-grid-025.csv` |
-| `cells.py` | — | `cells/` (from `population-grid-025.csv`) |
+| `water_stress_grid.py` | WRI Aqueduct 4.0 sub-basins (~260 MB) | `water-stress-grid-025.csv` |
+| `cells.py` | — | `cells/` (from the two grids) |
 | `node_types.py` | — | `node-types.json` (from `node-profiles.csv`) |
 | `water_stress.py` | WRI Aqueduct 4.0 rankings | `sources/country-ws.json` |
 | `pm25.py` | World Bank WDI PM2.5 | `sources/country-pm25.json` |
@@ -79,6 +81,7 @@ To refresh a year, re-run: `ember.py` picks up new Ember releases. For values re
 - **Generation vs consumption:** most sub-national values describe generation, so importing regions look cleaner than what they consume. Tasmania shows 4 g/kWh; consumption is about 124–200.
 - **Climate-based WUE is weak.** It spans only 1.17–1.57 L/kWh. `wue_best_l_kwh` prefers operator-disclosed values (26 countries). `locales.json` does not: its `wue` is the climate estimate, because a disclosure describes one operator's fleet, not a new site; disclosures go in `wue_disclosed`.
 - **ISO codes:** India uses the pre-2023 codes (`IN-TG`, `IN-CT`, `IN-OR`, `IN-UT`), which is what Mapbox returns. `AU-WA` is the Perth grid (SWIS) only; `AU-ACT` carries NEM NSW values.
+- **Cell water stress follows Aqueduct's rules.** Upstream inflow counts as local supply, so river-fed dry cities read low (Las Vegas 0.13 on the Colorado); arid, low-use basins read 1. Taiwan and Singapore cells are left empty so the hand-researched country value applies.
 - **Water rates are withdrawal, not consumption.** Grasberg withdraws 7.3 L/kWh but consumes 0.4.
 - **Utilisation:** vacancy-based figures overstate energy about 2.6×. Profiles use Ireland's metered ratio instead.
 - **Gaps:**
